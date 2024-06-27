@@ -1,0 +1,7 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StyleInclude Source="/Charts/Elements.axaml"/>
+    <StyleInclude Source="/Charts/CartesianChart.axaml"/>
+    <StyleInclude Source="/Charts/PolarChart.axaml"/>
+    <StyleInclude Source="/Charts/SmithChart.axaml"/>
+</Styles>

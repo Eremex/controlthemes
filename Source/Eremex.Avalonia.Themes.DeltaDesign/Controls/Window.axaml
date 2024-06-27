@@ -1,0 +1,361 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+        xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls">
+	<Design.PreviewWith>
+		<Border Padding="20">
+			<!-- Add Controls for Previewer Here -->
+			<common:MxWindow Width="300" Height="300" Title="MxWindow"/>
+				
+		</Border>
+	</Design.PreviewWith>
+
+	<Styles.Resources>
+		<ResourceDictionary>
+			<ControlTemplate x:Key="MxCaptionButtonTemplate" TargetType="Button">
+				<Border x:Name="PART_Border" 
+				        CornerRadius="{TemplateBinding CornerRadius}"
+				        Background="{TemplateBinding Background}" 
+				        BorderBrush="{TemplateBinding BorderBrush}"
+				        Padding="{TemplateBinding Padding}"
+				        BorderThickness="{TemplateBinding BorderThickness}">
+					<ContentPresenter Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"/>
+				</Border>
+			</ControlTemplate>
+		</ResourceDictionary>
+	</Styles.Resources>
+	
+	<!-- Add Styles Here -->
+	<Style Selector="common|MxWindow/template/Image#PART_Icon">
+		<Setter Property="Margin" Value="8,8,0,8"/>
+		<Setter Property="Width" Value="16"/>
+		<Setter Property="Height" Value="16"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:maximized/template/Image#PART_Icon">
+		<Setter Property="Margin" Value="4,4,0,4"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow/template/TextBlock#PART_Title">
+		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}"/>
+		<Setter Property="LineHeight" Value="16"/>
+		<Setter Property="FontWeight" Value="400"/>
+		<Setter Property="FontSize" Value="12"/>
+		<Setter Property="Margin" Value="8"/>
+		<Setter Property="MinHeight" Value="16"/>
+		<Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:maximized/template/TextBlock#PART_Title">
+		<Setter Property="Margin" Value="4"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow/template/Border#PART_CaptionArea">
+		<!-- <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/> -->
+		<Setter Property="BorderBrush" Value="{DynamicResource Stroke Color/Surface Strok/Default}"/>
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"/>
+		<Setter Property="CornerRadius" Value="8,8,0,0"/>
+		<Setter Property="BorderThickness" Value="1,1,1,0"/>
+		<Setter Property="IsHitTestVisible" Value="True"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:maximized/template/Border#PART_CaptionArea">
+		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="CornerRadius" Value="0"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow/template/Border#PART_CaptionTransparentBack">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
+		<Setter Property="CornerRadius" Value="8,8,0,0"/>
+		<Setter Property="ClipToBounds" Value="True"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:maximized/template/Border#PART_CaptionTransparentBack">
+		<Setter Property="CornerRadius" Value="0"/>
+		<Setter Property="ClipToBounds" Value="True"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:fullscreen/template/Border#PART_CaptionTransparentBack">
+		<Setter Property="IsVisible" Value="False"></Setter>
+	</Style>
+	
+	<Style Selector="common|MxWindow/template/Border#PART_Content">
+		<!-- <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/> -->
+		<Setter Property="BorderBrush" Value="{DynamicResource Stroke Color/Surface Strok/Default}"/>
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
+		<Setter Property="CornerRadius" Value="0,0,8,8"/>
+		<Setter Property="BorderThickness" Value="1,0,1,1"/>
+		<Setter Property="ClipToBounds" Value="True"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow/template/Border#PART_ContentBack">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
+		<Setter Property="CornerRadius" Value="0,0,8,8"/>
+		<Setter Property="ClipToBounds" Value="True"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:maximized/template/Border#PART_Content">
+		<Setter Property="CornerRadius" Value="0"/>
+		<Setter Property="BorderThickness" Value="0"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:fullscreen/template/Border#PART_Content">
+		<Setter Property="CornerRadius" Value="0"/>
+		<Setter Property="BorderThickness" Value="0"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow/template/Border#PART_ContentInner">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
+		<Setter Property="CornerRadius" Value="0,0,7,7"/>
+		<Setter Property="ClipToBounds" Value="True"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:maximized/template/Border#PART_ContentInner">
+		<Setter Property="CornerRadius" Value="0"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:fullscreen/template/Border#PART_ContentInner">
+		<Setter Property="CornerRadius" Value="0"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow/template/Button#PART_MinimizeButton">
+		<Setter Property="Margin" Value="4,0,0,0"/>
+		<Setter Property="CornerRadius" Value="6"/>
+		<Setter Property="Padding" Value="8"/>
+		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="Foreground" Value="{DynamicResource Graphics Old/Neutral/Primary}"/>
+		<Setter Property="Template" Value="{DynamicResource MxCaptionButtonTemplate}"/>
+		<Setter Property="ToolTip.Tip" Value="{x:Static localization:ControlsResources.Window_MinimizeButton}"></Setter>
+	</Style>
+	
+	<Style Selector="common|MxWindow:maximized/template/Button#PART_MinimizeButton">
+		<Setter Property="Margin" Value="0"/>
+		<Setter Property="CornerRadius" Value="0"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow/template/Button#PART_MinimizeButton:pointerover/template/Border#PART_Border">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"/>
+	</Style>
+
+	<Style Selector="common|MxWindow/template/Button#PART_MinimizeButton:selected/template/Border#PART_Border">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"/>
+	</Style>
+
+	<Style Selector="common|MxWindow/template/Button#PART_MinimizeButton:pressed/template/Border#PART_Border">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Pressed}"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow/template/Button#PART_MaximizeButton">
+		<Setter Property="Margin" Value="4,0,0,0"/>
+		<Setter Property="CornerRadius" Value="6"/>
+		<Setter Property="Padding" Value="8"/>
+		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="Foreground" Value="{DynamicResource Graphics Old/Neutral/Primary}"/>
+		<Setter Property="Template" Value="{DynamicResource MxCaptionButtonTemplate}"/>
+		<Setter Property="ToolTip.Tip" Value="{x:Static localization:ControlsResources.Window_MaximizeButton}"></Setter>
+	</Style>
+	
+	<Style Selector="common|MxWindow:maximized/template/Button#PART_MaximizeButton">
+		<Setter Property="Margin" Value="0"/>
+		<Setter Property="CornerRadius" Value="0"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="ToolTip.Tip" Value="{x:Static localization:ControlsResources.Window_RestoreButton}"></Setter>
+	</Style>
+	
+	<Style Selector="common|MxWindow/template/Button#PART_MaximizeButton:pointerover/template/Border#PART_Border">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"/>
+	</Style>
+
+	<Style Selector="common|MxWindow/template/Button#PART_MaximizeButton:selected/template/Border#PART_Border">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"/>
+	</Style>
+
+	<Style Selector="common|MxWindow/template/Button#PART_MaximizeButton:pressed/template/Border#PART_Border">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Pressed}"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow/template/Button#PART_CloseButton">
+		<Setter Property="Margin" Value="4,0,4,0"/>
+		<Setter Property="CornerRadius" Value="6"/>
+		<Setter Property="Padding" Value="8"/>
+		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="Foreground" Value="{DynamicResource Graphics Old/Neutral/Primary}"/>
+		<Setter Property="Template" Value="{DynamicResource MxCaptionButtonTemplate}"/>
+		<Setter Property="ToolTip.Tip" Value="{x:Static localization:ControlsResources.Window_CloseButton}"></Setter>
+	</Style>
+	
+	<Style Selector="common|MxWindow:maximized/template/Button#PART_CloseButton">
+		<Setter Property="Margin" Value="0"/>
+		<Setter Property="CornerRadius" Value="0"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow/template/Button#PART_CloseButton:pointerover/template/Border#PART_Border">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"/>
+	</Style>
+
+	<Style Selector="common|MxWindow/template/Button#PART_CloseButton:selected/template/Border#PART_Border">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"/>
+	</Style>
+
+	<Style Selector="common|MxWindow/template/Button#PART_CloseButton:pressed/template/Border#PART_Border">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Pressed}"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow/template/Border#PART_ShadowInnerBorder">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/> 
+		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Strong}"/>
+		<Setter Property="BorderThickness" Value="0"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:not(:maximized):not(:fullscreen)/template/Border#PART_ShadowInnerBorder">
+		<Setter Property="Margin" Value="9"/>
+		<Setter Property="CornerRadius" Value="9"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:not(:maximized):not(:fullscreen)/template/Border#PART_Shadow1">
+		<Setter Property="Margin" Value="10"/>
+		<Setter Property="CornerRadius" Value="9"/>
+		<Setter Property="IsHitTestVisible" Value="False"/>
+		<Setter Property="BoxShadow" Value="0 0.39 1.45 #06000000"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:not(:maximized):not(:fullscreen)/template/Border#PART_Shadow2">
+		<Setter Property="Margin" Value="10"/>
+		<Setter Property="CornerRadius" Value="9"/>
+		<Setter Property="IsHitTestVisible" Value="False"/>
+		<Setter Property="BoxShadow" Value="0 1.8 4.06 0 #09000000"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:not(:maximized):not(:fullscreen)/template/Border#PART_Shadow3">
+		<Setter Property="Margin" Value="10"/>
+		<Setter Property="CornerRadius" Value="9"/>
+		<Setter Property="IsHitTestVisible" Value="False"/>
+		<Setter Property="BoxShadow" Value="0 4.56 10.9 0 #0C000000"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:not(:maximized):not(:fullscreen)/template/Border#PART_Shadow4">
+		<Setter Property="Margin" Value="10"/>
+		<Setter Property="CornerRadius" Value="9"/>
+		<Setter Property="IsHitTestVisible" Value="False"/>
+		<Setter Property="BoxShadow" Value="0 0 10 0 #32000000"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:not(:maximized):not(:fullscreen)/template/Border#PART_Shadow5">
+		<Setter Property="Margin" Value="10"/>
+		<Setter Property="CornerRadius" Value="9"/>
+		<Setter Property="IsHitTestVisible" Value="False"/>
+		<Setter Property="BoxShadow" Value="0 0 2 0 #52000000"/>
+	</Style>
+
+	<Style Selector="common|MxWindow/template/Border#PART_CaptionSeparator">
+		<Setter Property="Height" Value="1"/>
+		<Setter Property="Background" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/>
+		<!-- <Setter Property="Margin" Value="1,0,1,0"/> -->
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow:maximized/template/Border#PART_CaptionSeparator">
+		<Setter Property="Margin" Value="0"/>
+	</Style>
+	
+	<Style Selector="common|MxWindow">
+        <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}"/>
+		<Setter Property="ExtendClientAreaTitleBarHeightHint" Value="40"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<VisualLayerManager>
+						<Grid Background="Transparent">
+							<Border x:Name="PART_Shadow1"/>
+							<Border x:Name="PART_Shadow2"/>
+							<Border x:Name="PART_Shadow3"/>
+							<Border x:Name="PART_Shadow4"/>
+							<Border x:Name="PART_Shadow5"/>
+							<Border x:Name="PART_ShadowInnerBorder">
+									<Border x:Name="PART_Border" Background="Transparent">
+										<Grid RowDefinitions="Auto, *" Background="Transparent">
+											<Panel Grid.Row="0" Background="Transparent">
+												<Border x:Name="PART_CaptionTransparentBack">
+													<Border x:Name="PART_CaptionArea">
+														<Grid ColumnDefinitions="Auto, *, Auto, Auto, Auto" Background="Transparent">
+															<Image x:Name="PART_Icon" IsVisible="{TemplateBinding Icon, Converter={x:Static ObjectConverters.IsNotNull}}" Source="{TemplateBinding Icon, Converter={x:Static common:WindowIconConverter.Instance}}"/>
+															<TextBlock Grid.Column="1" x:Name="PART_Title" Text="{TemplateBinding Title}"/>
+															<Button x:Name="PART_MinimizeButton" Grid.Column="2" IsVisible="{TemplateBinding ShowMinimizeButton}">
+																<Image Source="{TemplateBinding MinimizeButtonGlyph}"/>
+															</Button>
+															<Button x:Name="PART_MaximizeButton" Grid.Column="3" IsVisible="{TemplateBinding ShowMaximizeButton}">
+																<Panel>
+																	<Image Source="{TemplateBinding MaximizeButtonGlyph}" IsVisible="{Binding !$parent[common:MxWindow].IsRestoreButtonVisible}"/>
+																	<Image Source="{TemplateBinding RestoreButtonGlyph}" IsVisible="{TemplateBinding IsRestoreButtonVisible}"/>
+																</Panel>
+															</Button>
+															<Button x:Name="PART_CloseButton" Grid.Column="4" IsVisible="{TemplateBinding ShowCloseButton}">
+																<Image Source="{TemplateBinding CloseButtonGlyph}"/>
+															</Button>
+															<Border x:Name="PART_CaptionSeparator" IsVisible="{TemplateBinding ShowCaptionSeparator}" Grid.ColumnSpan="5"/>
+														</Grid>
+													</Border>
+												</Border>
+											</Panel>
+											<Border Grid.Row="1" x:Name="PART_ContentBack">
+												<Border Grid.Row="1" x:Name="PART_Content">
+													<Border x:Name="PART_ContentInner" Padding="{TemplateBinding Padding}">
+														<ContentPresenter Content="{TemplateBinding Content}"/>
+													</Border>
+												</Border>
+											</Border>
+										</Grid>
+									</Border>
+							</Border>
+							<Grid RowDefinitions="Auto, *, Auto" ColumnDefinitions="Auto, *, Auto" Margin="{TemplateBinding ActualDragAreaMargin}">
+										<Border x:Name="PART_TopLeftCorner" Grid.Row="0" Grid.Column="0"
+										        Cursor="TopLeftCorner"
+										        Background="Transparent" 
+										        Width="{TemplateBinding ActualDragBorderSize}" 
+										        Height="{TemplateBinding ActualDragBorderSize}"/>
+										<Border x:Name="PART_TopSide" Grid.Row="0" Grid.Column="1" 
+										        Cursor="TopSide"
+										        Background="Transparent" 
+										        Height="{TemplateBinding ActualDragBorderSize}"/>
+										<Border x:Name="PART_TopRightCorner" Grid.Row="0" Grid.Column="2" 
+										        Cursor="TopRightCorner"
+										        Background="Transparent" 
+										        Width="{TemplateBinding ActualDragBorderSize}" 
+										        Height="{TemplateBinding ActualDragBorderSize}"/>
+										<Border x:Name="PART_LeftSide" Grid.Row="1" Grid.Column="0" 
+										        Cursor="LeftSide"
+										        Background="Transparent" 
+										        Width="{TemplateBinding ActualDragBorderSize}"/>
+										<Border x:Name="PART_RightSide" Grid.Row="1" Grid.Column="2" 
+										        Cursor="RightSide"
+										        Background="Transparent" 
+										        Width="{TemplateBinding ActualDragBorderSize}"/>
+										<Border x:Name="PART_BottomLeftCorner" Grid.Row="2" Grid.Column="0" 
+										        Cursor="BottomLeftCorner"
+										        Background="Transparent" 
+										        Width="{TemplateBinding ActualDragBorderSize}" 
+										        Height="{TemplateBinding ActualDragBorderSize}"/>
+										<Border x:Name="PART_BottomSide" Grid.Row="2" Grid.Column="1" 
+										        Cursor="BottomSide"
+										        Background="Transparent" 
+										        Height="{TemplateBinding ActualDragBorderSize}"/>
+										<Border x:Name="PART_BottomRightCorner" Grid.Row="2" Grid.Column="2" 
+										        Cursor="BottomRightCorner"
+										        Background="Transparent" 
+										        Width="{TemplateBinding ActualDragBorderSize}" 
+										        Height="{TemplateBinding ActualDragBorderSize}"/>
+									</Grid>
+						</Grid>
+					</VisualLayerManager>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</Styles>

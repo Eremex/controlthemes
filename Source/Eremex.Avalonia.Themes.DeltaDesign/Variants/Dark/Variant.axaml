@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Dark">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Variants/Dark/Colors.axaml"/>
+                <ResourceInclude Source="/Variants/Dark/Common.axaml"/>
+                <ResourceInclude Source="/Variants/Dark/Toolbars.axaml"/>
+                <ResourceInclude Source="/Variants/Dark/Editors.axaml"/>
+                <ResourceInclude Source="/Variants/Dark/ChartColors.axaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>

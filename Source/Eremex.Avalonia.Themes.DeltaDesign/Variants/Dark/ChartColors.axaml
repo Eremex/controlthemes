@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Color x:Key="Stroke/Strong/Color">#ffdbe6e6</Color>
+	<Color x:Key="Stroke/Medium/Color">#ff707575</Color>
+	<Color x:Key="Stroke/Light/Color">#ff4E5252</Color>
+	<Color x:Key="Background/Chart/Color">#ff000000</Color>
+	<Color x:Key="Background/DrawingArea/Color">#ff292e2e</Color>
+	<Color x:Key="Interlacing/Color">#584C5454</Color>
+	<Color x:Key="Crosshair/BackColor">#ffbc93ec</Color>
+	<Color x:Key="Crosshair/TextColor">#ff000000</Color>
+</ResourceDictionary>

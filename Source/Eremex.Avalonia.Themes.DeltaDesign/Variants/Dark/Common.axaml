@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls">
+    <!-- Add Resources Here -->
+    <ControlTemplate x:Key="MxLargeShadowTemplate" TargetType="{x:Type controls:ShadowControl}">
+        <ContentPresenter Content="{TemplateBinding Content}" Margin="30"/>
+    </ControlTemplate>
+    <ControlTemplate x:Key="MxSmallShadowTemplate" TargetType="{x:Type controls:ShadowControl}">
+        <ContentPresenter Content="{TemplateBinding Content}" Margin="10"/>
+    </ControlTemplate>
+    <Thickness x:Key="MxToolTipBorderThemeThickness">1</Thickness>
+</ResourceDictionary>

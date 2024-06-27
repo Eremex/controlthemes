@@ -1,0 +1,84 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    <!-- TabControl -->
+    <system:Double x:Key="TabControlButtonSize">28</system:Double>
+    
+    <Thickness x:Key="MxTabControlContentPadding">12 0</Thickness>
+    
+    <Thickness x:Key="MxTabItemSelectedMargin">0 0 0 -1</Thickness>
+    <Thickness x:Key="MxTabControlItemsPanelMargin">8 0 8 0</Thickness>
+    
+    <Thickness x:Key="MxTabItemSelectedMarginBottom">0 -1 0 0</Thickness>
+    <Thickness x:Key="MxTabControlItemsPanelMarginBottom">8 0 8 0</Thickness>
+    
+    <Thickness x:Key="MxTabItemSelectedMarginLeft">0 0 -1 0</Thickness>
+    <Thickness x:Key="MxTabControlItemsPanelMarginLeft">0 8 0 8</Thickness>
+    
+    <Thickness x:Key="MxTabItemSelectedMarginRight">-1 0 0 0</Thickness>
+    <Thickness x:Key="MxTabControlItemsPanelMarginRight">0 8 0 8</Thickness>
+    
+    <CornerRadius x:Key="MxTabControlSelectedContentCornerRadius">4</CornerRadius>
+    <CornerRadius x:Key="MxTabControlCornerRadiusBottom">4 4 0 0</CornerRadius>
+    <CornerRadius x:Key="MxTabControlCornerRadiusLeft">0 4 4 0</CornerRadius>
+    <CornerRadius x:Key="MxTabControlCornerRadiusRight">4 0 0 4</CornerRadius>
+    <CornerRadius x:Key="MxTabControlCornerRadiusTop">0 0 4 4</CornerRadius>
+
+    <!-- TabItem -->
+    <Thickness x:Key="MxTabItemGlyphMargin">0 0 4 0</Thickness>
+    
+    <system:Double x:Key="TabItemButtonSize">24</system:Double>
+    
+    <system:Double x:Key="MxTabItemSeparatorSize">12</system:Double>
+    <system:Double x:Key="MxTabItemFontSize">12</system:Double>
+    <system:Double x:Key="MxTabItemMinHeight">28</system:Double>
+
+    <Thickness x:Key="TabItem/Top/Margin">0 1 0 0</Thickness>
+    <Thickness x:Key="TabItem/Bottom/Margin">0 0 0 1</Thickness>
+    <Thickness x:Key="TabItem/Left/Margin">1 0 0 0</Thickness>
+    <Thickness x:Key="TabItem/Right/Margin">0 0 1 0</Thickness>
+    
+    <Thickness x:Key="TabItem/Horizontal/Padding">8 0 2 0</Thickness>
+    <Thickness x:Key="TabItem/Top/Vertical/Padding">0 2 0 8</Thickness>
+    <Thickness x:Key="TabItem/Left/Vertical/Padding">0 2 0 8</Thickness>
+    <Thickness x:Key="TabItem/Bottom/Vertical/Padding">0 8 0 2</Thickness>
+    <Thickness x:Key="TabItem/Right/Vertical/Padding">0 8 0 2</Thickness>
+    
+    <Thickness x:Key="TabItem/Horizontal/Content/Margin">0 0 6 0</Thickness>
+    <Thickness x:Key="TabItem/Top/Vertical/Content/Margin">0 6 0 0</Thickness>
+    <Thickness x:Key="TabItem/Left/Vertical/Content/Margin">0 6 0 0</Thickness>
+    <Thickness x:Key="TabItem/Bottom/Vertical/Content/Margin">0 0 0 6</Thickness>
+    <Thickness x:Key="TabItem/Right/Vertical/Content/Margin">0 0 0 6</Thickness>
+    
+    <Thickness x:Key="TabItem/Selected/Top/BorderThickness">1 1 1 0</Thickness>
+    <Thickness x:Key="TabItem/Selected/Left/BorderThickness">1 1 0 1</Thickness>
+    <Thickness x:Key="TabItem/Selected/Bottom/BorderThickness">1 0 1 1</Thickness>
+    <Thickness x:Key="TabItem/Selected/Right/BorderThickness">0 1 1 1</Thickness>
+    
+    <Thickness x:Key="TabItem/Light/Selected/Top/BorderThickness">1 0</Thickness>
+    <Thickness x:Key="TabItem/Light/Selected/Left/BorderThickness">0 1</Thickness>
+    <Thickness x:Key="TabItem/Light/Selected/Bottom/BorderThickness">1 0</Thickness>
+    <Thickness x:Key="TabItem/Light/Selected/Right/BorderThickness">0 1</Thickness>
+    
+    <Thickness x:Key="TabItem/Top/BorderThickness">1 0</Thickness>
+    <Thickness x:Key="TabItem/Left/BorderThickness">0 1</Thickness>
+    <Thickness x:Key="TabItem/Bottom/BorderThickness">1 0</Thickness>
+    <Thickness x:Key="TabItem/Right/BorderThickness">0 1</Thickness>
+    
+    <CornerRadius x:Key="TabItem/Selected/Top/CornerRadius">6 6 0 0</CornerRadius>
+    <CornerRadius x:Key="TabItem/Selected/Left/CornerRadius">6 0 0 6</CornerRadius>
+    <CornerRadius x:Key="TabItem/Selected/Bottom/CornerRadius">0 0 6 6</CornerRadius>
+    <CornerRadius x:Key="TabItem/Selected/Right/CornerRadius">0 6 6 0</CornerRadius>
+    
+    <CornerRadius x:Key="TabItem/PointerOver/Top/CornerRadius">6 6 4 4</CornerRadius>
+    <CornerRadius x:Key="TabItem/PointerOver/Left/CornerRadius">6 4 4 6</CornerRadius>
+    <CornerRadius x:Key="TabItem/PointerOver/Bottom/CornerRadius">4 4 6 6</CornerRadius>
+    <CornerRadius x:Key="TabItem/PointerOver/Right/CornerRadius">4 6 6 4</CornerRadius>
+    
+    <!-- TabStrip -->
+    <Thickness x:Key="MxTabStripItemPaddingHorizontal">12 0</Thickness>
+    <Thickness x:Key="MxTabStripItemPaddingVertical">0 12</Thickness>
+    
+    <Thickness x:Key="MxTabStripItemsPanelMargin">8 0 0 0</Thickness>
+    <Thickness x:Key="MxTabStripItemsPanelMarginVertical">0 8 0 0</Thickness>
+</ResourceDictionary>

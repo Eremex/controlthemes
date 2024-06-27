@@ -1,0 +1,30 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mxtw="clr-namespace:Eremex.AvaloniaUI.Controls.TrialWatermark;assembly=Eremex.Avalonia.Controls"
+        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+        xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls">
+
+    <Style Selector="mxtw|TrialWatermarkControl">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border BorderBrush="{DynamicResource Outline/Accent/Focus}"
+                        Background="{DynamicResource Fill/Neutral/Primary/Enabled}"
+                        BorderThickness="3" CornerRadius="5" Padding="5" Margin="30"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <Viewbox Stretch="None">
+                        <StackPanel TextElement.FontSize="12" TextElement.Foreground="{DynamicResource Text/Neutral/Primary}">
+                            <TextBlock Text="{x:Static localization:ControlsResources.TrialWatermark_Caption}" FontWeight="Bold"/>
+                            <TextBlock Text="{x:Static localization:ControlsResources.TrialWatermark_Line0}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static localization:ControlsResources.TrialWatermark_Line1}"/>
+                                <mxe:HyperlinkEditor EditorValue="{x:Static localization:ControlsResources.TrialWatermark_Link_Caption}" Command="{x:Static mxtw:TrialWatermarkManager.ContactMXCommand}" Padding="0" MinHeight="0"/>
+                                <TextBlock Text="."/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Viewbox>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+</Styles>

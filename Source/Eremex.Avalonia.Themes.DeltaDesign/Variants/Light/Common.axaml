@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls">
+    <!-- Add Resources Here -->
+    <ControlTemplate x:Key="MxLargeShadowTemplate" TargetType="{x:Type controls:ShadowControl}">
+        <Grid>
+            <Border IsHitTestVisible="False" BoxShadow="0 0.39 1.45 #06000000" Margin="30" CornerRadius="{TemplateBinding CornerRadius}"/>
+            <Border IsHitTestVisible="False" BoxShadow="0 1.8 4.06 0 #09000000" Margin="30" CornerRadius="{TemplateBinding CornerRadius}"/>
+            <Border IsHitTestVisible="False" BoxShadow="0 4.56 10.9 0 #12000000" Margin="30" CornerRadius="{TemplateBinding CornerRadius}"/>
+            <Border IsHitTestVisible="False" BoxShadow="0 0 1 0 #52000000" Margin="30" CornerRadius="{TemplateBinding CornerRadius}"/>
+            <ContentPresenter Margin="30" Content="{TemplateBinding Content}"/>
+        </Grid>
+    </ControlTemplate>
+    <ControlTemplate x:Key="MxSmallShadowTemplate" TargetType="{x:Type controls:ShadowControl}">
+        <Grid >
+            <Border IsHitTestVisible="False" BoxShadow="0 0.39 1.45 #06000000" Margin="10" CornerRadius="{TemplateBinding CornerRadius}"/>
+            <Border IsHitTestVisible="False" BoxShadow="0 1.8 4.06 0 #09000000" Margin="10" CornerRadius="{TemplateBinding CornerRadius}"/>
+            <Border IsHitTestVisible="False" BoxShadow="0 4.56 10.9 0 #12000000" Margin="10" CornerRadius="{TemplateBinding CornerRadius}"/>
+            <Border IsHitTestVisible="False" BoxShadow="0 0 1 0 #52000000" Margin="10" CornerRadius="{TemplateBinding CornerRadius}"/>
+            <Border Margin="10" 
+                    Background="{DynamicResource Fill/Neutral/Primary/Enabled}" 
+                    BorderBrush="{DynamicResource Outline/Neutral/Transparent/Strong}"
+                    BorderThickness="0" CornerRadius="{TemplateBinding CornerRadius}">
+                <ContentPresenter Content="{TemplateBinding Content}"/>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    <Thickness x:Key="MxToolTipBorderThemeThickness">0</Thickness>
+</ResourceDictionary>

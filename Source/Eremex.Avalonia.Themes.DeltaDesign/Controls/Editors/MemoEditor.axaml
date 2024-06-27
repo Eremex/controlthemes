@@ -1,0 +1,97 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="using:System"
+        xmlns:col="using:System.Collections"
+        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+				xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+				xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls"
+				xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls">
+
+	<Design.PreviewWith>
+		<Border Padding="20">
+			<StackPanel>
+				<Border Background="{DynamicResource Fill/Neutral/Primary/Enabled}" Padding="10">
+					<StackPanel Spacing="10">
+						<mxe:MemoEditor Width="180" EditorValue="Long test text test text test text test text test text"/>
+						<mxe:MemoEditor EditorMode="InplaceInactive" Width="180" EditorValue="Long test text test text test text test text test text"/>
+						<mxe:MemoEditor IsEnabled="False" Width="180" EditorValue="Short test text" ShowIcon="False"/>
+					</StackPanel>
+				</Border>
+				<Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
+					<StackPanel Spacing="10">
+						<mxe:MemoEditor EditorMode="InplaceActive" Width="180" Classes="secondary" EditorValue="Long test text test text test text test text test text"/>
+						<mxe:MemoEditor EditorMode="InplaceInactive" Width="180" Classes="secondary" EditorValue="Long test text test text test text test text test text"/>
+						<mxe:MemoEditor IsEnabled="False" Width="180" Classes="secondary" EditorValue="Short test text" ShowIcon="False"/>
+					</StackPanel>
+				</Border>
+			</StackPanel>
+		</Border>
+	</Design.PreviewWith>
+
+	<Styles.Resources>
+		<ResourceDictionary>
+			<sys:Double x:Key="MemoEditorPopupMinHeight">200</sys:Double>
+			<sys:Double x:Key="MemoEditorPopupMaxHeight">400</sys:Double>
+			<sys:Double x:Key="MemoEditorPopupMinWidth">300</sys:Double>
+		</ResourceDictionary>
+	</Styles.Resources>
+
+	<Style Selector="mxe|MemoEditor">
+		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+		<Setter Property="PopupMinHeight" Value="{StaticResource MemoEditorPopupMinHeight}"/>
+		<Setter Property="PopupMaxHeight" Value="{StaticResource MemoEditorPopupMaxHeight}"/>
+		<Setter Property="PopupWidth" Value="{Binding $self.Bounds.Width}"/>
+		<Setter Property="PopupMinWidth" Value="{StaticResource MemoEditorPopupMinWidth}"/>
+		<Setter Property="PopupHorizontalOffset" Value="{DynamicResource PopupHorizontalOffset}"/>
+		<Setter Property="PopupBottomOffset" Value="{DynamicResource PopupBottomOffset}"/>
+		<Setter Property="Template">
+			<ControlTemplate>
+				<mxev:EditorInactiveContainer Name="PART_InactiveContentContainer" ColumnDefinitions="Auto, *, Auto" >
+					<DockPanel Name="PART_RealEditorPresenterContainer" Grid.Column="1">
+						<TextBlock DockPanel.Dock="Left"
+												Name="PART_RealEditorPresenter"
+												TextTrimming="CharacterEllipsis"
+												mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"/>
+					</DockPanel>
+				</mxev:EditorInactiveContainer>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+
+	<Style Selector="mxe|MemoEditor:activeMode">
+		<Setter Property="PopupContent">
+			<Setter.Value>
+				<Template>
+					<TextBox	x:Name="PART_MemoTextBox"
+										BorderThickness="0"
+										Background="Transparent"
+										HorizontalAlignment="Stretch"
+										VerticalAlignment="Stretch"
+										IsReadOnly="{Binding $parent[mxe:MemoEditor].ReadOnly}"
+										TextWrapping="{Binding $parent[mxe:MemoEditor].MemoTextWrapping}"
+										ScrollViewer.VerticalScrollBarVisibility="{Binding $parent[mxe:MemoEditor].MemoVerticalScrollBarVisibility}"
+										AcceptsReturn="{Binding $parent[mxe:MemoEditor].MemoAcceptsReturn}"
+										AcceptsTab="{Binding $parent[mxe:MemoEditor].MemoAcceptsTab}">
+						<ScrollViewer.HorizontalScrollBarVisibility>
+							<MultiBinding Converter="{mxev:MemoEditorScrollBarVisibilityConverter}">
+								<Binding Path="$parent[mxe:MemoEditor].MemoTextWrapping"/>
+								<Binding Path="$parent[mxe:MemoEditor].MemoAcceptsReturn"/>
+								<Binding Path="$parent[mxe:MemoEditor].MemoHorizontalScrollBarVisibility" />
+							</MultiBinding>
+						</ScrollViewer.HorizontalScrollBarVisibility>
+						<TextBox.Styles>
+							<Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+								<Setter Property="BorderThickness" Value="0" />
+								<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+							</Style>
+							<Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+								<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+							</Style>
+						</TextBox.Styles>
+					</TextBox>
+				</Template>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+</Styles>

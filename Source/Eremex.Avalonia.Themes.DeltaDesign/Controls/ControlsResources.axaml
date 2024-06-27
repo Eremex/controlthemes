@@ -1,0 +1,92 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+				xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
+        xmlns:media="clr-namespace:Avalonia.Media;assembly=Avalonia.Visuals">
+	
+	<mxev:SplitterThicknessConverter x:Key="EditorSplitterConverter"/>
+	<mxev:SplitterThicknessConverter Factor="0.5" x:Key="ErrorIconSplitterThicknessConverter"/>
+
+	<StreamGeometry x:Key="ChevronUpIcon">M0.146447 4.35355C0.341709 4.54882 0.658291 4.54882 0.853553 4.35355L4 1.20711L7.14645 4.35355C7.34171 4.54882 7.65829 4.54882 7.85355 4.35355C8.04882 4.15829 8.04882 3.84171 7.85355 3.64645L4.35355 0.146447C4.15829 -0.0488157 3.84171 -0.0488157 3.64645 0.146447L0.146447 3.64645C-0.0488155 3.84171 -0.0488155 4.15829 0.146447 4.35355Z</StreamGeometry>
+	<StreamGeometry x:Key="ChevronDownIcon">M0.146447 0.646447C0.341709 0.451184 0.658291 0.451184 0.853553 0.646447L4 3.79289L7.14645 0.646447C7.34171 0.451184 7.65829 0.451184 7.85355 0.646447C8.04882 0.841709 8.04882 1.15829 7.85355 1.35355L4.35355 4.85355C4.15829 5.04882 3.84171 5.04882 3.64645 4.85355L0.146447 1.35355C-0.0488155 1.15829 -0.0488155 0.841709 0.146447 0.646447Z</StreamGeometry>
+	<StreamGeometry x:Key="ClearCrossIcon">M0.146447 0.146447C0.341709 -0.0488155 0.658291 -0.0488155 0.853553 0.146447L4 3.29289L7.14645 0.146447C7.34171 -0.0488155 7.65829 -0.0488155 7.85355 0.146447C8.04882 0.341709 8.04882 0.658291 7.85355 0.853553L4.70711 4L7.85355 7.14645C8.04882 7.34171 8.04882 7.65829 7.85355 7.85355C7.65829 8.04882 7.34171 8.04882 7.14645 7.85355L4 4.70711L0.853553 7.85355C0.658291 8.04882 0.341709 8.04882 0.146447 7.85355C-0.0488155 7.65829 -0.0488155 7.34171 0.146447 7.14645L3.29289 4L0.146447 0.853553C-0.0488155 0.658291 -0.0488155 0.341709 0.146447 0.146447Z</StreamGeometry>
+
+	<StreamGeometry x:Key="ChevronRightIcon">M0.313073 0.146447C0.508335 -0.0488155 0.824917 -0.0488155 1.02018 0.146447L5.52018 4.64645C5.71544 4.84171 5.71544 5.15829 5.52018 5.35355L1.02018 9.85355C0.824917 10.0488 0.508335 10.0488 0.313073 9.85355C0.11781 9.65829 0.11781 9.34171 0.313073 9.14645L4.45952 5L0.313073 0.853553C0.11781 0.658291 0.11781 0.341709 0.313073 0.146447Z</StreamGeometry>
+	<StreamGeometry x:Key="ChevronLeftIcon">M5.3535555 0.14644688c-0.195262 -0.1952625 -0.511843 -0.1952625 -0.7071031 0L0.14645249 4.6464499c-0.19527 0.19526 -0.19527 0.51184 0 0.7071 l 4.49999991 4.5c0.1952601 0.1952501 0.5118411 0.1952501 0.7071031 0 0.195263 -0.19526 0.195263 -0.51184 0 -0.7071l-4.146443 -4.14645 4.146443 -4.14644702c0.195263 -0.195262 0.195263 -0.511844 0 -0.707106Z</StreamGeometry>
+
+	<StreamGeometry x:Key="CheckBoxCheckIcon">M9.70636 0.154788C10.0351 0.406808 10.0973 0.877594 9.84524 1.20632L4.09524 8.70632C3.95426 8.8902 3.7362 8.9986 3.50449 8.99998C3.27278 9.00136 3.05345 8.89556 2.91029 8.71336L0.160293 5.21336C-0.0956169 4.88765 -0.0390379 4.41616 0.286666 4.16025C0.61237 3.90434 1.08386 3.96092 1.33977 4.28663L3.49276 7.0268L8.65483 0.293669C8.90685 -0.0350537 9.37763 -0.097233 9.70636 0.154788Z</StreamGeometry>
+	<StreamGeometry x:Key="CheckBoxIndeterminateIcon">M0.5 0.25h7s0.5 0 0.5 0.5v0.5s0 0.5 -0.5 0.5h-7s-0.5 0 -0.5 -0.5v-0.5s0 -0.5 0.5 -0.5</StreamGeometry>
+
+	<StreamGeometry x:Key="ErrorIcon">M7.15302 2C6.54447 2 6.07701 2.53899 6.16307 3.14142L6.87736 8.14142C6.94773 8.63407 7.36966 9 7.86731 9H8.13271C8.63036 9 9.05229 8.63407 9.12266 8.14142L9.83695 3.14142C9.92301 2.53899 9.45555 2 8.847 2H7.15302Z M8.00001 11C7.17158 11 6.50001 11.6716 6.50001 12.5C6.50001 13.3284 7.17158 14 8.00001 14C8.82844 14 9.50001 13.3284 9.50001 12.5C9.50001 11.6716 8.82844 11 8.00001 11Z</StreamGeometry>
+	<StreamGeometry x:Key="SpinEditorUpDownIcon">
+		M8.14645 10.3536C8.34171 10.5488 8.65829 10.5488 8.85355 10.3536L12 7.20711L15.1464 10.3536C15.3417 10.5488 15.6583 10.5488 15.8536 10.3536C16.0488 10.1583 16.0488 9.84171 15.8536 9.64645L12.3536 6.14645C12.1583 5.95118 11.8417 5.95118 11.6464 6.14645L8.14645 9.64645C7.95118 9.84171 7.95118 10.1583 8.14645 10.3536Z
+		M8.14645 13.6464C8.34171 13.4512 8.65829 13.4512 8.85355 13.6464L12 16.7929L15.1464 13.6464C15.3417 13.4512 15.6583 13.4512 15.8536 13.6464C16.0488 13.8417 16.0488 14.1583 15.8536 14.3536L12.3536 17.8536C12.1583 18.0488 11.8417 18.0488 11.6464 17.8536L8.14645 14.3536C7.95118 14.1583 7.95118 13.8417 8.14645 13.6464Z
+	</StreamGeometry>
+	<StreamGeometry x:Key="AddColorIcon">M5.5 0C5.77614 0 6 0.223858 6 0.5V5H10.5C10.7761 5 11 5.22386 11 5.5C11 5.77614 10.7761 6 10.5 6H6V10.5C6 10.7761 5.77614 11 5.5 11C5.22386 11 5 10.7761 5 10.5V6H0.5C0.223858 6 0 5.77614 0 5.5C0 5.22386 0.223858 5 0.5 5H5V0.5C5 0.223858 5.22386 0 5.5 0Z</StreamGeometry>
+
+	<x:Double x:Key="EditorFontSize">12</x:Double>
+	<x:Double x:Key="EditorErrorFontSize">11</x:Double>
+	<CornerRadius x:Key="EditorCornerRadius">6</CornerRadius>
+	<x:Double x:Key="EditorMinHeight">28</x:Double>
+	<x:Double x:Key="EditorMinWidth">16</x:Double>
+	<Thickness x:Key="EditorBorderThickness">1</Thickness>
+	<Thickness x:Key="EditorBottomBorderThickness">0,0,0,1</Thickness>
+	<Thickness x:Key="EditorTopBorderThickness">0,1,0,0</Thickness>
+	<Thickness x:Key="TextEditorPadding">8,4,8,4</Thickness>
+	<Thickness x:Key="ErrorTextPresenterMargin">4,4,4,4</Thickness>
+	<x:Double x:Key="ErrorIconSize">12</x:Double>
+
+	<CornerRadius x:Key="PopupCornerRadius">8</CornerRadius>
+	<CornerRadius x:Key="PopupHeaderCornerRadius">8,8,0,0</CornerRadius>
+	<CornerRadius x:Key="PopupFooterCornerRadius">0,0,8,8</CornerRadius>
+	<Thickness x:Key="CheckBoxPadding">6,0,0,0</Thickness>
+	<Thickness x:Key="CheckEditorPadding">8,0,8,0</Thickness>
+	<CornerRadius x:Key="CheckEditorGlyphCornerRadius">3</CornerRadius>
+
+	<Thickness x:Key="RadioButtonPadding">6,0,0,0</Thickness>
+	<x:Double x:Key="RadioButtonEllipseBorderThickness">1</x:Double>
+	<x:Double x:Key="SliderThumbSize">22</x:Double>
+
+	<Thickness x:Key="ListBoxPadding">0,0,2,2</Thickness>
+	<Thickness x:Key="ListBoxItemMargin">2,2,0,0</Thickness>
+	<Thickness x:Key="ListBoxItemPadding">8,0,8,0</Thickness>
+	<x:Double x:Key="ListBoxItemMinHeight">26</x:Double>
+	<Thickness x:Key="ComboBoxEmptyValueSelectorPadding">0,0,2,0</Thickness>
+	<Thickness x:Key="ComboBoxSelectAllCheckerPadding">10,0,10,0</Thickness>
+	<x:Double x:Key="EnumItemTemplateElementSpacing">8</x:Double>
+
+	<Thickness x:Key="SegmentedEditorPadding">1</Thickness>
+	<Thickness x:Key="SegmentedEditorSecondaryPadding">3,3,3,3</Thickness>
+	<CornerRadius x:Key="SegmentedEditorItemCornerRadius">4</CornerRadius>
+
+	<x:Double x:Key="PopupDropDownMaxHeight">534</x:Double>
+	<x:Double x:Key="PopupDropDownMinHeight">20</x:Double>
+
+	<x:Double x:Key="InactiveButtonPlaceholderWidth">28</x:Double>
+
+	<x:Double x:Key="ButtonMinWidth">28</x:Double>
+
+	<Thickness x:Key="ToolTipPadding">5,6,6,6</Thickness>
+    <CornerRadius x:Key="ToolTipCornerRadius">4</CornerRadius>
+
+	<Thickness x:Key="FocusAdornerBorderThickness">1</Thickness>
+	<x:Double x:Key="FocusAdornerStrokeThickness">1</x:Double>
+	<Thickness x:Key="FocusAdornerCornerRadius">4</Thickness>
+
+	<DataTemplate x:Key="OpenPopupButtonPresenterTemplate" >
+		<Panel Width="{StaticResource InactiveButtonPlaceholderWidth}" HorizontalAlignment="Right">
+			<Path Fill="{DynamicResource Icons/Outline/Gray}"
+						VerticalAlignment="Center" HorizontalAlignment="Center"
+						Data="{StaticResource ChevronDownIcon}"/>
+		</Panel>
+	</DataTemplate>
+	<DataTemplate x:Key="SpinUpDownButtonsPresenterTemplate" >
+		<Panel Width="{StaticResource InactiveButtonPlaceholderWidth}" HorizontalAlignment="Right">
+			<Path Fill="{DynamicResource Icons/Outline/Gray}"
+						VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,8,6"
+						Data="{StaticResource SpinEditorUpDownIcon}" />
+		</Panel>
+	</DataTemplate>
+	<SolidColorBrush x:Key="HighlightedTextBlockBackgroundBrush" Color="{DynamicResource HighlightedTextBackgroundColor}"/>
+	<SolidColorBrush x:Key="HighlightedTextBlockForegroundBrush" Color="{DynamicResource HighlightedTextForegroundColor}"/>
+</ResourceDictionary>

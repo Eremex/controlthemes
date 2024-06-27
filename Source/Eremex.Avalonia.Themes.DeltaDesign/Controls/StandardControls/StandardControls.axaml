@@ -1,0 +1,19 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<StyleInclude Source="/Controls/StandardControls/FocusAdorner.axaml"/>
+	<StyleInclude Source="/Controls/StandardControls/ProgressBar.axaml"/>
+	<StyleInclude Source="/Controls/StandardControls/MenuItem.axaml"/>
+	<StyleInclude Source="/Controls/StandardControls/MenuFlyoutPresenter.axaml"/>
+	<StyleInclude Source="/Controls/StandardControls/ToolTip.axaml"/>
+	<StyleInclude Source="/Controls/StandardControls/CheckBox.axaml"/>
+	<StyleInclude Source="/Controls/StandardControls/RadioButton.axaml"/>
+	<StyleInclude Source="/Controls/StandardControls/Button.axaml"/>
+	<StyleInclude Source="/Controls/StandardControls/ListBox.axaml"/>
+	<StyleInclude Source="/Controls/StandardControls/TextBox.axaml"/>
+	<StyleInclude Source="/Controls/StandardControls/Slider.axaml"/>
+	<StyleInclude Source="/Controls/StandardControls/Label.axaml"/>
+	<StyleInclude Source="/Controls/StandardControls/CalendarButtons.axaml"/>
+	<StyleInclude Source="/Controls/StandardControls/CalendarControl.axaml"/>
+	<StyleInclude Source="/Controls/StandardControls/Scrollbar.axaml"/>
+</Styles>

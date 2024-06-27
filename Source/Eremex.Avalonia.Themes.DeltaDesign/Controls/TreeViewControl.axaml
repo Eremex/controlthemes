@@ -1,0 +1,100 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mxtl="clr-namespace:Eremex.AvaloniaUI.Controls.TreeList;assembly=Eremex.Avalonia.Controls"
+        xmlns:ed="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+        xmlns:ec="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
+        xmlns:sys="using:System.ComponentModel"
+        xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls"
+        xmlns:bc="clr-namespace:Eremex.AvaloniaUI.Controls.Bars;assembly=Eremex.Avalonia.Controls"
+				xmlns:mxdgv="clr-namespace:Eremex.AvaloniaUI.Controls.DataGrid.Visuals;assembly=Eremex.Avalonia.Controls"
+				xmlns:mxdcv="clr-namespace:Eremex.AvaloniaUI.Controls.DataControl.Visuals;assembly=Eremex.Avalonia.Controls"
+				xmlns:mxtlv="clr-namespace:Eremex.AvaloniaUI.Controls.TreeList.Visuals;assembly=Eremex.Avalonia.Controls">
+
+	<Style Selector="mxtl|TreeViewControl">
+		<Setter Property="RowLevelIndent" Value="22" />
+		<Setter Property="Focusable" Value="True" />
+		<Setter Property="FocusAdorner" Value="{x:Null}" />
+		<Setter Property="Template">
+			<ControlTemplate>
+				<DockPanel Background="{TemplateBinding Background}">
+					<mxdcv:SearchPanel x:Name="PART_SearchPanel" HorizontalContentAlignment="Stretch" DockPanel.Dock="Top" IsVisible="{TemplateBinding IsSearchPanelVisible}" SearchText="{Binding SearchText, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+					<ScrollViewer x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto">
+						<mxdcv:ScrollPanel x:Name="PART_ItemsPanel" HorizontalAlignment="Left" />
+					</ScrollViewer>
+					<DockPanel.Styles>
+						<StyleInclude Source="/Controls/Editors/EditorsCellStyles.axaml"/>
+					</DockPanel.Styles>
+				</DockPanel>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+		
+	<Style Selector="mxtl|TreeViewControl mxtlv|TreeListCellControl">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Focusable" Value="False" />
+		<Setter Property="Template">
+			<ControlTemplate>
+				<Grid x:Name="PART_LayoutPanel">
+					<mxdcv:CellEditor x:Name="PART_CellEditor" />
+				</Grid>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+
+	<Style Selector="mxtl|TreeViewControl mxdcv|SearchPanel">
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="Padding" Value="0,4" />
+	</Style>
+
+	<Style Selector="mxtlv|TreeViewRowControl">
+		<Setter Property="Padding" Value="0,1" />
+		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+		<Setter Property="Template">
+			<ControlTemplate>
+				<Grid Background="Transparent">
+					<Grid Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+						<Border Name="SelectionBorder" CornerRadius="6"/>
+						<mxdcv:CellsPanel x:Name="PART_CellsPanel" />
+					</Grid>
+				</Grid>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+
+	<Style Selector="mxtlv|TreeViewRowControl:focusedState /template/ Border#SelectionBorder">
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="Background" Value="{DynamicResource	Fill/Neutral/Secondary/Enabled}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
+	</Style>
+	
+	<Style Selector="mxtlv|TreeViewRowControl:focusedAndSelectedState /template/ Border#SelectionBorder">
+		<Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Hover}" />
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
+	</Style>
+	
+	<Style Selector="mxtlv|TreeViewRowControl:selectedState /template/ Border#SelectionBorder">
+		<Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Enabled}" />
+	</Style>
+	
+	<Style Selector="mxtlv|TreeViewRowControl:editingState /template/ Border#SelectionBorder">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+	</Style>
+	
+	<Style Selector="mxtlv|TreeViewRowControl:pointerover /template/ Border#SelectionBorder">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
+	</Style>
+
+	<Style Selector="mxtlv|TreeViewRowControl:pointerover:focusedAndSelectedState:not(:editingState) /template/ Border#SelectionBorder">
+		<Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Hover}" />
+	</Style>
+
+	<Style Selector="mxtlv|TreeViewRowControl:pointerover:selectedState /template/ Border#SelectionBorder">
+		<Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Hover}" />
+	</Style>
+
+	<Style Selector="mxtlv|TreeViewRowControl[(mxtl|TreeViewControl.IsFocusWithin)=false] /template/ Border#SelectionBorder">
+		<Setter Property="BorderThickness" Value="0" />
+	</Style>
+
+</Styles>

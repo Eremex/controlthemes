@@ -1,0 +1,304 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+				xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
+				xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls"
+        xmlns:internal="clr-namespace:Eremex.AvaloniaUI.Controls.Internal;assembly=Eremex.Avalonia.Controls"
+        xmlns:controls="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
+        xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls">
+    
+    <Design.PreviewWith>
+			<Border Padding="20">
+				<StackPanel>
+					<Border Background="{DynamicResource Fill/Neutral/Primary/Enabled}" Padding="10">
+						<StackPanel Spacing="10">
+							<mxe:PopupEditor EditorValue="Popup Editor" Width="250">
+								<mxe:PopupEditor.Buttons>
+									<mxe:ButtonSettings Content="..."/>
+								</mxe:PopupEditor.Buttons>
+							</mxe:PopupEditor>
+							<mxe:PopupEditor EditorValue="Inactive Editor" EditorMode="InplaceInactive" Width="250"/>
+							<mxe:PopupEditor EditorValue="Disabled" IsEnabled="False" Width="250"/>
+						</StackPanel>
+					</Border>
+					<Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
+						<StackPanel Spacing="10">
+							<mxe:PopupEditor EditorValue="Secondary Editor" Width="250" Classes="secondary">
+								<mxe:PopupEditor.Buttons>
+									<mxe:ButtonSettings Content="..."/>
+								</mxe:PopupEditor.Buttons>
+							</mxe:PopupEditor>
+							<mxe:PopupEditor EditorValue="Inactive Editor" EditorMode="InplaceInactive" Width="250" Classes="secondary"/>
+							<mxe:PopupEditor EditorValue="Secondary Disabled" IsEnabled="False" Width="250" Classes="secondary">
+								<mxe:PopupEditor.Buttons>
+									<mxe:ButtonSettings Content="..."/>
+								</mxe:PopupEditor.Buttons>
+							</mxe:PopupEditor>
+						</StackPanel>
+					</Border>
+				</StackPanel>
+			</Border>
+    </Design.PreviewWith>
+    
+    <Styles.Resources>
+        <ResourceDictionary>
+	        <controls:EnumToObjectConverter x:Key="SizeGripLocationToHeaderRowConverter" DefaultValue="0">
+		        <controls:EnumToObjectConverter.Values>
+			        <controls:EnumToObjectConverterValue x:Key="BottomLeft" Value="0"/>
+			        <controls:EnumToObjectConverterValue x:Key="BottomRight" Value="0"/>
+			        <controls:EnumToObjectConverterValue x:Key="TopLeft" Value="2"/>
+			        <controls:EnumToObjectConverterValue x:Key="TopRight" Value="2"/>
+		        </controls:EnumToObjectConverter.Values>
+	        </controls:EnumToObjectConverter>
+	        <controls:EnumToObjectConverter x:Key="SizeGripLocationToFooterRowConverter" DefaultValue="2">
+		        <controls:EnumToObjectConverter.Values>
+			        <controls:EnumToObjectConverterValue x:Key="BottomLeft" Value="2"/>
+			        <controls:EnumToObjectConverterValue x:Key="BottomRight" Value="2"/>
+			        <controls:EnumToObjectConverterValue x:Key="TopLeft" Value="0"/>
+			        <controls:EnumToObjectConverterValue x:Key="TopRight" Value="0"/>
+		        </controls:EnumToObjectConverter.Values>
+	        </controls:EnumToObjectConverter>
+	        <controls:EnumToObjectConverter x:Key="SizeGripLocationToHorizontalAlignmentConverter" DefaultValue="{x:Static HorizontalAlignment.Right}">
+						<controls:EnumToObjectConverter.Values>
+			        <controls:EnumToObjectConverterValue x:Key="BottomLeft" Value="{x:Static HorizontalAlignment.Left}"/>
+			        <controls:EnumToObjectConverterValue x:Key="BottomRight" Value="{x:Static HorizontalAlignment.Right}"/>
+			        <controls:EnumToObjectConverterValue x:Key="TopLeft" Value="{x:Static HorizontalAlignment.Left}"/>
+			        <controls:EnumToObjectConverterValue x:Key="TopRight" Value="{x:Static HorizontalAlignment.Right}"/>
+						</controls:EnumToObjectConverter.Values>
+	        </controls:EnumToObjectConverter>
+	        <controls:EnumToObjectConverter x:Key="SizeGripLocationToVerticalAlignmentConverter" DefaultValue="{x:Static VerticalAlignment.Bottom}">
+						<controls:EnumToObjectConverter.Values>
+			        <controls:EnumToObjectConverterValue x:Key="BottomLeft" Value="{x:Static VerticalAlignment.Bottom}"/>
+			        <controls:EnumToObjectConverterValue x:Key="BottomRight" Value="{x:Static VerticalAlignment.Bottom}"/>
+			        <controls:EnumToObjectConverterValue x:Key="TopLeft" Value="{x:Static VerticalAlignment.Top}"/>
+			        <controls:EnumToObjectConverterValue x:Key="TopRight" Value="{x:Static VerticalAlignment.Top}"/>	
+						</controls:EnumToObjectConverter.Values>
+	        </controls:EnumToObjectConverter>
+        </ResourceDictionary>
+    </Styles.Resources>
+	
+	<Style Selector="Button.setNullValuePopupButton">
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Content" Value="{x:Static localization:ControlsResources.ButtonContent_Clear}"/>
+		<Setter Property="Command" Value="{Binding $parent[mxe:PopupEditor].ClearTextCommand}"/>
+		<Setter Property="IsVisible">
+			<Setter.Value>
+				<MultiBinding Converter="{x:Static BoolConverters.And}">
+					<Binding Path="$parent[mxe:PopupEditor].IsClearTextButtonVisible"/>
+					<Binding Path="$parent[mxe:PopupEditor].NullValueButtonPosition"
+									 Converter="{mxev:NullValueButtonPlacementToVisibleConverter}"
+									 ConverterParameter="Popup"/>
+				</MultiBinding>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style Selector="mxe|PopupEditor, :is(mxe|ComboBoxEditor), :is(mxe|DateEditor), :is(mxe|PopupColorEditor)">
+        <Setter Property="PopupMinHeight" Value="{StaticResource PopupDropDownMinHeight}" />
+        <Setter Property="PopupMaxHeight" Value="{StaticResource PopupDropDownMaxHeight}" />
+				<Setter Property="PopupHorizontalOffset" Value="{DynamicResource PopupHorizontalOffset}"/>
+        <Setter Property="PopupBottomOffset" Value="{DynamicResource PopupBottomOffset}"/>
+  </Style>
+	
+    <Style Selector="mxe|PopupEditor:activeMode, :is(mxe|ComboBoxEditor):activeMode, :is(mxe|DateEditor):activeMode, :is(mxe|PopupColorEditor):activeMode, :is(mxe|MemoEditor):activeMode">
+        <Setter Property="Template">
+	        <ControlTemplate>
+		        <DockPanel>
+			        <TextBlock x:Name="PART_ErrorTextPresenter"
+			                   DockPanel.Dock="Bottom"
+			                   Text="{TemplateBinding ErrorText}"
+			                   FontSize="{StaticResource EditorErrorFontSize}"
+			                   Foreground="{DynamicResource Text/Accent/Error}"
+			                   Margin="{StaticResource ErrorTextPresenterMargin}"
+			                   TextWrapping="Wrap" />
+			        <Panel x:Name="PART_RealEditorPanel">
+				        <TextBox Name="PART_RealEditor"
+				                 Background="{TemplateBinding Background}"
+				                 Foreground="{TemplateBinding Foreground}"
+				                 TextWrapping="{TemplateBinding TextWrapping}"
+				                 AcceptsReturn="{TemplateBinding AcceptsReturn}"
+												 SelectionStart="{Binding $parent[mxe:PopupEditor].SelectionStart, Mode=TwoWay}"
+												 SelectionEnd="{Binding $parent[mxe:PopupEditor].SelectionEnd, Mode=TwoWay}"
+				                 BorderThickness="0"
+                         Focusable="{TemplateBinding Focusable}"
+				                 Padding="{TemplateBinding Padding}"
+				                 CornerRadius="{TemplateBinding CornerRadius}"
+				                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+				                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+				                 HorizontalAlignment="Stretch"
+				                 MinHeight="0"
+				                 Watermark="{TemplateBinding Watermark}"
+				                 FontSize="{TemplateBinding FontSize}"
+												 IsReadOnly="{TemplateBinding ReadOnly}"
+				                 Classes.secondary="{TemplateBinding SecondaryAppearance}">
+					        <TextBox.InnerLeftContent>
+						        <StackPanel Orientation="Horizontal" />
+					        </TextBox.InnerLeftContent>
+					        <TextBox.InnerRightContent>
+						        <StackPanel Orientation="Horizontal">
+							        <Button Name="PART_ClearTextButton"
+							                Classes="EditorIconButton"
+							                Command="{Binding $parent[mxe:PopupEditor].ClearTextCommand}">
+								        <PathIcon Width="8"
+								                  Height="8"
+								                  Data="{StaticResource ClearCrossIcon}"
+								                  Foreground="{Binding #PART_ClearTextButton.Foreground}"
+								                  VerticalAlignment="Center"
+								                  HorizontalAlignment="Center" />
+								        <Button.IsVisible>
+									        <MultiBinding Converter="{x:Static BoolConverters.And}">
+										        <Binding RelativeSource="{RelativeSource AncestorType=mxe:PopupEditor}"
+										                 Path="IsClearTextButtonVisible" />
+										        <Binding RelativeSource="{RelativeSource AncestorType=mxe:PopupEditor}"
+										                 Path="NullValueButtonPosition"
+										                 Converter="{mxev:NullValueButtonPlacementToVisibleConverter}"
+										                 ConverterParameter="EditorBox" />
+									        </MultiBinding>
+								        </Button.IsVisible>
+							        </Button>
+							        <ToggleButton Name="PART_PopupOpenButton"
+							                      VerticalAlignment="Stretch"
+							                      VerticalContentAlignment="Center"
+							                      HorizontalContentAlignment="Center"
+							                      Classes="EditorIconButton"
+							                      IsVisible="{Binding $parent[mxe:BaseEditor].ShowEditorButtons}"
+							                      Padding="0">
+								        <ToggleButton.Content>
+									        <PathIcon Width="8"
+									                  Height="5"
+									                  Data="{StaticResource ChevronDownIcon}"
+									                  Foreground="{Binding #PART_PopupOpenButton.Foreground}"
+									                  Margin="0,1,0,0" />
+								        </ToggleButton.Content>
+							        </ToggleButton>
+						        </StackPanel>
+					        </TextBox.InnerRightContent>
+					        <TextBox.Styles>
+						        <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+							        <Setter Property="BorderThickness" Value="0" />
+						        </Style>
+					        </TextBox.Styles>
+				        </TextBox>
+				        <Grid Name="PART_ButtonsContainer"/>
+				        <Border Name="PART_RootBorder"
+				                BorderBrush="{TemplateBinding BorderBrush}"
+				                BorderThickness="{TemplateBinding BorderThickness}"
+				                CornerRadius="{TemplateBinding CornerRadius}"
+				                Background="{x:Null}"
+				                MinHeight="0" />
+				        <common:ResizeablePopup Name="PART_EditorPopup"
+				               WindowManagerAddShadowHint="False"
+				               IsOpen="{TemplateBinding IsPopupOpen, Mode=TwoWay}"
+				               MinHeight="{TemplateBinding PopupMinHeight}"
+				               MaxHeight="{TemplateBinding PopupMaxHeight}"
+				               PlacementTarget="PART_RootBorder" 
+											 Placement="BottomEdgeAlignedLeft"
+				               IsLightDismissEnabled="{Binding !StaysPopupOpen, RelativeSource={RelativeSource TemplatedParent}}">
+					        <Border x:Name="PopupBorder"
+					                BorderThickness="{StaticResource EditorBorderThickness}"
+					                BorderBrush="{DynamicResource PopupBorderBrush}"
+					                Background="{DynamicResource Fill/Neutral/Primary/Enabled}"
+					                HorizontalAlignment="Stretch"
+					                CornerRadius="{StaticResource PopupCornerRadius}"
+					                BoxShadow="{DynamicResource PopupBoxShadow}"
+					                Margin="{DynamicResource PopupBoxShadowMargin}"
+					                TextElement.FontFamily="{TemplateBinding FontFamily}">
+						        <Grid RowDefinitions="Auto, *, Auto" ClipToBounds="True">
+											<Border x:Name="PART_PopupHeaderContainer" 
+											        Grid.Row="0"
+												CornerRadius="{StaticResource PopupHeaderCornerRadius}"
+															Background="{DynamicResource Fill/Neutral/Primary/Pressed}">
+												
+											</Border>
+							        <ContentControl x:Name="PART_PopupHeader"
+							                        Grid.Row="{TemplateBinding  ActualSizeGripLocation, Converter={StaticResource SizeGripLocationToHeaderRowConverter}}"
+							                        HorizontalAlignment="Stretch"
+							                        VerticalContentAlignment="Center"
+							                        Template="{TemplateBinding PopupHeaderTemplate}" />
+							        <ContentPresenter Grid.Row="1" x:Name="PART_PopupContent" />
+											<Border x:Name="PART_PopupFooterContainer" CornerRadius="{StaticResource PopupFooterCornerRadius}" 
+															Grid.Row="2"
+															Background="{DynamicResource Fill/Neutral/Primary/Pressed}">
+												
+											</Border>
+							        <ContentControl x:Name="PART_PopupFooter"
+							                        Grid.Row="{TemplateBinding  ActualSizeGripLocation, Converter={StaticResource SizeGripLocationToFooterRowConverter}}"
+							                        HorizontalAlignment="Stretch"
+							                        VerticalContentAlignment="Center"
+							                        Template="{TemplateBinding PopupFooterTemplate}"
+							                        Classes="PopupEditorFooterControl" />
+						        </Grid>
+					        </Border>
+				        </common:ResizeablePopup>
+			        </Panel>
+		        </DockPanel>
+	        </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <Style Selector=":is(mxe|PopupEditor):not(mxe|PopupColorEditor)">
+        <Setter Property="PopupFooterTemplate">
+            <ControlTemplate>
+                <Grid Background="Transparent" x:Name="PART_PopupFooterRootElement">
+                    <Grid.IsVisible>
+                        <MultiBinding Converter="{x:Static BoolConverters.Or}">
+                            <Binding ElementName="PART_CloseButton" Path="IsVisible"/>
+                            <Binding ElementName="PART_OkButton" Path="IsVisible"/>
+                            <Binding ElementName="PART_CancelButton" Path="IsVisible"/>
+                            <Binding ElementName="PART_SetNullValueButton" Path="IsVisible"/>
+                            <Binding ElementName="PART_SizeGrip" Path="IsVisible"/>
+                        </MultiBinding>
+                    </Grid.IsVisible>
+                    <Grid ColumnDefinitions="Auto, Auto, Auto, Auto" HorizontalAlignment="Center" Margin="5">
+                        <Button x:Name="PART_CloseButton"
+                                IsVisible="{Binding $parent[mxe:PopupEditor].ActualPopupFooterButtons, Converter={mxev:PopupFooterButtonVisibleConverter}, ConverterParameter=Close}"
+                                Command="{Binding $parent[mxe:PopupEditor].ClosePopupCommand}"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="{x:Static localization:ControlsResources.ButtonContent_Close}"
+                                Width="70" Classes="secondary"
+                                Margin="0,0,5,0">
+                            <Button.CommandParameter>
+                                <mxe:PopupCloseMode>Cancel</mxe:PopupCloseMode>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button x:Name="PART_OkButton" Grid.Column="1"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="{x:Static localization:ControlsResources.ButtonContent_Ok}"
+                                Width="70" Classes="secondary"
+                                Margin="0,0,5,0"
+                                IsVisible="{Binding $parent[mxe:PopupEditor].ActualPopupFooterButtons, Converter={mxev:PopupFooterButtonVisibleConverter}, ConverterParameter=OkCancel}"
+                                Command="{Binding $parent[mxe:PopupEditor].ClosePopupCommand}">
+                            <Button.CommandParameter>
+                                <mxe:PopupCloseMode>Apply</mxe:PopupCloseMode>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button x:Name="PART_CancelButton" Grid.Column="2"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="{x:Static localization:ControlsResources.ButtonContent_Cancel}"
+                                Width="70" Classes="secondary"
+                                Margin="0,0,5,0"
+                                IsVisible="{Binding $parent[mxe:PopupEditor].ActualPopupFooterButtons, Converter={mxev:PopupFooterButtonVisibleConverter}, ConverterParameter=OkCancel}"
+                                Command="{Binding $parent[mxe:PopupEditor].ClosePopupCommand}">
+                            <Button.CommandParameter>
+                                <mxe:PopupCloseMode>Cancel</mxe:PopupCloseMode>
+                            </Button.CommandParameter>
+                        </Button>
+												<Button x:Name="PART_SetNullValueButton" Grid.Column="3" Classes="setNullValuePopupButton secondary" Width="80" Margin="0,0,5,0"/>
+                   </Grid>
+	                <internal:PopupContainerSizeGrip x:Name="PART_SizeGrip" IsVisible="{Binding $parent[mxe:PopupEditor].ShowSizeGrip }" 
+	                                                 Location="{Binding $parent[mxe:PopupEditor].ActualSizeGripLocation}"
+	                                                 HorizontalAlignment="{Binding $parent[mxe:PopupEditor].ActualSizeGripLocation, Converter={StaticResource SizeGripLocationToHorizontalAlignmentConverter}}"
+	                                                 VerticalAlignment="{Binding $parent[mxe:PopupEditor].ActualSizeGripLocation, Converter={StaticResource SizeGripLocationToVerticalAlignmentConverter}}"/>
+               </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="ContentControl.PopupEditorFooterControl">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+</Styles>

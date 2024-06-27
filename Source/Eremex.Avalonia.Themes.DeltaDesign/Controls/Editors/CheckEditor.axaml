@@ -1,0 +1,100 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+        xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
+
+    <Design.PreviewWith>
+			<Border Padding="20">
+				<StackPanel>
+					<Border Background="{DynamicResource Fill/Neutral/Primary/Enabled}" Padding="10">
+						<StackPanel Spacing="10">
+							<mxe:CheckEditor Content="Check Editor" IsChecked="True" Width="180"/>
+							<mxe:CheckEditor Content="Warning" IsChecked="True" Width="180" Classes="warning"/>
+							<mxe:CheckEditor Content="Inactive Editor" EditorMode="InplaceInactive" Width="180"/>
+							<mxe:CheckEditor Content="Inactive warning" EditorMode="InplaceInactive" Width="180" Classes="warning"/>
+							<mxe:CheckEditor Content="Disabled" EditorMode="Standalone" IsEnabled="False" Width="180"/>
+						</StackPanel>
+					</Border>
+					<Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
+						<StackPanel Spacing="10">
+							<mxe:CheckEditor Content="Secondary Editor" IsChecked="True" Width="180" Classes="secondary"/>
+							<mxe:CheckEditor Content="Secondary Warning" IsChecked="True" Width="180" Classes="secondary warning"/>
+							<mxe:CheckEditor Content="Inactive Editor" EditorMode="InplaceInactive" Width="180" Classes="secondary"/>
+							<mxe:CheckEditor Content="Inactive warning" EditorMode="InplaceInactive" Width="180" Classes="secondary warning"/>
+							<mxe:CheckEditor Content="Secondary Disabled" IsEnabled="False" Width="180" Classes="secondary"/>
+						</StackPanel>
+					</Border>
+				</StackPanel>
+			</Border>
+    </Design.PreviewWith>
+    
+    <Styles.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </Styles.Resources>
+
+    <Style Selector="mxe|CheckEditor">
+        <Setter Property="Padding" Value="{StaticResource CheckEditorPadding}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <DockPanel Name="PART_InactiveContentContainer">
+                        <CheckBox DockPanel.Dock="Left" Name="PART_RealEditorPresenter"
+                                  IsHitTestVisible="False"
+                                  BorderBrush="Transparent"
+                                  BorderThickness="0"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  MinHeight="0"
+																	Classes.secondary="{TemplateBinding SecondaryAppearance}"/>
+                    </DockPanel>
+                    <ContentPresenter Name="PART_InactiveDecorator"
+                                      BorderThickness="0"
+                                      Background="Transparent"/>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="mxe|CheckEditor:activeMode">
+        <Setter Property="Template">
+            <ControlTemplate>
+							<DockPanel>
+								<TextBlock x:Name="PART_ErrorTextPresenter"
+													 DockPanel.Dock="Bottom"
+													 Text="{TemplateBinding ErrorText}"
+													 FontSize="{StaticResource EditorErrorFontSize}"
+													 Foreground="{DynamicResource Text/Accent/Error}"
+													 Margin="{StaticResource ErrorTextPresenterMargin}"
+													 TextWrapping="Wrap"/>
+                <Panel x:Name="PART_RealEditorPanel">
+                    <Grid Name="PART_RootContainer"
+                        Background="{TemplateBinding Background}"
+                        IsHitTestVisible="{Binding !ReadOnly, RelativeSource={RelativeSource TemplatedParent}}">
+                        <CheckBox Grid.Column="1" Name="PART_RealEditor"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch"
+                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  Content="{TemplateBinding Content}"
+                                  IsThreeState="{TemplateBinding IsThreeState}"
+                                  Foreground="{TemplateBinding Foreground}"
+                                  CornerRadius="{TemplateBinding CornerRadius}"
+                                  BorderBrush="Transparent"
+                                  Focusable="{TemplateBinding Focusable}"
+                                  BorderThickness="0"
+                                  FontSize="{TemplateBinding FontSize}"
+                                  MinHeight="0"
+																	Classes.secondary="{TemplateBinding SecondaryAppearance}"/>
+                    </Grid>
+                    <Border Name="PART_RootBorder"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Background="{x:Null}"
+                            MinHeight="0"/>
+                </Panel>
+							</DockPanel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

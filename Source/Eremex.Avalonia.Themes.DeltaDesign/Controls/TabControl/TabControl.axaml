@@ -1,0 +1,293 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
+        xmlns:internal="clr-namespace:Eremex.AvaloniaUI.Controls.Internal;assembly=Eremex.Avalonia.Controls"
+        xmlns:avaConv="clr-namespace:Avalonia.Controls.Converters;assembly=Avalonia.Controls"
+        xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+        xmlns:other="clr-namespace:Eremex.AvaloniaUI.Icons.Other;assembly=Eremex.Avalonia.Icons">
+    
+    <Style Selector="controls|MxTabControl">
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"></Setter>
+        <Setter Property="Padding" Value="{DynamicResource MxTabControlContentPadding}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border x:Name="PART_Background"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Background="{TemplateBinding Background}"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                    <DockPanel>
+                        <internal:TabStretchPanel DockPanel.Dock="{TemplateBinding TabStripPlacement}"
+                                                   ZIndex="1"
+                                                   x:Name="PART_StretchPanel">
+                            <internal:TabStretchPanel.Content1>
+                                <ScrollViewer Classes="Scroll"
+                                              HorizontalScrollBarVisibility="{Binding Path=(ScrollViewer.HorizontalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}"
+                                              VerticalScrollBarVisibility="{Binding Path=(ScrollViewer.VerticalScrollBarVisibility), RelativeSource={RelativeSource TemplatedParent}}">
+	                                <ItemsPresenter Name="PART_ItemsPresenter"
+	                                                ItemsPanel="{TemplateBinding ItemsPanel}"/>
+                                </ScrollViewer>
+                            </internal:TabStretchPanel.Content1>
+                            <internal:TabStretchPanel.Content2>
+                                <internal:TabControlControlBox x:Name="PART_ControlBox"
+                                                               Content="{TemplateBinding ControlBoxContent}"
+                                                               ContentTemplate="{TemplateBinding ControlBoxContentTemplate}"
+                                                               HorizontalContentAlignment="{TemplateBinding HorizontalControlBoxContentAlignment}"
+                                                               VerticalContentAlignment="{TemplateBinding VerticalControlBoxContentAlignment}"
+                                                               CloseButtonShowMode="{TemplateBinding CloseButtonShowMode}"
+                                                               NewButtonShowMode="{TemplateBinding NewButtonShowMode}"/>
+                            </internal:TabStretchPanel.Content2>
+                        </internal:TabStretchPanel>
+                        <Border x:Name="PART_SelectedContentBorder"
+                                Background="{DynamicResource Fill/Neutral/Primary/Enabled}"
+                                BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Light}">
+                            <ContentPresenter Name="PART_SelectedContentHost"
+                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding SelectedContent}"
+                                              ContentTemplate="{TemplateBinding SelectedContentTemplate}"
+                                              Margin="{TemplateBinding Padding}"
+                                              ClipToBounds="True"/>
+                        </Border>
+                    </DockPanel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Setter Property="(ScrollViewer.HorizontalScrollBarVisibility)" Value="Disabled" />
+        <Setter Property="(ScrollViewer.VerticalScrollBarVisibility)" Value="Disabled" />
+    </Style>
+	
+		<Style Selector="controls|MxTabControl /template/ Border#PART_SelectedContentBorder">
+			<Setter Property="CornerRadius" Value="{DynamicResource MxTabControlSelectedContentCornerRadius}"></Setter>
+			<Setter Property="BorderThickness" Value="1"></Setter>
+		</Style>
+
+    <!-- TabStripPlacement states -->
+    
+    <Style Selector="controls|MxTabControl:vertical /template/ internal|TabStretchPanel#PART_StretchPanel">
+        <Setter Property="Orientation" Value="Vertical"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabControl:vertical /template/ internal|TabControlControlBox">
+        <Setter Property="Orientation" Value="Vertical"></Setter>
+    </Style>
+    
+    <!-- Top -->
+    <Style Selector="controls|MxTabControl[TabStripPlacement=Top]">
+	    <Setter Property="CornerRadius" Value="{DynamicResource MxTabControlCornerRadiusTop}"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabControl[TabStripPlacement=Top] /template/ ItemsPresenter#PART_ItemsPresenter > internal|TabPanel">
+        <Setter Property="Margin" Value="{DynamicResource MxTabControlItemsPanelMargin}"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+    </Style>
+
+    <!-- Bottom -->
+    <Style Selector="controls|MxTabControl[TabStripPlacement=Bottom]">
+	    <Setter Property="CornerRadius" Value="{DynamicResource MxTabControlCornerRadiusBottom}"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabControl[TabStripPlacement=Bottom] /template/ ItemsPresenter#PART_ItemsPresenter > internal|TabPanel">
+        <Setter Property="Margin" Value="{DynamicResource MxTabControlItemsPanelMarginBottom}"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+    </Style>
+
+    <!-- Left -->
+    <Style Selector="controls|MxTabControl[TabStripPlacement=Left]">
+	    <Setter Property="CornerRadius" Value="{DynamicResource MxTabControlCornerRadiusLeft}"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabControl[TabStripPlacement=Left] /template/ ItemsPresenter#PART_ItemsPresenter > internal|TabPanel">
+        <Setter Property="Orientation" Value="Vertical" />
+        <Setter Property="Margin" Value="{DynamicResource MxTabControlItemsPanelMarginLeft}"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+    </Style>
+
+    <!-- Right -->
+    <Style Selector="controls|MxTabControl[TabStripPlacement=Right]">
+	    <Setter Property="CornerRadius" Value="{DynamicResource MxTabControlCornerRadiusRight}"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabControl[TabStripPlacement=Right] /template/ ItemsPresenter#PART_ItemsPresenter > internal|TabPanel">
+        <Setter Property="Orientation" Value="Vertical" />
+        <Setter Property="Margin" Value="{DynamicResource MxTabControlItemsPanelMarginRight}"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+    </Style>
+
+    <!-- Scroll -->
+    <Style Selector="controls|MxTabControl[TabStripLayoutType=Scroll]:horizontal">
+        <Setter Property="(ScrollViewer.HorizontalScrollBarVisibility)" Value="Auto" />
+        <Setter Property="(ScrollViewer.VerticalScrollBarVisibility)" Value="Disabled" />
+    </Style>
+    <Style Selector="controls|MxTabControl[TabStripLayoutType=Scroll]:vertical">
+        <Setter Property="(ScrollViewer.HorizontalScrollBarVisibility)" Value="Disabled" />
+        <Setter Property="(ScrollViewer.VerticalScrollBarVisibility)" Value="Auto" />
+    </Style>
+
+	<Style Selector="controls|MxTabControl /template/ ScrollViewer.Scroll">
+		<Setter Property="Template">
+			<ControlTemplate>
+				<DockPanel>
+					<RepeatButton x:Name="ScrollLeftButton"
+					              Classes="TabControlButton"
+					              Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}">
+						<LayoutTransformControl>
+							<Image Height="12"
+							       Width="12"
+							       Source="{x:Static other:_12.Chevron_Left}"/>
+						</LayoutTransformControl>
+					</RepeatButton>
+
+					<RepeatButton x:Name="ScrollRightButton"
+					              Classes="TabControlButton"
+					              Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}">
+						<LayoutTransformControl>
+							<Image Height="12"
+							       Width="12"
+							       Source="{x:Static other:_12.Chevron_Right}"/>	
+						</LayoutTransformControl>
+					</RepeatButton>
+					<ScrollContentPresenter Name="PART_ContentPresenter"
+					                        Background="{TemplateBinding Background}"
+					                        HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
+					                        VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}"
+					                        HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
+					                        VerticalSnapPointsAlignment="{TemplateBinding VerticalSnapPointsAlignment}"
+					                        Padding="{TemplateBinding Padding}"
+					                        ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}">
+						<ScrollContentPresenter.GestureRecognizers>
+							<ScrollGestureRecognizer
+								CanHorizontallyScroll="{Binding CanHorizontallyScroll, ElementName=PART_ContentPresenter}"
+								CanVerticallyScroll="{Binding CanVerticallyScroll, ElementName=PART_ContentPresenter}"
+								IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_ContentPresenter}" />
+						</ScrollContentPresenter.GestureRecognizers>
+					</ScrollContentPresenter>
+				</DockPanel>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+
+    <!--Scroll buttons horizontal-->
+    <Style Selector="controls|MxTabControl:horizontal /template/ ScrollViewer.Scroll /template/ RepeatButton#ScrollLeftButton">
+	    <Setter Property="DockPanel.Dock" Value="Left"></Setter>
+	    <Setter Property="Command" Value="{Binding LineLeft, RelativeSource={RelativeSource TemplatedParent}}"></Setter>
+	    <Setter Property="IsVisible">
+		    <Setter.Value>
+			    <MultiBinding Converter="{x:Static avaConv:MenuScrollingVisibilityConverter.Instance}"
+			                  ConverterParameter="0">
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="HorizontalScrollBarVisibility" />
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="Offset.X" />
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="Extent.Width" />
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="Viewport.Width" />
+			    </MultiBinding>
+		    </Setter.Value>
+	    </Setter>
+    </Style>
+    <Style Selector="controls|MxTabControl:horizontal /template/ ScrollViewer.Scroll /template/ RepeatButton#ScrollRightButton">
+	    <Setter Property="DockPanel.Dock" Value="Right"></Setter>
+	    <Setter Property="Command" Value="{Binding LineRight, RelativeSource={RelativeSource TemplatedParent}}"></Setter>
+	    <Setter Property="IsVisible">
+		    <Setter.Value>
+			    <MultiBinding Converter="{x:Static avaConv:MenuScrollingVisibilityConverter.Instance}"
+			                  ConverterParameter="100">
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="HorizontalScrollBarVisibility" />
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="Offset.X" />
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="Extent.Width" />
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="Viewport.Width" />
+			    </MultiBinding>
+		    </Setter.Value>
+	    </Setter>
+    </Style>
+
+    <!--Scroll buttons vertical-->
+    <Style Selector="controls|MxTabControl:vertical /template/ ScrollViewer.Scroll /template/ RepeatButton#ScrollLeftButton">
+	    <Setter Property="DockPanel.Dock" Value="Top"></Setter>
+	    <Setter Property="Command" Value="{Binding LineUp, RelativeSource={RelativeSource TemplatedParent}}"></Setter>
+	    <Setter Property="IsVisible">
+		    <Setter.Value>
+			    <MultiBinding Converter="{x:Static avaConv:MenuScrollingVisibilityConverter.Instance}"
+			                  ConverterParameter="0">
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="VerticalScrollBarVisibility" />
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="Offset.Y" />
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="Extent.Height" />
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="Viewport.Height" />
+			    </MultiBinding>
+		    </Setter.Value>
+	    </Setter>
+    </Style>
+    <Style Selector="controls|MxTabControl:vertical /template/ ScrollViewer.Scroll /template/ RepeatButton#ScrollLeftButton LayoutTransformControl">
+	    <Setter Property="LayoutTransform">
+		    <RotateTransform Angle="90"></RotateTransform>
+	    </Setter>
+    </Style>
+    <Style Selector="controls|MxTabControl:vertical /template/ ScrollViewer.Scroll /template/ RepeatButton#ScrollRightButton">
+	    <Setter Property="DockPanel.Dock" Value="Bottom"></Setter>
+	    <Setter Property="Command" Value="{Binding LineDown, RelativeSource={RelativeSource TemplatedParent}}"></Setter>
+	    <Setter Property="IsVisible">
+		    <Setter.Value>
+			    <MultiBinding Converter="{x:Static avaConv:MenuScrollingVisibilityConverter.Instance}"
+			                  ConverterParameter="100">
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="VerticalScrollBarVisibility" />
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="Offset.Y" />
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="Extent.Height" />
+				    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+				             Path="Viewport.Height" />
+			    </MultiBinding>
+		    </Setter.Value>
+	    </Setter>
+    </Style>
+    <Style Selector="controls|MxTabControl:vertical /template/ ScrollViewer.Scroll /template/ RepeatButton#ScrollRightButton LayoutTransformControl">
+	    <Setter Property="LayoutTransform">
+		    <RotateTransform Angle="90"></RotateTransform>
+	    </Setter>
+    </Style>
+
+    <Style Selector="controls|MxTabControl[TabStripPlacement=Top] /template/ ScrollViewer">
+        <Setter Property="Margin" Value="{DynamicResource MxTabItemSelectedMargin}" />
+        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabControl[TabStripPlacement=Bottom] /template/ ScrollViewer">
+        <Setter Property="Margin" Value="{DynamicResource MxTabItemSelectedMarginBottom}" />
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabControl[TabStripPlacement=Left] /template/ ScrollViewer">
+        <Setter Property="Margin" Value="{DynamicResource MxTabItemSelectedMarginLeft}" />
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabControl[TabStripPlacement=Right] /template/ ScrollViewer">
+        <Setter Property="Margin" Value="{DynamicResource MxTabItemSelectedMarginRight}" />
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+    </Style>
+    
+    <!-- No header -->
+    <Style Selector="controls|MxTabControl:no-header /template/ Border#PART_SelectedContentBorder">
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style Selector="controls|MxTabControl:no-header /template/ ItemsPresenter#PART_ItemsPresenter > internal|TabPanel">
+        <Setter Property="Opacity" Value="0"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabControl:no-header /template/ internal|TabControlControlBox">
+        <Setter Property="IsVisible" Value="False"></Setter>
+    </Style>
+    
+    <!-- Light Render Mode -->
+    <Style Selector="controls|MxTabControl:light /template/ Border#PART_SelectedContentBorder">
+        <Setter Property="CornerRadius" Value="0"></Setter>
+    </Style>
+</Styles>

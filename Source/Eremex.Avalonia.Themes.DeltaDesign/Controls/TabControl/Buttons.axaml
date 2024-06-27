@@ -1,0 +1,116 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:internal="clr-namespace:Eremex.AvaloniaUI.Controls.Internal;assembly=Eremex.Avalonia.Controls"
+        xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls"
+        xmlns:icons="clr-namespace:Eremex.AvaloniaUI.Icons;assembly=Eremex.Avalonia.Icons"
+        xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+        xmlns:other="clr-namespace:Eremex.AvaloniaUI.Icons.Other;assembly=Eremex.Avalonia.Icons">
+
+    <Style Selector="RepeatButton.TabControlButton, Button.TabControlButton">
+        <Setter Property="Height" Value="{DynamicResource TabControlButtonSize}" />
+        <Setter Property="Width" Value="{DynamicResource TabControlButtonSize}" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="CornerRadius" Value="4"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+    </Style>
+	
+	<Style Selector="Button.TabControlButton.TabItemButton">
+		<Setter Property="Height" Value="{DynamicResource TabItemButtonSize}" />
+		<Setter Property="Width" Value="{DynamicResource TabItemButtonSize}" />
+		<Setter Property="IsVisible" Value="{Binding $self.IsEffectivelyEnabled}"></Setter>
+	</Style>
+	
+	<Style Selector="Button.TabControlButton.OnSecondary:pointerover">
+		<Setter Property="BorderThickness" Value="1"></Setter>
+	</Style>
+	
+	<Style Selector="Button.TabControlButton.OnSecondary:pressed">
+		<Setter Property="BorderThickness" Value="1"></Setter>
+	</Style>
+
+	<Style Selector="RepeatButton.TabControlButton:pointerover /template/ Border#PART_BackgroundBorder,
+                     Button.TabControlButton:pointerover /template/ Border#PART_BackgroundBorder">
+		<Setter Property="Background" Value="Transparent"></Setter>
+	</Style>
+
+    <Style Selector="RepeatButton.TabControlButton:pointerover /template/ ContentPresenter#PART_ContentPresenter,
+                     Button.TabControlButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"></Setter>
+	    <Setter Property="Opacity" Value="1"></Setter>
+    </Style>
+	
+	<Style Selector="Button.TabControlButton.OnSecondary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Hover}"></Setter>
+	</Style>
+	
+	<Style Selector="RepeatButton.TabControlButton:pressed /template/ Border#PART_BackgroundBorder,
+                     Button.TabControlButton:pressed /template/ Border#PART_BackgroundBorder">
+		<Setter Property="Background" Value="Transparent"></Setter>
+	</Style>
+	
+	<Style Selector="RepeatButton.TabControlButton:disabled /template/ Border#PART_BackgroundBorder,
+                     Button.TabControlButton:disabled /template/ Border#PART_BackgroundBorder">
+		<Setter Property="Background" Value="Transparent"></Setter>
+	</Style>
+	
+    <Style Selector="RepeatButton.TabControlButton:pressed /template/ ContentPresenter#PART_ContentPresenter,
+                     Button.TabControlButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Pressed}"></Setter>
+	    <Setter Property="Opacity" Value="1"></Setter>
+    </Style>
+	
+	<Style Selector="Button.TabControlButton.OnSecondary:pressed /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Pressed}"></Setter>
+	</Style>
+	
+	<Style Selector="Button.TabControlButton.OnSecondary:pointerover /template/ Border#PART_ButtonBorder">
+		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"></Setter>
+	</Style>
+	
+	<Style Selector="Button.TabControlButton.OnSecondary:pressed /template/ Border#PART_ButtonBorder">
+		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"></Setter>
+	</Style>
+    
+	<Style Selector="internal|TabControlControlBox">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <DockPanel>
+                    <Button Classes="TabControlButton"
+                            IsVisible="{TemplateBinding IsNewButtonVisible}"
+                            Command="{TemplateBinding NewCommand}"
+                            CommandParameter="{TemplateBinding NewCommandParameter}"
+                            x:Name="PART_NewButton">
+	                    <Image Height="12"
+	                           Width="12"
+	                           Source="{x:Static other:_12.Add}"/>
+                    </Button>
+                    <Button Classes="TabControlButton"
+                            IsVisible="{TemplateBinding IsCloseButtonVisible}"
+                            Command="{TemplateBinding CloseCommand}"
+                            CommandParameter="{TemplateBinding CloseCommandParameter}"
+                            x:Name="PART_CloseButton">
+                        <Image Height="12"
+                               Width="12"
+                               Source="{x:Static other:_12.Close}"/>
+                    </Button>
+                    <ContentPresenter Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                </DockPanel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="internal|TabControlControlBox:horizontal /template/ Button#PART_CloseButton">
+        <Setter Property="DockPanel.Dock" Value="Right"></Setter>
+    </Style>
+    <Style Selector="internal|TabControlControlBox:vertical /template/ Button#PART_NewButton">
+        <Setter Property="DockPanel.Dock" Value="Top"></Setter>
+    </Style>
+    <Style Selector="internal|TabControlControlBox:vertical /template/ Button#PART_CloseButton">
+        <Setter Property="DockPanel.Dock" Value="Bottom"></Setter>
+    </Style>
+</Styles>

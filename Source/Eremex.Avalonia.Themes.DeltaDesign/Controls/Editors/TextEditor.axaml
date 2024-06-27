@@ -1,0 +1,113 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+				xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
+				xmlns:ec="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
+        xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
+
+    <Design.PreviewWith>
+        <Border Padding="20">
+					<StackPanel>
+						<Border Background="{DynamicResource Fill/Neutral/Primary/Enabled}" Padding="10">
+							<StackPanel Spacing="10">
+            <mxe:TextEditor EditorValue="Text Editor" Width="120"/>
+						<mxe:TextEditor EditorValue="Inactive Editor" EditorMode="InplaceInactive" Width="120"/>
+						<mxe:TextEditor EditorValue="Disabled" IsEnabled="False" Width="120"/>
+							</StackPanel>
+						</Border>
+						<Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
+							<StackPanel Spacing="10">
+								<mxe:TextEditor EditorValue="Secondary Editor" EditorMode="InplaceActive" Width="120" Classes="secondary"/>
+								<mxe:TextEditor EditorValue="Inactive Editor" EditorMode="InplaceInactive" Width="120" Classes="secondary"/>
+								<mxe:TextEditor EditorValue="Secondary Disabled" IsEnabled="False" Width="120" Classes="secondary"/>
+							</StackPanel>
+						</Border>
+					</StackPanel>
+        </Border>
+    </Design.PreviewWith>
+    
+    <Styles.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </Styles.Resources>
+    
+    <Style Selector="mxe|TextEditor[EditorMode=InplaceInactive][ShowHoverDecorator=true]:pointerover /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
+        <Setter Property="InactiveDecoratorTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Panel>
+											<Border CornerRadius="{StaticResource EditorCornerRadius}"
+															BorderThickness="{StaticResource EditorBorderThickness}"
+															MinHeight="0">
+												<Border.Background>
+													<MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
+														<Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/> 
+														<DynamicResourceExtension ResourceKey="Fill/Neutral/Secondary/Enabled"/>
+														<DynamicResourceExtension ResourceKey="Fill/Neutral/Primary/Enabled"/>
+													</MultiBinding>
+												</Border.Background>
+												<Border.BorderBrush>
+													<MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
+														<Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
+														<DynamicResourceExtension ResourceKey="TransparentBrush"/>
+														<DynamicResourceExtension ResourceKey="Outline/Neutral/Transparent/Light"/>
+													</MultiBinding>
+												</Border.BorderBrush>
+											</Border>
+                    </Panel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="mxe|TextEditor:activeMode">
+        <Setter Property="Template">
+            <ControlTemplate>
+							<DockPanel>
+								<TextBlock x:Name="PART_ErrorTextPresenter"
+													 DockPanel.Dock="Bottom"
+													 Text="{TemplateBinding ErrorText}" 
+													 FontSize="{StaticResource EditorErrorFontSize}"
+													 Foreground="{DynamicResource Text/Accent/Error}"
+													 Margin="{StaticResource ErrorTextPresenterMargin}"
+													 TextWrapping="Wrap"/>
+                <Panel x:Name="PART_RealEditorPanel">
+                    <TextBox Name="PART_RealEditor"												 
+                             IsReadOnly="{TemplateBinding ReadOnly}"
+                             Background="{TemplateBinding Background}"
+                             Foreground="{TemplateBinding Foreground}"
+                             TextWrapping="{TemplateBinding TextWrapping}"
+                             AcceptsReturn="{TemplateBinding AcceptsReturn}"
+                             SelectionStart="{Binding $parent[mxe:TextEditor].SelectionStart, Mode=TwoWay}"
+                             SelectionEnd="{Binding $parent[mxe:TextEditor].SelectionEnd, Mode=TwoWay}"
+                             BorderThickness="0"
+                             Focusable="{TemplateBinding Focusable}"
+                             Padding="{TemplateBinding Padding}"
+                             CornerRadius="{TemplateBinding CornerRadius}"
+                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                             Watermark="{TemplateBinding Watermark}"
+                             MinHeight="0"
+                             FontSize="{TemplateBinding FontSize}"
+														 Classes.secondary="{TemplateBinding SecondaryAppearance}">
+                        <TextBox.Styles>
+                            <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+                                <Setter Property="BorderThickness" Value="0" />
+                            </Style>
+                        </TextBox.Styles>
+                    </TextBox>
+                    <Border Name="PART_RootBorder"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Background="{x:Null}"
+                            Focusable="False"
+                            FocusAdorner="{x:Null}"
+                            MinHeight="0"/>
+                </Panel>
+							</DockPanel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

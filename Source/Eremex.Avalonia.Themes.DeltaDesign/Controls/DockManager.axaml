@@ -1,0 +1,861 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:do="clr-namespace:Eremex.AvaloniaUI.Controls.Docking;assembly=Eremex.Avalonia.Controls"
+        xmlns:doi="clr-namespace:Eremex.AvaloniaUI.Controls.Docking.Internal;assembly=Eremex.Avalonia.Controls"
+        xmlns:controls="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
+        xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+        xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        xmlns:other="clr-namespace:Eremex.AvaloniaUI.Icons.Other;assembly=Eremex.Avalonia.Icons"><!-- attached properties doesn't work without assembly -->
+    <Styles.Resources>
+        <Thickness x:Key="DockPaneBorderThickness">1</Thickness>
+        
+        <system:Double x:Key="ResizingCornerLength">10</system:Double>
+        <system:Double x:Key="ResizingSideLength">6</system:Double>
+        <SolidColorBrush x:Key="ResizingElementBackground" Opacity="0.1" Color="Transparent"></SolidColorBrush>
+        <Thickness x:Key="DockPanePadding">8,6</Thickness>
+        
+        <ControlTemplate TargetType="do:DockPane" x:Key="DockPaneTemplate">
+            <Border x:Name="PART_LayoutRoot"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Background="{TemplateBinding Background}">
+                <Grid Background="Transparent"
+                      RowDefinitions="Auto,*"
+                      Margin="{TemplateBinding Padding}">
+                    <doi:DockItemDragControl IsVisible="{TemplateBinding IsHeaderVisible}">
+                        <Grid Background="Transparent" ColumnDefinitions="Auto,*,Auto"
+                              Margin="0,0,0,6">
+                            <doi:DockPaneHeaderControl Header="{TemplateBinding Header}"
+                                                       HeaderTemplate="{TemplateBinding HeaderTemplate}"
+                                                       Glyph="{TemplateBinding Glyph}"
+                                                       GlyphSize="{TemplateBinding GlyphSize}"
+                                                       ShowGlyphMode="{TemplateBinding ShowGlyphMode}"/>
+                            <doi:ControlBox Grid.Column="2"></doi:ControlBox>
+                        </Grid>
+                    </doi:DockItemDragControl>
+                    <ContentPresenter Grid.Row="1"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      ClipToBounds="True" />
+                </Grid>
+            </Border>
+        </ControlTemplate>
+    </Styles.Resources>
+
+    <Style Selector="do|DockManager">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    <Grid>
+                        <Grid RowDefinitions="Auto * Auto" ColumnDefinitions="Auto * Auto">
+                            <doi:AutoHideTray Grid.Row="1"
+                                              Grid.Column="0"
+                                              Dock="Left"
+                                              ItemsSource="{Binding AutoHideGroups.LeftGroups, RelativeSource={RelativeSource TemplatedParent}}"
+                                              ShowAutoHideExpandButton="{TemplateBinding ShowAutoHideExpandButton}"
+                                              x:Name="PART_TrayLeft">
+                            </doi:AutoHideTray>
+                            <doi:AutoHideTray Grid.Row="1"
+                                              Grid.Column="2"
+                                              Dock="Right"
+                                              ItemsSource="{Binding AutoHideGroups.RightGroups, RelativeSource={RelativeSource TemplatedParent}}"
+                                              ShowAutoHideExpandButton="{TemplateBinding ShowAutoHideExpandButton}"
+                                              x:Name="PART_TrayRight">
+                            </doi:AutoHideTray>
+                            <doi:AutoHideTray Grid.Row="0"
+                                              Grid.Column="1"
+                                              Dock="Top"
+                                              ItemsSource="{Binding AutoHideGroups.TopGroups, RelativeSource={RelativeSource TemplatedParent}}"
+                                              ShowAutoHideExpandButton="{TemplateBinding ShowAutoHideExpandButton}"
+                                              x:Name="PART_TrayTop">
+                            </doi:AutoHideTray>
+                            <doi:AutoHideTray Grid.Row="2"
+                                              Grid.Column="1"
+                                              Dock="Bottom"
+                                              ItemsSource="{Binding AutoHideGroups.BottomGroups, RelativeSource={RelativeSource TemplatedParent}}"
+                                              ShowAutoHideExpandButton="{TemplateBinding ShowAutoHideExpandButton}"
+                                              x:Name="PART_TrayBottom">
+                            </doi:AutoHideTray>
+                            <doi:AutoHideDockPanel Grid.Column="1"
+                                                   Grid.Row="1"
+                                                   Mode="{TemplateBinding AutoHideMode}">
+                                <doi:AutoHidePane Dock="Bottom"
+                                                  DockPanel.Dock="Bottom"
+                                                  VerticalAlignment="Bottom"
+                                                  x:Name="PART_PaneBottom"></doi:AutoHidePane>
+                                <doi:AutoHidePane Dock="Left"
+                                                  DockPanel.Dock="Left"
+                                                  HorizontalAlignment="Left"
+                                                  x:Name="PART_PaneLeft"></doi:AutoHidePane>
+                                <doi:AutoHidePane Dock="Right"
+                                                  DockPanel.Dock="Right"
+                                                  HorizontalAlignment="Right"
+                                                  x:Name="PART_PaneRight"></doi:AutoHidePane>
+                                <doi:AutoHidePane Dock="Top"
+                                                  DockPanel.Dock="Top"
+                                                  VerticalAlignment="Top"
+                                                  x:Name="PART_PaneTop"></doi:AutoHidePane>
+                                <ContentControl Content="{TemplateBinding Root}"></ContentControl>    
+                            </doi:AutoHideDockPanel>
+                        </Grid>
+                        <doi:FloatGroupItemsControl
+                            ItemsSource="{Binding FloatGroups, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+	    <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+    </Style>
+
+    <Style Selector="do|DockGroup">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <doi:DockGroupItemsControl ItemsSource="{Binding $parent.Items}"
+                                           Orientation="{TemplateBinding Orientation}"
+                                           Background="Transparent">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <doi:DockGroupItemsPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </doi:DockGroupItemsControl>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+	
+    <Style Selector="do|TabbedGroup">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <doi:TabbedGroupItemsControl ItemsSource="{Binding $parent.Items}"
+                                             TabStripPlacement="{TemplateBinding TabStripPlacement}"
+                                             TabStripLayoutType="{TemplateBinding TabStripLayoutType}"
+                                             TabHeaderOrientation="{TemplateBinding TabHeaderOrientation}"
+                                             CloseButtonShowMode="{TemplateBinding CloseButtonShowMode}"
+                                             Background="{TemplateBinding Background}">
+	                <doi:TabbedGroupItemsControl.ItemTemplate>
+                        <DataTemplate>
+	                        <!--DataContext is TabItemControlWrapper object with DockPane here -->
+	                        <doi:DockPaneHeaderControl Header="{Binding Control.Header}"
+	                                                   HeaderTemplate="{Binding Control.HeaderTemplate}"
+	                                                   Glyph="{Binding Control.Glyph}"
+	                                                   GlyphSize="{Binding Control.GlyphSize}"
+	                                                   TabHeader="{Binding Control.TabHeader}"
+	                                                   TabHeaderTemplate="{Binding Control.TabHeaderTemplate}"
+	                                                   TabGlyph="{Binding Control.TabGlyph}"
+	                                                   TabGlyphSize="{Binding Control.TabGlyphSize}"
+                                                       ShowGlyphMode="{Binding Control.ShowGlyphMode}"
+                                                       ShowTabGlyphMode="{Binding Control.ShowTabGlyphMode}"/>
+                        </DataTemplate>
+                    </doi:TabbedGroupItemsControl.ItemTemplate>
+	                <doi:TabbedGroupItemsControl.ContentTemplate>
+		                <DataTemplate>
+			                <doi:UiElementPresenter Child="{Binding}"></doi:UiElementPresenter>
+		                </DataTemplate>
+	                </doi:TabbedGroupItemsControl.ContentTemplate>
+                </doi:TabbedGroupItemsControl>
+            </ControlTemplate>
+        </Setter>
+	    <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"></Setter>
+    </Style>
+	
+	<Style Selector="doi|DockPaneResizeControl">
+		<Setter Property="Template">
+			<ControlTemplate>
+				    <Grid x:Name="PART_ResizeBorders">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Path x:Name="TopLeft" Fill="{DynamicResource ResizingElementBackground}" Stretch="Fill"
+                              Data="F1M414,287L410,287 410,281 410,277 414,277 420,277 420,281 414,281 414,287z"
+                              Width="{DynamicResource ResizingCornerLength}"
+                              Height="{DynamicResource ResizingCornerLength}"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Top"
+                              Cursor="TopLeftCorner"
+                              doi:DockPaneResizeControl.HitTestType="TopLeftCorner">
+	                        <Path.IsVisible>
+		                        <MultiBinding Converter="{doi:SizeModeToVisibleConverter}">
+			                        <Binding Path="SizeMode" RelativeSource="{RelativeSource TemplatedParent}" />
+			                        <Binding Path="(doi:DockPaneResizeControl.HitTestType)" RelativeSource="{RelativeSource Self}" />
+		                        </MultiBinding>
+	                        </Path.IsVisible>
+                        </Path>
+                        <Path x:Name="TopRight" Fill="{DynamicResource ResizingElementBackground}" Stretch="Fill"
+                              Data="F1M430,294L430,290 436,290 440,290 440,294 440,300 436,300 436,294 430,294z"
+                              Width="{DynamicResource ResizingCornerLength}"
+                              Height="{DynamicResource ResizingCornerLength}"
+                              HorizontalAlignment="Right" VerticalAlignment="Top"
+                              Grid.Column="2"
+                              Cursor="TopRightCorner"
+                              doi:DockPaneResizeControl.HitTestType="TopRightCorner">
+	                        <Path.IsVisible>
+		                        <MultiBinding Converter="{doi:SizeModeToVisibleConverter}">
+			                        <Binding Path="SizeMode" RelativeSource="{RelativeSource TemplatedParent}" />
+			                        <Binding Path="(doi:DockPaneResizeControl.HitTestType)" RelativeSource="{RelativeSource Self}" />
+		                        </MultiBinding>
+	                        </Path.IsVisible>
+                        </Path>
+                        <Path x:Name="BottomRight" Fill="{DynamicResource ResizingElementBackground}" Stretch="Fill"
+                              Data="F1M393,279L397,279 397,285 397,289 393,289 387,289 387,285 393,285 393,279z"
+                              Width="{DynamicResource ResizingCornerLength}"
+                              Height="{DynamicResource ResizingCornerLength}"
+                              HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                              Grid.Column="2" Grid.Row="2"
+                              Cursor="BottomRightCorner"
+                              doi:DockPaneResizeControl.HitTestType="BottomRightCorner">
+	                        <Path.IsVisible>
+		                        <MultiBinding Converter="{doi:SizeModeToVisibleConverter}">
+			                        <Binding Path="SizeMode" RelativeSource="{RelativeSource TemplatedParent}" />
+			                        <Binding Path="(doi:DockPaneResizeControl.HitTestType)" RelativeSource="{RelativeSource Self}" />
+		                        </MultiBinding>
+	                        </Path.IsVisible>
+                        </Path>
+                        <Path x:Name="BottomLeft" Fill="{DynamicResource ResizingElementBackground}" Stretch="Fill"
+                              Data="F1M416,312L416,316 410,316 406,316 406,312 406,306 410,306 410,312 416,312z"
+                              Width="{DynamicResource ResizingCornerLength}"
+                              Height="{DynamicResource ResizingCornerLength}"
+                              HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                              Grid.Column="0" Grid.Row="2"
+                              Cursor="BottomLeftCorner"
+                              doi:DockPaneResizeControl.HitTestType="BottomLeftCorner">
+	                        <Path.IsVisible>
+		                        <MultiBinding Converter="{doi:SizeModeToVisibleConverter}">
+			                        <Binding Path="SizeMode" RelativeSource="{RelativeSource TemplatedParent}" />
+			                        <Binding Path="(doi:DockPaneResizeControl.HitTestType)" RelativeSource="{RelativeSource Self}" />
+		                        </MultiBinding>
+	                        </Path.IsVisible>
+                        </Path>
+                        <Rectangle x:Name="Bottom" Fill="{DynamicResource ResizingElementBackground}" Stretch="Fill"
+                                   VerticalAlignment="Bottom" 
+                                   Height="{DynamicResource ResizingSideLength}"
+                                   Grid.Column="1" Grid.Row="2"
+                                   Cursor="BottomSide"
+                                   doi:DockPaneResizeControl.HitTestType="BottomSide">
+	                        <Path.IsVisible>
+		                        <MultiBinding Converter="{doi:SizeModeToVisibleConverter}">
+			                        <Binding Path="SizeMode" RelativeSource="{RelativeSource TemplatedParent}" />
+			                        <Binding Path="(doi:DockPaneResizeControl.HitTestType)" RelativeSource="{RelativeSource Self}" />
+		                        </MultiBinding>
+	                        </Path.IsVisible>
+                        </Rectangle>
+                        <Rectangle x:Name="Top" Fill="{DynamicResource ResizingElementBackground}" Stretch="Fill"
+                                   VerticalAlignment="Top" Height="{DynamicResource ResizingSideLength}"
+                                   Grid.Column="1" Grid.Row="0"
+                                   Cursor="TopSide"
+                                   doi:DockPaneResizeControl.HitTestType="TopSide">
+	                        <Path.IsVisible>
+		                        <MultiBinding Converter="{doi:SizeModeToVisibleConverter}">
+			                        <Binding Path="SizeMode" RelativeSource="{RelativeSource TemplatedParent}" />
+			                        <Binding Path="(doi:DockPaneResizeControl.HitTestType)" RelativeSource="{RelativeSource Self}" />
+		                        </MultiBinding>
+	                        </Path.IsVisible>
+                        </Rectangle>
+                        <Rectangle x:Name="Left" Fill="{DynamicResource ResizingElementBackground}" Stretch="Fill"
+                                   HorizontalAlignment="Left" Width="{DynamicResource ResizingSideLength}"
+                                   Grid.Column="0" Grid.Row="1"
+                                   Cursor="LeftSide"
+                                   doi:DockPaneResizeControl.HitTestType="LeftSide">
+	                        <Path.IsVisible>
+		                        <MultiBinding Converter="{doi:SizeModeToVisibleConverter}">
+			                        <Binding Path="SizeMode" RelativeSource="{RelativeSource TemplatedParent}" />
+			                        <Binding Path="(doi:DockPaneResizeControl.HitTestType)" RelativeSource="{RelativeSource Self}" />
+		                        </MultiBinding>
+	                        </Path.IsVisible>
+                        </Rectangle>
+                        <Rectangle x:Name="Right" Fill="{DynamicResource ResizingElementBackground}" Stretch="Fill"
+                                   HorizontalAlignment="Right" Width="{DynamicResource ResizingSideLength}"
+                                   Grid.Column="2" Grid.Row="1"
+                                   Cursor="RightSide"
+                                   doi:DockPaneResizeControl.HitTestType="RightSide">
+	                        <Path.IsVisible>
+		                        <MultiBinding Converter="{doi:SizeModeToVisibleConverter}">
+			                        <Binding Path="SizeMode" RelativeSource="{RelativeSource TemplatedParent}" />
+			                        <Binding Path="(doi:DockPaneResizeControl.HitTestType)" RelativeSource="{RelativeSource Self}" />
+		                        </MultiBinding>
+	                        </Path.IsVisible>
+                        </Rectangle>
+                    </Grid>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+
+    <Style Selector="do|FloatGroup.Single">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                    <Grid>
+                        <doi:DockGroupItemsControl ItemsSource="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}"
+                                                   Orientation="{TemplateBinding Orientation}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <doi:DockGroupItemsPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </doi:DockGroupItemsControl>
+                        <doi:DockPaneResizeControl/>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Border.FloatWindowCaptionArea">
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Hover}"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="BorderThickness" Value="0 0 0 1"></Setter>
+    </Style>
+
+    <Style Selector="do|FloatGroup">
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+    
+    <Style Selector="do|FloatGroup.Group">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                    <Grid RowDefinitions="Auto *">
+                        <Border Grid.Row="0" Classes="FloatWindowCaptionArea" x:Name="captionArea" BorderBrush="{TemplateBinding BorderBrush}">
+                            <doi:DockItemDragControl>
+                                <Grid Background="Transparent" ColumnDefinitions="*,Auto">
+                                    <doi:DockPaneHeaderControl Header="{TemplateBinding Header}"
+                                                               HeaderTemplate="{TemplateBinding HeaderTemplate}"
+                                                               Glyph="{TemplateBinding Glyph}"
+                                                               GlyphSize="{TemplateBinding GlyphSize}"
+                                                               ShowGlyphMode="{TemplateBinding ShowGlyphMode}"/>
+                                    <doi:ControlBox Grid.Column="1" Classes="FloatWindowControlBox"></doi:ControlBox>
+                                </Grid>
+                            </doi:DockItemDragControl>
+                        </Border>
+                        <Border Grid.Row="1">
+                            <doi:DockGroupItemsControl
+                                ItemsSource="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}"
+                                Orientation="{TemplateBinding Orientation}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <doi:DockGroupItemsPanel />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </doi:DockGroupItemsControl>
+                        </Border>
+                        <doi:DockPaneResizeControl Grid.Row="0"
+                                                   Grid.RowSpan="2"/>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+	
+	<Style Selector="do|FloatGroup:not(.NoSystemBorder) doi|DockPaneResizeControl">
+		<Setter Property="IsVisible" Value="False"></Setter>
+	</Style>
+
+    <Style Selector="do|AutoHideGroup">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <doi:AutoHideGroupItemsControl ItemsSource="{Binding $parent.Items}"
+                                               Placement="{TemplateBinding Dock, Converter={doi:DockInversionConverter}}">
+                    <doi:AutoHideGroupItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="{Binding $parent[doi:AutoHideGroupItemsControl].Orientation}"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </doi:AutoHideGroupItemsControl.ItemsPanel>
+                    <doi:AutoHideGroupItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <!--DataContext is TabItemControlWrapper object with DockPane here -->
+                            <doi:DockPaneHeaderControl Header="{Binding Control.Header}"
+                                                       HeaderTemplate="{Binding Control.HeaderTemplate}"
+                                                       Glyph="{Binding Control.Glyph}"
+                                                       GlyphSize="{Binding Control.GlyphSize}"
+                                                       TabHeader="{Binding Control.TabHeader}"
+                                                       TabHeaderTemplate="{Binding Control.TabHeaderTemplate}"
+                                                       TabGlyph="{Binding Control.TabGlyph}"
+                                                       TabGlyphSize="{Binding Control.TabGlyphSize}"
+                                                       ShowGlyphMode="{Binding Control.ShowGlyphMode}"
+                                                       ShowTabGlyphMode="{Binding Control.ShowTabGlyphMode}"/>
+                        </DataTemplate>
+                    </doi:AutoHideGroupItemsControl.ItemTemplate>
+                </doi:AutoHideGroupItemsControl>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <Style Selector="do|DockPane">
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+        <Setter Property="Template" Value="{StaticResource DockPaneTemplate}" />
+        <Setter Property="Padding" Value="{StaticResource DockPanePadding}"></Setter>
+    </Style>
+    
+    <Style Selector="do|DocumentPane">
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+        <Setter Property="Template" Value="{StaticResource DockPaneTemplate}" />
+        <Setter Property="Padding" Value="{StaticResource DockPanePadding}"></Setter>
+    </Style>
+    
+    <Style Selector="do|DockPane:top /template/ Border#PART_LayoutRoot">
+        <Setter Property="BorderThickness" Value="{TemplateBinding BorderThickness, Converter={doi:DockPaneBorderThicknessConverter}, ConverterParameter=Top}"/>
+    </Style>
+    <Style Selector="do|DockPane:bottom /template/ Border#PART_LayoutRoot">
+        <Setter Property="BorderThickness" Value="{TemplateBinding BorderThickness, Converter={doi:DockPaneBorderThicknessConverter}, ConverterParameter=Bottom}"/>
+    </Style>
+    <Style Selector="do|DockPane:left /template/ Border#PART_LayoutRoot">
+        <Setter Property="BorderThickness" Value="{TemplateBinding BorderThickness, Converter={doi:DockPaneBorderThicknessConverter}, ConverterParameter=Left}"/>
+    </Style>
+    <Style Selector="do|DockPane:right /template/ Border#PART_LayoutRoot">
+        <Setter Property="BorderThickness" Value="{TemplateBinding BorderThickness, Converter={doi:DockPaneBorderThicknessConverter}, ConverterParameter=Right}"/>
+    </Style>
+
+    <Style Selector="doi|DockGroupItem">
+        <Setter Property="Orientation" Value="{Binding $parent.Orientation}"></Setter>
+				<Setter Property="ClipToBounds" Value="False"></Setter>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <DockPanel>
+                    <doi:DockGroupSplitterItem x:Name="PART_Splitter"
+                                               Orientation="{TemplateBinding Orientation}"
+                                               DockPanel.Dock="{Binding Orientation, RelativeSource={RelativeSource TemplatedParent}, Converter={doi:OrientationToDockConverter}}"
+                                               IsVisible="{Binding Path=!(do:DockGroup.IsFirst), RelativeSource={RelativeSource TemplatedParent}}" />
+                    <doi:UiElementPresenter Child="{TemplateBinding Content}"></doi:UiElementPresenter>
+                </DockPanel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <Style Selector="doi|SideDockWidget">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border CornerRadius="2"
+                        BorderThickness="1"
+                        BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Strong}"
+                        Background="{DynamicResource Fill/Neutral/Secondary/Pressed}"
+                        Padding="4">
+                    <doi:DockWidgetButton x:Name="PART_Button"
+                                          BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Strong}"
+                                          BorderThickness="1"
+                                          CornerRadius="2"
+                                          Width="28"
+                                          Height="28">
+                    </doi:DockWidgetButton>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Setter Property="Opacity" Value="0.8"></Setter>
+    </Style>
+
+    <Style Selector="doi|CenterDockWidget">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid>
+                    <Grid RowDefinitions="Auto,Auto,Auto">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="Top"
+                                BorderThickness="1 1 1 0" BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Strong}"
+                                Background="{DynamicResource Fill/Neutral/Secondary/Hover}"
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+                            <StackPanel Margin="3,3,3,0">
+                                <doi:DockWidgetButton x:Name="PART_CenterTop"
+                                                      Margin="0,0,0,3"
+                                                      doi:DockWidgetLayer.HitTest="CenterTop" />
+                                <doi:DockWidgetButton x:Name="PART_TabTop"
+                                                      doi:DockWidgetLayer.HitTest="TabTop" />
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Left"
+                                Background="{DynamicResource Fill/Neutral/Secondary/Hover}"
+                                BorderThickness="1 1 0 1" BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Strong}"
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
+                            <StackPanel Margin="3,3,0,3" Orientation="Horizontal">
+                                <doi:DockWidgetButton x:Name="PART_CenterLeft"
+                                                      Margin="0,0,3,0"
+                                                      doi:DockWidgetLayer.HitTest="CenterLeft" />
+                                <doi:DockWidgetButton x:Name="PART_TabLeft"
+                                                      doi:DockWidgetLayer.HitTest="TabLeft" />
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Center" Background="{DynamicResource Fill/Neutral/Secondary/Hover}"
+                                Grid.Column="1"
+                                Grid.Row="1">
+                            <doi:DockWidgetButton x:Name="PART_Center"
+                                                  doi:DockWidgetLayer.HitTest="Center"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center" />
+                        </Border>
+                        <Border x:Name="Right"
+                                Background="{DynamicResource Fill/Neutral/Secondary/Hover}"
+                                BorderThickness="0 1 1 1" BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Strong}"
+                                Grid.Column="2"
+                                Grid.Row="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+                            <StackPanel Margin="0,3,3,3" Orientation="Horizontal">
+                                <doi:DockWidgetButton x:Name="PART_TabRight"
+                                                      doi:DockWidgetLayer.HitTest="TabRight">
+                                </doi:DockWidgetButton>
+                                <doi:DockWidgetButton x:Name="PART_CenterRight"
+                                                      Margin="3,0,0,0"
+                                                      doi:DockWidgetLayer.HitTest="CenterRight">
+                                </doi:DockWidgetButton>
+                            </StackPanel>
+                        </Border>
+                        <Border x:Name="Bottom"
+                                Background="{DynamicResource Fill/Neutral/Secondary/Hover}"
+                                BorderThickness="1 0 1 1" BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Strong}"
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom">
+                            <StackPanel Margin="3,0,3,3">
+                                <doi:DockWidgetButton x:Name="PART_TabBottom"
+                                                      doi:DockWidgetLayer.HitTest="TabBottom">
+                                </doi:DockWidgetButton>
+                                <doi:DockWidgetButton x:Name="PART_CenterBottom"
+                                                      doi:DockWidgetLayer.HitTest="CenterBottom"
+                                                      Margin="0,3,0,0">
+                                </doi:DockWidgetButton>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+        <Setter Property="Opacity" Value="0.8"></Setter>
+    </Style>
+
+    <Style Selector="Button.DockWidgetButton">
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/On Secondary/Strong}"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="CornerRadius" Value="4"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Width" Value="28"></Setter>
+        <Setter Property="Height" Value="28"></Setter>
+    </Style>
+    
+    <Style Selector="Button.DockWidgetButton:disabled">
+        <Setter Property="Opacity" Value="0"></Setter>
+    </Style>
+
+    <Style Selector="Button.ControlBoxButton">
+        <Setter Property="Padding" Value="3"></Setter>
+        <Setter Property="Width" Value="18"></Setter>
+        <Setter Property="Height" Value="18"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+    </Style>
+    
+    <Style Selector="Button.ControlBoxButton:disabled">
+        <Setter Property="IsVisible" Value="False"></Setter>
+    </Style>
+
+	<Style Selector="ItemsControl.DockGroupItemsControl">
+		<Setter Property="(doi:DockGroupItemsControl.SplitterSize)" Value="1"></Setter>
+	</Style>
+	
+    <Style Selector="doi|DockGroupSplitterItem">
+	    <Setter Property="Cursor" Value="{Binding $self.Orientation, Converter={doi:OrientationToCursorConverter}}"></Setter>
+	    <Setter Property="MinHeight" Value="{Binding $self.(doi:DockGroupItemsControl.SplitterSize)}"></Setter>
+	    <Setter Property="MinWidth" Value="{Binding $self.(doi:DockGroupItemsControl.SplitterSize)}"></Setter>
+	    <Setter Property="Background" Value="{DynamicResource Outline/Neutral/Transparent/Medium}"></Setter>
+	    <Setter Property="ClipToBounds" Value="False"></Setter>
+	    <Setter Property="ZIndex" Value="1"></Setter>
+	    <Setter Property="Template">
+		    <ControlTemplate>
+			    <Border Background="Transparent"
+			            ClipToBounds="False"
+			            x:Name="PART_Background">
+				    <Border Background="{TemplateBinding Background}"
+				            x:Name="PART_Splitter">
+				    </Border>
+			    </Border>
+		    </ControlTemplate>
+	    </Setter>
+    </Style>
+    
+    <Style Selector="doi|DockGroupSplitterItem[Orientation=Vertical] /template/ Border#PART_Splitter">
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Height" Value="1"></Setter>
+    </Style>
+    
+    <Style Selector="doi|DockGroupSplitterItem[Orientation=Horizontal] /template/ Border#PART_Splitter">
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="Width" Value="1"></Setter>
+    </Style>
+	
+    <Style Selector="doi|DockGroupSplitterItem[Orientation=Vertical] /template/ Border#PART_Background">
+        <Setter Property="Margin" Value="0, -4"></Setter>
+    </Style>
+    
+    <Style Selector="doi|DockGroupSplitterItem[Orientation=Horizontal] /template/ Border#PART_Background">
+        <Setter Property="Margin" Value="-4,0"></Setter>
+    </Style>
+    
+    <Style Selector="doi|AutoHidePane">
+        <Setter Property="ZIndex" Value="1"></Setter>
+        <Setter Property="Template">
+            <ControlTemplate>
+	            <Grid Width="{Binding PaneWidth, RelativeSource={RelativeSource TemplatedParent}}"
+	                  Height="{Binding PaneHeight, RelativeSource={RelativeSource TemplatedParent}}"
+	                  MinHeight="{Binding MinHeight, RelativeSource={RelativeSource TemplatedParent}}"
+	                  MinWidth="{Binding MinWidth, RelativeSource={RelativeSource TemplatedParent}}">
+		            <ItemsControl ItemsSource="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}">
+			            <ItemsControl.ItemsPanel>
+				            <ItemsPanelTemplate>
+					            <doi:AutoHideGrid Dock="{Binding $parent[doi:AutoHidePane].Dock}" />
+				            </ItemsPanelTemplate>
+			            </ItemsControl.ItemsPanel>
+		            </ItemsControl>
+		            <doi:DockPaneResizeControl SizeMode="{Binding Dock, RelativeSource={RelativeSource TemplatedParent}, Converter={doi:DockToAutoHideSizeModeConverter}}"></doi:DockPaneResizeControl>
+	            </Grid>
+            </ControlTemplate>
+        </Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}"></Setter>
+    </Style>
+    <Style Selector="doi|AutoHidePane[Dock=Bottom]:not(:empty)">
+        <Setter Property="BorderThickness" Value="0 1 0 0"></Setter>
+    </Style>
+    <Style Selector="doi|AutoHidePane[Dock=Left]:not(:empty)">
+        <Setter Property="BorderThickness" Value="0 0 1 0"></Setter>
+    </Style>
+    <Style Selector="doi|AutoHidePane[Dock=Right]:not(:empty)">
+        <Setter Property="BorderThickness" Value="1 0 0 0"></Setter>
+    </Style>
+    <Style Selector="doi|AutoHidePane[Dock=Top]:not(:empty)">
+        <Setter Property="BorderThickness" Value="0 0 0 1"></Setter>
+    </Style>
+    <Style Selector="doi|AutoHidePane:not(:empty):horizontal">
+        <Setter Property="MinHeight" Value="150"></Setter>
+    </Style>
+	<Style Selector="doi|AutoHidePane:empty/template/ doi|DockPaneResizeControl">
+		<Setter Property="IsVisible" Value="False"></Setter>
+	</Style>
+    
+	<Style Selector="doi|AutoHideTray">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Padding="{TemplateBinding Padding}">
+                    <DockPanel>
+                        <Button x:Name="PART_ExpandButton" 
+                                Width="28"
+                                Height="28">
+                            <Button.IsVisible>
+                                <MultiBinding Converter="{x:Static BoolConverters.And}">
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                             Path="!!Items.Count"/>
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                             Path="ShowAutoHideExpandButton"/>
+                                </MultiBinding>
+                            </Button.IsVisible>
+                            <LayoutTransformControl x:Name="PART_TransformControl"
+                                                    Height="12" 
+                                                    Width="12">
+                                <Image Source="{x:Static other:_12.Chevron_Right}"/>
+                            </LayoutTransformControl>
+                        </Button>
+                        <ItemsPresenter Name="PART_ItemsPresenter"
+                                        ItemsPanel="{TemplateBinding ItemsPanel}"/>    
+                    </DockPanel>
+                </Border>
+            </ControlTemplate>            
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="{Binding $parent[doi:AutoHideTray].Orientation}"></StackPanel>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}"></Setter>
+    </Style>
+    <Style Selector="doi|AutoHideTray[Dock=Bottom]:not(:empty)">
+        <Setter Property="BorderThickness" Value="0 1 0 0"></Setter>
+    </Style>
+    <Style Selector="doi|AutoHideTray[Dock=Left]:not(:empty)">
+        <Setter Property="BorderThickness" Value="0 0 1 0"></Setter>
+    </Style>
+    <Style Selector="doi|AutoHideTray[Dock=Right]:not(:empty)">
+        <Setter Property="BorderThickness" Value="1 0 0 0"></Setter>
+    </Style>
+    <Style Selector="doi|AutoHideTray[Dock=Top]:not(:empty)">
+        <Setter Property="BorderThickness" Value="0 0 0 1"></Setter>
+    </Style>
+    <Style Selector="doi|AutoHideTray[Dock=Left] /template/ LayoutTransformControl#PART_TransformControl">
+        <Setter Property="LayoutTransform">
+            <RotateTransform Angle="0"></RotateTransform>
+        </Setter>
+    </Style>
+    <Style Selector="doi|AutoHideTray[Dock=Right] /template/ LayoutTransformControl#PART_TransformControl">
+        <Setter Property="LayoutTransform">
+            <RotateTransform Angle="180"></RotateTransform>
+        </Setter>
+    </Style>
+    <Style Selector="doi|AutoHideTray[Dock=Top] /template/ LayoutTransformControl#PART_TransformControl">
+        <Setter Property="LayoutTransform">
+            <RotateTransform Angle="90"></RotateTransform>
+        </Setter>
+    </Style>
+    <Style Selector="doi|AutoHideTray[Dock=Bottom] /template/ LayoutTransformControl#PART_TransformControl">
+        <Setter Property="LayoutTransform">
+            <RotateTransform Angle="270"></RotateTransform>
+        </Setter>
+    </Style>
+    
+    <Style Selector="doi|AutoHideTray[Dock=Left][IsExpanded=true] /template/ LayoutTransformControl#PART_TransformControl">
+        <Setter Property="LayoutTransform">
+            <RotateTransform Angle="180"></RotateTransform>
+        </Setter>
+    </Style>
+    <Style Selector="doi|AutoHideTray[Dock=Right][IsExpanded=true] /template/ LayoutTransformControl#PART_TransformControl">
+        <Setter Property="LayoutTransform">
+            <RotateTransform Angle="0"></RotateTransform>
+        </Setter>
+    </Style>
+    <Style Selector="doi|AutoHideTray[Dock=Top][IsExpanded=true] /template/ LayoutTransformControl#PART_TransformControl">
+        <Setter Property="LayoutTransform">
+            <RotateTransform Angle="270"></RotateTransform>
+        </Setter>
+    </Style>
+    <Style Selector="doi|AutoHideTray[Dock=Bottom][IsExpanded=true] /template/ LayoutTransformControl#PART_TransformControl">
+        <Setter Property="LayoutTransform">
+            <RotateTransform Angle="90"></RotateTransform>
+        </Setter>
+    </Style>
+    <Style Selector="doi|AutoHideTray[Orientation=Horizontal] /template/ Button#PART_ExpandButton">
+        <Setter Property="DockPanel.Dock" Value="Left">
+        </Setter>
+    </Style>
+    <Style Selector="doi|AutoHideTray[Orientation=Vertical] /template/ Button#PART_ExpandButton">
+        <Setter Property="DockPanel.Dock" Value="Top">
+        </Setter>
+    </Style>
+    
+    <Style Selector="doi|DockPaneHeaderControl">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <DockPanel>
+                    <Image x:Name="PART_Image"
+                           Source="{TemplateBinding ActualGlyph}"
+                           Height="{Binding ActualGlyphSize.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                           Width="{Binding ActualGlyphSize.Width, RelativeSource={RelativeSource TemplatedParent}}"/>
+                    <ContentPresenter Content="{TemplateBinding ActualHeader}"
+                                      ContentTemplate="{TemplateBinding ActualHeaderTemplate}"
+                                      VerticalAlignment="Center"></ContentPresenter>    
+                </DockPanel>
+            </ControlTemplate>
+        </Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+    </Style>
+    
+    <Style Selector="doi|DockPaneHeaderControl:glyph-before/template/Image#PART_Image">
+        <Setter Property="Margin" Value="0 0 6 0"/>
+        <Setter Property="DockPanel.Dock" Value="Left"/>
+    </Style>
+    
+    <Style Selector="doi|DockPaneHeaderControl:glyph-after/template/Image#PART_Image">
+        <Setter Property="Margin" Value="6 0 0 0"/>
+        <Setter Property="DockPanel.Dock" Value="Right"></Setter>
+    </Style>
+    
+    <Style Selector="doi|DockPaneHeaderControl:glyph-hidden/template/Image#PART_Image">
+        <Setter Property="IsVisible" Value="False" />
+    </Style>
+    
+    <Style Selector="doi|DockPaneHeaderControl:active">
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+    </Style>
+    
+    <Style Selector="controls|MxTabControl.TabbedGroupItemsControl">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+    </Style>
+	
+	<Style Selector="controls|MxTabControl.TabbedGroupItemsControl[TabStripPlacement=Top] /template/ Border#PART_SelectedContentBorder">
+		<Setter Property="BorderThickness" Value="0 1 0 0"></Setter>
+	</Style>
+	<Style Selector="controls|MxTabControl.TabbedGroupItemsControl[TabStripPlacement=Bottom] /template/ Border#PART_SelectedContentBorder">
+		<Setter Property="BorderThickness" Value="0 0 0 1"></Setter>
+	</Style>
+	<Style Selector="controls|MxTabControl.TabbedGroupItemsControl[TabStripPlacement=Left] /template/ Border#PART_SelectedContentBorder">
+		<Setter Property="BorderThickness" Value="1 0 0 0"></Setter>
+	</Style>
+	<Style Selector="controls|MxTabControl.TabbedGroupItemsControl[TabStripPlacement=Right] /template/ Border#PART_SelectedContentBorder">
+		<Setter Property="BorderThickness" Value="0 0 1 0"></Setter>
+	</Style>
+    
+    <Style Selector="controls|MxTabStrip.AutoHideGroupItemsControl:empty">
+        <Setter Property="IsVisible" Value="False"></Setter>
+    </Style>
+
+	<Style Selector="Window.FloatWindow">
+		<Setter Property="Padding" Value="{Binding $self.OffScreenMargin}"></Setter>
+	</Style>
+    
+	<Style Selector="doi|ControlBox">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <doi:ControlBoxButton CommandType="Minimize"
+                                          ToolTip.Tip="{x:Static localization:ControlsResources.DockPane_MinimizeButton}">
+                        <Image Source="{x:Static other:_12.Minimize_Window}" />
+                    </doi:ControlBoxButton>
+                    <doi:ControlBoxButton CommandType="Maximize"
+                                          ToolTip.Tip="{x:Static localization:ControlsResources.DockPane_MaximizeButton}">
+                        <Image Source="{x:Static other:_12.Maximize_Full_Screen}"/>
+                    </doi:ControlBoxButton>
+                    <doi:ControlBoxButton CommandType="Restore"
+                                          ToolTip.Tip="{x:Static localization:ControlsResources.DockPane_RestoreButton}">
+                        <Image Source="{x:Static other:_12.Maximize_Window}"/>
+                    </doi:ControlBoxButton>
+                    <doi:ControlBoxButton CommandType="Unpin"
+                                          ToolTip.Tip="{x:Static localization:ControlsResources.DockPane_AutoHideButton}">
+                        <Image Source="{x:Static other:_12.Unpin}"/>
+                    </doi:ControlBoxButton>
+                    <doi:ControlBoxButton CommandType="Pin"
+                                          ToolTip.Tip="{x:Static localization:ControlsResources.DockPane_AutoHideButton}">
+                        <Image Source="{x:Static other:_12.Pin}"/>
+                    </doi:ControlBoxButton>
+                    <doi:ControlBoxButton CommandType="Close"
+                                          ToolTip.Tip="{x:Static localization:ControlsResources.DockPane_CloseButton}">
+                        <Image Source="{x:Static other:_12.Close}"/>
+                    </doi:ControlBoxButton>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="doi|ControlBox /template/ Button.ControlBoxButton">
+        <Setter Property="Width" Value="28"></Setter>
+        <Setter Property="Height" Value="28"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+    </Style>
+    <Style Selector="doi|ControlBox /template/ Button.ControlBoxButton Image">
+        <Setter Property="Width" Value="12"></Setter>
+        <Setter Property="Height" Value="12"></Setter>
+    </Style>
+    
+</Styles>

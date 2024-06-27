@@ -1,0 +1,17 @@
+﻿<Styles x:Class="Eremex.AvaloniaUI.Themes.DeltaDesign.DeltaDesignTheme"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:deltaDesign="using:Eremex.AvaloniaUI.Themes.DeltaDesign">
+	<Styles.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+				<ResourceInclude Source="/Variants/Light/Variant.axaml" />
+				<ResourceInclude Source="/Variants/Dark/Variant.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Styles.Resources>
+	
+	<FluentTheme />
+	<StyleInclude Source="/Controls/Generic.axaml" />
+	<StyleInclude Source="/Charts/Generic.axaml"/>
+</Styles>

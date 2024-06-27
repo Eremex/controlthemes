@@ -1,0 +1,54 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="using:System"
+        xmlns:col="using:System.Collections"
+				xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+        xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
+
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <mxe:HyperlinkEditor EditorValue="www.eremex.ru"/>
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="mxe|HyperlinkEditor">
+        <Setter Property="Foreground" Value="{DynamicResource Text/Accent/Primary}" />
+			  <Setter Property="Focusable" Value="False"/>
+        <Setter Property="FocusAdorner" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="{TemplateBinding Background}"
+                        Padding="{TemplateBinding Padding}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    <TextBlock Name="PART_RealEditor"
+                               Foreground="{TemplateBinding Foreground}"
+                               IsEnabled="{Binding !ReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                               FontSize="{TemplateBinding FontSize}"
+															 mxc:TextBlockHelper.HighlightedText="{TemplateBinding HighlightedText}"
+															 TextWrapping="{TemplateBinding TextWrapping}"
+                               TextTrimming="{TemplateBinding TextTrimming}"/>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+	<Style Selector="mxe|HyperlinkEditor:activeMode">
+		<Setter Property="Foreground" Value="{DynamicResource Text/Accent/Primary}" />
+		<Setter Property="BorderThickness" Value="0"/>
+	</Style>	
+	<Style Selector="mxe|HyperlinkEditor[ReadOnly=false]:activeMode">
+		<Setter Property="Focusable" Value="True" />
+	</Style>
+	<Style Selector="mxe|HyperlinkEditor[Focusable=true]:pointerover /template/ TextBlock#PART_RealEditor">
+		<Setter Property="TextDecorations" Value="Underline" />
+		<Setter Property="Cursor" Value="Hand" />
+	</Style>
+	<Style Selector="mxe|HyperlinkEditor:focus-visible /template/ TextBlock#PART_RealEditor">
+		<Setter Property="TextDecorations" Value="Underline" />
+	</Style>
+</Styles>

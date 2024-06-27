@@ -1,0 +1,150 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:internal="clr-namespace:Eremex.AvaloniaUI.Controls.Internal;assembly=Eremex.Avalonia.Controls"
+        xmlns:controls="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
+        xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls">
+	<Design.PreviewWith>
+		<Border Padding="20">
+			<!-- Add Controls for Previewer Here -->
+		</Border>
+	</Design.PreviewWith>
+	
+	<Styles.Resources>
+		<ResourceDictionary>
+            <ControlTemplate x:Key="MxPopupContainerSizeGripTemplate">
+			  <Border Padding="4" Background="Transparent">
+				  <Grid>
+					  <Grid.RowDefinitions>
+						  <RowDefinition Height="Auto"/>
+						  <RowDefinition Height="Auto"/>
+						  <RowDefinition Height="Auto"/>
+					  </Grid.RowDefinitions>
+					  <Grid.ColumnDefinitions>
+						  <ColumnDefinition Width="Auto"/>
+						  <ColumnDefinition Width="Auto"/>
+						  <ColumnDefinition Width="Auto"/>
+					  </Grid.ColumnDefinitions>
+					  <Border Grid.Row="0" Grid.Column="2" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="1" Grid.Column="1" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="1" Grid.Column="2" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="2" Grid.Column="0" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="2" Grid.Column="1" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="2" Grid.Column="2" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+				  </Grid>
+			  </Border>
+		  </ControlTemplate>
+		  
+		  <ControlTemplate x:Key="MxPopupContainerSizeGripTemplateTopRight">
+			  <Border Padding="4" Background="Transparent">
+				  <Grid>
+					  <Grid.RowDefinitions>
+						  <RowDefinition Height="Auto"/>
+						  <RowDefinition Height="Auto"/>
+						  <RowDefinition Height="Auto"/>
+					  </Grid.RowDefinitions>
+					  <Grid.ColumnDefinitions>
+						  <ColumnDefinition Width="Auto"/>
+						  <ColumnDefinition Width="Auto"/>
+						  <ColumnDefinition Width="Auto"/>
+					  </Grid.ColumnDefinitions>
+					  <Border Grid.Row="2" Grid.Column="2" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="1" Grid.Column="1" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="1" Grid.Column="2" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="0" Grid.Column="0" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="0" Grid.Column="1" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="0" Grid.Column="2" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+				  </Grid>
+			  </Border>
+		  </ControlTemplate>
+		  
+		  <ControlTemplate x:Key="MxPopupContainerSizeGripTemplateTopLeft">
+			  <Border Padding="4" Background="Transparent">
+				  <Grid>
+					  <Grid.RowDefinitions>
+						  <RowDefinition Height="Auto"/>
+						  <RowDefinition Height="Auto"/>
+						  <RowDefinition Height="Auto"/>
+					  </Grid.RowDefinitions>
+					  <Grid.ColumnDefinitions>
+						  <ColumnDefinition Width="Auto"/>
+						  <ColumnDefinition Width="Auto"/>
+						  <ColumnDefinition Width="Auto"/>
+					  </Grid.ColumnDefinitions>
+					  <Border Grid.Row="2" Grid.Column="0" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="1" Grid.Column="0" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="1" Grid.Column="1" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="0" Grid.Column="0" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="0" Grid.Column="1" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="0" Grid.Column="2" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+				  </Grid>
+			  </Border>
+		  </ControlTemplate>
+		  
+		  <ControlTemplate x:Key="MxPopupContainerSizeGripTemplateBottomLeft">
+			  <Border Padding="4" Background="Transparent">
+				  <Grid>
+					  <Grid.RowDefinitions>
+						  <RowDefinition Height="Auto"/>
+						  <RowDefinition Height="Auto"/>
+						  <RowDefinition Height="Auto"/>
+					  </Grid.RowDefinitions>
+					  <Grid.ColumnDefinitions>
+						  <ColumnDefinition Width="Auto"/>
+						  <ColumnDefinition Width="Auto"/>
+						  <ColumnDefinition Width="Auto"/>
+					  </Grid.ColumnDefinitions>
+					  <Border Grid.Row="0" Grid.Column="0" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="1" Grid.Column="0" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="1" Grid.Column="1" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="2" Grid.Column="0" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="2" Grid.Column="1" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+					  <Border Grid.Row="2" Grid.Column="2" Width="2" Height="2" Margin="1" Background="{DynamicResource Icons/Outline/Gray}"/>
+				  </Grid>
+			  </Border>
+		  </ControlTemplate>
+			<ControlTemplate x:Key="MxProgressIndicatorCircleTemplate" TargetType="common:CircleProgressIndicator">
+				<Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+					<internal:SquaredArc HorizontalAlignment="Stretch"
+					            VerticalAlignment="Stretch"
+					            StrokeLineCap="Round"
+					            Stroke="{TemplateBinding Foreground}" 
+					            StrokeThickness="{TemplateBinding ActualThickness}" 
+					            StartAngle="{TemplateBinding StartAngle}" 
+					            SweepAngle="{TemplateBinding ActualSweepAngle}"/>
+				</Canvas>
+			</ControlTemplate>
+		</ResourceDictionary>
+	</Styles.Resources>
+
+	<Style Selector="internal|PopupContainerSizeGrip, internal|PopupContainerSizeGrip:bottom-right">
+		<Setter Property="Template" Value="{DynamicResource MxPopupContainerSizeGripTemplate}"/>
+	</Style>
+
+	<Style Selector="internal|PopupContainerSizeGrip:top-right">
+		<Setter Property="Template" Value="{DynamicResource MxPopupContainerSizeGripTemplateTopRight}"/>
+	</Style>
+
+	<Style Selector="internal|PopupContainerSizeGrip:top-left">
+		<Setter Property="Template" Value="{DynamicResource MxPopupContainerSizeGripTemplateTopLeft}"/>
+	</Style>
+
+	<Style Selector="internal|PopupContainerSizeGrip:bottom-left">
+		<Setter Property="Template" Value="{DynamicResource MxPopupContainerSizeGripTemplateBottomLeft}"/>
+	</Style>
+	
+	<Style Selector="common|CircleProgressIndicator">
+		<Setter Property="Template" Value="{DynamicResource MxProgressIndicatorCircleTemplate}"/>
+	</Style>
+    
+    <Style Selector="controls|ShadowControl">
+        <Setter Property="Template" Value="{DynamicResource MxSmallShadowTemplate}"/>
+    </Style>
+    
+    <Style Selector="controls|ShadowControl.small">
+        <Setter Property="Template" Value="{DynamicResource MxSmallShadowTemplate}"/>
+    </Style>
+    
+    <Style Selector="controls|ShadowControl.large">
+        <Setter Property="Template" Value="{DynamicResource MxLargeShadowTemplate}"/>
+    </Style>
+</Styles>

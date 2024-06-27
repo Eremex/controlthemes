@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:sys="using:System">
+
+    <SolidColorBrush x:Key="TransparentBrush" Color="Transparent"/>
+    <BoxShadows x:Key="PopupBoxShadow">0 0.35 1.45 0 #06000000, 0 1.8 4.06 0 #09000000, 0 4.56 10.90 0 #0C000000, 0 9 25 0 #12000000, 0 0 1 0 #52000000</BoxShadows>
+    <Thickness x:Key="PopupBoxShadowMargin">14,2,14,22</Thickness>
+    <sys:Double x:Key="PopupHorizontalOffset">-14</sys:Double>
+    <sys:Double x:Key="PopupBottomOffset">22</sys:Double>
+    <StaticResource x:Key="PopupBorderBrush" ResourceKey="TransparentBrush"/>
+</ResourceDictionary>

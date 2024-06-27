@@ -1,0 +1,35 @@
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<Style Selector="MenuFlyoutPresenter">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Strong}" />
+		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
+		<Setter Property="Padding" Value="0" />
+		<Setter Property="MaxWidth" Value="{DynamicResource FlyoutThemeMaxWidth}" />
+		<Setter Property="MinHeight" Value="{DynamicResource MenuFlyoutThemeMinHeight}" />
+		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+		<Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
+		<Setter Property="Template">
+			<ControlTemplate>
+				<Border Name="LayoutRoot"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Padding="0"
+                CornerRadius="{StaticResource PopupCornerRadius}"
+								BoxShadow="{DynamicResource PopupBoxShadow}"
+                Margin="{DynamicResource PopupBoxShadowMargin}">
+					<ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                        VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+						<ItemsPresenter Name="PART_ItemsPresenter"
+                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                            Margin="0"
+                            KeyboardNavigation.TabNavigation="Continue"
+                            Grid.IsSharedSizeScope="True" />
+					</ScrollViewer>
+				</Border>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+</Styles>

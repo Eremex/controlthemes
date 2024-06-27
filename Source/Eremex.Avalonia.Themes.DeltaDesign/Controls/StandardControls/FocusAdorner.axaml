@@ -1,0 +1,15 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<!--  HighVisibility FocusAdorner  -->
+	<Style Selector=":is(Control)">
+		<Setter Property="FocusAdorner">
+			<FocusAdornerTemplate>
+				<Border BorderThickness="{StaticResource FocusAdornerBorderThickness}"
+								BorderBrush="{DynamicResource Outline/Accent/Focus}"
+								CornerRadius="{StaticResource EditorCornerRadius}">
+				</Border>
+			</FocusAdornerTemplate>
+		</Setter>
+	</Style>
+</Styles>

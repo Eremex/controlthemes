@@ -1,0 +1,133 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
+        xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
+	<Design.PreviewWith>
+		<Border Padding="20">
+			<!-- Add Controls for Previewer Here -->
+		</Border>
+	</Design.PreviewWith>
+
+	<Style Selector="mxc|ListViewItemControl/template/ContentPresenter#PART_Content">
+		<Setter Property="Margin" Value="6"/>
+		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}"/>
+		<Setter Property="TextBlock.FontSize" Value="12"/>
+	</Style>
+	
+	<Style Selector="mxc|ListViewItemControl/template/Rectangle#PART_Border">
+		<Setter Property="StrokeThickness" Value="1"/>
+		<Setter Property="Stroke" Value="Transparent"/>
+		<Setter Property="RadiusX" Value="6"/>
+		<Setter Property="RadiusY" Value="6"/>
+		<Setter Property="Fill" Value="Transparent"/>
+	</Style>
+	
+	<Style Selector="mxc|ListViewItemControl:pointerover/template/Rectangle#PART_Border">
+		<Setter Property="Fill" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"/>
+	</Style>
+	
+	<Style Selector="mxc|ListViewItemControl:pressed/template/Rectangle#PART_Border">
+		<Setter Property="Fill" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"/>
+	</Style>
+	
+	<Style Selector="mxc|ListViewItemControl:focused/template/Rectangle#PART_Border">
+		<Setter Property="Fill" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"/>
+	</Style>
+	
+	<Style Selector="mxc|ListViewItemControl:focus-visible/template/Rectangle#PART_Border">
+		<Setter Property="Stroke" Value="{DynamicResource Outline/Accent/Focus}"/>
+	</Style>
+	
+	<Style Selector="mxc|ListViewItemControl:selected/template/Rectangle#PART_Border">
+		<Setter Property="Fill" Value="{DynamicResource Fill/Accent/Highlighting/Item/Enabled}"/>
+	</Style>
+	
+	
+	<Style Selector="mxc|ListViewGroupControl/template/ContentPresenter#PART_Content">
+		<Setter Property="Margin" Value="6,2,6,2"/>
+		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}"/>
+		<Setter Property="TextBlock.FontSize" Value="12"/>
+		<Setter Property="TextBlock.FontWeight" Value="Black"/>
+	</Style>
+	
+	<Style Selector="mxc|ListViewGroupControl/template/Rectangle#PART_Border">
+		<Setter Property="StrokeThickness" Value="1"/>
+		<Setter Property="Stroke" Value="Transparent"/>
+		<Setter Property="RadiusX" Value="4"/>
+		<Setter Property="RadiusY" Value="4"/>
+		<Setter Property="StrokeDashArray" Value="4,4" />
+		<Setter Property="Fill" Value="{DynamicResource Fill/Neutral/Secondary/Disabled}"/>
+	</Style>
+	
+	<Style Selector="mxc|ListViewGroupControl:pointerover/template/Rectangle#PART_Border">
+		<Setter Property="Fill" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"/>
+	</Style>
+	
+	<Style Selector="mxc|ListViewGroupControl:pressed/template/Rectangle#PART_Border">
+		<Setter Property="Fill" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"/>
+	</Style>
+	
+	<Style Selector="mxc|ListViewGroupControl:focused/template/Rectangle#PART_Border">
+		<Setter Property="Fill" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"/>
+	</Style>
+	
+	<Style Selector="mxc|ListViewGroupControl:focus-visible/template/Rectangle#PART_Border">
+		<Setter Property="Stroke" Value="{DynamicResource Outline/Accent/Focus}"/>
+	</Style>
+	
+	<Style Selector="mxc|ListViewGroupControl:selected/template/Rectangle#PART_Border">
+		<Setter Property="Fill" Value="{DynamicResource Fill/Accent/Highlighting/Item/Enabled}"/>
+	</Style>
+	
+	<Style Selector="mxc|ListViewItemControl">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Grid>
+						<Rectangle x:Name="PART_Border"/>
+						<ContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+	<Style Selector="mxc|ListViewGroupControl">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Grid>
+						<Rectangle x:Name="PART_Border"/>
+						<ContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+	<Style Selector="mxc|ListViewControl">
+		<Setter Property="FocusAdorner" Value="{x:Null}"/>
+		<Setter Property="Focusable" Value="True"/>
+		<Setter Property="GroupHeight" Value="26"/>
+		<Setter Property="GroupWidth" Value="26"/>
+		<Setter Property="ItemWidth" Value="64"/>
+		<Setter Property="ItemHeight" Value="64"/>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<utils:VirtualizingWrapPanel/>
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<ScrollViewer x:Name="PART_ScrollViewer">
+						<ItemsPresenter Name="PART_ItemsPresenter"
+						                ItemsPanel="{TemplateBinding ItemsPanel}"></ItemsPresenter>
+					</ScrollViewer>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</Styles>

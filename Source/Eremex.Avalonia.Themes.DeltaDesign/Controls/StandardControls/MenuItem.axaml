@@ -1,0 +1,32 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<Style Selector="MenuItem">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+		<Setter Property="Padding" Value="10,6,10,6" />
+		<Setter Property="FontSize" Value="{StaticResource EditorFontSize}" />
+		<Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}"/>
+	</Style>
+
+	<Style Selector="MenuItem:pointerover /template/ Border#PART_LayoutRoot">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+	</Style>
+	<Style Selector="MenuItem:pointerover /template/ Border#PART_LayoutRoot:pointerover ContentPresenter#PART_HeaderPresenter">
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+	</Style>
+
+	<Style Selector="MenuItem:pressed /template/ Border#PART_LayoutRoot:pointerover">
+		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
+	</Style>
+	<Style Selector="MenuItem:pressed /template/ Border#PART_LayoutRoot:pointerover ContentPresenter#PART_HeaderPresenter">
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Secondary}" />
+	</Style>
+	<Style Selector="MenuItem:pressed /template/ Border#PART_LayoutRoot:pointerover TextBlock#PART_InputGestureText">
+		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}" />
+	</Style>
+	<Style Selector="MenuItem:pressed /template/ Border#PART_LayoutRoot:pointerover Path#PART_ChevronPath">
+		<Setter Property="Fill" Value="{DynamicResource Icons/Outline/Gray}" />
+	</Style>
+
+</Styles>

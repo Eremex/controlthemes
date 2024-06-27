@@ -1,0 +1,16 @@
+﻿<Styles xmlns="https://github.com/avaloniaui" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+				xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls">
+
+	<Style Selector=":is(mxe|BaseEditor)">
+		<Setter Property="ShowHoverDecorator" Value="False"/>
+	</Style>
+	<Style Selector=":is(mxe|ButtonEditor)[EditorMode=InplaceActive] /template/ TextBox#PART_RealEditor:focus /template/ Border#PART_BorderElement,
+					 mxe|TextEditor[EditorMode=InplaceActive] /template/ TextBox#PART_RealEditor:focus /template/ Border#PART_BorderElement">
+		<Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
+	</Style>
+	<Style Selector=":is(mxe|ButtonEditor)[EditorMode=InplaceActive] /template/ TextBox#PART_RealEditor:disabled /template/ Border#PART_BorderElement,
+					 mxe|TextEditor[EditorMode=InplaceActive] /template/ TextBox#PART_RealEditor:disabled /template/ Border#PART_BorderElement">
+		<Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
+	</Style>
+</Styles>

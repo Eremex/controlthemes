@@ -1,0 +1,25 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+		
+    <StyleInclude Source="/Controls/Editors/GroupBox.axaml"/>
+    <StyleInclude Source="/Controls/Editors/SplitContainerControl.axaml"/>
+    
+	<StyleInclude Source="/Controls/Editors/EditorsCommonStyles.axaml"/>
+	<StyleInclude Source="/Controls/Editors/EditorIconButtons.axaml"/>
+
+    <StyleInclude Source="/Controls/Editors/HyperlinkEditor.axaml"/>
+    <StyleInclude Source="/Controls/Editors/TextEditor.axaml"/>
+    <StyleInclude Source="/Controls/Editors/ButtonEditor.axaml"/>
+    <StyleInclude Source="/Controls/Editors/CheckEditor.axaml"/>
+    <StyleInclude Source="/Controls/Editors/SegmentedEditor.axaml"/>
+    <StyleInclude Source="/Controls/Editors/ComboBoxEditor.axaml"/>
+    <StyleInclude Source="/Controls/Editors/PopupEditor.axaml"/>
+    <StyleInclude Source="/Controls/Editors/SpinEditor.axaml"/>
+	<StyleInclude Source="/Controls/Editors/ColorPickerControl.axaml"/>
+    <StyleInclude Source="/Controls/Editors/ColorEditor.axaml"/>
+    <StyleInclude Source="/Controls/Editors/PopupColorEditor.axaml"/>
+	<StyleInclude Source="/Controls/Editors/DateEditor.axaml"/>
+	<StyleInclude Source="/Controls/Editors/MemoEditor.axaml"/>
+    
+    <StyleInclude Source="/Controls/Editors/EditorsCommonStyleTriggers.axaml"/>
+</Styles>

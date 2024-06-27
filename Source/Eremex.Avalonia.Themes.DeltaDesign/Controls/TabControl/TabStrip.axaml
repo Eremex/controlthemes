@@ -1,0 +1,212 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:internal="clr-namespace:Eremex.AvaloniaUI.Controls.Internal;assembly=Eremex.Avalonia.Controls"
+        xmlns:controls="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls">
+
+    <Style Selector="controls|MxTabStrip">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Padding="{TemplateBinding Padding}">
+                    <ItemsPresenter Name="PART_ItemsPresenter"
+                                    ItemsPanel="{TemplateBinding ItemsPanel}"/>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <ItemsPanelTemplate>
+                <WrapPanel />
+            </ItemsPanelTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="controls|MxTabStrip:horizontal /template/ ItemsPresenter#PART_ItemsPresenter > StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"></Setter>
+        <Setter Property="Margin" Value="{DynamicResource MxTabStripItemsPanelMargin}"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabStrip:horizontal /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+        <Setter Property="Orientation" Value="Horizontal"></Setter>
+        <Setter Property="Margin" Value="{DynamicResource MxTabStripItemsPanelMargin}"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabStrip:vertical /template/ ItemsPresenter#PART_ItemsPresenter > StackPanel">
+        <Setter Property="Orientation" Value="Vertical"></Setter>
+        <Setter Property="Margin" Value="{DynamicResource MxTabStripItemsPanelMarginVertical}"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabStrip:vertical /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+        <Setter Property="Orientation" Value="Vertical"></Setter>
+        <Setter Property="Margin" Value="{DynamicResource MxTabStripItemsPanelMarginVertical}"></Setter>
+    </Style>
+
+    <Style Selector="controls|MxTabStripItem">
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="FontSize" Value="{DynamicResource MxTabItemFontSize}"></Setter>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid>
+                    <Border Name="PART_LayoutRoot"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            ClipToBounds="True">
+                        <LayoutTransformControl x:Name="PART_TransformControl"
+                                                Margin="{TemplateBinding Padding}"
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <ContentPresenter Name="PART_ContentPresenter"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </LayoutTransformControl>
+                    </Border>
+
+                    <!-- left-bottom corner -->
+                    <internal:TabItemOuterCorner x:Name="PART_NearCorner"
+                                                 Fill="{TemplateBinding Background}"
+                                                 Stroke="{TemplateBinding BorderBrush}" />
+                    <!-- right-bottom corner -->
+                    <internal:TabItemOuterCorner x:Name="PART_FarCorner"
+                                                 Fill="{TemplateBinding Background}"
+                                                 Stroke="{TemplateBinding BorderBrush}" />
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="controls|MxTabStripItem:selected">
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}"></Setter>
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"></Setter>
+        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/Selected/Top/CornerRadius}" />
+        <Setter Property="ClipToBounds" Value="False"></Setter>
+    </Style>
+
+    <Style Selector="controls|MxTabStripItem:not(:selected) /template/ internal|TabItemOuterCorner">
+	    <Setter Property="IsVisible" Value="False"></Setter>
+    </Style>
+    <!--  PointerOver state  -->
+    <Style Selector="controls|MxTabStripItem:pointerover:not(:selected)">
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"></Setter>
+        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/PointerOver/Top/CornerRadius}"></Setter>
+    </Style>
+
+    <!--  Disabled state  -->
+    <Style Selector="controls|MxTabStripItem:disabled">
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
+    </Style>
+
+    <!-- Placement states -->
+    <!-- Default -->
+    <Style Selector="controls|MxTabStripItem /template/ internal|TabItemOuterCorner">
+        <Setter Property="Radius" Value="4"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabStripItem /template/ internal|TabItemOuterCorner#PART_NearCorner">
+        <Setter Property="Position" Value="BottomLeft" />
+        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="Margin" Value="-4 0 0 0"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabStripItem /template/ internal|TabItemOuterCorner#PART_FarCorner">
+        <Setter Property="Position" Value="BottomRight" />
+        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="0 0 -4 0"></Setter>
+    </Style>
+    
+    <!-- horizontal -->
+    <Style Selector="controls|MxTabStripItem:horizontal">
+        <Setter Property="Padding" Value="{DynamicResource MxTabStripItemPaddingHorizontal}" />
+        <Setter Property="MinHeight" Value="{DynamicResource MxTabItemMinHeight}"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabStripItem:horizontal /template/ LayoutTransformControl#PART_TransformControl">
+        <Setter Property="LayoutTransform">
+            <Setter.Value>
+                <RotateTransform Angle="0"></RotateTransform>    
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!-- vertical -->
+    <Style Selector="controls|MxTabStripItem:vertical">
+        <Setter Property="Padding" Value="{DynamicResource MxTabStripItemPaddingVertical}"></Setter>
+        <Setter Property="MinWidth" Value="{DynamicResource MxTabItemMinHeight}"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabStripItem:vertical /template/ LayoutTransformControl#PART_TransformControl">
+        <Setter Property="LayoutTransform">
+            <Setter.Value>
+                <RotateTransform Angle="0"></RotateTransform>    
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style Selector="controls|MxTabStripItem[Placement=Bottom]:selected">
+        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/Selected/Bottom/CornerRadius}" />
+    </Style>
+    <Style Selector="controls|MxTabStripItem[Placement=Bottom]:pointerover:not(:selected)">
+        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/PointerOver/Bottom/CornerRadius}"></Setter>
+    </Style>
+    <Style
+        Selector="controls|MxTabStripItem[Placement=Bottom] /template/ internal|TabItemOuterCorner#PART_NearCorner">
+        <Setter Property="Position" Value="TopLeft" />
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+    </Style>
+    <Style
+        Selector="controls|MxTabStripItem[Placement=Bottom] /template/ internal|TabItemOuterCorner#PART_FarCorner">
+        <Setter Property="Position" Value="TopRight" />
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+    </Style>
+    
+    <Style Selector="controls|MxTabStripItem[Placement=Left]:selected">
+        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/Selected/Left/CornerRadius}" />
+    </Style>
+    <Style Selector="controls|MxTabStripItem[Placement=Left]:pointerover:not(:selected)">
+        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/PointerOver/Left/CornerRadius}"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabStripItem[Placement=Left] /template/ internal|TabItemOuterCorner#PART_NearCorner">
+	    <Setter Property="Position" Value="BottomLeft"></Setter>
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="0 -4 0 0"></Setter>
+        
+    </Style>
+    <Style Selector="controls|MxTabStripItem[Placement=Left] /template/ internal|TabItemOuterCorner#PART_FarCorner">
+	    <Setter Property="Position" Value="TopLeft"></Setter>
+        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="0 0 0 -4"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabStripItem[Placement=Left] /template/ LayoutTransformControl#PART_TransformControl">
+        <Setter Property="LayoutTransform">
+            <Setter.Value>
+                <RotateTransform Angle="90"></RotateTransform>    
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style Selector="controls|MxTabStripItem[Placement=Right]:selected">
+        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/Selected/Right/CornerRadius}" />
+    </Style>
+    <Style Selector="controls|MxTabStripItem[Placement=Right]:pointerover:not(:selected)">
+        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/PointerOver/Right/CornerRadius}"></Setter>
+    </Style>
+    <Style
+        Selector="controls|MxTabStripItem[Placement=Right] /template/ internal|TabItemOuterCorner#PART_NearCorner">
+	    <Setter Property="Position" Value="BottomRight"></Setter>
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="Margin" Value="0 -4 0 0"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabStripItem[Placement=Right] /template/ internal|TabItemOuterCorner#PART_FarCorner">
+        <Setter Property="Position" Value="TopRight" />
+        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="Margin" Value="0 0 0 -4"></Setter>
+    </Style>
+    <Style Selector="controls|MxTabStripItem[Placement=Right]:vertical /template/ LayoutTransformControl#PART_TransformControl">
+        <Setter Property="LayoutTransform">
+            <RotateTransform Angle="90"></RotateTransform>
+        </Setter>
+    </Style>
+</Styles>

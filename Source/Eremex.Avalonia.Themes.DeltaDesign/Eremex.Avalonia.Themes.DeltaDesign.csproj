@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<OutputType>Library</OutputType>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<RootNamespace>Eremex.AvaloniaUI.Themes.DeltaDesign</RootNamespace>
+		<AssemblyName>Eremex.Avalonia.Themes.DeltaDesign</AssemblyName>
+		<Description>A collection of themes for the Eremex Avalonia UI Controls.</Description>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<NuspecProperties>$(NuspecProperties);version=$(Version)</NuspecProperties>
+        <NuspecProperties>$(NuspecProperties);configuration=$(Configuration)</NuspecProperties>
+		<NuspecFile>Eremex.Avalonia.Themes.DeltaDesign.nuspec</NuspecFile>
+        <Nullable>enable</Nullable>
+		<TrimMode>copyused</TrimMode>
+		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+		<OutputPath>..\..\Bin\$(Configuration)\</OutputPath>
+		<Configurations>Debug;Release</Configurations>
+
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+		<Optimize>true</Optimize>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Avalonia" />
+		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" />
+		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.CSharp.Scripting" />
+		<PackageReference Include="Avalonia.Fonts.Inter" />
+		<PackageReference Include="Avalonia.Themes.Fluent" />
+		<PackageReference Include="Avalonia.Svg.Skia" />
+		<PackageReference Include="SkiaSharp" />
+		<PackageReference Include="System.Resources.Extensions" />
+                <PackageReference Include="Eremex.Avalonia.Controls" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <AvaloniaResource Include="**/*.axaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AvaloniaResource Include="DeltaDesignTheme.xaml" />
+	</ItemGroup>
+</Project>

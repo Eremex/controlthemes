@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mxt="clr-namespace:Eremex.AvaloniaUI.Controls.Bars;assembly=Eremex.Avalonia.Controls"
+        xmlns:mxti="clr-namespace:Eremex.AvaloniaUI.Controls.Bars.Internal;assembly=Eremex.Avalonia.Controls">
+
+    <Thickness x:Key="MxPopupShadowMargin">0</Thickness>
+    <Thickness x:Key="ToolbarFloatingWindowClientControlBorderThickness">1,0,1,1</Thickness>
+    <Thickness x:Key="ToolbarFloatingWindowClientControlCaptionThickness">1,1,1,0</Thickness>
+    <Thickness x:Key="MxPopupMenuBorderThickness">1</Thickness>
+    <Thickness x:Key="MxPopupMenuHeaderControlBorderThickness">0</Thickness>
+</ResourceDictionary>
