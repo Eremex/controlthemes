@@ -1,6 +1,7 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:charts="clr-namespace:Eremex.AvaloniaUI.Charts;assembly=Eremex.Avalonia.Charts">
+        xmlns:charts="clr-namespace:Eremex.AvaloniaUI.Charts;assembly=Eremex.Avalonia.Charts"
+        x:CompileBindings="True">
     <Styles.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -23,6 +24,131 @@
 		<Setter Property="ValueColor" Value="{DynamicResource Crosshair/BackColor}" />
 		<Setter Property="ArgumentTextColor" Value="{DynamicResource Crosshair/TextColor}" />
 		<Setter Property="ValueTextColor" Value="{DynamicResource Crosshair/TextColor}" />
-		<Setter Property="SeriesLabelTextColor" Value="{DynamicResource Crosshair/TextColor}" />
 	</Style>
+    
+    <!-- Crosshair Single Series Label -->
+    <Style Selector="charts|CrosshairSingleSeriesLabelControl">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border x:DataType="charts:CrosshairSingleSeriesLabelControlData" 
+                        CornerRadius="{StaticResource CrosshairSeriesLabelCornerRadius}"
+                        BorderThickness="{StaticResource CrosshairSeriesLabelBorderThickness}"
+                        Background="{StaticResource Fill/CrosshairSeriesLabel}"
+                        BorderBrush="{StaticResource Border/CrosshairSeriesLabel}"
+                        Padding="6">
+                    <Grid ColumnDefinitions="Auto 6 Auto" RowDefinitions="Auto Auto Auto Auto">
+                        <Border Grid.Column="0" Grid.Row="0"
+                                CornerRadius="{StaticResource SeriesColorMarker}"
+                                Background="{Binding Color}"
+                                Width="21" Height="21" />
+                        <TextBlock Grid.Column="2" Grid.Row="0" FontWeight="Bold" Text="{Binding SeriesName}"/>
+                        
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding ArgumentPrefix}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding FormattedArgument}"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding ValuePrefix}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="2" Text="{Binding FormattedValue}"/>
+                        
+                        <TextBlock Grid.Column="0" Grid.Row="3" Text="{Binding UnderlyingDataPrefix}" IsVisible="{Binding HasUnderlyingData}" />
+                        <TextBlock Grid.Column="2" Grid.Row="3" Text="{Binding UnderlyingData}" IsVisible="{Binding HasUnderlyingData} "/>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <!-- Series Marker -->
+    <Style Selector="Border.SeriesMarker">
+        <Setter Property="CornerRadius" Value="{StaticResource SeriesColorMarker}" />
+        <Setter Property="Width" Value="{StaticResource SeriesMarkerSize}" />
+        <Setter Property="Height" Value="{StaticResource SeriesMarkerSize}" />
+    </Style>
+    
+    <!-- Single Series Value -->
+    <Style Selector="TemplatedControl.CrosshairAllSeriesLabelItemSingleValue" x:DataType="charts:CrosshairAllSeriesLabelSeriesItem">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <StackPanel Margin="0 2" Orientation="Horizontal">
+                    <Border Classes="SeriesMarker" Background="{Binding ValueItems[0].Color}" />
+                    <TextBlock Text="{Binding SeriesName}" Margin="6 0" />
+                    <TextBlock Text="{Binding ValueItems[0].FormattedValue}" />
+                    <TextBlock Text="{Binding ValueItems[0].UnderlyingData}" IsVisible="{Binding ValueItems[0].HasUnderlyingData}" Margin="6 0 0 0" />
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <!-- Multiple Series Values -->
+    <Style Selector="TemplatedControl.CrosshairAllSeriesLabelItemMultipleValues" x:DataType="charts:CrosshairAllSeriesLabelSeriesItem">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding SeriesName}" HorizontalAlignment="Left" />
+                    
+                    <ItemsControl ItemsSource="{Binding ValueItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="0 2">
+                                    <Border Classes="SeriesMarker" Background="{Binding Color}" />
+                                    <TextBlock Text="{Binding ValuePrefix}" Margin="6 0" />
+                                    <TextBlock Text="{Binding FormattedValue}" />
+                                    <TextBlock Text="{Binding UnderlyingData}" IsVisible="{Binding HasUnderlyingData}" Margin="6 0 0 0" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <!-- Crosshair One For All Series Label -->
+    <Style Selector="charts|CrosshairAllSeriesLabelControl">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border x:DataType="charts:CrosshairAllSeriesLabelControlData" 
+                        CornerRadius="{StaticResource CrosshairSeriesLabelCornerRadius}"
+                        BorderThickness="{StaticResource CrosshairSeriesLabelBorderThickness}"
+                        Background="{StaticResource Fill/CrosshairSeriesLabel}"
+                        BorderBrush="{StaticResource Border/CrosshairSeriesLabel}"
+                        Padding="6">
+                    <ItemsControl ItemsSource="{Binding Groups}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <!-- Argument -->
+                                    <TextBlock Text="{Binding FormattedArgument}" HorizontalAlignment="Center" FontWeight="Bold" />
+                                    
+                                    <!-- Series items -->
+                                    <ItemsControl ItemsSource="{Binding SeriesItems}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Vertical" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TemplatedControl Classes.CrosshairAllSeriesLabelItemSingleValue="{Binding IsSingleValue}"
+                                                                  Classes.CrosshairAllSeriesLabelItemMultipleValues="{Binding !IsSingleValue}"/>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
 </Styles>

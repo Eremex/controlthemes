@@ -147,4 +147,8 @@
     <Style Selector="controls|ShadowControl.large">
         <Setter Property="Template" Value="{DynamicResource MxLargeShadowTemplate}"/>
     </Style>
+    
+    <Style Selector="controls|ShadowControl:no-shadow">
+        <Setter Property="Template" Value="{DynamicResource MxNoShadowTemplate}"/>
+    </Style>
 </Styles>

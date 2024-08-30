@@ -7,11 +7,11 @@
       <ResourceDictionary.MergedDictionaries>
 				<ResourceInclude Source="/Variants/Light/Variant.axaml" />
 				<ResourceInclude Source="/Variants/Dark/Variant.axaml" />
+				<deltaDesign:SvgPalettes/>
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Styles.Resources>
 	
-	<FluentTheme />
 	<StyleInclude Source="/Controls/Generic.axaml" />
 	<StyleInclude Source="/Charts/Generic.axaml"/>
 </Styles>

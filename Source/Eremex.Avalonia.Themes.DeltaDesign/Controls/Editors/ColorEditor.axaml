@@ -14,7 +14,6 @@
 
     <Styles.Resources>
         <sys:Double x:Key="ColorEditorWidth">314</sys:Double>
-				<sys:Double x:Key="ColorEditorMaxHeight">332</sys:Double>
         <sys:Double x:Key="ColorEditorSplitterHeight">1</sys:Double>
 				<sys:Double x:Key="ColorButtonDefaultSize">21</sys:Double>
 				<Thickness x:Key="ColorButtonMargin">2</Thickness>
@@ -34,9 +33,9 @@
 			<DataTemplate x:Key="ColorEditorHeaderTemplate">
 				<Border CornerRadius="{StaticResource ColorPickerHeaderCornerRadius}"
 								Height="{StaticResource EditorMinHeight}"
-								Background="{DynamicResource Fill/Neutral/Primary/Pressed}"
+								Background="{DynamicResource ColorEditorHeaderBackground}"
 								BorderThickness="{StaticResource EditorBottomBorderThickness}"
-								BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}">
+								BorderBrush="{DynamicResource ColorEditorHeaderBorderBrush}">
 					<Grid ColumnDefinitions="Auto, *, Auto">
 						<Button Name="PART_BackButton"
 										Command="{Binding $parent[mxe:ColorEditor].ShowColorPickerCommand}"
@@ -56,7 +55,7 @@
 						<TextBlock	Text="{x:Static localization:ControlsResources.ColorPicker_HeaderText}"
 												Margin="{StaticResource ColorEditorHeaderMargin}"
 												FontSize="{StaticResource EditorFontSize}"
-												Foreground="{DynamicResource Text/Neutral/Primary}"
+												Foreground="{DynamicResource ColorEditorPickerHeaderForeground}"
 												VerticalAlignment="Center"
 												FontWeight="Bold"
 												Grid.Column="1"/>
@@ -79,9 +78,9 @@
 
 			<DataTemplate x:Key="ColorEditorFooterTemplate">
 				<Border CornerRadius="{StaticResource ColorPickerFooterCornerRadius}" 
-								Background="{DynamicResource Fill/Neutral/Primary/Pressed}"
+								Background="{DynamicResource ColorEditorFooterBackground}"
 								BorderThickness="{StaticResource EditorTopBorderThickness}"
-								BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}">
+								BorderBrush="{DynamicResource ColorEditorFooterBorderBrush}">
 					<Grid ColumnDefinitions="*, 8, *"
 								Margin="{StaticResource ColorPickerFooterButtonsMargin}">
 						<Button x:Name="PART_ApplyButton"
@@ -112,22 +111,22 @@
 		<Setter Property="Margin" Value="{StaticResource ColorButtonMargin}"/>
 		<Setter Property="Padding" Value="0"/>
 		
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
-		<Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Gray}"/>
+		<Setter Property="Background" Value="{DynamicResource ColorEditorMoreColorsButtonBackground}"/>
+		<Setter Property="Foreground" Value="{DynamicResource ColorEditorMoreColorsButtonForeground}"/>
 	</Style>
 
 	<Style Selector="Button.MoreColors /template/ Border#PART_ButtonBorder,
 									 Button.MoreColors:pointerover /template/ Border#PART_ButtonBorder,
 									 Button.MoreColors:focus-visible /template/ Border#PART_ButtonBorder">
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/On Primary/Strong}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ColorEditorMoreColorsButtonBorderBrush}" />
 		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
 	</Style>
 
 	<Style Selector="Button.MoreColors:pointerover /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Hover}" />
+		<Setter Property="Background" Value="{DynamicResource ColorEditorMoreColorsButtonBackgroundPointerOver}" />
 	</Style>
-	<Style Selector="Button.MoreColors:pointerover /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Pressed}" />
+	<Style Selector="Button.MoreColors:pressed /template/ Border#PART_BackgroundBorder">
+		<Setter Property="Background" Value="{DynamicResource ColorEditorMoreColorsButtonBackgroundPressed}" />
 	</Style>
 	<Style Selector="Button.MoreColors:pressed /template/ ContentPresenter#PART_ContentPresenter">
 		<Setter Property="Opacity" Value="0.8"/>
@@ -140,8 +139,8 @@
 		<Setter Property="Width" Value="{StaticResource ColorButtonDefaultSize}"/>
 		<Setter Property="Height" Value="{StaticResource ColorButtonDefaultSize}"/>
 		<Setter Property="Margin" Value="{StaticResource ColorButtonMargin}"/>
-		<Setter Property="SelectedBrush" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
-		<Setter Property="InvertedSelectedBrush" Value="{DynamicResource Fill/Neutral/Primary/Enabled/Inverted}"/>
+		<Setter Property="SelectedBrush" Value="{DynamicResource ColorEditorToggleButtonSelectedBrush}"/>
+		<Setter Property="InvertedSelectedBrush" Value="{DynamicResource ColorEditorToggleButtonInvertedSelectedBrush}"/>
 		<Setter Property="Template">
 			<ControlTemplate>
 				<Border x:Name="PART_ExternalBorder"
@@ -189,12 +188,11 @@
 
     <!--ColorEditor-->
 	<Style Selector="mxe|ColorEditor">
-        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+        <Setter Property="Background" Value="{DynamicResource ColorEditorBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ColorEditorBorderBrush}" />
         <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
         <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
         <Setter Property="Width" Value="{StaticResource ColorEditorWidth}"/>
-		    <Setter Property="MaxHeight" Value="{StaticResource ColorEditorMaxHeight}"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Template">
             <ControlTemplate>
@@ -224,7 +222,7 @@
 											<RadioButton x:Name="PlatformChecker" GroupName="Group1" Grid.Column="1"
 				                         Content="{x:Static localization:ControlsResources.ColorEditor_Selector_PlatformChecker}" />
 										</Grid>
-										<Border Grid.Row="1" Background="{DynamicResource Outline/Neutral/Transparent/Medium}"
+										<Border Grid.Row="1" Background="{DynamicResource ColorEditorSplitterBrush}"
 			                    Margin="{DynamicResource ColorEditorHeaderSplitterMargin}"
 			                    Height="{DynamicResource ColorEditorSplitterHeight}"
 			                    HorizontalAlignment="Stretch" />
@@ -240,20 +238,19 @@
 											</MultiBinding>
 										</StackPanel.IsVisible>									
 				            <StackPanel x:Name="PART_PaletteGradientColorsPanel"
-				                        Orientation="Horizontal"
 				                        Margin="{DynamicResource ColorEditorSelectorsMargin}"
 				                        HorizontalAlignment="Stretch" />
 
 										<Grid RowDefinitions="Auto, Auto, *" 
 													IsVisible="{Binding $parent[mxe:ColorEditor].ColorsShowMode, Converter={mxev:ColorsShowModeToBoolConverter}, ConverterParameter=StandardColors}">
-											<Border Background="{DynamicResource Outline/Neutral/Transparent/Medium}"
+											<Border Background="{DynamicResource ColorEditorSplitterBrush}"
 				                    Margin="{DynamicResource ColorEditorSplitterMargin}"
 				                    Height="{DynamicResource ColorEditorSplitterHeight}"
 				                    HorizontalAlignment="Stretch" />
 											<TextBlock Margin="{DynamicResource ColorEditorDescriptionMargin}"
 																Grid.Row="1"
 				                       Text="{x:Static localization:ControlsResources.ColorEditor_StandardColors_Header}"
-				                       Foreground="{DynamicResource Text/Neutral/Secondary}"
+				                       Foreground="{DynamicResource ColorEditorStandardColorsHeaderForeground}"
 				                       FontSize="{StaticResource EditorFontSize}"
 				                       FontWeight="Bold" />
 											<StackPanel x:Name="PART_StandardColorsPanel"
@@ -264,14 +261,14 @@
 										</Grid>
 										<Grid RowDefinitions="Auto, Auto, *"
 													IsVisible="{Binding $parent[mxe:ColorEditor].ColorsShowMode, Converter={mxev:ColorsShowModeToBoolConverter}, ConverterParameter=CustomColors}">
-											<Border Background="{DynamicResource Outline/Neutral/Transparent/Medium}" 
+											<Border Background="{DynamicResource ColorEditorSplitterBrush}" 
 														Margin="{DynamicResource ColorEditorSplitterMargin}" 
 														Height="{DynamicResource ColorEditorSplitterHeight}"
 														HorizontalAlignment="Stretch" />									
 											<TextBlock Margin="{DynamicResource ColorEditorDescriptionMargin}"
 															 Grid.Row="1"
 				                       Text="{x:Static localization:ControlsResources.ColorEditor_MoreColors_Header}"
-				                       Foreground="{DynamicResource Text/Neutral/Secondary}"
+				                       Foreground="{DynamicResource ColorEditorMoreColorsHeaderForeground}"
 				                       FontSize="{StaticResource EditorFontSize}"
 				                       FontWeight="Bold" />
 											<WrapPanel x:Name="PART_CustomColorsPanel"
@@ -302,7 +299,7 @@
 						            <DockPanel>
 							            <Border DockPanel.Dock="Left"
 							                    Background="{Binding Converter={mxev:SolidColorBrushConverter}}"
-							                    BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}"
+							                    BorderBrush="{DynamicResource ColorEditorPlatformColorIndicatorBorderBrush}"
 							                    BorderThickness="{StaticResource EditorBorderThickness}"
 							                    Height="12"
 							                    Width="16" />
@@ -338,11 +335,11 @@
 			            <Grid.Styles>
 				            <Style
 					            Selector="mxe|ColorEditor[ReadOnly=True] ListBoxItem:disabled /template/ ContentPresenter#PART_ContentPresenter">
-					            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+					            <Setter Property="TextBlock.Foreground" Value="{DynamicResource ColorEditorPlatformColorItemForegroundDisabled}" />
 				            </Style>
 				            <Style
 					            Selector="mxe|ColorEditor[ReadOnly=True] ListBoxItem:selected:disabled /template/ Border#PART_BackgroundBorder">
-					            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Enabled}" />
+					            <Setter Property="Background" Value="{DynamicResource ColorEditorSelectedPlatformColorItemBackgroundDisabled}" />
 				            </Style>
 			            </Grid.Styles>
 		            </Grid>

@@ -69,8 +69,8 @@
 		<Style Selector="ContentControl.EditorInactiveButton">
 		<Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}"/>	
 		<Setter Property="MinWidth" Value="{StaticResource ButtonMinWidth}"/>
-		<Setter Property="Padding" Value="0"/>
-		<Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Gray}" />
+        <Setter Property="Padding" Value="{DynamicResource EditorIconButtonPadding}"/>
+		<Setter Property="Foreground" Value="{DynamicResource ButtonEditorInactiveButtonForeground}" />
 		<Setter Property="VerticalAlignment" Value="Stretch"/>
 		<Setter Property="BorderThickness" Value="0"/>
 		<Setter Property="FontSize" Value="{StaticResource EditorFontSize}" />
@@ -125,15 +125,15 @@
 												<Border.Background>
 													<MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
 														<Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
-														<DynamicResourceExtension ResourceKey="Fill/Neutral/Secondary/Enabled"/>
-														<DynamicResourceExtension ResourceKey="Fill/Neutral/Primary/Enabled"/>
+														<DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBackground"/>
+														<DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBackground"/>
 													</MultiBinding>
 												</Border.Background>
 												<Border.BorderBrush>
 													<MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
 														<Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
-														<DynamicResourceExtension ResourceKey="TransparentBrush"/>
-														<DynamicResourceExtension ResourceKey="Outline/Neutral/Transparent/Light"/>
+														<DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBorderBrush"/>
+														<DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBorderBrush"/>
 													</MultiBinding>
 												</Border.BorderBrush>
 											</Border>
@@ -153,7 +153,7 @@
 													 DockPanel.Dock="Bottom"
 													 Text="{TemplateBinding ErrorText}"
 													 FontSize="{StaticResource EditorErrorFontSize}"
-													 Foreground="{DynamicResource Text/Accent/Error}"
+													 Foreground="{DynamicResource TextEditorErrorTextForeground}"
 													 Margin="{StaticResource ErrorTextPresenterMargin}"
 													 TextWrapping="Wrap"/>
                 <Panel x:Name="PART_RealEditorPanel">
@@ -242,4 +242,13 @@
 	<Style Selector=":is(mxe|ButtonEditor)[IsTextEditable=False]:activeMode /template/ TextBox#PART_RealEditor">
 		<Setter Property="mxb:ToolbarManager.ContextPopup" Value="{x:Null}"/>
 	</Style>
+
+    <Style Selector=":is(mxe|ButtonEditor)[IsTextEditable=False]:showWatermark /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer">
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBoxWatermarkBrush}"/>
+    </Style>
+    
+    <Style Selector=":is(mxe|ButtonEditor)[IsTextEditable=False]:showWatermark:disabled /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer">
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBoxWatermarkBrushDisabled}"/>
+    </Style>
+    
 </Styles>

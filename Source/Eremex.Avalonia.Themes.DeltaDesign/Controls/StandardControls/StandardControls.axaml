@@ -1,19 +1,43 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-	<StyleInclude Source="/Controls/StandardControls/FocusAdorner.axaml"/>
-	<StyleInclude Source="/Controls/StandardControls/ProgressBar.axaml"/>
-	<StyleInclude Source="/Controls/StandardControls/MenuItem.axaml"/>
-	<StyleInclude Source="/Controls/StandardControls/MenuFlyoutPresenter.axaml"/>
-	<StyleInclude Source="/Controls/StandardControls/ToolTip.axaml"/>
 	<StyleInclude Source="/Controls/StandardControls/CheckBox.axaml"/>
 	<StyleInclude Source="/Controls/StandardControls/RadioButton.axaml"/>
 	<StyleInclude Source="/Controls/StandardControls/Button.axaml"/>
-	<StyleInclude Source="/Controls/StandardControls/ListBox.axaml"/>
 	<StyleInclude Source="/Controls/StandardControls/TextBox.axaml"/>
 	<StyleInclude Source="/Controls/StandardControls/Slider.axaml"/>
-	<StyleInclude Source="/Controls/StandardControls/Label.axaml"/>
-	<StyleInclude Source="/Controls/StandardControls/CalendarButtons.axaml"/>
-	<StyleInclude Source="/Controls/StandardControls/CalendarControl.axaml"/>
 	<StyleInclude Source="/Controls/StandardControls/Scrollbar.axaml"/>
+    <StyleInclude Source="/Controls/StandardControls/UserControl.axaml" />
+    <Styles.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Controls/StandardControls/ItemsControl.axaml" />
+                <ResourceInclude Source="/Controls/StandardControls/ContentControl.axaml" />
+                <ResourceInclude Source="/Controls/StandardControls/DataValidationErrors.axaml" />
+                <ResourceInclude Source="/Controls/StandardControls/ScrollViewer.axaml" />
+                <ResourceInclude Source="/Controls/StandardControls/GridSplitter.axaml" />
+                <ResourceInclude Source="/Controls/StandardControls/PathIcon.axaml" />
+                <ResourceInclude Source="/Controls/StandardControls/PopupRoot.axaml" />
+                <ResourceInclude Source="/Controls/StandardControls/ThemeVariantScope.axaml" />
+                <ResourceInclude Source="/Controls/StandardControls/MenuItem.axaml"/>
+                <ResourceInclude Source="/Controls/StandardControls/MenuScrollViewer.axaml" />
+                <ResourceInclude Source="/Controls/StandardControls/ContextMenu.axaml" />
+                <ResourceInclude Source="/Controls/StandardControls/Separator.axaml" />
+                <ResourceInclude Source="/Controls/StandardControls/ProgressBar.axaml"/>
+                <ResourceInclude Source="/Controls/StandardControls/FocusAdorner.axaml"/>
+                <ResourceInclude Source="/Controls/StandardControls/ToggleSwitch.axaml"/>
+                <ResourceInclude Source="/Controls/StandardControls/ListBox.axaml"/>
+                <ResourceInclude Source="/Controls/StandardControls/Label.axaml"/>
+                <ResourceInclude Source="/Controls/StandardControls/ToolTip.axaml"/>
+                <ResourceInclude Source="/Controls/StandardControls/MenuFlyoutPresenter.axaml"/>
+                <ResourceInclude Source="/Controls/StandardControls/CalendarButtons.axaml"/>
+                <ResourceInclude Source="/Controls/StandardControls/CalendarControl.axaml"/>
+                <ResourceInclude Source="/Controls/StandardControls/ToggleButton.axaml" />
+                <ResourceInclude Source="/Controls/StandardControls/Expander.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Styles.Resources>
+    <Style Selector=":is(Control)">
+        <Setter Property="ToolTip.ShowDelay" Value="1000"/>
+    </Style>
 </Styles>

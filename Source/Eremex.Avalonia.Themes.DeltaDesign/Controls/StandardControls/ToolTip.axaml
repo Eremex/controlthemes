@@ -1,17 +1,24 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                x:ClassModifier="internal"
 				xmlns:sys="using:System"
 				xmlns:controls="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls">
 
-	<Style Selector="ToolTip">
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}" />
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Strong}"/>
+    <ControlTheme x:Key="{x:Type ToolTip}" TargetType="ToolTip">
+		<Setter Property="Foreground" Value="{DynamicResource TooltipForeground}" />
+		<Setter Property="Background" Value="{DynamicResource ToolTipBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ToolTipBorderBrush}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource MxToolTipBorderThemeThickness}"/>
 		<Setter Property="FontSize" Value="{StaticResource EditorFontSize}" />
 		<Setter Property="Padding" Value="{StaticResource ToolTipPadding}" />
 		<Setter Property="CornerRadius" Value="{StaticResource ToolTipCornerRadius}" />
 		<Setter Property="MaxWidth" Value="{x:Static sys:Double.PositiveInfinity}" />
+        <Setter Property="Opacity" Value="0" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <DoubleTransition Property="Opacity" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -26,9 +33,13 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-	</Style>
+        <Style Selector="^:open">
+            <Setter Property="Opacity" Value="1" />
+        </Style>
+        <Style Selector="^.no-shadow">
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="BorderThickness" Value="{DynamicResource MxToolTipBorderThemeThickness/NoShadow}"></Setter>
+        </Style>
+    </ControlTheme>
 
-	<Style Selector=":is(Control)">
-		<Setter Property="ToolTip.ShowDelay" Value="1000"/>
-	</Style>
-</Styles>
+</ResourceDictionary>

@@ -25,5 +25,12 @@
             </Border>
         </Grid>
     </ControlTemplate>
+    <ControlTemplate x:Key="MxNoShadowTemplate" TargetType="{x:Type controls:ShadowControl}">
+        <ContentPresenter Content="{TemplateBinding Content}"/>
+    </ControlTemplate>
+    
     <Thickness x:Key="MxToolTipBorderThemeThickness">0</Thickness>
+    <Thickness x:Key="MxToolTipBorderThemeThickness/NoShadow">1</Thickness>
+
+    <BoxShadows x:Key="ToggleSwitchBoxShadow">0 0.39 1.45 0 #06000000, 0 0 1 0 #32000000</BoxShadows>
 </ResourceDictionary>

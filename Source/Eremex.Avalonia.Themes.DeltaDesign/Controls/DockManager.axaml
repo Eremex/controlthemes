@@ -6,7 +6,8 @@
         xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
         xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls"
         xmlns:system="clr-namespace:System;assembly=System.Runtime"
-        xmlns:other="clr-namespace:Eremex.AvaloniaUI.Icons.Other;assembly=Eremex.Avalonia.Icons"><!-- attached properties doesn't work without assembly -->
+        xmlns:other="clr-namespace:Eremex.AvaloniaUI.Icons.Other;assembly=Eremex.Avalonia.Icons"
+        xmlns:internal="clr-namespace:Eremex.AvaloniaUI.Controls.Internal;assembly=Eremex.Avalonia.Controls"><!-- attached properties doesn't work without assembly -->
     <Styles.Resources>
         <Thickness x:Key="DockPaneBorderThickness">1</Thickness>
         
@@ -295,7 +296,7 @@
             <ControlTemplate>
                 <Border BorderThickness="{TemplateBinding BorderThickness}"
                         BorderBrush="{TemplateBinding BorderBrush}">
-                    <Grid>
+                    <Grid x:Name="PART_Grid">
                         <doi:DockGroupItemsControl ItemsSource="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}"
                                                    Orientation="{TemplateBinding Orientation}">
                             <ItemsControl.ItemsPanel>
@@ -327,7 +328,7 @@
             <ControlTemplate>
                 <Border BorderThickness="{TemplateBinding BorderThickness}"
                         BorderBrush="{TemplateBinding BorderBrush}">
-                    <Grid RowDefinitions="Auto *">
+                    <Grid RowDefinitions="Auto *" x:Name="PART_Grid">
                         <Border Grid.Row="0" Classes="FloatWindowCaptionArea" x:Name="captionArea" BorderBrush="{TemplateBinding BorderBrush}">
                             <doi:DockItemDragControl>
                                 <Grid Background="Transparent" ColumnDefinitions="*,Auto">
@@ -359,7 +360,7 @@
         </Setter>
     </Style>
 	
-	<Style Selector="do|FloatGroup:not(.NoSystemBorder) doi|DockPaneResizeControl">
+	<Style Selector="do|FloatGroup:not(:no-system-chrome) doi|DockPaneResizeControl">
 		<Setter Property="IsVisible" Value="False"></Setter>
 	</Style>
 
@@ -562,6 +563,7 @@
         <Setter Property="Width" Value="18"></Setter>
         <Setter Property="Height" Value="18"></Setter>
         <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Focusable" Value="False" />
     </Style>
     
     <Style Selector="Button.ControlBoxButton:disabled">
@@ -808,12 +810,17 @@
 		<Setter Property="BorderThickness" Value="0 0 1 0"></Setter>
 	</Style>
     
+    <Style Selector="controls|MxTabItem.TabbedGroupItem/template/ Button.TabControlButton, controls|MxTabControl.TabbedGroupItemsControl/template/ScrollViewer.Scroll/template/RepeatButton.TabControlButton, controls|MxTabControl.TabbedGroupItemsControl/template/internal|TabControlControlBox/template/Button.TabControlButton">  
+        <Setter Property="Focusable" Value="False"></Setter>
+    </Style>
+    
     <Style Selector="controls|MxTabStrip.AutoHideGroupItemsControl:empty">
         <Setter Property="IsVisible" Value="False"></Setter>
     </Style>
 
 	<Style Selector="Window.FloatWindow">
-		<Setter Property="Padding" Value="{Binding $self.OffScreenMargin}"></Setter>
+		<Setter Property="Padding" Value="{Binding $self.OffScreenMargin}"/>
+        <Setter Property="Theme" Value="{StaticResource WindowBasedClassesTheme}"/>
 	</Style>
     
 	<Style Selector="doi|ControlBox">

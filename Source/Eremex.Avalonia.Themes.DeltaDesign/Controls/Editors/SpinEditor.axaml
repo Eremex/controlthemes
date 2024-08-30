@@ -63,7 +63,7 @@
 													 DockPanel.Dock="Bottom"
 													 Text="{TemplateBinding ErrorText}"
 													 FontSize="{StaticResource EditorErrorFontSize}"
-													 Foreground="{DynamicResource Text/Accent/Error}"
+													 Foreground="{DynamicResource TextEditorErrorTextForeground}"
 													 Margin="{StaticResource ErrorTextPresenterMargin}"
 													 TextWrapping="Wrap"/>
                 <Panel x:Name="PART_RealEditorPanel">
@@ -147,7 +147,7 @@
                                                                           VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
                                                                 <Grid ColumnDefinitions="*,Auto,Auto" Name="PART_ContentPanel">
                                                                     <TextBlock Name="PART_PrefixPresenter"
-                                                                               Foreground="{DynamicResource Text/Neutral/Tertiary}"
+                                                                               Foreground="{DynamicResource SpinEditorPrefixForeground}"
                                                                                HorizontalAlignment="Right"
                                                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                                                Margin="{TemplateBinding Padding, Converter={StaticResource EditorSplitterConverter}, ConverterParameter=Right}"
@@ -161,7 +161,7 @@
 																																							Height="{StaticResource ErrorIconSize}"
 																																							Data="{StaticResource ErrorIcon}"
 																																							x:Name="PART_ErrorIndicator"
-																																							Foreground="{DynamicResource Icons/Outline/Red}"
+																																							Foreground="{DynamicResource EditorsErrorIconBrush}"
 																																							VerticalAlignment="Center"/>
                                                                     <TextBlock Name="PART_Watermark" Grid.Column="1"
                                                                             Text="{TemplateBinding Watermark}"
@@ -188,7 +188,7 @@
                                                                                         CornerRadius="{TemplateBinding CornerRadius}"/>
 																																	</Grid>
                                                                     <TextBlock Name="PART_SuffixPresenter"
-                                                                               Foreground="{DynamicResource Text/Neutral/Tertiary}"
+                                                                               Foreground="{DynamicResource SpinEditorSuffixForeground}"
                                                                                Grid.Column="2"
                                                                                HorizontalAlignment="Left"
                                                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"

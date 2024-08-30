@@ -6,4 +6,5 @@
     <Thickness x:Key="PopupBoxShadowMargin">0,2,0,2</Thickness>
     <sys:Double x:Key="PopupHorizontalOffset">0</sys:Double>
     <StaticResource x:Key="PopupBorderBrush" ResourceKey="Outline/Neutral/Transparent/Strong"/>
+    <StaticResource x:Key="PopupBorderBrush/NoShadow" ResourceKey="Outline/Neutral/Transparent/Strong"/>
 </ResourceDictionary>

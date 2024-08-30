@@ -8,5 +8,12 @@
     <ControlTemplate x:Key="MxSmallShadowTemplate" TargetType="{x:Type controls:ShadowControl}">
         <ContentPresenter Content="{TemplateBinding Content}" Margin="10"/>
     </ControlTemplate>
+    <ControlTemplate x:Key="MxNoShadowTemplate" TargetType="{x:Type controls:ShadowControl}">
+        <ContentPresenter Content="{TemplateBinding Content}"/>
+    </ControlTemplate>
+    
     <Thickness x:Key="MxToolTipBorderThemeThickness">1</Thickness>
+    <Thickness x:Key="MxToolTipBorderThemeThickness/NoShadow">1</Thickness>
+
+    <BoxShadows x:Key="ToggleSwitchBoxShadow">0 0 0 0 #00000000</BoxShadows>
 </ResourceDictionary>

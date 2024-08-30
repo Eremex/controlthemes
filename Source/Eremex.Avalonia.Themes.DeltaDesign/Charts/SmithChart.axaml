@@ -36,7 +36,7 @@
 	                Padding="{TemplateBinding Padding}">
 		        <Panel>
 			        <native:SmithDrawingAreaContainer DataContext="{TemplateBinding ViewData}" />
-			        <native:DrawingAreaContainer DataContext="{TemplateBinding CrosshairViewData}" />
+			        <native:DrawingAreaContainer DataContext="{TemplateBinding OverlayViewData}" />
 		        </Panel>
 	        </Border>
 	      </ControlTemplate>

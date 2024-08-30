@@ -8,4 +8,5 @@
 	<Color x:Key="Interlacing/Color">#58dbe6e6</Color>
 	<Color x:Key="Crosshair/BackColor">#ffa17ec8</Color>
 	<Color x:Key="Crosshair/TextColor">#ffffffff</Color>
+    <Color x:Key="Selection/Color">#40808080</Color>
 </ResourceDictionary>

@@ -23,7 +23,7 @@
 
 	<Style Selector=":is(mxe|BaseEditor):activeMode">
 		<Setter Property="BorderBrush" Value="Transparent" />
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+		<Setter Property="Foreground" Value="{DynamicResource EditorForeground}" />
 		<Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
 		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
 	</Style>
@@ -43,44 +43,44 @@
     </Style>
 
     <Style Selector=":is(mxe|ButtonEditor):activeMode, mxe|TextEditor:activeMode">
-			<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"/>
+			<Setter Property="Background" Value="{DynamicResource TextEditorBackground}"/>
     </Style>
     <Style Selector=":is(mxe|ButtonEditor):activeMode, mxe|TextEditor:activeMode, mxe|CheckEditor:activeMode">
       <Setter Property="Focusable" Value="True"/>
     </Style>
     <Style Selector=":is(mxe|ButtonEditor)[EditorMode=Standalone], mxe|TextEditor[EditorMode=Standalone], mxe|SegmentedEditor[EditorMode=Standalone]">
-			<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource TextEditorBorderBrush}"/>
     </Style>
 	<Style Selector="mxe|ButtonEditor.secondary:activeMode, mxe|ComboBoxEditor.secondary:activeMode, mxe|PopupColorEditor.secondary:activeMode,
            mxe|PopupEditor.secondary:activeMode, mxe|SpinEditor.secondary:activeMode, mxe|TextEditor.secondary:activeMode, mxe|DateEditor.secondary:activeMode, mxe|MemoEditor.secondary:activeMode">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
+		<Setter Property="Background" Value="{DynamicResource TextEditorSecondaryBackground}"/>
 	</Style>
 	<Style Selector=":is(mxe|ButtonEditor):activeMode, mxe|TextEditor:activeMode">
 		<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
 	</Style>
 
 	<Style Selector=":is(mxe|TextEditor)[ActualErrorShowMode=Inplace][IsEnabled=true]:activeMode /template/ TextBox#PART_RealEditor /template/ TextPresenter#PART_TextPresenter">
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Accent/Error}"/>
-		<Setter Property="SelectionForegroundBrush" Value="{DynamicResource Text/Neutral/Primary}"/>
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource EditorForegroundOnError}"/>
+		<Setter Property="SelectionForegroundBrush" Value="{DynamicResource EditorSelectionBrushOnError}"/>
 	</Style>
 	<Style Selector=":is(mxe|TextEditor)[ActualErrorShowMode=Inplace][IsEnabled=true]:activeMode /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer">
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Accent/Error}"/>
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource EditorForegroundOnError}"/>
 	</Style>
 	<Style Selector=":is(mxe|CheckEditor)[ActualErrorShowMode=Inplace][IsEnabled=true]:activeMode /template/ CheckBox#PART_RealEditor /template/ ContentPresenter#ContentPresenter, 
 					 :is(mxe|CheckEditor)[ActualErrorShowMode=Inplace][IsEnabled=true]:not(:activeMode ) /template/ CheckBox#PART_RealEditorPresenter /template/ ContentPresenter#ContentPresenter">
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Accent/Error}"/>
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource EditorForegroundOnError}"/>
 	</Style>
 	<Style Selector=":is(mxe|TextEditor)[EditorMode=InplaceInactive][ActualErrorShowMode=Inplace][IsEnabled=true] /template/ TextBlock#PART_RealEditorPresenter">
-		<Setter Property="Foreground" Value="{DynamicResource Text/Accent/Error}"/>
+		<Setter Property="Foreground" Value="{DynamicResource EditorForegroundOnError}"/>
 	</Style>
 	<Style Selector=":is(mxe|ComboBoxEditor)[EditorMode=InplaceInactive][ActualErrorShowMode=Inplace][IsEnabled=true] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
-		<Setter Property="TextElement.Foreground" Value="{DynamicResource Text/Accent/Error}"/>
+		<Setter Property="TextElement.Foreground" Value="{DynamicResource EditorForegroundOnError}"/>
 	</Style>
 	<Style Selector=":is(mxe|TextEditor) /template/ TextBlock#PART_ErrorTextPresenter,
 					 :is(mxe|CheckEditor) /template/ TextBlock#PART_ErrorTextPresenter">
 		<Setter Property="IsVisible" Value="False" />
 	</Style>
 	<Style Selector=":is(mxe|TextEditor)[EditorMode=InplaceActive]:readOnly /template/ TextBox#PART_RealEditor">
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
+		<Setter Property="Foreground" Value="{DynamicResource TextEditorReadOnlyForeground}" />
 	</Style>
 </Styles>

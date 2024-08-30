@@ -46,7 +46,7 @@
 						<mxev:EditorInactiveContainer Name="PART_InactiveContentContainer" ColumnDefinitions="Auto, *, Auto" >
 							<DockPanel Name="PART_RealEditorPresenterContainer" Grid.Column="1">
 								<Border DockPanel.Dock="Left" Name="PART_ColorValuePresenter" Grid.Column="1"
-												BorderBrush="{DynamicResource Icons/Outline/Gray}"
+												BorderBrush="{DynamicResource PopupColorEditorColorIndicatorBorderBrush}"
 												BorderThickness="{StaticResource EditorBorderThickness}"
 												Height="{StaticResource PopupColorEditorColorPresenterHeight}"
 												Width="{StaticResource PopupColorEditorColorPresenterWidth}"/>
@@ -87,7 +87,7 @@
 											VerticalAlignment="{Binding $parent[TextBox].VerticalContentAlignment}">
 						<Border DockPanel.Dock="Left"
 										Name="PART_ColorValuePresenter"
-										BorderBrush="{DynamicResource Icons/Outline/Gray}"
+										BorderBrush="{DynamicResource PopupColorEditorColorIndicatorBorderBrush}"
 										BorderThickness="{StaticResource EditorBorderThickness}"
 										Height="{StaticResource PopupColorEditorColorPresenterHeight}"
 										Width="{StaticResource PopupColorEditorColorPresenterWidth}"/>
@@ -108,19 +108,19 @@
 	
 
 	<Style Selector="mxe|PopupColorEditor:activeMode:pointerover">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"/>
+		<Setter Property="Background" Value="{DynamicResource PopupColorEditorBackgroundPointerOver}"/>
 	</Style>
 	<Style Selector="mxe|PopupColorEditor.secondary:activeMode:pointerover">
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/>
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Hover}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource PopupColorEditorSecondaryBorderBrushPointerOver}"/>
+		<Setter Property="Background" Value="{DynamicResource PopupColorEditorSecondaryBackgroundPointerOver}" />
 	</Style>	
 
 	<Style Selector="mxe|PopupColorEditor:focus-visible">
 		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
+		<Setter Property="Background" Value="{DynamicResource PopupColorEditorBackgroundPointerOver}" />
 	</Style>
 	<Style Selector="mxe|PopupColorEditor.secondary:focus-visible">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Hover}" />
+		<Setter Property="Background" Value="{DynamicResource PopupColorEditorSecondaryBackgroundPointerOver}" />
 		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
 	</Style>
 

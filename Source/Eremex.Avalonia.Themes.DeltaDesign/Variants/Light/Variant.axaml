@@ -8,6 +8,7 @@
                 <ResourceInclude Source="/Variants/Light/Toolbars.axaml"/>
                 <ResourceInclude Source="/Variants/Light/Editors.axaml"/>
                 <ResourceInclude Source="/Variants/Light/ChartColors.axaml"/>
+                <ResourceInclude Source="/Variants/CustomizedBrushes.axaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>        
     </ResourceDictionary.ThemeDictionaries>

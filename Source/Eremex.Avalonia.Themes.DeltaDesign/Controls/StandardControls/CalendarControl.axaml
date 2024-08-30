@@ -1,7 +1,8 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-				xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
-				xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls">
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
+                    x:ClassModifier="internal">
 	<Design.PreviewWith>
 		<Border Padding="20">
 			<StackPanel Spacing="20">
@@ -10,14 +11,12 @@
 			</StackPanel>
 		</Border>
 	</Design.PreviewWith>
+	
+	<mxev:CornerRadiusConverter x:Key="cornerRadiusConverter"/>
 
-	<Styles.Resources>
-		<mxev:CornerRadiusConverter x:Key="cornerRadiusConverter"/>
-	</Styles.Resources>
-
-	<Style Selector="CalendarItem">
+    <ControlTheme x:Key="{x:Type CalendarItem}" TargetType="CalendarItem">
 		<Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
+		<Setter Property="Background" Value="{DynamicResource CalendarItemBackground}"/>
 		<Setter Property="DayTitleTemplate">
 			<Template>
 				<TextBlock Text="{Binding}"
@@ -34,30 +33,30 @@
                 CornerRadius="{TemplateBinding CornerRadius}">
 					<Border.Styles>
 						<Style Selector="Button.CalendarHeader /template/ Border#PART_BackgroundBorder">
-							<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+							<Setter Property="Background" Value="{DynamicResource CalendarItemHeaderButtonBackground}" />
 						</Style>
 						<Style Selector="Button.CalendarHeader /template/ Border#PART_ButtonBorder">
 							<Setter Property="BorderThickness" Value="0" />
 						</Style>
 						<Style Selector="Button.CalendarHeader /template/ ContentPresenter#PART_ContentPresenter">
-							<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+							<Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarItemHeaderButtonForeground}" />
 							<Setter Property="FontWeight" Value="Bold"/>
 						</Style>
 						<Style Selector="Button.CalendarHeader:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-							<Setter Property="TextBlock.Foreground" Value="{DynamicResource Icons/Outline/Gray}" />
+							<Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarItemHeaderButtonForegroundPointerOver}" />
 						</Style>
 						<Style Selector="Button.CalendarHeader:pressed /template/ ContentPresenter#PART_ContentPresenter">
 							<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-							<Setter Property="TextBlock.Foreground" Value="{DynamicResource Icons/Outline/Gray}" />
+							<Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarItemHeaderButtonForegroundPressed}" />
 							<Setter Property="Opacity" Value="0.8"/>
 						</Style>
 
 					</Border.Styles>
 					<Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RowDefinitions="28, *" MinWidth="254">
 						<Border Name="PART_HeaderDecorationBorder"
-										Background="{DynamicResource Fill/Neutral/Primary/Pressed}"
+										Background="{DynamicResource CalendarItemHeaderBackground}"
 										BorderThickness="0,0,0,1"
-										BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}"/>
+										BorderBrush="{DynamicResource CalendarItemHeaderBorderBrush}"/>
 						<Grid ColumnDefinitions="Auto, *, Auto" >
 							<Button Name="PART_PreviousButton" Grid.Column="0" Classes="EditorIconButton" HorizontalContentAlignment="Center">
 								<PathIcon Width="5"
@@ -115,20 +114,16 @@
 				</Border>
 			</ControlTemplate>
 		</Setter>
-	</Style>
 
-	<!-- BackgroundLayer shouldn't show in the week day names row-->
-	<Style Selector="Calendar[DisplayMode=Month] CalendarItem /template/ Border#BackgroundLayer">
-		<Setter Property="Margin" Value="0"/>
-	</Style>
-	<Style Selector="CalendarItem /template/ Border#PART_HeaderDecorationBorder">
+	<Style Selector="^ /template/ Border#PART_HeaderDecorationBorder">
 		<Setter Property="CornerRadius" Value="{Binding $parent[CalendarItem].CornerRadius, Converter={StaticResource cornerRadiusConverter}, ConverterParameter=Top}"/>
 	</Style>
+    </ControlTheme>
 
-	<Style Selector="Calendar">
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}" />
-		<Setter Property="Background" Value="Transparent" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+    <ControlTheme x:Key="{x:Type Calendar}" TargetType="Calendar">
+		<Setter Property="Foreground" Value="{DynamicResource CalendarForeground}" />
+		<Setter Property="Background" Value="{DynamicResource CalendarBackground}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource CalendarBorderBrush}" />
 		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
 		<Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}"/>
 		<Setter Property="HorizontalAlignment" Value="Left" />
@@ -147,6 +142,7 @@
 				</StackPanel>
 			</ControlTemplate>
 		</Setter>
-	</Style>
 
-</Styles>
+    </ControlTheme>
+
+</ResourceDictionary>

@@ -13,13 +13,13 @@
         <StreamGeometry x:Key="lineRightButtonData">M0.308658 0.0380748C0.495495 -0.0393156 0.710554 0.00346223 0.853553 0.146461L4.35355 3.64646C4.54882 3.84172 4.54882 4.15831 4.35355 4.35357L0.853553 7.85357C0.710554 7.99657 0.495495 8.03934 0.308658 7.96195C0.121821 7.88456 0 7.70225 0 7.50001V0.500015C0 0.297783 0.121821 0.115465 0.308658 0.0380748Z</StreamGeometry>
 
         <ControlTheme x:Key="FluentScrollBarThumb" TargetType="Thumb">
-            <Setter Property="Background" Value="{DynamicResource Outline/Neutral/On Tertiary/Light}"/>
+            <Setter Property="Background" Value="{DynamicResource ScrollBarThumbBackground}"/>
 
             <Style Selector="^:pointerover /template/ Border#ThumbRect">
-                <Setter Property="Background" Value="{DynamicResource Outline/Neutral/On Tertiary/Medium}" />
+                <Setter Property="Background" Value="{DynamicResource ScrollBarThumbBackgroundPointerOver}" />
             </Style>
             <Style Selector="^:pressed  /template/ Border#ThumbRect">
-                <Setter Property="Background" Value="{DynamicResource Outline/Neutral/On Tertiary/Strong}" />
+                <Setter Property="Background" Value="{DynamicResource ScrollBarThumbBackgroundPressed}" />
             </Style>
         </ControlTheme>
 
@@ -93,9 +93,9 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Grid x:Name="Root">
-                    <Border x:Name="VerticalRoot" Background="{TemplateBinding Background}" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}">
+                    <Border x:Name="VerticalRoot" Background="{TemplateBinding Background}" BorderBrush="{DynamicResource ScrollBarRootBackground}">
                         <Grid RowDefinitions="Auto,*,Auto" MinWidth="{DynamicResource ScrollBarSize}">
-                            <Rectangle Grid.RowSpan="3" x:Name="TrackRect" Fill="{DynamicResource Fill/Neutral/Secondary/Enabled}" Opacity="0">
+                            <Rectangle Grid.RowSpan="3" x:Name="TrackRect" Fill="{DynamicResource ScrollBarTrackBackground}" Opacity="0">
                                 <Rectangle.Transitions>
                                     <Transitions>
                                         <DoubleTransition Property="Opacity" Duration="0:0:0.1"/>
@@ -111,7 +111,7 @@
                                     </Transitions>
                                 </RepeatButton.Transitions>
                                 <PathIcon Data="{StaticResource lineUpButtonData}" Width="{DynamicResource ScrollBarButtonArrowIconFontSize}" Height="{DynamicResource ScrollBarButtonArrowIconFontSize}"
-                                          Foreground="{DynamicResource Icons/Outline/Gray}"/>
+                                          Foreground="{DynamicResource ScrollBarIconButtonForeground}"/>
                             </RepeatButton>
 
                             <Track Grid.Row="1" Minimum="{TemplateBinding Minimum}" Maximum="{TemplateBinding Maximum}" Value="{TemplateBinding Value, Mode=TwoWay}"
@@ -135,7 +135,7 @@
                                     </Transitions>
                                 </RepeatButton.Transitions>
                                 <PathIcon Data="{StaticResource lineDownButtonData}" Width="{DynamicResource ScrollBarButtonArrowIconFontSize}" Height="{DynamicResource ScrollBarButtonArrowIconFontSize}"
-                                          Foreground="{DynamicResource Icons/Outline/Gray}"/>
+                                          Foreground="{DynamicResource ScrollBarIconButtonForeground}"/>
                             </RepeatButton>
                         </Grid>
                     </Border>
@@ -152,9 +152,9 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Grid x:Name="Root">
-                    <Border x:Name="HorizontalRoot" Background="{TemplateBinding Background}" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}">
+                    <Border x:Name="HorizontalRoot" Background="{TemplateBinding Background}" BorderBrush="{DynamicResource ScrollBarRootBackground}">
                         <Grid ColumnDefinitions="Auto,*,Auto" MinHeight="{DynamicResource ScrollBarSize}">
-                            <Rectangle Grid.ColumnSpan="3" x:Name="TrackRect" Fill="{DynamicResource Fill/Neutral/Secondary/Enabled}" Opacity="0">
+                            <Rectangle Grid.ColumnSpan="3" x:Name="TrackRect" Fill="{DynamicResource ScrollBarTrackBackground}" Opacity="0">
                                 <Rectangle.Transitions>
                                     <Transitions>
                                         <DoubleTransition Property="Opacity" Duration="0:0:0.1"/>
@@ -170,7 +170,7 @@
                                     </Transitions>
                                 </RepeatButton.Transitions>
                                 <PathIcon Data="{StaticResource lineLeftButtonData}" Width="{DynamicResource ScrollBarButtonArrowIconFontSize}" Height="{DynamicResource ScrollBarButtonArrowIconFontSize}"
-                                          Foreground="{DynamicResource Icons/Outline/Gray}"/>
+                                          Foreground="{DynamicResource ScrollBarIconButtonForeground}"/>
                             </RepeatButton>
 
                             <Track Grid.Column="1" Minimum="{TemplateBinding Minimum}" Maximum="{TemplateBinding Maximum}" Value="{TemplateBinding Value, Mode=TwoWay}"
@@ -194,7 +194,7 @@
                                     </Transitions>
                                 </RepeatButton.Transitions>
                                 <PathIcon Data="{StaticResource lineRightButtonData}" Width="{DynamicResource ScrollBarButtonArrowIconFontSize}" Height="{DynamicResource ScrollBarButtonArrowIconFontSize}"
-                                          Foreground="{DynamicResource Icons/Outline/Gray}"/>
+                                          Foreground="{DynamicResource ScrollBarIconButtonForeground}"/>
                             </RepeatButton>
                         </Grid>
                     </Border>
@@ -209,14 +209,14 @@
 
     <Style Selector="ScrollBar[IsExpanded=true]">
         <Style Selector="^ /template/ Grid#Root">
-            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+            <Setter Property="Background" Value="{DynamicResource ScrollBarExpandedRootBackground}" />
         </Style>
         <Style Selector="^ /template/ Rectangle#TrackRect">
-            <Setter Property="Fill" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+            <Setter Property="Fill" Value="{DynamicResource ScrollBarExpandedTrackBackground}" />
             <Setter Property="Opacity" Value="1" />
         </Style>
         <Style Selector="^ /template/ Thumb">
-            <Setter Property="Background" Value="{DynamicResource Outline/Neutral/On Tertiary/Light}" />
+            <Setter Property="Background" Value="{DynamicResource ScrollBarExpandedThumbBackground}" />
             <Setter Property="common:ScrollbarHelper.IsExpanded" Value="True"/>
         </Style>
         <Style Selector="^ /template/ RepeatButton">
@@ -232,7 +232,7 @@
 
         <Style Selector="^ /template/ Panel#PART_ScrollBarsSeparator">
             <Setter Property="Opacity" Value="1"/>
-            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"/>
+            <Setter Property="Background" Value="{DynamicResource ScrollViewerBarsSeparatorBackground}"/>
             <Setter Property="Margin" Value="1,0,0,0"/>
         </Style>
 

@@ -1,60 +1,90 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:epg="clr-namespace:Eremex.AvaloniaUI.Controls.PropertyGrid;assembly=Eremex.Avalonia.Controls"
-        xmlns:ec="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
-        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+        xmlns:mxpg="clr-namespace:Eremex.AvaloniaUI.Controls.PropertyGrid;assembly=Eremex.Avalonia.Controls"
         xmlns:mxpgv="clr-namespace:Eremex.AvaloniaUI.Controls.PropertyGrid.Visuals;assembly=Eremex.Avalonia.Controls"
-        xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls">
+        xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
+        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+        xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+        xmlns:icons="clr-namespace:Eremex.AvaloniaUI.Icons;assembly=Eremex.Avalonia.Icons"
+        xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls">
 
     <Styles.Resources>
-        <StreamGeometry x:Key="PropertyGridCategoryRowOpenedPath">M0,-1 L10,-10 20,-1 19,0 10,-8 1,0 Z</StreamGeometry>
-        <StreamGeometry x:Key="PropertyGridCategoryRowClosedPath">M0,1 L10,10 20,1 19,0 10,8 1,0 Z</StreamGeometry>
-        <StreamGeometry x:Key="PropertyGridRowOpenedPath">M0,6 L10,15 20,6 19,5 10,13 1,5 Z</StreamGeometry>
-        <StreamGeometry x:Key="PropertyGridRowClosedPath">M 6,0 15,10 l -9,10 -1,-1 L 13,10 5,1 Z</StreamGeometry>
+        <StreamGeometry x:Key="PropertyGridOpenedPath">M10.8536 3.64645C11.0488 3.84171 11.0488 4.15829 10.8536 4.35355L6.35355 8.85355C6.15829 9.04882 5.84171 9.04882 5.64645 8.85355L1.14645 4.35355C0.951184 4.15829 0.951184 3.84171 1.14645 3.64645C1.34171 3.45118 1.65829 3.45118 1.85355 3.64645L6 7.79289L10.1464 3.64645C10.3417 3.45118 10.6583 3.45118 10.8536 3.64645Z</StreamGeometry>
+        <StreamGeometry x:Key="PropertyGridClosedPath">M3.64645 1.14645C3.84171 0.951184 4.15829 0.951184 4.35355 1.14645L8.85355 5.64645C9.04882 5.84171 9.04882 6.15829 8.85355 6.35355L4.35355 10.8536C4.15829 11.0488 3.84171 11.0488 3.64645 10.8536C3.45118 10.6583 3.45118 10.3417 3.64645 10.1464L7.79289 6L3.64645 1.85355C3.45118 1.65829 3.45118 1.34171 3.64645 1.14645Z</StreamGeometry>
     </Styles.Resources>
 	
     <Style Selector="TextBlock.PropertyGridRow">
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}"/>
     </Style>
 	
-    <Style Selector="epg|PropertyGridRowControl:readOnly /template/ TextBlock#CaptionText">
+    <Style Selector="mxpgv|PropertyGridRowControl:readOnly /template/ TextBlock#CaptionText">
         <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Disabled}"/>
     </Style>
 
-    <Style Selector="epg|PropertyGridControl">
+    <Style Selector="mxpg|PropertyGridControl">
         <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}"/>
         <Setter Property="Template">
             <ControlTemplate>
                 <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                     <Grid RowDefinitions="Auto, *">
-                        <TextBox x:Name="PART_SearchTextBox" Watermark="Search" IsVisible="{TemplateBinding ShowSearchPanel}" Margin="8,10,8,0"/>
+                        <mxpgv:SearchControl x:Name="PART_SearchControl" SearchText="{TemplateBinding SearchText, Mode=TwoWay}"
+                                             IsVisible="{TemplateBinding ShowSearchPanel}"/>
 
-                        <ScrollViewer x:Name="PART_ScrollViewer" BringIntoViewOnFocusChange="False" Grid.Row="1" Margin="0, 4">
-                            <epg:PropertyGridItemsControl x:Name="PART_ItemsControl"/>
+                        <ScrollViewer x:Name="PART_ScrollViewer" BringIntoViewOnFocusChange="False" Grid.Row="1">
+                            <mxpgv:PropertyGridItemsControl x:Name="PART_ItemsControl"/>
                         </ScrollViewer>
                     </Grid>
                 </Border>
             </ControlTemplate>
         </Setter>
-			<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}"/>
     </Style>
 
-    <Style Selector="epg|PropertyGridCategoryRowControl">
+    <Style Selector="mxpgv|SearchControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}" BorderThickness="0,0,0,1" Margin="0,0,0,4" Padding="4">
+                        <mxe:ButtonEditor EditorValue="{Binding SearchText, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Watermark="{x:Static localization:ControlsResources.PropertyGrid_SearchControl_Watermark}"
+                                          NullValueButtonPosition="EditorBox">
+                            <mxe:ButtonEditor.Styles>
+                                <Style Selector="mxe|ButtonEditor">
+                                    <Setter Property="Padding" Value="0" />
+                                </Style>
+                                <Style Selector="mxe|ButtonEditor:activeMode">
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Style>
+                            </mxe:ButtonEditor.Styles>
+                            <mxe:ButtonEditor.Buttons>
+                                <mxe:ButtonSettings IsEnabled="False" IsLeft="True" Glyph="{x:Static icons:Basic.Search}" GlyphSize="14,14"/>
+                            </mxe:ButtonEditor.Buttons>
+                        </mxe:ButtonEditor>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="mxpgv|PropertyGridCategoryRowControl">
         <Setter Property="Template">
             <ControlTemplate>
-                <Grid ColumnDefinitions="Auto, *" Margin="0,4,0,8">
-                    <ToggleButton Margin="0" VerticalAlignment="Stretch"
-                                  IsChecked="{Binding Path=IsExpanded}">
+                <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto" Background="Transparent">
+                    <Border Grid.ColumnSpan="2" Background="{DynamicResource Outline/Neutral/Transparent/Light}" Height="1" Margin="0,4"
+                            IsVisible="{Binding ShowSeparator}"/>
+
+                    <ToggleButton Grid.Row="1" VerticalAlignment="Stretch" IsChecked="{Binding Path=IsExpanded}" Width="28" Margin="4,0,0,0">
                         <ToggleButton.Template>
                             <ControlTemplate>
-                                <Border Background="Transparent" Padding="4,0">
-                                    <Path Width="8" VerticalAlignment="Center" Fill="{DynamicResource Text/Neutral/Primary}" Stretch="Uniform">
+                                <Border Background="Transparent">
+                                    <Path Fill="{DynamicResource Icons/Outline/Gray}" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center">
                                         <Path.Data>
                                             <Binding Path="IsExpanded">
                                                 <Binding.Converter>
-                                                    <ec:BoolToObjectConverter TrueValue="{StaticResource PropertyGridCategoryRowOpenedPath}"
-                                                                              FalseValue="{StaticResource PropertyGridCategoryRowClosedPath}"/>
+                                                    <mxc:BoolToObjectConverter TrueValue="{StaticResource PropertyGridOpenedPath}"
+                                                                              FalseValue="{StaticResource PropertyGridClosedPath}"/>
                                                 </Binding.Converter>
                                             </Binding>
                                         </Path.Data>
@@ -64,18 +94,17 @@
                         </ToggleButton.Template>
                     </ToggleButton>
 
-                    <TextBlock Text="{Binding Path=Caption}" Grid.Column="1" FontWeight="Bold" Classes="PropertyGridRow"/>
+                    <TextBlock Text="{Binding Path=Caption}" Grid.Column="1" Grid.Row="1" FontWeight="Bold" Foreground="{DynamicResource Text/Neutral/Secondary}" FontSize="12" Margin="0,6,4,6"/>
                 </Grid>
             </ControlTemplate>
         </Setter>
     </Style>
 
-    <Style Selector="epg|PropertyGridCellEditor">
+    <Style Selector="mxpgv|PropertyGridCellEditor">
         <Setter Property="Background" Value="Transparent"/>
     </Style>
 	
     <Style Selector="Thumb.PropertyGridColumnResizer">
-        <Setter Property="Margin" Value="0, -2"/>
         <Setter Property="Cursor" Value="SizeWestEast"/>
         <Setter Property="Background" Value="{DynamicResource Outline/Accent/Secondary}"/>
         <Setter Property="Template">
@@ -83,7 +112,7 @@
                 <ControlTemplate>
                     <Border Background="Transparent" Width="7">
                         <Border Background="{TemplateBinding Background}"
-                                Opacity="{Binding $parent[mxpgv:PropertyGridRowPanel].PropertyGrid.IsResizerVisible, Converter={ec:BoolToObjectConverter FalseValue=0.1, TrueValue=1}}"
+                                Opacity="{Binding $parent[mxpgv:PropertyGridRowPanel].PropertyGrid.IsResizerVisible, Converter={mxc:BoolToObjectConverter FalseValue=0.1, TrueValue=1}}"
                                 Width="1" HorizontalAlignment="Center">
                             <Border.Transitions>
                                 <Transitions>
@@ -97,59 +126,77 @@
         </Setter>
     </Style>
 
-    <Style Selector="epg|PropertyGridRowControl">
+    <Style Selector="mxpgv|PropertyGridRowControl">
         <Setter Property="Template">
             <ControlTemplate>
-                <mxpgv:PropertyGridRowPanel x:Name="PART_RowPanel" Margin="0, 2, 10, 2">
-                    <Grid Margin="{Binding Path=Level, Converter={epg:LevelToMarginConverter Indent=20}}" ColumnDefinitions="12, 5, *">
+                <Grid RowDefinitions="Auto, *">
+                    <mxpgv:RowsSeparator/>
+                    
+                    <mxpgv:PropertyGridRowPanel x:Name="PART_RowPanel" Margin="4, 0" Grid.Row="1">
+                        <Border Background="Transparent">
+                            <Grid ColumnDefinitions="Auto, *" Margin="{Binding Path=Level, Converter={mxpgv:LevelToMarginConverter Indent=28}}">
+                                <ToggleButton VerticalAlignment="Stretch" IsChecked="{Binding IsExpanded}" Width="12" IsVisible="{Binding HasChildren}" Margin="0,0,6,0">
+                                    <ToggleButton.Template>
+                                        <ControlTemplate>
+                                            <Border Background="Transparent">
+                                                <Path Fill="{DynamicResource Text/Neutral/Primary}" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                    <Path.Data>
+                                                        <Binding Path="IsExpanded">
+                                                            <Binding.Converter>
+                                                                <mxc:BoolToObjectConverter TrueValue="{StaticResource PropertyGridOpenedPath}"
+                                                                                          FalseValue="{StaticResource PropertyGridClosedPath}"/>
+                                                            </Binding.Converter>
+                                                        </Binding>
+                                                    </Path.Data>
+                                                </Path>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </ToggleButton.Template>
+                                </ToggleButton>
 
-                        <ToggleButton Margin="2,1,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                                      IsChecked="{Binding Path=IsExpanded}"
-                                      Opacity="{Binding Path=HasChildren, Converter={ec:BoolToObjectConverter TrueValue=1, FalseValue=0}}">
-                            <ToggleButton.Template>
-                                <ControlTemplate>
-                                    <Border Background="Transparent">
-                                        <Path Fill="{DynamicResource Text/Neutral/Primary}" Stretch="Uniform" MaxHeight="8" MaxWidth="8"
-                                              VerticalAlignment="Center" HorizontalAlignment="Center">
-                                            <Path.Data>
-                                                <Binding Path="IsExpanded">
-                                                    <Binding.Converter>
-                                                        <ec:BoolToObjectConverter TrueValue="{StaticResource PropertyGridRowOpenedPath}"
-                                                                                  FalseValue="{StaticResource PropertyGridRowClosedPath}"/>
-                                                    </Binding.Converter>
-                                                </Binding>
-                                            </Path.Data>
-                                        </Path>
-                                    </Border>
-                                </ControlTemplate>
-                            </ToggleButton.Template>
-                        </ToggleButton>
+                                <TextBlock x:Name="CaptionText" Text="{Binding Path=Caption}" Margin="0,0,4,0" Grid.Column="1" VerticalAlignment="Center"
+                                           TextTrimming="CharacterEllipsis" common:TextBlockHelper.ShowTooltipWhenTrimming="True"
+                                           common:TextBlockHelper.HighlightedText="{Binding PropertyGridControl.SearchText}"
+                                           Classes="PropertyGridRow" Background="Transparent"/>
+                            </Grid>
+                        </Border>
 
-                        <TextBlock x:Name="CaptionText" Text="{Binding Path=Caption}" Margin="0,1,9,0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left"
-                                   Classes="PropertyGridRow" TextTrimming="CharacterEllipsis" mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"/>
-                    </Grid>
-
-                    <epg:PropertyGridCellEditor x:Name="PART_CellEditor">
-                        <epg:PropertyGridCellEditor.Styles>
-													<Style Selector="mxe|SegmentedEditor ListBoxItem">
-														<Setter Property="MinHeight" Value="24"/>
-													</Style>
-												</epg:PropertyGridCellEditor.Styles>
-                    </epg:PropertyGridCellEditor>
-                </mxpgv:PropertyGridRowPanel>
+                        <mxpgv:PropertyGridCellEditor x:Name="PART_CellEditor">
+                            <mxpgv:PropertyGridCellEditor.Styles>
+                                <Style Selector="mxe|SegmentedEditor ListBoxItem">
+                                    <Setter Property="MinHeight" Value="24"/>
+                                </Style>
+                            </mxpgv:PropertyGridCellEditor.Styles>
+                        </mxpgv:PropertyGridCellEditor>
+                    </mxpgv:PropertyGridRowPanel>
+                </Grid>
             </ControlTemplate>
         </Setter>
     </Style>
 
-    <Style Selector="epg|PropertyGridTemplateRowControl">
+    <Style Selector="mxpgv|RowsSeparator">
+        <Setter Property="IsVisible" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Margin="0,4" IsVisible="{Binding ShowSeparator}">
+                        <Border Height="1" Background="{DynamicResource Outline/Neutral/Transparent/Light}"
+                                Margin="{Binding Path=Level, Converter={mxpgv:LevelToMarginConverter Indent=28}}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="mxpgv|PropertyGridTemplateRowControl">
         <Setter Property="Template">
             <ControlTemplate>
-                <epg:PropertyGridCellEditor x:Name="PART_CellEditor"/>
+                <mxpgv:PropertyGridCellEditor x:Name="PART_CellEditor"/>
             </ControlTemplate>
         </Setter>
     </Style>
 
-	<Style Selector="epg|PropertyGridTabRowControl">
+	<Style Selector="mxpgv|PropertyGridTabRowControl">
 		<Setter Property="Template">
 			<ControlTemplate>
 				<StackPanel>

@@ -41,15 +41,13 @@
     </Styles.Resources>
 
     <Style Selector="mxe|SegmentedEditor">
-        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+        <Setter Property="Background" Value="{DynamicResource SegmentedEditorBackground}" />
         <Setter Property="Padding" Value="{StaticResource SegmentedEditorPadding}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel>
                     <ListBox Name="PART_RealEditor"
-                             ItemsSource="{TemplateBinding ItemsSource}"
-                             SelectedItem="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                              CornerRadius="{TemplateBinding CornerRadius}"
                              Background="{TemplateBinding Background}"
                              Foreground="{TemplateBinding Foreground}"
@@ -78,87 +76,87 @@
 												</Style>
 
 												<Style Selector="ListBoxItem /template/ ContentPresenter#PART_ContentPresenter">
-													<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Secondary}" />
+													<Setter Property="TextBlock.Foreground" Value="{DynamicResource SegmentedEditorItemForeground}" />
 												</Style>
 												
 												<!--  Disabled State  -->
 												<Style Selector="ListBoxItem:disabled /template/ ContentPresenter#PART_ContentPresenter">
-													<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
+													<Setter Property="TextBlock.Foreground" Value="{DynamicResource SegmentedEditorItemForegroundDisabled}" />
 												</Style>
 
 												<!--  PointerOver, KeyboardFocused  State  -->
 												<Style Selector="ListBoxItem:pointerover /template/ Border#PART_BackgroundBorder,
 																					ListBoxItem:focus-visible /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
+													<Setter Property="Background" Value="{DynamicResource SegmentedEditorItemBackgroundPointerOver}" />
 												</Style>
 												<Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter,
 																					ListBoxItem:focus-visible /template/ ContentPresenter#PART_ContentPresenter">
-													<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+													<Setter Property="TextBlock.Foreground" Value="{DynamicResource SegmentedEditorItemForegroundPointerOver}" />
 												</Style>
 
 												<!--  Pressed State  -->
 												<Style Selector="ListBoxItem:pressed /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Pressed}" />
+													<Setter Property="Background" Value="{DynamicResource SegmentedEditorItemBackgroundPressed}" />
 												</Style>											
 												<Style Selector="ListBoxItem:pressed /template/ ContentPresenter#PART_ContentPresenter">
-													<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+													<Setter Property="TextBlock.Foreground" Value="{DynamicResource SegmentedEditorItemForegroundPressed}" />
 													<Setter Property="Opacity" Value="0.8"/>
 												</Style>
 
 												<!--  Selected State  -->
 												<Style Selector="ListBoxItem:selected /template/ Border#PART_BackgroundBorder">		
-													<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+													<Setter Property="Background" Value="{DynamicResource SegmentedEditorItemSelectedBackground}" />
 												</Style>
 												<Style Selector="ListBoxItem:selected /template/ Border#PART_ButtonBorder">
-													<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
+													<Setter Property="BorderBrush" Value="{DynamicResource SegmentedEditorItemSelectedBorderBrush}" />
 												</Style>
 												
 												<Style Selector="ListBoxItem.secondary:selected /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
+													<Setter Property="Background" Value="{DynamicResource SegmentedEditorItemSecondarySelectedBackground}" />
 												</Style>		
 												<Style Selector="ListBoxItem.secondary:selected /template/ Border#PART_ButtonBorder">
-													<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
+													<Setter Property="BorderBrush" Value="{DynamicResource SegmentedEditorItemSecondarySelectedBorderBrush}" />
 												</Style>
 
 												<!--  Selected Unfocused State  -->
 												<Style Selector="ListBoxItem:selected:not(:focus) /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+													<Setter Property="Background" Value="{DynamicResource SegmentedEditorItemSelectedBackground}" />
 												</Style>
 												<Style Selector="ListBoxItem:selected:not(:focus) /template/ Border#PART_ButtonBorder">
-													<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
+													<Setter Property="BorderBrush" Value="{DynamicResource SegmentedEditorItemSelectedBorderBrush}" />
 												</Style>
 												<Style Selector="ListBoxItem.secondary:selected /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
+													<Setter Property="Background" Value="{DynamicResource SegmentedEditorItemSecondarySelectedBackground}" />
 												</Style>
 												<Style Selector="ListBoxItem.secondary:selected /template/ Border#PART_ButtonBorder">
-													<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
+													<Setter Property="BorderBrush" Value="{DynamicResource SegmentedEditorItemSecondarySelectedBorderBrush}" />
 												</Style>
 
 												<!--  Selected PointerOver, KeyboardFocused  State  -->
 												<Style Selector="ListBoxItem:selected:pointerover /template/ Border#PART_ButtonBorder,
 																					ListBoxItem:selected:focus-visible /template/ Border#PART_ButtonBorder">
-													<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
+													<Setter Property="BorderBrush" Value="{DynamicResource SegmentedEditorItemSelectedBorderBrushPointerOver}" />
 												</Style>
 												<Style Selector="ListBoxItem:selected:pointerover /template/ ContentPresenter#PART_ContentPresenter,
 																					ListBoxItem:selected:focus-visible /template/ ContentPresenter#PART_ContentPresenter">
-													<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+													<Setter Property="TextBlock.Foreground" Value="{DynamicResource SegmentedEditorItemSelectedForegroundPointerOver}" />
 												</Style>
 
 												<!--  Selected Pressed State  -->
-												<Style Selector="ListBoxItem:selected:pointerover /template/ Border#PART_ButtonBorder">
-													<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
+												<Style Selector="ListBoxItem:selected:pressed /template/ Border#PART_ButtonBorder">
+													<Setter Property="BorderBrush" Value="{DynamicResource SegmentedEditorItemSelectedBorderBrushPressed}" />
 												</Style>
 												<Style Selector="ListBoxItem:selected:pressed /template/ ContentPresenter#PART_ContentPresenter">
-													<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+													<Setter Property="TextBlock.Foreground" Value="{DynamicResource SegmentedEditorItemSelectedForegroundPressed}" />
 													<Setter Property="Opacity" Value="0.8"/>
 												</Style>
 
 												<!--  Selected Disabled State  -->
 												<Style Selector="ListBoxItem:selected:disabled /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+													<Setter Property="Background" Value="{DynamicResource SegmentedEditorItemSelectedBackgroundDisabled}" />
 												</Style>
 												<Style Selector="ListBoxItem:selected:disabled /template/ ContentPresenter#PART_ContentPresenter">
-													<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
+													<Setter Property="TextBlock.Foreground" Value="{DynamicResource SegmentedEditorItemSelectedForegroundDisabled}" />
 												</Style>
 											</ListBox.Styles>
                     </ListBox>
@@ -173,7 +171,7 @@
         </Setter>
     </Style>
 	<Style Selector="mxe|SegmentedEditor.secondary">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+		<Setter Property="Background" Value="{DynamicResource SegmentedEditorSecondaryBackground}" />
 		<Setter Property="Padding" Value="{StaticResource SegmentedEditorSecondaryPadding}"/>
 	</Style>
     <Style Selector="mxe|SegmentedEditor:enumSelector">

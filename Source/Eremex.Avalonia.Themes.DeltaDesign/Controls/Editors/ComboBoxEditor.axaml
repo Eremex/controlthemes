@@ -169,47 +169,47 @@
 	                    </Style>
                         <!--  PointerOver State  -->
                         <Style Selector="mxev|ComboBoxPopupControl[SelectionMode=Multiple] ListBoxItem:pointerover /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"/>
+													<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemBackgroundPointerOver}"/>
                         </Style>
                         <!--  Pressed State  -->
                         <Style Selector="mxev|ComboBoxPopupControl[SelectionMode=Multiple] ListBoxItem:pressed /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"/>
+													<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemBackgroundPressed}"/>
                         </Style>
                         <!--  Selected State  -->
                         <Style Selector="mxev|ComboBoxPopupControl[SelectionMode=Multiple] ListBoxItem:selected /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>													
+													<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemSelectedBackground}"/>													
                         </Style>
                         <!--  Selected Unfocused State  -->
                         <Style Selector="mxev|ComboBoxPopupControl[SelectionMode=Multiple] ListBoxItem:selected:not(:focus) /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
+													<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemSelectedBackground}"/>
                         </Style>
                         <!--  Selected PointerOver State  -->
                         <Style Selector="mxev|ComboBoxPopupControl[SelectionMode=Multiple] ListBoxItem:selected:pointerover /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"/>
+													<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemSelectedBackgroundPointerOver}"/>
                         </Style>
                         <!--  Selected Pressed State  -->
                         <Style Selector="mxev|ComboBoxPopupControl[SelectionMode=Multiple] ListBoxItem:selected:pressed /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"/>
+													<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemSelectedBackgroundPressed}"/>
                         </Style>
 											<!--  Disabled State  -->
 
 											<Style Selector="mxev|ComboBoxPopupControl[ReadOnly=True] ListBoxItem:disabled /template/ ContentPresenter#PART_ContentPresenter">
-												<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}"/>
+												<Setter Property="TextBlock.Foreground" Value="{DynamicResource ComboBoxEditorItemForegroundDisabled}"/>
 											</Style>
 											<Style Selector="mxev|ComboBoxPopupControl[ReadOnly=True][SelectionMode=Single] ListBoxItem:selected:disabled /template/ Border#PART_BackgroundBorder">
-												<Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Enabled}"/>
+												<Setter Property="Background" Value="{DynamicResource ComboBoxEditorItemSelectedBackgroundDisabled}"/>
 											</Style>
 											<Style Selector="mxev|ComboBoxPopupControl[ReadOnly=True][SelectionMode=Multiple] CheckBox:disabled /template/ ContentPresenter#ContentPresenter">
-												<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}"/>
+												<Setter Property="TextBlock.Foreground" Value="{DynamicResource ComboBoxEditorItemForegroundDisabled}"/>
 											</Style>
 											<Style Selector="mxev|ComboBoxPopupControl[ReadOnly=True][SelectionMode=Multiple] CheckBox:disabled /template/ Border#NormalRectangle">
-												<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+												<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemCheckBoxBackgroundDisabled}" />
 											</Style>
 											<Style Selector="mxev|ComboBoxPopupControl[ReadOnly=True][SelectionMode=Multiple] CheckBox:checked:disabled /template/ Border#NormalRectangle">
-												<Setter Property="Background" Value="{DynamicResource Fill/Accent/Primary/Enabled}" />
+												<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemCheckBoxCheckedBackgroundDisabled}" />
 											</Style>
 											<Style Selector="mxev|ComboBoxPopupControl[ReadOnly=True][SelectionMode=Multiple] CheckBox:indeterminate:disabled /template/ Border#NormalRectangle">
-												<Setter Property="Background" Value="{DynamicResource Fill/Accent/Primary/Enabled}" />
+												<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemCheckBoxCheckedBackgroundDisabled}" />
 											</Style>
 											<Style Selector="CheckBox /template/ ContentPresenter#ContentPresenter">
 												<Setter Property="RecognizesAccessKey" Value="False"/>
@@ -226,10 +226,21 @@
 
 	<Style Selector="mxe|ComboBoxEditor:focus-visible /template/ TextBox#PART_RealEditor /template/ Border#PART_BorderElement">
 		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
+		<Setter Property="Background" Value="{DynamicResource ComboBoxEditorFocusedBackground}" />
 	</Style>
 	<Style Selector="mxe|ComboBoxEditor[SecondaryAppearance=true]:focus-visible /template/ TextBox#PART_RealEditor /template/ Border#PART_BorderElement">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Hover}" />
+		<Setter Property="Background" Value="{DynamicResource ComboBoxEditorSecondaryFocusedBackground}" />
 		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
-	</Style>	
+	</Style>
+
+    <Style Selector=":is(mxe|ComboBoxEditor)[IsTextEditable=False][ApplyItemTemplateToEditBox=False]:showWatermark /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer,
+           :is(mxe|ComboBoxEditor)[SelectionMode=Multiple]:showWatermark /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer">
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBoxWatermarkBrush}"/>
+    </Style>
+
+    <Style Selector=":is(mxe|ComboBoxEditor)[IsTextEditable=False][ApplyItemTemplateToEditBox=False]:showWatermark:disabled /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer,
+           :is(mxe|ComboBoxEditor)[SelectionMode=Multiple]:showWatermark:disabled /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer">
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBoxWatermarkBrushDisabled}"/>
+    </Style>
+    
 </Styles>

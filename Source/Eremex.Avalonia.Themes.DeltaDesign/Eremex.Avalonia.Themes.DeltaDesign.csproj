@@ -29,15 +29,16 @@
 		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" />
 		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.CSharp.Scripting" />
 		<PackageReference Include="Avalonia.Fonts.Inter" />
-		<PackageReference Include="Avalonia.Themes.Fluent" />
+		<PackageReference Include="DynamicData" />
 		<PackageReference Include="Avalonia.Svg.Skia" />
 		<PackageReference Include="SkiaSharp" />
 		<PackageReference Include="System.Resources.Extensions" />
-                <PackageReference Include="Eremex.Avalonia.Controls" />
+		<PackageReference Include="Eremex.Avalonia.Controls" />
 	</ItemGroup>
 	
 	<ItemGroup>
 	  <AvaloniaResource Include="**/*.axaml" />
+    <EmbeddedResource Include="Palettes\*.css" />
 	</ItemGroup>
 
 	<ItemGroup>

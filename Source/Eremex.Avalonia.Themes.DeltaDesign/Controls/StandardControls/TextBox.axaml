@@ -53,11 +53,11 @@
 	</Styles.Resources>
 
 	<Style Selector="TextBox">
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
-		<Setter Property="CaretBrush" Value="{DynamicResource Text/Neutral/Primary}" />
-		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
-		<Setter Property="SelectionBrush" Value="{DynamicResource Fill/Accent/Highlighting/Text}" />
+		<Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}" />
+		<Setter Property="Background" Value="{DynamicResource TextBoxBackground}" />
+		<Setter Property="CaretBrush" Value="{DynamicResource TextBoxCaretBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource TextBoxBorderBrush}" />
+		<Setter Property="SelectionBrush" Value="{DynamicResource TextBoxSelectionBrush}" />
 		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
 		<Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
 		<Setter Property="FontSize" Value="{StaticResource EditorFontSize}" />
@@ -100,7 +100,7 @@
 																	Height="{StaticResource ErrorIconSize}"
 																	Data="{StaticResource ErrorIcon}"
 																	x:Name="PART_ErrorIndicator"
-																	Foreground="{DynamicResource Icons/Outline/Red}"
+																	Foreground="{DynamicResource EditorsErrorIconBrush}"
 																	VerticalAlignment="Center"/>
 												<TextBlock Name="PART_Watermark" Grid.Column="1"
 																Text="{TemplateBinding Watermark}"
@@ -145,7 +145,7 @@
 	</Style>
 
 	<Style Selector="TextBox /template/ TextBlock#PART_Watermark, TextBox /template/ TextBlock#PART_FloatingWatermark">
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}" />
+		<Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrush}" />
 	</Style>
 
 	<Style Selector="TextBox /template/ ContentPresenter#PART_ReadOnlyContentContainer">
@@ -155,71 +155,71 @@
 	</Style>
 
 	<Style Selector="TextBox.secondary">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/>
+		<Setter Property="Background" Value="{DynamicResource TextBoxSecondaryBackground}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource TextBoxSecondaryBorderBrush}"/>
 	</Style>
 
 	<!-- Disabled State -->
 	<Style Selector="TextBox:disabled">
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
+		<Setter Property="Foreground" Value="{DynamicResource TextBoxForegroundDisabled}" />
 	</Style>
 
 	<Style Selector="TextBox:disabled /template/ Border#PART_BorderElement">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Disabled}" />
+		<Setter Property="Background" Value="{DynamicResource TextBoxBackgroundDisabled}" />
 		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
 	</Style>
 
 	<Style Selector="TextBox:disabled /template/ TextBlock#PART_Watermark, TextBox:disabled /template/ TextBlock#PART_FloatingWatermark">
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
+		<Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrushDisabled}" />
 	</Style>
 
 	<Style Selector="TextBox.secondary:disabled /template/ Border#PART_BorderElement">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Disabled}" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/>
+		<Setter Property="Background" Value="{DynamicResource TextBoxSecondaryBackgroundDisabled}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource TextBoxSecondaryBorderBrushDisabled}"/>
 	</Style>
 
 	<!-- PointerOver State-->
 	<Style Selector="TextBox:pointerover">
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+		<Setter Property="Foreground" Value="{DynamicResource TextBoxForegroundPointerOver}" />
 	</Style>
 
 	<Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
 		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
+		<Setter Property="Background" Value="{DynamicResource TextBoxBackgroundPointerOver}" />
 	</Style>
 
 	<Style Selector="TextBox:pointerover /template/ TextBlock#PART_Watermark, TextBox:pointerover /template/ TextBlock#PART_FloatingWatermark">
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}" />
+		<Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrush}" />
 	</Style>
 
 	<Style Selector="TextBox.secondary:pointerover /template/ Border#PART_BorderElement">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Hover}" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/>
+		<Setter Property="Background" Value="{DynamicResource TextBoxSecondaryBackgroundPointerOver}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource TextBoxSecondaryBorderBrushPointerOver}"/>
 	</Style>
 
 	<!-- Focused State -->
 	<Style Selector="TextBox:focus">
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+		<Setter Property="Foreground" Value="{DynamicResource TextBoxFocusForeground}" />
 	</Style>
 
 	<Style Selector="TextBox:focus /template/ TextBlock#PART_Watermark, TextBox:focus /template/ TextBlock#PART_FloatingWatermark">
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}" />
+		<Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrush}" />
 	</Style>
 
 	<Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"/>
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}"/>
+		<Setter Property="Background" Value="{DynamicResource TextBoxFocusBackground}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}"/>
 		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
 	</Style>
 
 	<Style Selector="TextBox.secondary:focus /template/ Border#PART_BorderElement">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}"/>
+		<Setter Property="Background" Value="{DynamicResource TextBoxSecondaryFocusBackground}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}"/>
 		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
 	</Style>
 
 	<Style Selector="TextBox:error /template/ Border#PART_BorderElement">
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Error}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource TextBoxErrorBorderBrush}"/>
 	</Style>
 
 	<Style Selector="TextBox /template/ DockPanel#PART_InnerDockPanel[IsVisible=True]">
@@ -319,7 +319,7 @@
 	<Style Selector="Button.textBoxClearButton /template/ Path#PART_GlyphElement,
                    ToggleButton.passwordBoxRevealButton /template/ Path#PART_GlyphElement_Reveal,
                    ToggleButton.passwordBoxRevealButton /template/ Path#PART_GlyphElement_Hide">
-		<Setter Property="Fill" Value="{DynamicResource Text/Neutral/Secondary}" />
+		<Setter Property="Fill" Value="{DynamicResource TextBoxTextAreaButtonForeground}" />
 	</Style>
 
 	<!-- TextBox.Button PointerOver State -->
@@ -331,7 +331,7 @@
 	<Style Selector="Button.textBoxClearButton:pointerover /template/ Path#PART_GlyphElement,
                    ToggleButton.passwordBoxRevealButton:pointerover /template/ Path#PART_GlyphElement_Reveal,
                    ToggleButton.passwordBoxRevealButton:pointerover /template/ Path#PART_GlyphElement_Hide">
-		<Setter Property="Fill" Value="{DynamicResource Text/Neutral/Primary}" />
+		<Setter Property="Fill" Value="{DynamicResource TextBoxTextAreaButtonForegroundPointerOver}" />
 	</Style>
 
 	<!-- TextBox.Button Pressed State -->
@@ -346,7 +346,7 @@
                    ToggleButton.passwordBoxRevealButton:pressed /template/ Path#PART_GlyphElement_Reveal,
                    ToggleButton.passwordBoxRevealButton:checked /template/ Path#PART_GlyphElement_Hide,
                    ToggleButton.passwordBoxRevealButton:indeterminate /template/ Path#PART_GlyphElement_Reveal">
-		<Setter Property="Fill" Value="{DynamicResource Text/Neutral/Tertiary}" />
+		<Setter Property="Fill" Value="{DynamicResource TextBoxTextAreaButtonForegroundPressed}" />
 	</Style>
 
 	<!-- TextBox.Button Disabled State -->

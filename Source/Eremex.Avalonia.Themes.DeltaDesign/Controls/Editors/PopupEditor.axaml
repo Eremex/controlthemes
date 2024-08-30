@@ -97,9 +97,12 @@
 	<Style Selector="mxe|PopupEditor, :is(mxe|ComboBoxEditor), :is(mxe|DateEditor), :is(mxe|PopupColorEditor)">
         <Setter Property="PopupMinHeight" Value="{StaticResource PopupDropDownMinHeight}" />
         <Setter Property="PopupMaxHeight" Value="{StaticResource PopupDropDownMaxHeight}" />
-				<Setter Property="PopupHorizontalOffset" Value="{DynamicResource PopupHorizontalOffset}"/>
+        <Setter Property="PopupHorizontalOffset" Value="{DynamicResource PopupHorizontalOffset}"/>
         <Setter Property="PopupBottomOffset" Value="{DynamicResource PopupBottomOffset}"/>
   </Style>
+    <Style Selector=":is(mxe|PopupEditor):no-shadow">
+        <Setter Property="PopupHorizontalOffset" Value="0"/>
+    </Style>
 	
     <Style Selector="mxe|PopupEditor:activeMode, :is(mxe|ComboBoxEditor):activeMode, :is(mxe|DateEditor):activeMode, :is(mxe|PopupColorEditor):activeMode, :is(mxe|MemoEditor):activeMode">
         <Setter Property="Template">
@@ -109,7 +112,7 @@
 			                   DockPanel.Dock="Bottom"
 			                   Text="{TemplateBinding ErrorText}"
 			                   FontSize="{StaticResource EditorErrorFontSize}"
-			                   Foreground="{DynamicResource Text/Accent/Error}"
+			                   Foreground="{DynamicResource TextEditorErrorTextForeground}"
 			                   Margin="{StaticResource ErrorTextPresenterMargin}"
 			                   TextWrapping="Wrap" />
 			        <Panel x:Name="PART_RealEditorPanel">
@@ -192,23 +195,23 @@
 				               IsOpen="{TemplateBinding IsPopupOpen, Mode=TwoWay}"
 				               MinHeight="{TemplateBinding PopupMinHeight}"
 				               MaxHeight="{TemplateBinding PopupMaxHeight}"
-				               PlacementTarget="PART_RootBorder" 
-											 Placement="BottomEdgeAlignedLeft"
+				               PlacementTarget="PART_RootBorder"
+                               Placement="BottomEdgeAlignedLeft"
 				               IsLightDismissEnabled="{Binding !StaysPopupOpen, RelativeSource={RelativeSource TemplatedParent}}">
 					        <Border x:Name="PopupBorder"
 					                BorderThickness="{StaticResource EditorBorderThickness}"
 					                BorderBrush="{DynamicResource PopupBorderBrush}"
-					                Background="{DynamicResource Fill/Neutral/Primary/Enabled}"
+					                Background="{DynamicResource PopupEditorPopupBackground}"
 					                HorizontalAlignment="Stretch"
-					                CornerRadius="{StaticResource PopupCornerRadius}"
-					                BoxShadow="{DynamicResource PopupBoxShadow}"
+                                    CornerRadius="{StaticResource PopupCornerRadius}"
+                                    BoxShadow="{DynamicResource PopupBoxShadow}"
 					                Margin="{DynamicResource PopupBoxShadowMargin}"
 					                TextElement.FontFamily="{TemplateBinding FontFamily}">
 						        <Grid RowDefinitions="Auto, *, Auto" ClipToBounds="True">
 											<Border x:Name="PART_PopupHeaderContainer" 
 											        Grid.Row="0"
 												CornerRadius="{StaticResource PopupHeaderCornerRadius}"
-															Background="{DynamicResource Fill/Neutral/Primary/Pressed}">
+															Background="{DynamicResource PopupEditorPopupHeaderBackground}">
 												
 											</Border>
 							        <ContentControl x:Name="PART_PopupHeader"
@@ -219,7 +222,7 @@
 							        <ContentPresenter Grid.Row="1" x:Name="PART_PopupContent" />
 											<Border x:Name="PART_PopupFooterContainer" CornerRadius="{StaticResource PopupFooterCornerRadius}" 
 															Grid.Row="2"
-															Background="{DynamicResource Fill/Neutral/Primary/Pressed}">
+															Background="{DynamicResource PopupEditorPopupFooterBackground}">
 												
 											</Border>
 							        <ContentControl x:Name="PART_PopupFooter"
@@ -235,6 +238,15 @@
 		        </DockPanel>
 	        </ControlTemplate>
         </Setter>
+    </Style>
+
+    <Style Selector=":is(mxe|PopupEditor):activeMode:no-shadow/template/common|ResizeablePopup Border#PopupBorder">
+        <Setter Property="BoxShadow">
+            <BoxShadows>none</BoxShadows>
+        </Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource PopupBorderBrush/NoShadow}" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="CornerRadius" Value="0" />
     </Style>
 
     <Style Selector=":is(mxe|PopupEditor):not(mxe|PopupColorEditor)">

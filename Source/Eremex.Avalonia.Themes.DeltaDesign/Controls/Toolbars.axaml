@@ -324,6 +324,10 @@
         <Setter Property="CornerRadius" Value="{StaticResource ToolbarCornerRadiusBottom}" />
         <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/On Tertiary/Strong}" />
     </Style>
+    <Style Selector="mxti|ToolbarFloatingWindowClientControl:no-shadow/template/Border#PART_ContentBorder">
+        <Setter Property="BorderThickness" Value="{DynamicResource ToolbarFloatingWindowClientControlBorderThickness/NoShadow}" />
+        <Setter Property="CornerRadius" Value="0" />
+    </Style>
 
     <Style Selector="mxti|ToolbarFloatingWindowClientControl/template/ContentControl#PART_CaptionArea">
         <Setter Property="Template">
@@ -332,12 +336,17 @@
                     <Border BorderThickness="{DynamicResource ToolbarFloatingWindowClientControlCaptionThickness}"
                             CornerRadius="{StaticResource ToolbarCornerRadiusTop}"
                             BorderBrush="{DynamicResource Outline/Neutral/On Tertiary/Strong}"
-                            Background="{DynamicResource Fill/Neutral/Primary/Hover}">
+                            Background="{DynamicResource Fill/Neutral/Primary/Hover}"
+                            x:Name="PART_CaptionBorder">
                         <ContentPresenter Content="{TemplateBinding Content}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    <Style Selector="mxti|ToolbarFloatingWindowClientControl:no-shadow/template/ContentControl#PART_CaptionArea/template/Border#PART_CaptionBorder">
+        <Setter Property="CornerRadius" Value="0"></Setter>
+        <Setter Property="BorderThickness" Value="{DynamicResource ToolbarFloatingWindowClientControlCaptionThickness/NoShadow}"></Setter>
     </Style>
 
     <Style Selector="mxti|PopupMenuHeaderControl/template/Border#PART_Border">
@@ -351,8 +360,10 @@
     <Style Selector="mxt|ToolbarSeparatorItem">
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Width="1" Margin="{StaticResource ToolbarSeparatorMarginHorizontal}" HorizontalAlignment="Left"
-                        VerticalAlignment="Stretch" Background="{DynamicResource Outline/Neutral/Transparent/Strong}" />
+                <Border Background="Transparent">
+                    <Border Width="1" Margin="{StaticResource ToolbarSeparatorMarginHorizontal}" HorizontalAlignment="Left"
+                            VerticalAlignment="Stretch" Background="{DynamicResource Outline/Neutral/Transparent/Strong}" />
+                </Border>
             </ControlTemplate>
         </Setter>
     </Style>
@@ -360,9 +371,11 @@
     <Style Selector="mxt|ToolbarSeparatorItem.DockLeft">
         <Setter Property="Template">
             <ControlTemplate>
+            <Border Background="Transparent">
                 <Border Height="1" Margin="{StaticResource ToolbarSeparatorMarginVertical}"
                         HorizontalAlignment="Stretch" VerticalAlignment="Top"
                         Background="{DynamicResource Outline/Neutral/Transparent/Strong}" />
+                </Border>
             </ControlTemplate>
         </Setter>
     </Style>
@@ -370,9 +383,11 @@
     <Style Selector="mxt|ToolbarSeparatorItem.DockRight">
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Height="1" Margin="{StaticResource ToolbarSeparatorMarginVertical}"
-                        HorizontalAlignment="Stretch" VerticalAlignment="Top"
-                        Background="{DynamicResource Outline/Neutral/Transparent/Strong}" />
+                <Border Background="Transparent">
+                    <Border Height="1" Margin="{StaticResource ToolbarSeparatorMarginVertical}"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                            Background="{DynamicResource Outline/Neutral/Transparent/Strong}" />
+                </Border>
             </ControlTemplate>
         </Setter>
     </Style>
@@ -380,9 +395,11 @@
     <Style Selector="mxt|ToolbarSeparatorItem:menu,mxt|ToolbarSeparatorItem.InMenu">
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Height="1" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                <Border Background="Transparent">
+                    <Border Height="1" HorizontalAlignment="Stretch" VerticalAlignment="Top"
                         Margin="{StaticResource ToolbarSeparatorMarginInMenu}"
                         Background="{DynamicResource Outline/Neutral/Transparent/Strong}" />
+                </Border>
             </ControlTemplate>
         </Setter>
     </Style>
@@ -1038,28 +1055,18 @@
     <!-- End -->
 
     <Style Selector="mxti|ToolbarItemGlyphDecorator">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template" Value="{DynamicResource MxToolbarItemGlyphDecoratorTemplate}" />
+    </Style>
+    
+    <Style Selector="mxti|ToolbarItemGlyphDecorator:checked">
         <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Tertiary}" />
         <Setter Property="Template" Value="{DynamicResource MxToolbarItemGlyphDecoratorTemplate}" />
     </Style>
 
-    <Style Selector="mxti|ToolbarItemGlyphDecorator:disabled">
+    <Style Selector="mxti|ToolbarItemGlyphDecorator:checked:disabled">
         <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Tertiary}" />
         <Setter Property="Template" Value="{DynamicResource MxToolbarItemGlyphDecoratorTemplate}" />
-    </Style>
-
-    <Style Selector="mxt|ToolbarContainerControl.Context">
-        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
-    </Style>
-
-    <Style Selector="mxt|ToolbarContainerControl:standalone/template/Border#ToolbarContainerBorder">
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Padding" Value="{StaticResource ToolbarContainerPadding}" />
-        <Setter Property="CornerRadius" Value="{StaticResource ToolbarCornerRadius}" />
-        <Setter Property="Background" Value="{TemplateBinding Background}" />
-        <Setter Property="BorderBrush" Value="{TemplateBinding BorderBrush}" />
     </Style>
 
     <Style Selector="mxti|ToolbarItemDragControl/template/Border#PART_Border">
@@ -1470,65 +1477,16 @@
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Background" Value="{TemplateBinding Background}" />
         <Setter Property="BorderBrush" Value="{TemplateBinding BorderBrush}" />
-        <Setter Property="BorderThickness" Value="{StaticResource ToolbarContainerBorderThicknessBottom}" />
-        <Setter Property="Padding" Value="{StaticResource ToolbarContainerPaddingTop}" />
-    </Style>
-
-    <Style Selector="mxt|ToolbarContainerControl:floating/template/Border#ToolbarContainerBorder">
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="Background" Value="{TemplateBinding Background}" />
-        <Setter Property="BorderThickness" Value="0,0,0,0" />
-        <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="Padding" Value="{StaticResource ToolbarContainerPaddingFloating}" />
-        <Setter Property="CornerRadius" Value="{StaticResource ToolbarCornerRadiusBottom}" />
-    </Style>
-
-    <Style Selector="mxt|ToolbarContainerControl:bottom/template/Border#ToolbarContainerBorder">
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="Background" Value="{TemplateBinding Background}" />
-        <Setter Property="BorderBrush" Value="{TemplateBinding BorderBrush}" />
-        <Setter Property="BorderThickness" Value="{StaticResource ToolbarContainerBorderThicknessTop}" />
-        <Setter Property="Padding" Value="{StaticResource ToolbarContainerPaddingBottom}" />
-    </Style>
-
-    <Style Selector="mxt|ToolbarContainerControl:left/template/Border#ToolbarContainerBorder">
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="Background" Value="{TemplateBinding Background}" />
-        <Setter Property="BorderBrush" Value="{TemplateBinding BorderBrush}" />
-        <Setter Property="BorderThickness" Value="{StaticResource ToolbarContainerBorderThicknessRight}" />
-        <Setter Property="Padding" Value="{StaticResource ToolbarContainerPaddingLeft}" />
-    </Style>
-
-    <Style Selector="mxt|ToolbarContainerControl:right/template/Border#ToolbarContainerBorder">
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="BorderThickness" Value="{StaticResource ToolbarContainerBorderThicknessLeft}" />
-        <Setter Property="Padding" Value="{StaticResource ToolbarContainerPaddingRight}" />
-        <Setter Property="Background" Value="{TemplateBinding Background}" />
-        <Setter Property="BorderBrush" Value="{TemplateBinding BorderBrush}" />
-    </Style>
-
-    <Style Selector="mxt|ToolbarContainerControl:empty/template/Border#ToolbarContainerBorder">
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="BorderThickness" Value="0,0,0,0" />
-        <Setter Property="Padding" Value="0, 0, 0, 0" />
-        <Setter Property="Background" Value="{TemplateBinding Background}" />
-        <Setter Property="BorderBrush" Value="{TemplateBinding BorderBrush}" />
-    </Style>
-
-    <Style Selector="mxt|ToolbarContainerControl:noborder/template/Border#ToolbarContainerBorder">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="{TemplateBinding BorderThickness}"/>
+        <Setter Property="CornerRadius" Value="{TemplateBinding CornerRadius}"/>
+        <Setter Property="Padding" Value="{TemplateBinding Padding}"/>
     </Style>
 
     <Style Selector="mxt|ToolbarContainerControl">
         <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
         <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/On Primary/Medium}" />
+        <Setter Property="BorderThickness" Value="{StaticResource ToolbarContainerBorderThicknessBottom}" />
+        <Setter Property="Padding" Value="{StaticResource ToolbarContainerPaddingTop}" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border x:Name="ToolbarContainerBorder">
@@ -1543,23 +1501,52 @@
         </Setter>
     </Style>
 
-    <Style Selector="mxt|ToolbarContainerControl:floating">
+    <Style Selector="mxt|ToolbarContainerControl:left">
+        <Setter Property="BorderThickness" Value="{StaticResource ToolbarContainerBorderThicknessRight}" />
+        <Setter Property="Padding" Value="{StaticResource ToolbarContainerPaddingLeft}" />
+    </Style>
+    
+    <Style Selector="mxt|ToolbarContainerControl:right">
+        <Setter Property="BorderThickness" Value="{StaticResource ToolbarContainerBorderThicknessLeft}" />
+        <Setter Property="Padding" Value="{StaticResource ToolbarContainerPaddingRight}" />
+    </Style>
+    
+    <Style Selector="mxt|ToolbarContainerControl:bottom">
+        <Setter Property="BorderThickness" Value="{StaticResource ToolbarContainerBorderThicknessTop}" />
+        <Setter Property="Padding" Value="{StaticResource ToolbarContainerPaddingBottom}" />
+    </Style>
+
+    <Style Selector="mxt|ToolbarContainerControl:empty">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+    
+    <Style Selector="mxt|ToolbarContainerControl:noborder">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    
+    <Style Selector="mxt|ToolbarContainerControl.Context">
         <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/On Primary/Medium}" />
-        <Setter Property="Template">
-            <ControlTemplate>
-                <Border x:Name="ToolbarContainerBorder">
-                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
-                </Border>
-            </ControlTemplate>
-        </Setter>
-        <Setter Property="ItemsPanel">
-            <ItemsPanelTemplate>
-                <mxt:ToolbarContainerLayoutPanel />
-            </ItemsPanelTemplate>
-        </Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
     </Style>
 
+    <Style Selector="mxt|ToolbarContainerControl:standalone">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="{StaticResource ToolbarContainerPadding}" />
+        <Setter Property="CornerRadius" Value="{StaticResource ToolbarCornerRadius}" />
+    </Style>
+    
+    <Style Selector="mxt|ToolbarContainerControl:floating">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="{StaticResource ToolbarContainerPaddingFloating}" />
+        <Setter Property="CornerRadius" Value="{StaticResource ToolbarCornerRadiusBottom}" />
+    </Style>
+
+    <Style Selector="mxt|ToolbarContainerControl:floating:not(:no-shadow)">
+        <Setter Property="CornerRadius" Value="{StaticResource ToolbarCornerRadiusBottom}" />
+    </Style>
+    
     <Style Selector="mxt|ToolbarControlDragThumb">
         <Setter Property="Template" Value="{DynamicResource MxToolbarDragThumbTemplate}" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -1964,6 +1951,10 @@
         <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
         <Setter Property="CornerRadius" Value="{StaticResource ToolbarOuterCornerRadius}" />
     </Style>
+    <Style Selector="mxt|PopupMenu:no-shadow/template/Border#PART_Border">
+        <Setter Property="BorderThickness" Value="{DynamicResource MxPopupMenuBorderThickness/NoShadow}" />
+        <Setter Property="CornerRadius" Value="0" />
+    </Style>
 
     <Style Selector="mxt|PopupMenu/template/controls|ShadowControl#PART_PopupShadow">
         <Setter Property="CornerRadius" Value="{StaticResource ToolbarCornerRadius}" />
@@ -2005,9 +1996,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
     </Style>
-
+    <Style Selector="mxt|PopupMenu:no-shadow">
+        <Setter Property="ShadowOffset" Value="0, 0" />
+    </Style>
     <Style Selector="mxt|PopupContainer/template/controls|ShadowControl#PART_PopupShadow">
         <Setter Property="CornerRadius" Value="{StaticResource ToolbarCornerRadius}" />
     </Style>
@@ -2053,23 +2045,43 @@
             <Setter.Value>
                 <ControlTemplate>
                     <controls:ShadowControl x:Name="PART_PopupShadow">
-                        <Grid x:Name="PART_PopupInnerBorder">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <ContentPresenter Content="{TemplateBinding Child}" Grid.Row="1" />
-                            <Button x:Name="PART_CloseButton" Grid.Row="2" HorizontalAlignment="Left" />
-                            <internal:PopupContainerSizeGrip x:Name="PART_SizeGrip" Grid.Row="2"
-                                                             HorizontalAlignment="Right" />
-                        </Grid>
+                        <Border x:Name="PART_Border">
+                            <Grid x:Name="PART_PopupInnerBorder">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <ContentPresenter Content="{TemplateBinding Child}" Grid.Row="1" />
+                                <Button x:Name="PART_CloseButton" Grid.Row="2" HorizontalAlignment="Left" />
+                                <internal:PopupContainerSizeGrip x:Name="PART_SizeGrip" Grid.Row="2" HorizontalAlignment="Right" />
+                            </Grid>
+                        </Border>
                     </controls:ShadowControl>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
+    <Style Selector="mxt|PopupContainer/template/Border#PART_Border">
+        <Setter Property="BorderThickness" Value="{DynamicResource MxPopupMenuBorderThickness}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Strong}" />
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+    </Style>
+    
+    <Style Selector="mxt|PopupContainer:not(:no-shadow)/template/Border#PART_Border">
+        <Setter Property="CornerRadius" Value="{StaticResource ToolbarOuterCornerRadius}" />
+    </Style>
+
+    <Style Selector="mxt|PopupContainer:no-shadow">
+        <Setter Property="ShadowOffset" Value="0,0" />
+        <Setter Property="ShadowMargin" Value="0"></Setter>
+    </Style>
+    
+    <Style Selector="mxt|PopupContainer:no-shadow/template/Border#PART_Border">
+        <Setter Property="BorderThickness" Value="{DynamicResource PopupContainerBorderThickness/NoShadow}"></Setter>
+    </Style>
+    
     <Style Selector="TextBlock.ToolbarItemToolTipTitle">
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="TextWrapping" Value="Wrap" />

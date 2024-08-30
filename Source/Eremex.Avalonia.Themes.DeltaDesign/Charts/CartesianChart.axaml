@@ -16,6 +16,7 @@
 		<Setter Property="Background" Value="{StaticResource Fill/Chart/DrawingArea}" />
 		<Setter Property="BorderBrush" Value="{StaticResource Border/Chart/DrawingArea}" />
 		<Setter Property="BorderThickness" Value="{StaticResource DrawingAreaBorderThickness}" />
+        <Setter Property="SelectionColor" Value="{DynamicResource Selection/Color}" />
 	</Style>
 
 	<!-- CartesianChart -->
@@ -36,7 +37,7 @@
 	                Padding="{TemplateBinding Padding}">
 		        <Panel>
 			        <native:CartesianDrawingAreaContainer DataContext="{TemplateBinding ViewData}" />
-			        <native:DrawingAreaContainer DataContext="{TemplateBinding CrosshairViewData}" />
+			        <native:DrawingAreaContainer DataContext="{TemplateBinding OverlayViewData}" />
 		        </Panel>
 	        </Border>
 	      </ControlTemplate>

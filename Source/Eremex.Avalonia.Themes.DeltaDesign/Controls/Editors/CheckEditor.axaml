@@ -63,7 +63,7 @@
 													 DockPanel.Dock="Bottom"
 													 Text="{TemplateBinding ErrorText}"
 													 FontSize="{StaticResource EditorErrorFontSize}"
-													 Foreground="{DynamicResource Text/Accent/Error}"
+													 Foreground="{DynamicResource TextEditorErrorTextForeground}"
 													 Margin="{StaticResource ErrorTextPresenterMargin}"
 													 TextWrapping="Wrap"/>
                 <Panel x:Name="PART_RealEditorPanel">

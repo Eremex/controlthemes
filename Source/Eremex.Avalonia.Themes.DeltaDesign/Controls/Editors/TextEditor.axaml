@@ -43,15 +43,15 @@
 												<Border.Background>
 													<MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
 														<Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/> 
-														<DynamicResourceExtension ResourceKey="Fill/Neutral/Secondary/Enabled"/>
-														<DynamicResourceExtension ResourceKey="Fill/Neutral/Primary/Enabled"/>
+														<DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBackground"/>
+														<DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBackground"/>
 													</MultiBinding>
 												</Border.Background>
 												<Border.BorderBrush>
 													<MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
 														<Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
-														<DynamicResourceExtension ResourceKey="TransparentBrush"/>
-														<DynamicResourceExtension ResourceKey="Outline/Neutral/Transparent/Light"/>
+														<DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBorderBrush"/>
+														<DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBorderBrush"/>
 													</MultiBinding>
 												</Border.BorderBrush>
 											</Border>
@@ -69,7 +69,7 @@
 													 DockPanel.Dock="Bottom"
 													 Text="{TemplateBinding ErrorText}" 
 													 FontSize="{StaticResource EditorErrorFontSize}"
-													 Foreground="{DynamicResource Text/Accent/Error}"
+													 Foreground="{DynamicResource TextEditorErrorTextForeground}"
 													 Margin="{StaticResource ErrorTextPresenterMargin}"
 													 TextWrapping="Wrap"/>
                 <Panel x:Name="PART_RealEditorPanel">

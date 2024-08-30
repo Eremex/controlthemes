@@ -25,9 +25,9 @@
 		<Thickness x:Key="AccentButtonBackgroundFocusedMargin">2</Thickness>
 	</Styles.Resources>
 	<Style Selector="Button, RepeatButton">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
-		<Setter Property="Foreground" Value="{DynamicResource Text/Accent/Primary}" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonBackground}" />
+		<Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrush}" />
 		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
 		<Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
 		<Setter Property="Padding" Value="{DynamicResource ButtonPadding}" />
@@ -65,7 +65,7 @@
 
 	<Style Selector="Button /template/ ContentPresenter#PART_ContentPresenter, 
 					 RepeatButton /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Accent/Primary}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonForeground}" />
 	</Style>
 
 	<!-- PointerOver, Focused State -->
@@ -73,57 +73,57 @@
 					 Button:focus /template/ Border#PART_BackgroundBorder,
 					 RepeatButton:pointerover /template/ Border#PART_BackgroundBorder,		 
 					 RepeatButton:focus /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonBackgroundPointerOver}" />
 	</Style>
 	<Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter,
 					 				Button:focus /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton:pointerover /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton:focus /template/ ContentPresenter#PART_ContentPresenter">
 		<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Accent/Primary}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonForegroundPointerOver}" />
 	</Style>
 	<Style Selector="Button:pointerover /template/ Border#PART_ButtonBorder,
 					 RepeatButton:pointerover /template/ Border#PART_ButtonBorder">
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrushPointerOver}" />
 	</Style>
 
 	<!-- Pressed State -->
 	<Style Selector="Button:pressed /template/ Border#PART_BackgroundBorder,
 					 RepeatButton:pressed /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Pressed}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonBackgroundPressed}" />
 	</Style>
 	<Style Selector="Button:pressed  /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton:pressed  /template/ ContentPresenter#PART_ContentPresenter">
 		<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Accent/Primary}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonForegroundPressed}" />
 		<Setter Property="Opacity" Value="0.8"/>
 	</Style>
 
 	<!-- Disabled State -->
 	<Style Selector="Button:disabled /template/ Border#PART_BackgroundBorder,
 					 RepeatButton:disabled /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Disabled}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonBackgroundDisabled}" />
 	</Style>
 	<Style Selector="Button:disabled /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton:disabled /template/ ContentPresenter#PART_ContentPresenter">
 		<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonForegroundDisabled}" />
 	</Style>
 
 	<!-- Accent State -->
 
 	<Style Selector="Button.accent /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.accent /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Accent/Primary/Enabled}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonAccentBackground}" />
 	</Style>
 	<Style Selector="Button.accent /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.accent /template/ ContentPresenter#PART_ContentPresenter">
 		<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/On Accent/Primary}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonAccentForeground}" />
 	</Style>
 	<Style Selector="Button.accent /template/ Border#PART_ButtonBorder,
 					 RepeatButton.accent /template/ Border#PART_ButtonBorder">
-		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ButtonAccentBorderBrush}" />
 	</Style>
 
 	<!-- Accent PointerOver, Focused State -->
@@ -131,48 +131,48 @@
 					 Button.accent:focus /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.accent:pointerover /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.accent:focus /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Accent/Primary/Hover}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonAccentBackgroundPointerOver}" />
 	</Style>
 	<Style Selector="Button.accent:pointerover /template/ ContentPresenter#PART_ContentPresenter,
 					 Button.accent:focus /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.accent:pointerover /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.accent:focus /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/On Accent/Primary}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonAccentForegroundPointerOver}" />
 	</Style>
 
 	<!-- Accent PressedState -->
 	<Style Selector="Button.accent:pressed /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.accent:pressed /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Accent/Primary/Pressed}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonAccentBackgroundPressed}" />
 	</Style>
 	<Style Selector="Button.accent:pressed  /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.accent:pressed  /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/On Accent/Primary}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonAccentForegroundPressed}" />
 	</Style>
 
 	<!-- Accent DisabledState -->
 	<Style Selector="Button.accent:disabled /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.accent:disabled /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Accent/Primary/Disabled}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonAccentBackgroundDisabled}" />
 	</Style>
 	<Style Selector="Button.accent:disabled /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.accent:disabled /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/On Accent/Primary}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonAccentForegroundDisabled}" />
 	</Style>
 
 	<!-- Warning State -->
 	<Style Selector="Button.warning /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.warning /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonWarningBackground}" />
 	</Style>
 	<Style Selector="Button.warning /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.warning /template/ ContentPresenter#PART_ContentPresenter">
 		<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Accent/Error}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonWarningForeground}" />
 	</Style>
 	<Style Selector="Button.warning /template/ Border#PART_ButtonBorder,
 					 RepeatButton.warning /template/ Border#PART_ButtonBorder">
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ButtonWarningBorderBrush}" />
 	</Style>
 
 	<!-- Warning PointerOver, Focused State -->
@@ -180,48 +180,48 @@
 					 Button.warning:focus /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.warning:pointerover /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.warning:focus /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonWarningBackgroundPointerOver}" />
 	</Style>
 	<Style Selector="Button.warning:pointerover /template/ ContentPresenter#PART_ContentPresenter,
 					 Button.warning:focus /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.warning:pointerover /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.warning:focus /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Accent/Error}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonWarningForegroundPointerOver}" />
 	</Style>
 
 	<!-- Warning PressedState -->
 	<Style Selector="Button.warning:pressed /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.warning:pressed /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Pressed}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonWarningBackgroundPressed}" />
 	</Style>
 	<Style Selector="Button.warning:pressed  /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.warning:pressed  /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Accent/Error}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonWarningForegroundPressed}" />
 	</Style>
 
 	<!-- Warning DisabledState -->
 	<Style Selector="Button.warning:disabled /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.warning:disabled /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Disabled}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonWarningBackgroundDisabled}" />
 	</Style>
 	<Style Selector="Button.warning:disabled /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.warning:disabled /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonWarningForegroundDisabled}" />
 	</Style>
 
 	<!-- WarningAccent State -->
 	<Style Selector="Button.warning.accent /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.warning.accent /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Accent/Error/Enabled}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonWarningAccentBackground}" />
 	</Style>
 	<Style Selector="Button.warning.accent /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.warning.accent /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/On Accent/Primary}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonWarningAccentForeground}" />
 	</Style>
 
 	<Style Selector="Button.warning.accent /template/ Border#PART_ButtonBorder,
 					 RepeatButton.warning.accent /template/ Border#PART_ButtonBorder">
-		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ButtonWarningAccentBorderBrush}" />
 	</Style>
 
 	<!-- WarningAccent PointerOver, Focused State -->
@@ -229,39 +229,39 @@
 					 Button.warning.accent:focus /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.warning.accent:pointerover /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.warning.accent:focus /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Accent/Error/Hover}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonWarningAccentBackgroundPointerOver}" />
 	</Style>
 	<Style Selector="Button.warning.accent:pointerover /template/ ContentPresenter#PART_ContentPresenter,
 					 Button.warning.accent:focus /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.warning.accent:pointerover /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.warning.accent:focus /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/On Accent/Primary}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonWarningAccentForegroundPointerOver}" />
 	</Style>
 	
 	<!-- WarningAccent PressedState -->
 	<Style Selector="Button.warning.accent:pressed /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.warning.accent:pressed /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Accent/Error/Pressed}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonWarningAccentBackgroundPressed}" />
 	</Style>
 	<Style Selector="Button.warning.accent:pressed  /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.warning.accent:pressed  /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/On Accent/Primary}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonWarningAccentForegroundPressed}" />
 	</Style>
 
 	<!-- WarningAccent DisabledState -->
 	<Style Selector="Button.warning.accent:disabled /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.warning.accent:disabled /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Accent/Primary/Disabled}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonWarningAccentBackgroundDisabled}" />
 	</Style>
 	<Style Selector="Button.warning.accent:disabled /template/ ContentPresenter#PART_ContentPresenter,
 					 RepeatButton.warning.accent:disabled /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/On Accent/Primary}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonWarningAccentForegroundDisabled}" />
 	</Style>
 
 	<!--Secondary state-->
 	<Style Selector="Button.secondary /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.secondary /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonSecondaryBackground}" />
 	</Style>
 
 	<!--Secondary PointerOver, KeyboardFocused state-->
@@ -269,25 +269,25 @@
 					 Button.secondary:focus /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.secondary:pointerover /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.secondary:focus /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Hover}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonSecondaryBackgroundPointerOver}" />
 	</Style>
 
 	<!--Secondary Pressed state-->
 	<Style Selector="Button.secondary:pressed /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.secondary:pressed /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Pressed}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonSecondaryBackgroundPressed}" />
 	</Style>
 
 	<!--Secondary Disabled state-->
 	<Style Selector="Button.secondary:disabled /template/ Border#PART_BackgroundBorder,
 					 RepeatButton.secondary:disabled /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Disabled}" />
+		<Setter Property="Background" Value="{DynamicResource ButtonSecondaryBackgroundDisabled}" />
 	</Style>
 
 	<!--Focus Border-->
 	<Style Selector="Button:focus /template/ Border#PART_ButtonBorder,
 					 RepeatButton:focus /template/ Border#PART_ButtonBorder">
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ButtonFocusBorderBrush}" />
 		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}"/>
 	</Style>
 

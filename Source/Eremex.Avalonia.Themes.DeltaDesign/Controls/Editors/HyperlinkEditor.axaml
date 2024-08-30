@@ -13,7 +13,7 @@
     </Design.PreviewWith>
 
     <Style Selector="mxe|HyperlinkEditor">
-        <Setter Property="Foreground" Value="{DynamicResource Text/Accent/Primary}" />
+        <Setter Property="Foreground" Value="{DynamicResource HyperlinkEditorForeground}" />
 			  <Setter Property="Focusable" Value="False"/>
         <Setter Property="FocusAdorner" Value="{x:Null}"/>
         <Setter Property="Template">
@@ -38,7 +38,7 @@
     </Style>
 
 	<Style Selector="mxe|HyperlinkEditor:activeMode">
-		<Setter Property="Foreground" Value="{DynamicResource Text/Accent/Primary}" />
+		<Setter Property="Foreground" Value="{DynamicResource HyperlinkEditorForeground}" />
 		<Setter Property="BorderThickness" Value="0"/>
 	</Style>	
 	<Style Selector="mxe|HyperlinkEditor[ReadOnly=false]:activeMode">

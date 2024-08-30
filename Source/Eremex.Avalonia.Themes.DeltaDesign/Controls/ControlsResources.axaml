@@ -1,9 +1,12 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
-				xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
+		xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
         xmlns:media="clr-namespace:Avalonia.Media;assembly=Avalonia.Visuals">
-	
+
+    <FontFamily x:Key="ContentControlThemeFontFamily">fonts:Inter#Inter, $Default</FontFamily>
+    <x:Double x:Key="ControlContentThemeFontSize">12</x:Double>
+
 	<mxev:SplitterThicknessConverter x:Key="EditorSplitterConverter"/>
 	<mxev:SplitterThicknessConverter Factor="0.5" x:Key="ErrorIconSplitterThicknessConverter"/>
 
@@ -13,9 +16,11 @@
 
 	<StreamGeometry x:Key="ChevronRightIcon">M0.313073 0.146447C0.508335 -0.0488155 0.824917 -0.0488155 1.02018 0.146447L5.52018 4.64645C5.71544 4.84171 5.71544 5.15829 5.52018 5.35355L1.02018 9.85355C0.824917 10.0488 0.508335 10.0488 0.313073 9.85355C0.11781 9.65829 0.11781 9.34171 0.313073 9.14645L4.45952 5L0.313073 0.853553C0.11781 0.658291 0.11781 0.341709 0.313073 0.146447Z</StreamGeometry>
 	<StreamGeometry x:Key="ChevronLeftIcon">M5.3535555 0.14644688c-0.195262 -0.1952625 -0.511843 -0.1952625 -0.7071031 0L0.14645249 4.6464499c-0.19527 0.19526 -0.19527 0.51184 0 0.7071 l 4.49999991 4.5c0.1952601 0.1952501 0.5118411 0.1952501 0.7071031 0 0.195263 -0.19526 0.195263 -0.51184 0 -0.7071l-4.146443 -4.14645 4.146443 -4.14644702c0.195263 -0.195262 0.195263 -0.511844 0 -0.707106Z</StreamGeometry>
+    <StreamGeometry x:Key="ExpanderChevronUpIcon">M9.85355 5.35355C10.0488 5.15829 10.0488 4.84171 9.85355 4.64645L5.35355 0.146447C5.15829 -0.0488156 4.84171 -0.0488156 4.64645 0.146447L0.146446 4.64645C-0.0488155 4.84171 -0.0488155 5.15829 0.146446 5.35355C0.341709 5.54882 0.658291 5.54882 0.853554 5.35355L5 1.20711L9.14645 5.35355C9.34171 5.54882 9.65829 5.54882 9.85355 5.35355Z</StreamGeometry>
+    <StreamGeometry x:Key="ExpanderChevronDownIcon">M9.85355 0.646447C10.0488 0.841709 10.0488 1.15829 9.85355 1.35355L5.35355 5.85355C5.15829 6.04882 4.84171 6.04882 4.64645 5.85355L0.146446 1.35355C-0.0488158 1.15829 -0.0488157 0.841708 0.146446 0.646446C0.341709 0.451184 0.658291 0.451184 0.853554 0.646446L5 4.79289L9.14645 0.646447C9.34171 0.451184 9.65829 0.451184 9.85355 0.646447Z</StreamGeometry>
 
 	<StreamGeometry x:Key="CheckBoxCheckIcon">M9.70636 0.154788C10.0351 0.406808 10.0973 0.877594 9.84524 1.20632L4.09524 8.70632C3.95426 8.8902 3.7362 8.9986 3.50449 8.99998C3.27278 9.00136 3.05345 8.89556 2.91029 8.71336L0.160293 5.21336C-0.0956169 4.88765 -0.0390379 4.41616 0.286666 4.16025C0.61237 3.90434 1.08386 3.96092 1.33977 4.28663L3.49276 7.0268L8.65483 0.293669C8.90685 -0.0350537 9.37763 -0.097233 9.70636 0.154788Z</StreamGeometry>
-	<StreamGeometry x:Key="CheckBoxIndeterminateIcon">M0.5 0.25h7s0.5 0 0.5 0.5v0.5s0 0.5 -0.5 0.5h-7s-0.5 0 -0.5 -0.5v-0.5s0 -0.5 0.5 -0.5</StreamGeometry>
+    <RectangleGeometry x:Key="CheckBoxIndeterminateIcon" Rect="0,0,6,6" RadiusX="0.5" RadiusY="0.5"/>
 
 	<StreamGeometry x:Key="ErrorIcon">M7.15302 2C6.54447 2 6.07701 2.53899 6.16307 3.14142L6.87736 8.14142C6.94773 8.63407 7.36966 9 7.86731 9H8.13271C8.63036 9 9.05229 8.63407 9.12266 8.14142L9.83695 3.14142C9.92301 2.53899 9.45555 2 8.847 2H7.15302Z M8.00001 11C7.17158 11 6.50001 11.6716 6.50001 12.5C6.50001 13.3284 7.17158 14 8.00001 14C8.82844 14 9.50001 13.3284 9.50001 12.5C9.50001 11.6716 8.82844 11 8.00001 11Z</StreamGeometry>
 	<StreamGeometry x:Key="SpinEditorUpDownIcon">
@@ -36,6 +41,8 @@
 	<Thickness x:Key="ErrorTextPresenterMargin">4,4,4,4</Thickness>
 	<x:Double x:Key="ErrorIconSize">12</x:Double>
 
+    <Thickness x:Key="EditorIconButtonPadding">6,4</Thickness>
+
 	<CornerRadius x:Key="PopupCornerRadius">8</CornerRadius>
 	<CornerRadius x:Key="PopupHeaderCornerRadius">8,8,0,0</CornerRadius>
 	<CornerRadius x:Key="PopupFooterCornerRadius">0,0,8,8</CornerRadius>
@@ -43,11 +50,41 @@
 	<Thickness x:Key="CheckEditorPadding">8,0,8,0</Thickness>
 	<CornerRadius x:Key="CheckEditorGlyphCornerRadius">3</CornerRadius>
 
+    <Thickness x:Key="ToggleSwitchPadding">6,0,0,0</Thickness>
+    <Thickness x:Key="ToggleSwitchTopHeaderMargin">0,0,0,6</Thickness>
+    <x:Double x:Key="ToggleSwitchThemeMinWidth">30</x:Double>
+    <CornerRadius x:Key="ToggleSwitchSelectorCornerRadius">40</CornerRadius>
+    <x:Double x:Key="ToggleSwitchSelectorWidth">26</x:Double>
+    <x:Double x:Key="ToggleSwitchSelectorHeight">16</x:Double>
+    <x:Double x:Key="ToggleSwitchKnobsContainerWidth">12</x:Double>
+    <x:Double x:Key="ToggleSwitchKnobSize">10</x:Double>
+    <Thickness x:Key="ToggleSwitchKnobCanvasMargin">2,0,0,0</Thickness>
+
 	<Thickness x:Key="RadioButtonPadding">6,0,0,0</Thickness>
 	<x:Double x:Key="RadioButtonEllipseBorderThickness">1</x:Double>
 	<x:Double x:Key="SliderThumbSize">22</x:Double>
 
-	<Thickness x:Key="ListBoxPadding">0,0,2,2</Thickness>
+    <x:Double x:Key="PathIconHeight">20</x:Double>
+
+    <x:Double x:Key="ExpanderChevronButtonSize">28</x:Double>
+    <Thickness x:Key="ExpanderChevronButtonMargin">0,0,6,0</Thickness>
+    <Thickness x:Key="ExpanderHeaderPadding">0,0,6,0</Thickness>
+    <Thickness x:Key="ExpanderContentPadding">6</Thickness>
+    <x:Double x:Key="ExpanderMinHeight">28</x:Double>
+    <x:Double x:Key="ExpanderMinWidth">100</x:Double>
+    <Thickness x:Key="ExpanderHeaderBorderThickness">0</Thickness>
+
+    <x:Double x:Key="ScrollBarButtonArrowIconFontSize">8</x:Double>
+    <Thickness x:Key="MenuItemChevronMargin">6,0,0,0</Thickness>
+    <x:Double x:Key="MenuFlyoutThemeMinHeight">26</x:Double>
+    <x:Double x:Key="FlyoutThemeMaxWidth">456</x:Double>
+    <Thickness x:Key="MenuFlyoutPresenterBorderThemeThickness">1</Thickness>
+    <Thickness x:Key="MenuFlyoutPresenterThemePadding">2</Thickness>
+    <x:Double x:Key="MenuFlyoutSubItemPopupHorizontalOffset">0</x:Double>
+    <Thickness x:Key="MenuFlyoutSeparatorThemePadding">4,2</Thickness>
+    <x:Double x:Key="MenuFlyoutSeparatorThemeHeight">1</x:Double>
+
+    <Thickness x:Key="ListBoxPadding">0,0,2,2</Thickness>
 	<Thickness x:Key="ListBoxItemMargin">2,2,0,0</Thickness>
 	<Thickness x:Key="ListBoxItemPadding">8,0,8,0</Thickness>
 	<x:Double x:Key="ListBoxItemMinHeight">26</x:Double>
@@ -89,4 +126,30 @@
 	</DataTemplate>
 	<SolidColorBrush x:Key="HighlightedTextBlockBackgroundBrush" Color="{DynamicResource HighlightedTextBackgroundColor}"/>
 	<SolidColorBrush x:Key="HighlightedTextBlockForegroundBrush" Color="{DynamicResource HighlightedTextForegroundColor}"/>
+
+    <ControlTheme x:Key="WindowBasedClassesTheme" TargetType="{x:Type Window}">
+        <Setter Property="Background" Value="{DynamicResource NativeWindowBackground}"/>
+        <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource NativeWindowBackground}" />
+        <Setter Property="TopLevel.SystemBarColor" Value="{DynamicResource NativeWindowBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+        <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
+                    <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
+                    <Panel Background="Transparent" Margin="{TemplateBinding WindowDecorationMargin}" />
+                    <VisualLayerManager>
+                        <ContentPresenter Name="PART_ContentPresenter"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Content="{TemplateBinding Content}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </VisualLayerManager>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
 </ResourceDictionary>

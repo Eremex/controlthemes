@@ -50,13 +50,13 @@
 			</Setter.Value>
 		</Setter>
 		<Setter Property="StrokeThickness" Value="{StaticResource SliderStrokeThickness}"/>
-		<Setter Property="Stroke" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+		<Setter Property="Stroke" Value="{DynamicResource TransparencySliderThumbStroke}" />
 	</Style>
 	<Style Selector="Slider.transparency /template/ Border#PART_RailBorder">
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Strong}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource TransparencySliderRailBorderBrush}"/>
 	</Style>
 	<Style Selector="Slider.transparency:horizontal:disabled /template/ Border#PART_RailBackground">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Disabled}"/>
+		<Setter Property="Background" Value="{DynamicResource TransparencySliderRailBackgroundDisabled}"/>
 	</Style>
 	<Style Selector="Slider.transparency:disabled /template/ RepeatButton#PART_DecreaseButton /template/ Border#PART_TrackBackground">
 		<Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
@@ -65,11 +65,11 @@
 		<Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
 	</Style>
 	<Style Selector="Slider.transparency:disabled /template/ Thumb /template/ Ellipse#PART_InnerEllipse">
-		<Setter Property="Fill" Value="{DynamicResource TransparentBrush}"/>
+		<Setter Property="Fill" Value="{DynamicResource TransparencySliderThumbInnerFillDisabled}"/>
 	</Style>
 	<Style Selector="mxev|ColorPickerControl">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
-		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
+		<Setter Property="Background" Value="{DynamicResource ColorPickerControlBackgrund}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource ColorPickerControlBorderBrush}" />
 		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
 		<Setter Property="Width" Value="{StaticResource ColorPickerControlWidth}"/>
 		<Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}"/>
@@ -93,7 +93,7 @@
 								<Setter Property="FontSize" Value="{StaticResource EditorFontSize}" />
 								<Setter Property="VerticalAlignment" Value="Center"/>
 								<Setter Property="HorizontalAlignment" Value="Right"/>
-								<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}"/>
+								<Setter Property="Foreground" Value="{DynamicResource ColorPickerControlPropertyNameForeground}"/>
 								<Setter Property="TextTrimming" Value="CharacterEllipsis"/>
 								<Setter Property="common:TextBlockHelper.ShowTooltipWhenTrimming" Value="True"/>
 							</Style>
@@ -175,8 +175,8 @@
 	<!-- Normal State -->
 
 	<Style Selector="mxev|ColorPickerControl /template/ Thumb#PART_Thumb /template/ Ellipse#PART_OuterEllipse">
-		<Setter Property="Fill" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
-		<Setter Property="Stroke" Value="{DynamicResource Outline/Neutral/Transparent/Strong}" />
+		<Setter Property="Fill" Value="{DynamicResource ColorPickerControlThumbFill}" />
+		<Setter Property="Stroke" Value="{DynamicResource ColorPickerControlThumbStroke}" />
 		<Setter Property="StrokeThickness" Value="{StaticResource SliderStrokeThickness}"/>
 	</Style>
 	<Style Selector="mxev|ColorPickerControl /template/ Thumb#PART_Thumb /template/ Ellipse#PART_InnerEllipse">
@@ -184,9 +184,9 @@
 		<Setter Property="Height" Value="{StaticResource ThumbEllipseDefaultSize}"/>
 	</Style>
 	<Style Selector="mxev|ColorPickerControl /template/ Thumb#PART_Thumb /template/ Ellipse#PART_InnerEllipse">
-		<Setter Property="Fill" Value="{DynamicResource Fill/Accent/Primary/Enabled}" />
+		<Setter Property="Fill" Value="{DynamicResource ColorPickerControlThumbInnerFill}" />
 		<Setter Property="StrokeThickness" Value="{StaticResource SliderStrokeThickness}"/>
-		<Setter Property="Stroke" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+		<Setter Property="Stroke" Value="{DynamicResource ColorPickerControlThumbInnerStroke}" />
 	</Style>
 
 	<!-- PointerOver state-->
@@ -211,9 +211,9 @@
 
 	<!--Disabled state-->
 	<Style Selector="mxev|ColorPickerControl:disabled /template/ Thumb#PART_Thumb /template/ Ellipse#PART_InnerEllipse">
-		<Setter Property="Stroke" Value="{DynamicResource TransparentBrush}" />
+		<Setter Property="Stroke" Value="{DynamicResource ColorPickerControlThumbInnerStrokeDisabled}" />
 	</Style>
 	<Style Selector="mxev|ColorPickerControl:disabled /template/ Thumb#PART_Thumb /template/ Ellipse#PART_InnerEllipse">
-		<Setter Property="Fill" Value="{DynamicResource Fill/Accent/Primary/Disabled}" />
+		<Setter Property="Fill" Value="{DynamicResource ColorPickerControlThumbInnerFillDisabled}" />
 	</Style>
 </Styles>
