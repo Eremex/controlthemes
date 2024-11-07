@@ -121,7 +121,7 @@
 	</Style>
 	
 	<Style Selector="mxl|ListViewItemControl:focused/template/Rectangle#PART_Border">
-		<Setter Property="Fill" Value="{DynamicResource Fill/Accent/Highlighting/Row/Hover}"/>
+		<Setter Property="Fill" Value="Transparent"/>
 	</Style>
 	
 	<Style Selector="mxl|ListViewItemControl:focus-visible/template/Rectangle#PART_Border">
