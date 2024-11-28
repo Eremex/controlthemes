@@ -25,6 +25,17 @@
             </Border>
         </Grid>
     </ControlTemplate>
+    <ControlTemplate x:Key="MxExtraSmallShadowTemplate" TargetType="{x:Type controls:ShadowControl}">
+        <Grid >
+            <Border IsHitTestVisible="False" BoxShadow="0 0.39 1.45 #52000000" Margin="3" CornerRadius="{TemplateBinding CornerRadius}"/>
+            <Border Margin="3" 
+                    Background="{DynamicResource Fill/Neutral/Primary/Enabled}" 
+                    BorderBrush="{DynamicResource Outline/Neutral/Transparent/Strong}"
+                    BorderThickness="0" CornerRadius="{TemplateBinding CornerRadius}">
+                <ContentPresenter Content="{TemplateBinding Content}"/>
+            </Border>
+        </Grid>
+    </ControlTemplate>
     <ControlTemplate x:Key="MxNoShadowTemplate" TargetType="{x:Type controls:ShadowControl}">
         <ContentPresenter Content="{TemplateBinding Content}"/>
     </ControlTemplate>

@@ -1,47 +1,34 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Styling;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Eremex.AvaloniaUI.Themes.DeltaDesign
 {
-	public class SvgPalettes : IResourceProvider
+	public class SvgPalettes : ResourceProvider
 	{
-		Dictionary<string, string> cachedPalette = new Dictionary<string, string>();
-		private bool _invalidatePalettes = true;
+		private readonly Dictionary<string, string> cachedPalette = new();
+		private bool invalidatePalettes = true;
 
-		public IResourceHost? Owner { get; private set; }
-
-		public bool HasResources => true;
-
-		public event EventHandler? OwnerChanged;
-
-		public void AddOwner(IResourceHost owner)
+		public override bool HasResources => true;
+		
+		protected override void OnAddOwner(IResourceHost owner)
 		{
+			base.OnAddOwner(owner);
 			if (Owner != owner)
 			{
-				Owner = owner;
-				OwnerChanged?.Invoke(this, EventArgs.Empty);
-				_invalidatePalettes = true;
+				invalidatePalettes = true;
 			}
 		}
-
-		public void RemoveOwner(IResourceHost owner)
+		
+		protected override void OnRemoveOwner(IResourceHost owner)
 		{
+			base.OnRemoveOwner(owner);
 			if (Owner == owner)
 			{
-				Owner = null;
-				OwnerChanged?.Invoke(this, EventArgs.Empty);
-				_invalidatePalettes = true;
+				invalidatePalettes = true;
 			}
 		}
-
-		public bool TryGetResource(object key, ThemeVariant? theme, out object? value)
+		
+		public override bool TryGetResource(object key, ThemeVariant? theme, out object? value)
 		{
 			value = null;
 			if (key is string strKey)
@@ -54,7 +41,7 @@ namespace Eremex.AvaloniaUI.Themes.DeltaDesign
 
 		private void EnsurePalettes()
 		{
-			if (_invalidatePalettes)
+			if (invalidatePalettes)
 			{
 				cachedPalette.Clear();
 				RegisterPalette(PaletteType.White, PaletteState.Disabled);
@@ -63,7 +50,7 @@ namespace Eremex.AvaloniaUI.Themes.DeltaDesign
 				RegisterPalette(PaletteType.Black, PaletteState.Disabled);
 				RegisterPalette(PaletteType.Black, PaletteState.Selected);
 				RegisterPalette(PaletteType.Black, PaletteState.Normal);
-				_invalidatePalettes = false;
+				invalidatePalettes = false;
 			}
 		}
 

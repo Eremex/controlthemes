@@ -1,4 +1,4 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:visuals="clr-namespace:Eremex.AvaloniaUI.Controls.ListView.Visuals;assembly=Eremex.Avalonia.Controls"
         xmlns:data="clr-namespace:Eremex.AvaloniaUI.Controls.ListView.Data;assembly=Eremex.Avalonia.Controls"
@@ -9,45 +9,8 @@
 			<!-- Add Controls for Previewer Here -->
 		</Border>
 	</Design.PreviewWith>
-
-    <Style Selector="mxl|ListViewGroupControl/template/ContentPresenter#PART_Content">
-		<Setter Property="Margin" Value="6,2,6,2"/>
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-		<Setter Property="TextBlock.FontSize" Value="12"/>
-		<Setter Property="TextBlock.FontWeight" Value="Black"/>
-	</Style>
-	
-	<Style Selector="mxl|ListViewGroupControl/template/Rectangle#PART_Border">
-		<Setter Property="StrokeThickness" Value="1"/>
-		<Setter Property="Stroke" Value="Transparent"/>
-		<Setter Property="RadiusX" Value="0"/>
-		<Setter Property="RadiusY" Value="0"/>
-		<Setter Property="Fill" Value="{DynamicResource Fill/Neutral/Secondary/Disabled}"/>
-	</Style>
-	
-	<Style Selector="mxl|ListViewGroupControl:focused/template/Rectangle#PART_Border">
-		<Setter Property="Fill" Value="{DynamicResource Fill/Accent/Highlighting/Row/Hover}"/>
-	</Style>
-	
-	<Style Selector="mxl|ListViewGroupControl:focus-visible/template/Rectangle#PART_Border">
-		<Setter Property="Stroke" Value="{DynamicResource Outline/Accent/Focus}"/>
-	</Style>
-	
-	<Style Selector="mxl|ListViewGroupControl:selected/template/Rectangle#PART_Border">
-		<Setter Property="Fill" Value="{DynamicResource Fill/Accent/Highlighting/Row/Enabled}"/>
-	</Style>
-	
-    <Style Selector="mxl|ListViewGroupControl/template/ToggleButton#PART_ExpandButton/template/Border#PART_Border">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="CornerRadius" Value="3"/>
-    </Style>
     
-    <Style Selector="mxl|ListViewGroupControl/template/ToggleButton#PART_ExpandButton:pointerover/template/Border#PART_Border">
-        <Setter Property="Background" Value="#10000000"/>
-    </Style>
-    
-    <Style Selector="mxl|ListViewGroupControl/template/ToggleButton#PART_ExpandButton">
+    <ControlTheme x:Key="ListViewGroupControlExpandButtonTheme" TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
         <Setter Property="Margin" Value="3, 3"/>
         <Setter Property="Width" Value="20"/>
         <Setter Property="Height" Value="20"/>
@@ -55,12 +18,13 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Border x:Name="PART_Border">
-                    <Path Fill="{TemplateBinding Foreground}" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Path Fill="{TemplateBinding Foreground}" Stretch="None" VerticalAlignment="Center"
+                          HorizontalAlignment="Center">
                         <Path.Data>
                             <Binding Path="IsChecked" RelativeSource="{RelativeSource TemplatedParent}">
                                 <Binding.Converter>
                                     <mx:BoolToObjectConverter TrueValue="{StaticResource DataControlExpandedChevron}"
-                                                               FalseValue="{StaticResource DataControlCollapsedChevron}"/>
+                                                              FalseValue="{StaticResource DataControlCollapsedChevron}"/>
                                 </Binding.Converter>
                             </Binding>
                         </Path.Data>
@@ -68,19 +32,25 @@
                 </Border>
             </ControlTemplate>
         </Setter>
-    </Style>
+        
+        <Style Selector="^/template/Border#PART_Border">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="CornerRadius" Value="3"/>
+        </Style>
     
-    <Style Selector="mxl|ListViewGroupControl/template/ContentPresenter#PART_Content">
-        <Setter Property="Margin" Value="0,2,0,0"/>
-    </Style>
+        <Style Selector="^:pointerover/template/Border#PART_Border">
+            <Setter Property="Background" Value="#10000000"/>
+        </Style>
+    </ControlTheme>
     
-    <Style Selector="mxl|ListViewGroupControl">
+    <ControlTheme x:Key="{x:Type mxl:ListViewGroupControl}" TargetType="mxl:ListViewGroupControl">
         <Setter Property="ContentTemplate">
             <DataTemplate DataType="data:ListViewGroupData">
                 <Grid ColumnDefinitions="Auto Auto Auto">
-                    <TextBlock FontWeight="SemiBold" Text="{Binding FieldName}" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="1" FontWeight="SemiBold" Text=":" VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="2" Text="{Binding GroupValueDisplayText}" VerticalAlignment="Center" Margin="1"/>
+                    <TextBlock FontWeight="SemiBold" Text="{Binding FieldName}" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="1" FontWeight="SemiBold" Text=":" VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="2" Text="{Binding GroupValueDisplayText}" VerticalAlignment="Center"
+                               Margin="1" />
                 </Grid>
             </DataTemplate>
         </Setter>
@@ -90,73 +60,165 @@
 					<Grid ColumnDefinitions="Auto, Auto, *">
 						<Border Width="{TemplateBinding ActualIndent}"/>
                         <Rectangle Grid.Column="1" x:Name="PART_Border" Grid.ColumnSpan="2"/>
-                        <ToggleButton Grid.Column="1" x:Name="PART_ExpandButton" IsChecked="{TemplateBinding Property=IsExpanded, Mode=TwoWay}"/>
+                        <ToggleButton Grid.Column="1" x:Name="PART_ExpandButton" IsChecked="{TemplateBinding Property=IsExpanded, Mode=TwoWay}"
+                                      Theme="{StaticResource ListViewGroupControlExpandButtonTheme}"/>
 						<ContentPresenter Grid.Column="2" x:Name="PART_Content" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
-	</Style>
-    
-	<Style Selector="mxl|ListViewItemControl/template/ContentPresenter#PART_Content">
-		<Setter Property="Margin" Value="6"/>
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}"/>
-		<Setter Property="TextBlock.FontSize" Value="12"/>
-	</Style>
+        
+        <Style Selector="^/template/ContentPresenter#PART_Content">
+            <Setter Property="Margin" Value="6,2,6,2"/>
+            <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextBlock.FontSize" Value="12"/>
+            <Setter Property="TextBlock.FontWeight" Value="Black"/>
+        </Style>
 	
-	<Style Selector="mxl|ListViewItemControl/template/Rectangle#PART_Border">
-		<Setter Property="StrokeThickness" Value="1"/>
-		<Setter Property="Stroke" Value="Transparent"/>
-		<Setter Property="RadiusX" Value="2"/>
-		<Setter Property="RadiusY" Value="2"/>
-		<Setter Property="Fill" Value="Transparent"/>
-	</Style>
+        <Style Selector="^/template/Rectangle#PART_Border">
+            <Setter Property="StrokeThickness" Value="1"/>
+            <Setter Property="Stroke" Value="Transparent"/>
+            <Setter Property="RadiusX" Value="0"/>
+            <Setter Property="RadiusY" Value="0"/>
+            <Setter Property="Fill" Value="{DynamicResource Fill/Neutral/Secondary/Disabled}"/>
+        </Style>
 	
-	<Style Selector="mxl|ListViewItemControl:pointerover/template/Rectangle#PART_Border">
-		<Setter Property="Fill" Value="{DynamicResource Fill/Accent/Highlighting/Row/Hover}"/>
-	</Style>
+        <Style Selector="^:focused/template/Rectangle#PART_Border">
+            <Setter Property="Fill" Value="{DynamicResource Fill/Accent/Highlighting/Row/Hover}"/>
+        </Style>
 	
-	<Style Selector="mxl|ListViewItemControl:pressed/template/Rectangle#PART_Border">
-		<Setter Property="Fill" Value="{DynamicResource Fill/Accent/Highlighting/Row/Pressed}"/>
-	</Style>
+        <Style Selector="^:focus-visible/template/Rectangle#PART_Border">
+            <Setter Property="Stroke" Value="{DynamicResource Outline/Accent/Focus}"/>
+        </Style>
 	
-	<Style Selector="mxl|ListViewItemControl:focused/template/Rectangle#PART_Border">
-		<Setter Property="Fill" Value="Transparent"/>
-	</Style>
+        <Style Selector="^:selected/template/Rectangle#PART_Border">
+            <Setter Property="Fill" Value="{DynamicResource Fill/Accent/Highlighting/Row/Enabled}"/>
+        </Style>
+        
+        <Style Selector="^/template/ContentPresenter#PART_Content">
+            <Setter Property="Margin" Value="0,2,0,0"/>
+        </Style>
+	</ControlTheme>
 	
-	<Style Selector="mxl|ListViewItemControl:focus-visible/template/Rectangle#PART_Border">
-		<Setter Property="Stroke" Value="{DynamicResource Outline/Accent/Focus}"/>
-	</Style>
-	
-	<Style Selector="mxl|ListViewItemControl:selected/template/Rectangle#PART_Border">
-		<Setter Property="Fill" Value="{DynamicResource Fill/Accent/Highlighting/Row/Enabled}"/>
-	</Style>
-	
-    <Style Selector="mxl|ListViewItemControl">
+    <ControlTheme x:Key="{x:Type mxl:ListViewItemControl}" TargetType="mxl:ListViewItemControl">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
-                        <Rectangle x:Name="PART_Border"/>
-                        <ContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                        <Rectangle x:Name="PART_Border" />
+                        <ContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+        
+        <Style Selector="^/template/ContentPresenter#PART_Content">
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}"/>
+            <Setter Property="TextBlock.FontSize" Value="12"/>
+        </Style>
+	
+        <Style Selector="^/template/Rectangle#PART_Border">
+            <Setter Property="StrokeThickness" Value="1"/>
+            <Setter Property="Stroke" Value="Transparent"/>
+            <Setter Property="RadiusX" Value="2"/>
+            <Setter Property="RadiusY" Value="2"/>
+            <Setter Property="Fill" Value="Transparent"/>
+        </Style>
+	
+        <Style Selector="^:pointerover/template/Rectangle#PART_Border">
+            <Setter Property="Fill" Value="{DynamicResource Fill/Accent/Highlighting/Row/Hover}"/>
+        </Style>
+	
+        <Style Selector="^:pressed/template/Rectangle#PART_Border">
+            <Setter Property="Fill" Value="{DynamicResource Fill/Accent/Highlighting/Row/Pressed}"/>
+        </Style>
+	
+        <Style Selector="^:focused/template/Rectangle#PART_Border">
+            <Setter Property="Fill" Value="Transparent"/>
+        </Style>
+	
+        <Style Selector="^:focus-visible/template/Rectangle#PART_Border">
+            <Setter Property="Stroke" Value="{DynamicResource Outline/Accent/Focus}"/>
+        </Style>
+	
+        <Style Selector="^:selected/template/Rectangle#PART_Border">
+            <Setter Property="Fill" Value="{DynamicResource Fill/Accent/Highlighting/Row/Enabled}"/>
+        </Style>
+    </ControlTheme>
     
-	<Style Selector="mxl|ListViewControl">
+	<ControlTheme x:Key="{x:Type mxl:ListViewControl}" TargetType="mxl:ListViewControl">
 		<Setter Property="FocusAdorner" Value="{x:Null}"/>
 		<Setter Property="Focusable" Value="True"/>
         <Setter Property="GroupLevelIndent" Value="16"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate>
-					<ScrollViewer x:Name="PART_ScrollViewer">
-                        <visuals:VirtualizingWrapPanel x:Name="PART_Panel"/>
-					</ScrollViewer>
+                    <Border x:Name="PART_Border" 
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <visuals:ListViewScrollViewer x:Name="PART_ScrollViewer"
+                                                      VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}">
+                            <visuals:VirtualizingWrapPanel x:Name="PART_Panel" />
+                        </visuals:ListViewScrollViewer>
+                    </Border>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
-	</Style>
-</Styles>
+	</ControlTheme>
+    
+    <ControlTheme x:Key="{x:Type visuals:ListViewScrollViewer}" TargetType="visuals:ListViewScrollViewer">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid ColumnDefinitions="*,Auto" RowDefinitions="*,Auto">
+                    <visuals:ListViewScrollContentPresenter Name="PART_ContentPresenter"
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Background="{TemplateBinding Background}"
+                                            HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
+                                            VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}"
+                                            HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
+                                            VerticalSnapPointsAlignment="{TemplateBinding VerticalSnapPointsAlignment}"
+                                            Padding="{TemplateBinding Padding}"
+                                            ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}">
+                        <ScrollContentPresenter.GestureRecognizers>
+                            <ScrollGestureRecognizer
+                                CanHorizontallyScroll="{Binding CanHorizontallyScroll, ElementName=PART_ContentPresenter}"
+                                CanVerticallyScroll="{Binding CanVerticallyScroll, ElementName=PART_ContentPresenter}"
+                                IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_ContentPresenter}" />
+                        </ScrollContentPresenter.GestureRecognizers>
+                    </visuals:ListViewScrollContentPresenter>
+                    <ScrollBar Name="PART_HorizontalScrollBar"
+                               Orientation="Horizontal"
+                               Grid.Row="1" />
+                    <ScrollBar Name="PART_VerticalScrollBar"
+                               Orientation="Vertical"
+                               Grid.Column="1" />
+                    <Panel x:Name="PART_ScrollBarsSeparator"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           Background="{DynamicResource ScrollViewerScrollBarsSeparatorBackground}"
+                           Opacity="0">
+                        <Panel.Transitions>
+                            <Transitions>
+                                <DoubleTransition Property="Opacity" Duration="0:0:0.1" />
+                            </Transitions>
+                        </Panel.Transitions>
+                    </Panel>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^[IsExpanded=true] /template/ Panel#PART_ScrollBarsSeparator">
+            <Setter Property="Opacity" Value="1" />
+        </Style>
+        <Style Selector="^[AllowAutoHide=True] /template/ ScrollContentPresenter#PART_ContentPresenter">
+            <Setter Property="Grid.ColumnSpan" Value="2" />
+            <Setter Property="Grid.RowSpan" Value="2" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

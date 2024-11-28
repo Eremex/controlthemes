@@ -1,254 +1,263 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
-				xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
-				xmlns:ec="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
-				xmlns:mxb="clr-namespace:Eremex.AvaloniaUI.Controls.Bars;assembly=Eremex.Avalonia.Controls"
-        xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
+                    xmlns:ec="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxb="clr-namespace:Eremex.AvaloniaUI.Controls.Bars;assembly=Eremex.Avalonia.Controls"
+                    xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
 
     <Design.PreviewWith>
-				<Border Padding="20">
-					<StackPanel>
-						<Border Background="{DynamicResource Fill/Neutral/Primary/Enabled}" Padding="10">
-							<StackPanel Spacing="10">
-								<mxe:ButtonEditor EditorValue="Button Editor" Width="250">
-									<mxe:ButtonEditor.Buttons>
-										<mxe:ButtonSettings Content="X" ButtonKind="Toggle" IsChecked="True"/>
-										<mxe:ButtonSettings Content="Y" IsEnabled="False"/>
-									</mxe:ButtonEditor.Buttons>
-								</mxe:ButtonEditor>
-								<mxe:ButtonEditor EditorValue="Inactive Editor" EditorMode="InplaceInactive" Width="250">
-									<mxe:ButtonEditor.Buttons>
-										<mxe:ButtonSettings Content="X" ButtonKind="Toggle" IsChecked="True"/>
-										<mxe:ButtonSettings Content="Y" IsEnabled="False"/>
-										<mxe:ButtonSettings Content="L" IsLeft="True"/>
-									</mxe:ButtonEditor.Buttons>
-								</mxe:ButtonEditor>
-								<mxe:ButtonEditor EditorValue="Disabled" IsEnabled="False" Width="250">
-									<mxe:ButtonEditor.Buttons>
-										<mxe:ButtonSettings Content="X" ButtonKind="Toggle" IsChecked="True"/>
-										<mxe:ButtonSettings Content="Y" IsEnabled="False"/>
-									</mxe:ButtonEditor.Buttons>
-								</mxe:ButtonEditor>
-							</StackPanel>
-						</Border>
-						<Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
-							<StackPanel Spacing="10">
-								<mxe:ButtonEditor EditorValue="Secondary Editor" Width="250" Classes="secondary">
-									<mxe:ButtonEditor.Buttons>
-										<mxe:ButtonSettings Content="X" ButtonKind="Toggle" IsChecked="True"/>
-										<mxe:ButtonSettings Content="Y" IsEnabled="False"/>
-										<mxe:ButtonSettings Content="L" IsLeft="True"/>
-									</mxe:ButtonEditor.Buttons>
-								</mxe:ButtonEditor>
-								<mxe:ButtonEditor EditorValue="Inactive Editor" EditorMode="InplaceInactive" Width="250" Classes="secondary">
-									<mxe:ButtonEditor.Buttons>
-										<mxe:ButtonSettings Content="X" ButtonKind="Toggle" IsChecked="True"/>
-										<mxe:ButtonSettings Content="Y" IsEnabled="False"/>
-									</mxe:ButtonEditor.Buttons>
-								</mxe:ButtonEditor>
-								<mxe:ButtonEditor EditorValue="Secondary Disabled" IsEnabled="False" Width="250" Classes="secondary">
-									<mxe:ButtonEditor.Buttons>
-										<mxe:ButtonSettings Content="X" ButtonKind="Toggle" IsChecked="True"/>
-										<mxe:ButtonSettings Content="Y" IsEnabled="False"/>
-									</mxe:ButtonEditor.Buttons>
-								</mxe:ButtonEditor>
-							</StackPanel>
-						</Border>
-					</StackPanel>
-				</Border>
+        <Border Padding="20">
+            <StackPanel>
+                <Border Background="{DynamicResource Fill/Neutral/Primary/Enabled}" Padding="10">
+                    <StackPanel Spacing="10">
+                        <mxe:ButtonEditor EditorValue="Button Editor" Width="250">
+                            <mxe:ButtonEditor.Buttons>
+                                <mxe:ButtonSettings Content="X" ButtonKind="Toggle" IsChecked="True"/>
+                                <mxe:ButtonSettings Content="Y" IsEnabled="False"/>
+                            </mxe:ButtonEditor.Buttons>
+                        </mxe:ButtonEditor>
+                        <mxe:ButtonEditor EditorValue="Inactive Editor" EditorMode="InplaceInactive" Width="250">
+                            <mxe:ButtonEditor.Buttons>
+                                <mxe:ButtonSettings Content="X" ButtonKind="Toggle" IsChecked="True"/>
+                                <mxe:ButtonSettings Content="Y" IsEnabled="False"/>
+                                <mxe:ButtonSettings Content="L" IsLeft="True"/>
+                            </mxe:ButtonEditor.Buttons>
+                        </mxe:ButtonEditor>
+                        <mxe:ButtonEditor EditorValue="Disabled" IsEnabled="False" Width="250">
+                            <mxe:ButtonEditor.Buttons>
+                                <mxe:ButtonSettings Content="X" ButtonKind="Toggle" IsChecked="True"/>
+                                <mxe:ButtonSettings Content="Y" IsEnabled="False"/>
+                            </mxe:ButtonEditor.Buttons>
+                        </mxe:ButtonEditor>
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
+                    <StackPanel Spacing="10">
+                        <mxe:ButtonEditor EditorValue="Secondary Editor" Width="250" Classes="secondary">
+                            <mxe:ButtonEditor.Buttons>
+                                <mxe:ButtonSettings Content="X" ButtonKind="Toggle" IsChecked="True"/>
+                                <mxe:ButtonSettings Content="Y" IsEnabled="False"/>
+                                <mxe:ButtonSettings Content="L" IsLeft="True"/>
+                            </mxe:ButtonEditor.Buttons>
+                        </mxe:ButtonEditor>
+                        <mxe:ButtonEditor EditorValue="Inactive Editor" EditorMode="InplaceInactive" Width="250" Classes="secondary">
+                            <mxe:ButtonEditor.Buttons>
+                                <mxe:ButtonSettings Content="X" ButtonKind="Toggle" IsChecked="True"/>
+                                <mxe:ButtonSettings Content="Y" IsEnabled="False"/>
+                            </mxe:ButtonEditor.Buttons>
+                        </mxe:ButtonEditor>
+                        <mxe:ButtonEditor EditorValue="Secondary Disabled" IsEnabled="False" Width="250" Classes="secondary">
+                            <mxe:ButtonEditor.Buttons>
+                                <mxe:ButtonSettings Content="X" ButtonKind="Toggle" IsChecked="True"/>
+                                <mxe:ButtonSettings Content="Y" IsEnabled="False"/>
+                            </mxe:ButtonEditor.Buttons>
+                        </mxe:ButtonEditor>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
     </Design.PreviewWith>
-    
-    <Styles.Resources>
-        <ResourceDictionary>
-        </ResourceDictionary>
-    </Styles.Resources>
 
-    <!--Button Editor-->  
-	
-		<Style Selector="ContentControl.EditorInactiveButton">
-		<Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}"/>	
-		<Setter Property="MinWidth" Value="{StaticResource ButtonMinWidth}"/>
+    <!--Button Editor-->
+
+    <ControlTheme x:Key="{x:Type mxev:EditorInactiveButton}" TargetType="mxev:EditorInactiveButton">
+        <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}"/>
+        <Setter Property="MinWidth" Value="{StaticResource ButtonMinWidth}"/>
         <Setter Property="Padding" Value="{DynamicResource EditorIconButtonPadding}"/>
-		<Setter Property="Foreground" Value="{DynamicResource ButtonEditorInactiveButtonForeground}" />
-		<Setter Property="VerticalAlignment" Value="Stretch"/>
-		<Setter Property="BorderThickness" Value="0"/>
-		<Setter Property="FontSize" Value="{StaticResource EditorFontSize}" />
-		<Setter Property="Focusable" Value="False"/>
-		<Setter Property="VerticalContentAlignment" Value="Center"/>
-		<Setter Property="HorizontalContentAlignment" Value="Center"/>	
-		<Setter Property="Template">
-			<ControlTemplate>
-				<Panel>
-					<Border x:Name="PART_BackgroundBorder"
-									Background="Transparent"
-									CornerRadius="{TemplateBinding CornerRadius}"
-									Padding="{TemplateBinding Padding}">
-						<ContentPresenter x:Name="PART_ContentPresenter"
-															Content="{TemplateBinding Content}"
-															ContentTemplate="{TemplateBinding ContentTemplate}"
-															CornerRadius="{TemplateBinding CornerRadius}"
-															HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-															VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-					</Border>
-				</Panel>				
-			</ControlTemplate>
-		</Setter>
-	</Style>
-
-    <Style Selector=":is(mxe|ButtonEditor)[EditorMode=InplaceInactive][ShowHoverDecorator=true]:pointerover /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer,
-					 :is(mxe|ButtonEditor)[EditorMode=InplaceInactive][ShowEditorButtons=true][HasButtons=true] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
-        <Setter Property="InactiveRightButtonsPlaceholderWidth" Value="{Binding Buttons, RelativeSource={RelativeSource TemplatedParent}, Converter={mxev:PlaceholderMinWidthConverter}, ConverterParameter=28}"/>
-			  <Setter Property="InactiveLeftButtonsPlaceholderWidth" Value="{Binding Buttons, RelativeSource={RelativeSource TemplatedParent}, Converter={mxev:PlaceholderMinWidthConverter LeftButtonsFilter=True}, ConverterParameter=28}"/>
-    </Style>
-
-	<Style Selector=":is(mxe|ButtonEditor)[EditorMode=InplaceInactive][ShowEditorButtons=true][HasButtons=true] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
-		<Setter Property="InactiveDecoratorTemplate">
-			<Setter.Value>
-				<DataTemplate>
-					<Panel>
-						<mxev:InactiveIconButtonsPanel IsLeft="True" HorizontalAlignment="Left" Buttons="{Binding $parent[mxe:ButtonEditor].Buttons}"/>
-						<mxev:InactiveIconButtonsPanel HorizontalAlignment="Right" Buttons="{Binding $parent[mxe:ButtonEditor].Buttons}"/>
-					</Panel>
-				</DataTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-    <Style Selector=":is(mxe|ButtonEditor)[EditorMode=InplaceInactive][ShowHoverDecorator=true]:pointerover /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
-        <Setter Property="InactiveDecoratorTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <Panel>
-											<Border BorderThickness="{StaticResource EditorBorderThickness}"
-															CornerRadius="{StaticResource EditorCornerRadius}"
-															MinHeight="0">
-												<Border.Background>
-													<MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
-														<Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
-														<DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBackground"/>
-														<DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBackground"/>
-													</MultiBinding>
-												</Border.Background>
-												<Border.BorderBrush>
-													<MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
-														<Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
-														<DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBorderBrush"/>
-														<DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBorderBrush"/>
-													</MultiBinding>
-												</Border.BorderBrush>
-											</Border>
-											<mxev:InactiveIconButtonsPanel IsLeft="True" HorizontalAlignment="Left" Buttons="{Binding $parent[mxe:ButtonEditor].Buttons}"/>
-											<mxev:InactiveIconButtonsPanel HorizontalAlignment="Right" Buttons="{Binding $parent[mxe:ButtonEditor].Buttons}"/>			
-                    </Panel>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    
-    <Style Selector=":is(mxe|ButtonEditor):activeMode">
+        <Setter Property="Foreground" Value="{DynamicResource ButtonEditorInactiveButtonForeground}" />
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <ControlTemplate>
-							<DockPanel>
-								<TextBlock x:Name="PART_ErrorTextPresenter"
-													 DockPanel.Dock="Bottom"
-													 Text="{TemplateBinding ErrorText}"
-													 FontSize="{StaticResource EditorErrorFontSize}"
-													 Foreground="{DynamicResource TextEditorErrorTextForeground}"
-													 Margin="{StaticResource ErrorTextPresenterMargin}"
-													 TextWrapping="Wrap"/>
-                <Panel x:Name="PART_RealEditorPanel">
-                    <TextBox Name="PART_RealEditor"
-                             Background="{TemplateBinding Background}"
-                             Foreground="{TemplateBinding Foreground}"
-                             TextWrapping="{TemplateBinding TextWrapping}"
-                             AcceptsReturn="{TemplateBinding AcceptsReturn}"
-                             SelectionStart="{Binding $parent[mxe:ButtonEditor].SelectionStart, Mode=TwoWay}"
-                             SelectionEnd="{Binding $parent[mxe:ButtonEditor].SelectionEnd, Mode=TwoWay}"
-                             BorderThickness="0"
-                             Focusable="{TemplateBinding Focusable}"
-                             Padding="{TemplateBinding Padding}"
-                             CornerRadius="{TemplateBinding CornerRadius}"
-                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                             HorizontalAlignment="Stretch"
-                             MinHeight="0"
-                             Watermark="{TemplateBinding Watermark}"
-                             FontSize="{TemplateBinding FontSize}"
-														 IsReadOnly="{TemplateBinding ReadOnly}"
-														 Classes.secondary="{TemplateBinding SecondaryAppearance}">
-                        <TextBox.InnerLeftContent>
-                            <StackPanel Orientation="Horizontal"/>
-                        </TextBox.InnerLeftContent>
-                        <TextBox.InnerRightContent>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Name="PART_ClearTextButton"
-                                        Classes="EditorIconButton"
-                                        Command="{Binding $parent[TextBox].Clear}" >
-                                    <PathIcon Width="8"
-                                              Height="8"
-                                              Data="{StaticResource ClearCrossIcon}"
-                                              Foreground="{Binding #PART_ClearTextButton.Foreground}"
-                                              VerticalAlignment="Center"
-                                              HorizontalAlignment="Center"/>
-                                    <Button.IsVisible>
-                                        <MultiBinding Converter="{x:Static BoolConverters.And}">
-                                            <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
-                                                     Path="IsClearTextButtonVisible"/>
-                                            <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
-                                                     Path="NullValueButtonPosition"
-                                                     Converter="{mxev:NullValueButtonPlacementToVisibleConverter}"
-                                                     ConverterParameter="EditorBox"/>
-                                        </MultiBinding>
-                                    </Button.IsVisible>
-                                </Button>
-                            </StackPanel>
-                        </TextBox.InnerRightContent>
-                        <TextBox.Styles>
-                            <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
-                                <Setter Property="BorderThickness" Value="0" />
-                            </Style>
-                        </TextBox.Styles>
-                    </TextBox>
-                    <Grid Name="PART_ButtonsContainer"/>
-                    <Border Name="PART_RootBorder"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
+                <Panel>
+                    <Border x:Name="PART_BackgroundBorder"
+                            Background="Transparent"
                             CornerRadius="{TemplateBinding CornerRadius}"
-                            Background="{x:Null}"
-                            MinHeight="0"/>
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter x:Name="PART_ContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          CornerRadius="{TemplateBinding CornerRadius}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
                 </Panel>
-							</DockPanel>
             </ControlTemplate>
         </Setter>
-    </Style>
+    </ControlTheme>
 
-	<Style Selector=":is(mxe|ButtonEditor):activeMode /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer">
-		<Setter Property="Content">
-			<Setter.Value>
-				<Template>
-					<DockPanel	x:Name="PART_NonEditablePanel"
-											HorizontalAlignment="{Binding $parent[TextBox].HorizontalContentAlignment}"
-											VerticalAlignment="{Binding $parent[TextBox].VerticalContentAlignment}">
-						<ContentPresenter x:Name="PART_NonEditablePresenter"
-															DockPanel.Dock="Left"
-															FontSize="{Binding $parent[TextBox].FontSize}"
-															VerticalAlignment="{Binding $parent[TextBox].VerticalContentAlignment}"/>
-					</DockPanel>
-				</Template>
-			</Setter.Value>
-		</Setter>
-	</Style>
+    <ControlTheme x:Key="{x:Type mxe:ButtonEditor}" TargetType="mxe:ButtonEditor" BasedOn="{StaticResource {x:Type mxe:TextEditor}}">
+        <Style Selector="^[EditorMode=InplaceInactive]">
+            <Style Selector="^[ShowHoverDecorator=true]:pointerover /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer,
+                   ^[ShowEditorButtons=true][HasButtons=true] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
+                <Setter Property="InactiveRightButtonsPlaceholderWidth" Value="{Binding Buttons, RelativeSource={RelativeSource TemplatedParent}, Converter={mxev:PlaceholderMinWidthConverter}, ConverterParameter=28}"/>
+                <Setter Property="InactiveLeftButtonsPlaceholderWidth" Value="{Binding Buttons, RelativeSource={RelativeSource TemplatedParent}, Converter={mxev:PlaceholderMinWidthConverter LeftButtonsFilter=True}, ConverterParameter=28}"/>
+            </Style>
 
-	<Style Selector=":is(mxe|ButtonEditor)[IsTextEditable=False]:activeMode /template/ TextBox#PART_RealEditor">
-		<Setter Property="mxb:ToolbarManager.ContextPopup" Value="{x:Null}"/>
-	</Style>
+            <Style Selector="^[ShowEditorButtons=true][HasButtons=true] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
+                <Setter Property="InactiveDecoratorTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <Panel>
+                                <mxev:InactiveIconButtonsPanel IsLeft="True" HorizontalAlignment="Left" Buttons="{Binding $parent[mxe:ButtonEditor].Buttons}"/>
+                                <mxev:InactiveIconButtonsPanel HorizontalAlignment="Right" Buttons="{Binding $parent[mxe:ButtonEditor].Buttons}"/>
+                            </Panel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style Selector="^[ShowHoverDecorator=true]:pointerover /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
+                <Setter Property="InactiveDecoratorTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <Panel>
+                                <Border BorderThickness="{StaticResource EditorBorderThickness}"
+                                        CornerRadius="{StaticResource EditorCornerRadius}"
+                                        MinHeight="0">
+                                    <Border.Background>
+                                        <MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
+                                            <Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
+                                            <DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBackground"/>
+                                            <DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBackground"/>
+                                        </MultiBinding>
+                                    </Border.Background>
+                                    <Border.BorderBrush>
+                                        <MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
+                                            <Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
+                                            <DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBorderBrush"/>
+                                            <DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBorderBrush"/>
+                                        </MultiBinding>
+                                    </Border.BorderBrush>
+                                </Border>
+                                <mxev:InactiveIconButtonsPanel IsLeft="True" HorizontalAlignment="Left" Buttons="{Binding $parent[mxe:ButtonEditor].Buttons}"/>
+                                <mxev:InactiveIconButtonsPanel HorizontalAlignment="Right" Buttons="{Binding $parent[mxe:ButtonEditor].Buttons}"/>
+                            </Panel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Style>
 
-    <Style Selector=":is(mxe|ButtonEditor)[IsTextEditable=False]:showWatermark /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer">
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBoxWatermarkBrush}"/>
-    </Style>
-    
-    <Style Selector=":is(mxe|ButtonEditor)[IsTextEditable=False]:showWatermark:disabled /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer">
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBoxWatermarkBrushDisabled}"/>
-    </Style>
-    
-</Styles>
+        <Style Selector="^:activeMode">
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <DockPanel>
+                        <TextBlock x:Name="PART_ErrorTextPresenter"
+                                   DockPanel.Dock="Bottom"
+                                   Text="{TemplateBinding ErrorText}"
+                                   FontSize="{DynamicResource EditorErrorFontSize}"
+                                   Foreground="{DynamicResource TextEditorErrorTextForeground}"
+                                   Margin="{StaticResource ErrorTextPresenterMargin}"
+                                   TextWrapping="Wrap"/>
+                        <Panel x:Name="PART_RealEditorPanel">
+                            <TextBox Name="PART_RealEditor"
+                                     Background="{TemplateBinding Background}"
+                                     Foreground="{TemplateBinding Foreground}"
+                                     TextWrapping="{TemplateBinding TextWrapping}"
+                                     AcceptsReturn="{TemplateBinding AcceptsReturn}"
+                                     SelectionStart="{Binding $parent[mxe:ButtonEditor].SelectionStart, Mode=TwoWay}"
+                                     SelectionEnd="{Binding $parent[mxe:ButtonEditor].SelectionEnd, Mode=TwoWay}"
+                                     BorderThickness="0"
+                                     Focusable="{TemplateBinding Focusable}"
+                                     Padding="{TemplateBinding Padding}"
+                                     CornerRadius="{TemplateBinding CornerRadius}"
+                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                     HorizontalAlignment="Stretch"
+                                     MinHeight="0"
+                                     Watermark="{TemplateBinding Watermark}"
+                                     IsReadOnly="{TemplateBinding ReadOnly}"
+                                     Classes.secondary="{TemplateBinding SecondaryAppearance}">
+                                <TextBox.InnerLeftContent>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </TextBox.InnerLeftContent>
+                                <TextBox.InnerRightContent>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Name="PART_ClearTextButton"
+                                                Theme="{StaticResource EditorIconButtonBaseTheme}"
+                                                Command="{Binding $parent[TextBox].Clear}" >
+                                            <PathIcon Width="8"
+                                                      Height="8"
+                                                      Data="{StaticResource ClearCrossIcon}"
+                                                      Foreground="{Binding #PART_ClearTextButton.Foreground}"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                            <Button.IsVisible>
+                                                <MultiBinding Converter="{x:Static BoolConverters.And}">
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
+                                                             Path="IsClearTextButtonVisible"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
+                                                             Path="NullValueButtonPosition"
+                                                             Converter="{mxev:NullValueButtonPlacementToVisibleConverter}"
+                                                             ConverterParameter="EditorBox"/>
+                                                </MultiBinding>
+                                            </Button.IsVisible>
+                                        </Button>
+                                    </StackPanel>
+                                </TextBox.InnerRightContent>
+                                <TextBox.Styles>
+                                    <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </Style>
+                                </TextBox.Styles>
+                            </TextBox>
+                            <Grid Name="PART_ButtonsContainer"/>
+                            <Border Name="PART_RootBorder"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    Background="{x:Null}"
+                                    MinHeight="0"/>
+                        </Panel>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter>
+
+            <Style Selector="^ /template/ TextBox#PART_RealEditor">
+                <Setter Property="Theme" Value="{StaticResource ButtonEditorTextBoxTheme}"/>
+            </Style>
+
+            <Style Selector="^:showWatermark">
+                <Style Selector="^ /template/ TextBox#PART_RealEditor">
+                    <Setter Property="Theme" Value="{StaticResource ButtonEditorTextBoxWatermarkTheme}"/>
+                </Style>
+            </Style>
+
+            <Style Selector="^[IsTextEditable=False] /template/ TextBox#PART_RealEditor">
+                <Setter Property="mxb:ToolbarManager.ContextPopup" Value="{x:Null}"/>
+            </Style>
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="ButtonEditorTextBoxTheme" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Style Selector="^ /template/ ContentPresenter#PART_ReadOnlyContentContainer">
+            <Setter Property="Content">
+                <Setter.Value>
+                    <Template>
+                        <DockPanel	x:Name="PART_NonEditablePanel"
+                                    HorizontalAlignment="{Binding $parent[TextBox].HorizontalContentAlignment}"
+                                    VerticalAlignment="{Binding $parent[TextBox].VerticalContentAlignment}">
+                            <ContentPresenter x:Name="PART_NonEditablePresenter"
+                                              DockPanel.Dock="Left"
+                                              VerticalAlignment="{Binding $parent[TextBox].VerticalContentAlignment}"/>
+                        </DockPanel>
+                    </Template>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="ButtonEditorTextBoxWatermarkTheme" TargetType="TextBox" BasedOn="{StaticResource ButtonEditorTextBoxTheme}">
+        <Style Selector="^ /template/ ContentPresenter#PART_ReadOnlyContentContainer">
+            <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBoxWatermarkBrush}"/>
+        </Style>
+        <Style Selector="^ /template/ ContentPresenter#PART_ReadOnlyContentContainer[IsEffectivelyEnabled=false]">
+            <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBoxWatermarkBrushDisabled}"/>
+        </Style>
+    </ControlTheme>
+
+</ResourceDictionary>

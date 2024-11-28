@@ -1,219 +1,192 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:sys="using:System"
-        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
-				xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
-        xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
-				xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls"
-        xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="using:System"
+                    xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
+                    xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+                    xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls"
+                    xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
 
-	<Design.PreviewWith>
-		<Border Padding="20" Background="{DynamicResource Fill/Neutral/Primary/Enabled}">
-			<mxev:ColorPickerControl BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}"
-																		 Color="Blue"
-																		 ShowAlphaChannel="True"/>
-		</Border>
-	</Design.PreviewWith>
+    <Design.PreviewWith>
+        <Border Padding="20" Background="{DynamicResource Fill/Neutral/Primary/Enabled}">
+            <mxev:ColorPickerControl BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}"
+                                     Color="Blue"
+                                     ShowAlphaChannel="True"/>
+        </Border>
+    </Design.PreviewWith>
 
-	<Styles.Resources>
-		<sys:Double x:Key="ColorPickerControlWidth">312</sys:Double>
-		<Thickness x:Key="ColorPickerControlPadding">8</Thickness>
-		<sys:Double x:Key="ColorPickerCanvasOffset">-5</sys:Double>
-	</Styles.Resources>
+    <sys:Double x:Key="ColorPickerControlWidth">312</sys:Double>
+    <Thickness x:Key="ColorPickerControlPadding">8</Thickness>
+    <sys:Double x:Key="ColorPickerCanvasOffset">-5</sys:Double>
 
-	<!--Color slider for transparency (alpha) setters-->
-	<Style Selector="Slider.transparency:horizontal /template/ Border#PART_RailBorder">
-		<Setter Property="Height" Value="{StaticResource SliderTrackHeight}"/>
-		<Setter Property="Margin" Value="{StaticResource SliderHorizontalRailBackgroundMargin}"/>
-	</Style>
-	<Style Selector="Slider.transparency:vertical /template/ Border#PART_RailBorder">
-		<Setter Property="Width" Value="{StaticResource SliderTrackHeight}"/>
-		<Setter Property="Margin" Value="{StaticResource SliderVerticalRailBackgroundMargin}"/>
-	</Style>
-	<Style Selector="Slider.transparency">
-		<Setter Property="Maximum" Value="1.0"/>
-		<Setter Property="Value" Value="0"/>
-	</Style>
-	<Style Selector="Slider.transparency:horizontal /template/ Border#PART_RailBackground">
-		<Setter Property="Background" Value="{Binding $parent[mxev:ColorPickerControl].ColorHueValue, Converter={mxev:TransparencySliderBackrgoundConverter}}"/>
-	</Style>
-	<Style Selector="Slider.transparency /template/ RepeatButton#PART_DecreaseButton /template/ Border#PART_TrackBackground">
-		<Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
-	</Style>
-	<Style Selector="Slider.transparency /template/ Thumb /template/ Ellipse#PART_InnerEllipse">
-		<Setter Property="Fill">
-			<Setter.Value>
-				<MultiBinding Converter="{mxev:TransparencySliderSelectedColorConverter}">
-					<Binding Path="$parent[mxev:ColorPickerControl].ColorHueValue" />
-					<Binding Path="$parent[Slider].Value"/>
-				</MultiBinding>
-			</Setter.Value>
-		</Setter>
-		<Setter Property="StrokeThickness" Value="{StaticResource SliderStrokeThickness}"/>
-		<Setter Property="Stroke" Value="{DynamicResource TransparencySliderThumbStroke}" />
-	</Style>
-	<Style Selector="Slider.transparency /template/ Border#PART_RailBorder">
-		<Setter Property="BorderBrush" Value="{DynamicResource TransparencySliderRailBorderBrush}"/>
-	</Style>
-	<Style Selector="Slider.transparency:horizontal:disabled /template/ Border#PART_RailBackground">
-		<Setter Property="Background" Value="{DynamicResource TransparencySliderRailBackgroundDisabled}"/>
-	</Style>
-	<Style Selector="Slider.transparency:disabled /template/ RepeatButton#PART_DecreaseButton /template/ Border#PART_TrackBackground">
-		<Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
-	</Style>
-	<Style Selector="Slider.transparency:disabled /template/ RepeatButton#PART_DecreaseButton /template/ Border#PART_TrackBackground_Top">
-		<Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
-	</Style>
-	<Style Selector="Slider.transparency:disabled /template/ Thumb /template/ Ellipse#PART_InnerEllipse">
-		<Setter Property="Fill" Value="{DynamicResource TransparencySliderThumbInnerFillDisabled}"/>
-	</Style>
-	<Style Selector="mxev|ColorPickerControl">
-		<Setter Property="Background" Value="{DynamicResource ColorPickerControlBackgrund}"/>
-		<Setter Property="BorderBrush" Value="{DynamicResource ColorPickerControlBorderBrush}" />
-		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
-		<Setter Property="Width" Value="{StaticResource ColorPickerControlWidth}"/>
-		<Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}"/>
-		<Setter Property="Padding" Value="{StaticResource ColorPickerControlPadding}"/>
-		<Setter Property="CanvasOffset" Value="{StaticResource ColorPickerCanvasOffset}"/>
-		<Setter Property="Template">
-			<ControlTemplate>
-				<Border x:Name="PART_RootBorder"
-												Background="{TemplateBinding Background}"
-												BorderBrush="{TemplateBinding BorderBrush}"
-												BorderThickness="{TemplateBinding BorderThickness}"
-												CornerRadius="{TemplateBinding CornerRadius}"
-												Padding="{TemplateBinding Padding}">
-					<Grid ColumnDefinitions="144, 8, *, 8, 84" RowDefinitions="Auto, 8, Auto, 8, Auto, 8, Auto, 8, Auto, Auto, Auto">
-						<Grid.Styles>
-							<Style Selector="mxe|SpinEditor:activeMode">
-								<Setter Property="Minimum" Value="0"/>
-								<Setter Property="HorizontalContentAlignment" Value="Left"/>
-							</Style>
-							<Style Selector="TextBlock.caption">
-								<Setter Property="FontSize" Value="{StaticResource EditorFontSize}" />
-								<Setter Property="VerticalAlignment" Value="Center"/>
-								<Setter Property="HorizontalAlignment" Value="Right"/>
-								<Setter Property="Foreground" Value="{DynamicResource ColorPickerControlPropertyNameForeground}"/>
-								<Setter Property="TextTrimming" Value="CharacterEllipsis"/>
-								<Setter Property="common:TextBlockHelper.ShowTooltipWhenTrimming" Value="True"/>
-							</Style>
-						</Grid.Styles>
-						<Border x:Name="PART_ColorSelectorBackground"
-																Grid.RowSpan="7"
-																CornerRadius="{StaticResource EditorCornerRadius}"
-																Background="{TemplateBinding SelectorBackground}"/>
-						<Border x:Name="PART_BlackBackground"
-										Grid.RowSpan="7"
-										CornerRadius="{StaticResource EditorCornerRadius}">
-							<Border.Background>
-								<LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
-									<GradientStop Color="#00000000" Offset="0" />
-									<GradientStop Color="#FF000000" Offset="1" />
-								</LinearGradientBrush>
-							</Border.Background>
-						</Border>
-						<Canvas Name="PART_ThumbCanvas" Grid.RowSpan="7" Background="Transparent">
-							<Thumb Name="PART_Thumb"
-									 Height="{DynamicResource SliderThumbSize}"
-									 Width="{DynamicResource SliderThumbSize}"
-									 Classes="FluentSliderThumbTheme"/>
-						</Canvas>
-						<TextBlock Grid.Column="2" Classes="caption" Text="{x:Static localization:ControlsResources.ColorPicker_HexCodeText}"/>
-						<mxe:TextEditor Grid.Column="4" x:Name="PART_ColorHexValueEditor" EditorValue="{Binding $parent[mxev:ColorPickerControl].ColorHexValue, Mode=TwoWay}"
-														ValidationInfo="{Binding $parent[mxev:ColorPickerControl].HexEditorValidationInfo}"/>
-						<TextBlock Grid.Column="2" Grid.Row="2" Classes="caption" Text="{x:Static localization:ControlsResources.ColorPicker_ModelText}"/>
-						<mxe:ComboBoxEditor Grid.Column="4"
-																Grid.Row="2"
-																x:Name="PART_ColorModeSelector"
-																ItemsSource="{common:EnumItemsSource EnumType=mxev:ColorPickerColorMode}"
-																EditorValue="{Binding $parent[mxev:ColorPickerControl].ColorMode, Mode=TwoWay}"/>
-						<TextBlock Grid.Column="2" Grid.Row="4" Classes="caption" Text="{TemplateBinding ColorComponent1Caption}" />
-						<mxe:SpinEditor Grid.Column="4"
-														Grid.Row="4"
-														x:Name="PART_ColorComponent1Selector"
-														EditorValue="{Binding $parent[mxev:ColorPickerControl].ColorComponent1Value, Mode=TwoWay}"
-														Maximum="{TemplateBinding ColorComponent1MaxValue}"/>
-						<TextBlock Grid.Column="2" Grid.Row="6" Classes="caption" Text="{TemplateBinding ColorComponent2Caption}" />
-						<mxe:SpinEditor Grid.Column="4"
-														Grid.Row="6"
-														x:Name="PART_ColorComponent2Selector"
-														EditorValue="{Binding $parent[mxev:ColorPickerControl].ColorComponent2Value, Mode=TwoWay}"
-														Maximum="{TemplateBinding ColorComponent2MaxValue}"/>
-						<Slider Grid.Row="8"
-										x:Name="PART_ColorHueValueSelector"
-										Value="{Binding $parent[mxev:ColorPickerControl].ColorHueValue, Mode=TwoWay}"
-										Classes="color"/>											
-						<TextBlock Grid.Column="2" Grid.Row="8" Classes="caption" Text="{TemplateBinding ColorComponent3Caption}" />
-						<mxe:SpinEditor Grid.Column="4"
-														Grid.Row="8"
-														x:Name="PART_ColorComponent3Selector"
-														EditorValue="{Binding $parent[mxev:ColorPickerControl].ColorComponent3Value, Mode=TwoWay}"
-														Maximum="{TemplateBinding ColorComponent3MaxValue}"/>
-						<Border Grid.Row="9" Grid.ColumnSpan="5" 
-										Height="8"
-										IsVisible="{TemplateBinding ShowAlphaChannel}"/>
-						<Slider Grid.Row="10" 
-										x:Name="PART_ColorAlphaValueSlider"
-										Value="{Binding $parent[mxev:ColorPickerControl].ColorAlphaValue, Mode=TwoWay}"
-										IsVisible="{TemplateBinding ShowAlphaChannel}"
-										Classes="transparency"/>
-						<TextBlock	Grid.Column="2" Grid.Row="10" Classes="caption"
-												Text="{x:Static localization:ControlsResources.ColorPicker_AlphaChannelText}"
-												IsVisible="{TemplateBinding ShowAlphaChannel}"/>
-						<mxe:SpinEditor Grid.Column="4"
-														Grid.Row="10" DisplayFormatString="{}{0:F0}"
-														x:Name="PART_ColorAlphaValueSelector"
-														EditorValue="{Binding $parent[mxev:ColorPickerControl].ColorComponentAlphaValue, Mode=TwoWay}"
-														Maximum="255"
-														IsVisible="{TemplateBinding ShowAlphaChannel}"/>
-					</Grid>
-				</Border>
-			</ControlTemplate>
-		</Setter>
-	</Style>
+    <!--Color slider for transparency (alpha) setters-->
+    <ControlTheme x:Key="TransparencySliderTheme" TargetType="Slider" BasedOn="{StaticResource SliderBase}">
+        <Setter Property="Maximum" Value="1.0"/>
+        <Setter Property="Value" Value="0"/>
 
-	<!-- Normal State -->
+        <Style Selector="^:horizontal">
+            <Style Selector="^ /template/ RepeatButton">
+                <Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
+            </Style>
+            <Style Selector="^ /template/ Border#PART_RailBackground">
+                <Setter Property="Background" Value="{Binding $parent[mxev:ColorPickerControl].ColorHueValue, Converter={mxev:TransparencySliderBackrgoundConverter}}"/>
+            </Style>
+            <Style Selector="^:disabled /template/ Border#PART_RailBackground">
+                <Setter Property="Background" Value="{DynamicResource TransparencySliderRailBackgroundDisabled}"/>
+            </Style>
+        </Style>
 
-	<Style Selector="mxev|ColorPickerControl /template/ Thumb#PART_Thumb /template/ Ellipse#PART_OuterEllipse">
-		<Setter Property="Fill" Value="{DynamicResource ColorPickerControlThumbFill}" />
-		<Setter Property="Stroke" Value="{DynamicResource ColorPickerControlThumbStroke}" />
-		<Setter Property="StrokeThickness" Value="{StaticResource SliderStrokeThickness}"/>
-	</Style>
-	<Style Selector="mxev|ColorPickerControl /template/ Thumb#PART_Thumb /template/ Ellipse#PART_InnerEllipse">
-		<Setter Property="Width" Value="{StaticResource ThumbEllipseDefaultSize}"/>
-		<Setter Property="Height" Value="{StaticResource ThumbEllipseDefaultSize}"/>
-	</Style>
-	<Style Selector="mxev|ColorPickerControl /template/ Thumb#PART_Thumb /template/ Ellipse#PART_InnerEllipse">
-		<Setter Property="Fill" Value="{DynamicResource ColorPickerControlThumbInnerFill}" />
-		<Setter Property="StrokeThickness" Value="{StaticResource SliderStrokeThickness}"/>
-		<Setter Property="Stroke" Value="{DynamicResource ColorPickerControlThumbInnerStroke}" />
-	</Style>
+        <Style Selector="^ /template/ Thumb">
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <MultiBinding Converter="{mxev:TransparencySliderSelectedColorConverter}">
+                        <Binding Path="$parent[mxev:ColorPickerControl].ColorHueValue" />
+                        <Binding Path="$parent[Slider].Value"/>
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="{StaticResource ColorSliderIndicatorStrokeThickness}"/>
+            <Setter Property="Background" Value="{DynamicResource TransparencySliderThumbStroke}" />
+        </Style>
 
-	<!-- PointerOver state-->
-	<Style Selector="mxev|ColorPickerControl /template/ Thumb#PART_Thumb:pointerover">
-		<Setter Property="Cursor" Value="Hand" />
-	</Style>
-	<Style Selector="mxev|ColorPickerControl /template/ Thumb#PART_Thumb:pointerover /template/ Ellipse#PART_InnerEllipse">
-		<Setter Property="Width" Value="{StaticResource ThumbEllipseHoverSize}"/>
-		<Setter Property="Height" Value="{StaticResource ThumbEllipseHoverSize}"/>
-	</Style>
+        <Style Selector="^:disabled /template/ Thumb">
+            <Setter Property="Foreground" Value="{DynamicResource TransparencySliderThumbInnerFillDisabled}"/>
+        </Style>
+    </ControlTheme>
+    <ControlTheme x:Key="{x:Type mxev:ColorPickerControl}" TargetType="mxev:ColorPickerControl">
+        <Setter Property="Background" Value="{DynamicResource ColorPickerControlBackgrund}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ColorPickerControlBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
+        <Setter Property="Width" Value="{StaticResource ColorPickerControlWidth}"/>
+        <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}"/>
+        <Setter Property="Padding" Value="{StaticResource ColorPickerControlPadding}"/>
+        <Setter Property="CanvasOffset" Value="{StaticResource ColorPickerCanvasOffset}"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border x:Name="PART_RootBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Padding="{TemplateBinding Padding}">
+                    <Grid ColumnDefinitions="144, 8, *, 8, 84" RowDefinitions="Auto, 8, Auto, 8, Auto, 8, Auto, 8, Auto, Auto, Auto">
+                        <Grid.Styles>
+                            <Style Selector="mxe|SpinEditor:activeMode">
+                                <Setter Property="Minimum" Value="0"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                            </Style>
+                            <Style Selector="TextBlock.caption">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Right"/>
+                                <Setter Property="Foreground" Value="{DynamicResource ColorPickerControlPropertyNameForeground}"/>
+                                <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                <Setter Property="common:TextBlockHelper.ShowTooltipWhenTrimming" Value="True"/>
+                            </Style>
+                        </Grid.Styles>
+                        <Border x:Name="PART_ColorSelectorBackground"
+                                Grid.RowSpan="7" Margin="1"
+                                CornerRadius="{StaticResource EditorCornerRadius}"
+                                Background="{TemplateBinding SelectorBackground}"/>
+                        <Border x:Name="PART_BlackBackground"
+                                Grid.RowSpan="7"
+                                CornerRadius="{StaticResource EditorCornerRadius}">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+                                    <GradientStop Color="#00000000" Offset="0" />
+                                    <GradientStop Color="#FF000000" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <Canvas Name="PART_ThumbCanvas" Grid.RowSpan="7" Background="Transparent">
+                            <Thumb Name="PART_Thumb"
+                                   Height="{DynamicResource SliderThumbSize}"
+                                   Width="{DynamicResource SliderThumbSize}"
+                                   Theme="{StaticResource ColorPickerThumbTheme}"/>
+                        </Canvas>
+                        <TextBlock Grid.Column="2" Classes="caption" Text="{x:Static localization:ControlsResources.ColorPicker_HexCodeText}"/>
+                        <mxe:TextEditor Grid.Column="4" x:Name="PART_ColorHexValueEditor" EditorValue="{Binding $parent[mxev:ColorPickerControl].ColorHexValue, Mode=TwoWay}"
+                                        ValidationInfo="{Binding $parent[mxev:ColorPickerControl].HexEditorValidationInfo}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="2" Classes="caption" Text="{x:Static localization:ControlsResources.ColorPicker_ModelText}"/>
+                        <mxe:ComboBoxEditor Grid.Column="4"
+                                            Grid.Row="2"
+                                            x:Name="PART_ColorModeSelector"
+                                            ItemsSource="{common:EnumItemsSource EnumType=mxev:ColorPickerColorMode}"
+                                            EditorValue="{Binding $parent[mxev:ColorPickerControl].ColorMode, Mode=TwoWay}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="4" Classes="caption" Text="{TemplateBinding ColorComponent1Caption}" />
+                        <mxe:SpinEditor Grid.Column="4"
+                                        Grid.Row="4"
+                                        x:Name="PART_ColorComponent1Selector"
+                                        EditorValue="{Binding $parent[mxev:ColorPickerControl].ColorComponent1Value, Mode=TwoWay}"
+                                        Maximum="{TemplateBinding ColorComponent1MaxValue}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="6" Classes="caption" Text="{TemplateBinding ColorComponent2Caption}" />
+                        <mxe:SpinEditor Grid.Column="4"
+                                        Grid.Row="6"
+                                        x:Name="PART_ColorComponent2Selector"
+                                        EditorValue="{Binding $parent[mxev:ColorPickerControl].ColorComponent2Value, Mode=TwoWay}"
+                                        Maximum="{TemplateBinding ColorComponent2MaxValue}"/>
+                        <Slider Grid.Row="8"
+                                x:Name="PART_ColorHueValueSelector"
+                                Value="{Binding $parent[mxev:ColorPickerControl].ColorHueValue, Mode=TwoWay}"
+                                Theme="{StaticResource ColorSliderTheme}"/>
+                        <TextBlock Grid.Column="2" Grid.Row="8" Classes="caption" Text="{TemplateBinding ColorComponent3Caption}" />
+                        <mxe:SpinEditor Grid.Column="4"
+                                        Grid.Row="8"
+                                        x:Name="PART_ColorComponent3Selector"
+                                        EditorValue="{Binding $parent[mxev:ColorPickerControl].ColorComponent3Value, Mode=TwoWay}"
+                                        Maximum="{TemplateBinding ColorComponent3MaxValue}"/>
+                        <Border Grid.Row="9" Grid.ColumnSpan="5"
+                                Height="8"
+                                IsVisible="{TemplateBinding ShowAlphaChannel}"/>
+                        <Slider Grid.Row="10"
+                                x:Name="PART_ColorAlphaValueSlider"
+                                Value="{Binding $parent[mxev:ColorPickerControl].ColorAlphaValue, Mode=TwoWay}"
+                                IsVisible="{TemplateBinding ShowAlphaChannel}"
+                                Theme="{StaticResource TransparencySliderTheme}"/>
+                        <TextBlock	Grid.Column="2" Grid.Row="10" Classes="caption"
+                                    Text="{x:Static localization:ControlsResources.ColorPicker_AlphaChannelText}"
+                                    IsVisible="{TemplateBinding ShowAlphaChannel}"/>
+                        <mxe:SpinEditor Grid.Column="4"
+                                        Grid.Row="10" DisplayFormatString="{}{0:F0}"
+                                        x:Name="PART_ColorAlphaValueSelector"
+                                        EditorValue="{Binding $parent[mxev:ColorPickerControl].ColorComponentAlphaValue, Mode=TwoWay}"
+                                        Maximum="255"
+                                        IsVisible="{TemplateBinding ShowAlphaChannel}"/>
+                        <Grid.Resources>
+                            <GridLength x:Key="SliderPreContentMargin">1</GridLength>
+                            <GridLength x:Key="SliderPostContentMargin">1</GridLength>
+                        </Grid.Resources>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
 
-	<!-- Pressed state, disabled state (width, height)-->
-	<Style Selector="mxev|ColorPickerControl /template/ Thumb#PART_Thumb:pressed /template/ Ellipse#PART_InnerEllipse,
-					 mxev|ColorPickerControl:disabled /template/ Thumb#PART_Thumb /template/ Ellipse#PART_InnerEllipse">
-		<Setter Property="Width" Value="{StaticResource ThumbEllipsePressedSize}"/>
-		<Setter Property="Height" Value="{StaticResource ThumbEllipsePressedSize}"/>
-	</Style>
+    <ControlTheme x:Key="ColorPickerThumbTheme" TargetType="Thumb" BasedOn="{StaticResource FluentSliderThumbTheme}">
+        <Setter Property="BorderThickness" Value="{StaticResource ColorSliderIndicatorStrokeThickness}"/>
+        <Setter Property="Background" Value="{DynamicResource ColorPickerControlThumbInnerStroke}" />
+        <Setter Property="Foreground" Value="{Binding $parent[mxev:ColorPickerControl].Color, Converter={mxev:SolidColorBrushConverter}}" />
 
-	<Style Selector="mxev|ColorPickerControl /template/ Thumb#PART_Thumb /template/ Ellipse#PART_InnerEllipse">
-		<Setter Property="Fill" Value="{Binding $parent[mxev:ColorPickerControl].Color, Converter={mxev:SolidColorBrushConverter}}" />
-	</Style>
+        <Style Selector="^ /template/ Ellipse#PART_OuterEllipse">
+            <Setter Property="Fill" Value="{DynamicResource ColorPickerControlThumbFill}" />
+            <Setter Property="Stroke" Value="{DynamicResource ColorPickerControlThumbStroke}" />
+        </Style>
 
-	<!--Disabled state-->
-	<Style Selector="mxev|ColorPickerControl:disabled /template/ Thumb#PART_Thumb /template/ Ellipse#PART_InnerEllipse">
-		<Setter Property="Stroke" Value="{DynamicResource ColorPickerControlThumbInnerStrokeDisabled}" />
-	</Style>
-	<Style Selector="mxev|ColorPickerControl:disabled /template/ Thumb#PART_Thumb /template/ Ellipse#PART_InnerEllipse">
-		<Setter Property="Fill" Value="{DynamicResource ColorPickerControlThumbInnerFillDisabled}" />
-	</Style>
-</Styles>
+        <!-- PointerOver state-->
+        <Style Selector="^:pointerover">
+            <Setter Property="MinWidth" Value="{StaticResource ThumbEllipseHoverSize}"/>
+            <Setter Property="MinHeight" Value="{StaticResource ThumbEllipseHoverSize}"/>
+        </Style>
+
+        <!-- Pressed state, disabled state (width, height)-->
+        <Style Selector="^:pressed, ^:disabled">
+            <Setter Property="MinWidth" Value="{StaticResource ThumbEllipsePressedSize}"/>
+            <Setter Property="MinHeight" Value="{StaticResource ThumbEllipsePressedSize}"/>
+        </Style>
+
+        <!--Disabled state-->
+        <Style Selector="^:disabled">
+            <Setter Property="Foreground" Value="{DynamicResource ColorPickerControlThumbInnerFillDisabled}" />
+            <Setter Property="Background" Value="{DynamicResource ColorPickerControlThumbInnerStrokeDisabled}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

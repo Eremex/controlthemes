@@ -19,7 +19,7 @@
         <Setter Property="SelectionColor" Value="{DynamicResource Selection/Color}" />
 	</Style>
 
-	<!-- CartesianChart -->
+	<!-- PolarChart -->
 	<Style Selector="charts|PolarChart">
 	  <Setter Property="Background" Value="{StaticResource Fill/Chart}" />
 	  <Setter Property="BorderBrush" Value="{StaticResource Border/Chart}" />

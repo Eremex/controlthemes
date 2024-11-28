@@ -4,4 +4,5 @@
     <StyleInclude Source="/Charts/CartesianChart.axaml"/>
     <StyleInclude Source="/Charts/PolarChart.axaml"/>
     <StyleInclude Source="/Charts/SmithChart.axaml"/>
+    <StyleInclude Source="/Charts/Heatmap.axaml"/>
 </Styles>

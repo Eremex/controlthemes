@@ -1,140 +1,145 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:sys="using:System"
-        xmlns:media="using:Avalonia.Media"
-        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
-        xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
-				xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls">
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="using:System"
+                    xmlns:media="using:Avalonia.Media"
+                    xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls">
 
     <Design.PreviewWith>
-			<Border Padding="20">
-				<StackPanel>
-					<StackPanel.Resources>
-						<media:Color x:Key="Color1">#FF234567</media:Color>
-						<media:Color x:Key="Color2">Yellow</media:Color>
-					</StackPanel.Resources>
-					<Border Background="{DynamicResource Fill/Neutral/Primary/Enabled}" Padding="10">
-						<StackPanel Spacing="10">
-							<mxe:PopupColorEditor EditorValue="{StaticResource Color1}" Width="180"/>
-							<mxe:PopupColorEditor EditorValue="{x:Null}" EditorMode="InplaceInactive" Width="180"/>
-							<mxe:PopupColorEditor EditorValue="{StaticResource Color2}" IsEnabled="False" Width="180"/>
-						</StackPanel>
-					</Border>
-					<Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
-						<StackPanel Spacing="10">
-							<mxe:PopupColorEditor EditorValue="{StaticResource Color2}" Width="180" Classes="secondary"/>
-							<mxe:PopupColorEditor EditorValue="{x:Null}" EditorMode="InplaceInactive" Width="180" Classes="secondary"/>
-							<mxe:PopupColorEditor EditorValue="{StaticResource Color1}" IsEnabled="False" Width="180" Classes="secondary"/>
-						</StackPanel>
-					</Border>
-				</StackPanel>
-			</Border>
+        <Border Padding="20">
+            <StackPanel>
+                <StackPanel.Resources>
+                    <media:Color x:Key="Color1">#FF234567</media:Color>
+                    <media:Color x:Key="Color2">Yellow</media:Color>
+                </StackPanel.Resources>
+                <Border Background="{DynamicResource Fill/Neutral/Primary/Enabled}" Padding="10">
+                    <StackPanel Spacing="10">
+                        <mxe:PopupColorEditor EditorValue="{StaticResource Color1}" Width="180"/>
+                        <mxe:PopupColorEditor EditorValue="{x:Null}" EditorMode="InplaceInactive" Width="180"/>
+                        <mxe:PopupColorEditor EditorValue="{StaticResource Color2}" IsEnabled="False" Width="180"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
+                    <StackPanel Spacing="10">
+                        <mxe:PopupColorEditor EditorValue="{StaticResource Color2}" Width="180" Classes="secondary"/>
+                        <mxe:PopupColorEditor EditorValue="{x:Null}" EditorMode="InplaceInactive" Width="180" Classes="secondary"/>
+                        <mxe:PopupColorEditor EditorValue="{StaticResource Color1}" IsEnabled="False" Width="180" Classes="secondary"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
     </Design.PreviewWith>
 
-    <Styles.Resources>
-        <sys:Double x:Key="PopupColorEditorPopupWidth">316</sys:Double>
-        <sys:Double x:Key="PopupColorEditorColorPresenterWidth">16</sys:Double>
-        <sys:Double x:Key="PopupColorEditorColorPresenterHeight">12</sys:Double>
-    </Styles.Resources>
 
-    <Style Selector="mxe|PopupColorEditor">
+    <sys:Double x:Key="PopupColorEditorPopupWidth">316</sys:Double>
+    <sys:Double x:Key="PopupColorEditorColorPresenterWidth">16</sys:Double>
+    <sys:Double x:Key="PopupColorEditorColorPresenterHeight">12</sys:Double>
+
+    <ControlTheme x:Key="{x:Type mxe:PopupColorEditor}" TargetType="mxe:PopupColorEditor" BasedOn="{StaticResource {x:Type mxe:PopupEditor}}">
         <Setter Property="PopupWidth" Value="{StaticResource PopupColorEditorPopupWidth}"/>
-				<Setter Property="PopupHorizontalOffset" Value="{DynamicResource PopupHorizontalOffset}"/>
+        <Setter Property="PopupHorizontalOffset" Value="{DynamicResource PopupHorizontalOffset}"/>
         <Setter Property="PopupBottomOffset" Value="{DynamicResource PopupBottomOffset}"/>
         <Setter Property="Template">
-					<ControlTemplate>
-						<mxev:EditorInactiveContainer Name="PART_InactiveContentContainer" ColumnDefinitions="Auto, *, Auto" >
-							<DockPanel Name="PART_RealEditorPresenterContainer" Grid.Column="1">
-								<Border DockPanel.Dock="Left" Name="PART_ColorValuePresenter" Grid.Column="1"
-												BorderBrush="{DynamicResource PopupColorEditorColorIndicatorBorderBrush}"
-												BorderThickness="{StaticResource EditorBorderThickness}"
-												Height="{StaticResource PopupColorEditorColorPresenterHeight}"
-												Width="{StaticResource PopupColorEditorColorPresenterWidth}"/>
-								<TextBlock DockPanel.Dock="Left"
-													  Name="PART_RealEditorPresenter"
-														TextTrimming="CharacterEllipsis"
-														mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"/>
-							</DockPanel>
-						</mxev:EditorInactiveContainer>
-					</ControlTemplate>
+            <ControlTemplate>
+                <mxev:EditorInactiveContainer Name="PART_InactiveContentContainer" ColumnDefinitions="Auto, *, Auto" >
+                    <DockPanel Name="PART_RealEditorPresenterContainer" Grid.Column="1">
+                        <Border DockPanel.Dock="Left" Name="PART_ColorValuePresenter" Grid.Column="1"
+                                BorderBrush="{DynamicResource PopupColorEditorColorIndicatorBorderBrush}"
+                                BorderThickness="{StaticResource EditorBorderThickness}"
+                                Height="{StaticResource PopupColorEditorColorPresenterHeight}"
+                                Width="{StaticResource PopupColorEditorColorPresenterWidth}"/>
+                        <TextBlock DockPanel.Dock="Left"
+                                   Name="PART_RealEditorPresenter"
+                                   TextTrimming="CharacterEllipsis"
+                                   mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"/>
+                    </DockPanel>
+                </mxev:EditorInactiveContainer>
+            </ControlTemplate>
         </Setter>
-    </Style>
 
-    <Style Selector="mxe|PopupColorEditor:activeMode">
-        <Setter Property="PopupContent">
-            <Setter.Value>
-                <Template>
-                    <mxe:ColorEditor BorderThickness="0" HorizontalAlignment="Center"
-                                     ReadOnly="{Binding $parent[mxe:PopupColorEditor].ReadOnly}"
-                                     ThemePalette="{Binding $parent[mxe:PopupColorEditor].ThemePalette}"
-																		 ShowConfirmationButtons="{Binding $parent[mxe:PopupColorEditor].ActualPopupFooterButtons, Converter={mxev:PopupFooterButtonVisibleConverter}, ConverterParameter=OkCancel}"
-																		 ColorsShowMode="{Binding $parent[mxe:PopupColorEditor].ColorsShowMode}"
-																		 ShowAlphaChannel="{Binding $parent[mxe:PopupColorEditor].ShowAlphaChannel}"
-																		 CornerRadius="{StaticResource PopupCornerRadius}"/>
-								</Template>
-            </Setter.Value>
-        </Setter>
-    </Style>
+        <Style Selector="^[EditorMode=InplaceInactive]">
+            <Style Selector="^ /template/ Border#PART_ColorValuePresenter">
+                <Setter Property="Margin" Value="{Binding  $parent[mxe:PopupColorEditor].Padding, Converter={StaticResource EditorSplitterConverter}, ConverterParameter=Right}"/>
+            </Style>
+            <Style Selector="^[ShowText=False] /template/ Border#PART_ColorValuePresenter">
+                <Setter Property="Margin" Value="0"/>
+            </Style>
+            <Style Selector="^[ShowText=False] /template/ TextBlock#PART_RealEditorPresenter">
+                <Setter Property="IsVisible" Value="False"/>
+            </Style>
+        </Style>
 
+        <Style Selector="^:activeMode">
+            <Setter Property="PopupContent">
+                <Setter.Value>
+                    <Template>
+                        <mxe:ColorEditor BorderThickness="0" HorizontalAlignment="Center"
+                                         ReadOnly="{Binding $parent[mxe:PopupColorEditor].ReadOnly}"
+                                         ThemePalette="{Binding $parent[mxe:PopupColorEditor].ThemePalette}"
+                                         ShowConfirmationButtons="{Binding $parent[mxe:PopupColorEditor].ActualPopupFooterButtons, Converter={mxev:PopupFooterButtonVisibleConverter}, ConverterParameter=OkCancel}"
+                                         ColorsShowMode="{Binding $parent[mxe:PopupColorEditor].ColorsShowMode}"
+                                         ShowAlphaChannel="{Binding $parent[mxe:PopupColorEditor].ShowAlphaChannel}"
+                                         CornerRadius="{StaticResource PopupCornerRadius}"/>
+                    </Template>
+                </Setter.Value>
+            </Setter>
 
-	<Style Selector=":is(mxe|PopupColorEditor):activeMode /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer,
-					 :is(mxe|PopupColorEditor)[ShowText=False]:activeMode /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer">
-		<Setter Property="Content">
-			<Setter.Value>
-				<Template>
-					<DockPanel	x:Name="PART_NonEditablePanel"
-											HorizontalAlignment="{Binding $parent[TextBox].HorizontalContentAlignment}"
-											VerticalAlignment="{Binding $parent[TextBox].VerticalContentAlignment}">
-						<Border DockPanel.Dock="Left"
-										Name="PART_ColorValuePresenter"
-										BorderBrush="{DynamicResource PopupColorEditorColorIndicatorBorderBrush}"
-										BorderThickness="{StaticResource EditorBorderThickness}"
-										Height="{StaticResource PopupColorEditorColorPresenterHeight}"
-										Width="{StaticResource PopupColorEditorColorPresenterWidth}"/>
-						<Panel DockPanel.Dock="Left"
-									 IsVisible="{Binding $parent[mxe:PopupColorEditor].ShowText}"
-									 Margin="{Binding $parent[mxe:PopupColorEditor].Padding, Converter={StaticResource EditorSplitterConverter}, ConverterParameter=Right}"/>
-						<ContentPresenter x:Name="PART_NonEditablePresenter"
-															DockPanel.Dock="Left"
-															IsVisible="{Binding $parent[mxe:PopupColorEditor].ShowText}"
-															FontSize="{Binding $parent[TextBox].FontSize}"
-															VerticalAlignment="{Binding $parent[TextBox].VerticalContentAlignment}"/>
-					</DockPanel>
-				</Template>
-			</Setter.Value>
-		</Setter>
-	</Style>
-	
-	
+            <Style Selector="^:activeMode">
+                <Setter Property="PopupFooterTemplate" Value="{x:Null}"/>
 
-	<Style Selector="mxe|PopupColorEditor:activeMode:pointerover">
-		<Setter Property="Background" Value="{DynamicResource PopupColorEditorBackgroundPointerOver}"/>
-	</Style>
-	<Style Selector="mxe|PopupColorEditor.secondary:activeMode:pointerover">
-		<Setter Property="BorderBrush" Value="{DynamicResource PopupColorEditorSecondaryBorderBrushPointerOver}"/>
-		<Setter Property="Background" Value="{DynamicResource PopupColorEditorSecondaryBackgroundPointerOver}" />
-	</Style>	
+                <Style Selector="^ /template/ TextBox#PART_RealEditor">
+                    <Setter Property="Theme" Value="{StaticResource PopupColorEditorTextBoxTheme}"/>
+                </Style>
 
-	<Style Selector="mxe|PopupColorEditor:focus-visible">
-		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
-		<Setter Property="Background" Value="{DynamicResource PopupColorEditorBackgroundPointerOver}" />
-	</Style>
-	<Style Selector="mxe|PopupColorEditor.secondary:focus-visible">
-		<Setter Property="Background" Value="{DynamicResource PopupColorEditorSecondaryBackgroundPointerOver}" />
-		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
-	</Style>
+                <Style Selector="^:pointerover">
+                    <Setter Property="Background" Value="{DynamicResource PopupColorEditorBackgroundPointerOver}"/>
+                    <Style Selector="^.secondary">
+                        <Setter Property="BorderBrush" Value="{DynamicResource PopupColorEditorSecondaryBorderBrushPointerOver}"/>
+                        <Setter Property="Background" Value="{DynamicResource PopupColorEditorSecondaryBackgroundPointerOver}" />
+                    </Style>
+                </Style>
+                <Style Selector="^:focus-visible">
+                    <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
+                    <Setter Property="Background" Value="{DynamicResource PopupColorEditorBackgroundPointerOver}" />
+                    <Style Selector="^.secondary">
+                        <Setter Property="Background" Value="{DynamicResource PopupColorEditorSecondaryBackgroundPointerOver}" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
+                    </Style>
+                </Style>
+            </Style>
 
-	<Style Selector=":is(mxe|PopupColorEditor)[EditorMode=InplaceInactive] /template/ Border#PART_ColorValuePresenter">
-		<Setter Property="Margin" Value="{Binding  $parent[mxe:PopupColorEditor].Padding, Converter={StaticResource EditorSplitterConverter}, ConverterParameter=Right}"/>
-	</Style>
-	<Style Selector=":is(mxe|PopupColorEditor)[EditorMode=InplaceInactive][ShowText=False] /template/ Border#PART_ColorValuePresenter">
-		<Setter Property="Margin" Value="0"/>
-	</Style>
-	<Style Selector=":is(mxe|PopupColorEditor)[EditorMode=InplaceInactive][ShowText=False] /template/ TextBlock#PART_RealEditorPresenter">
-		<Setter Property="IsVisible" Value="False"/>
-	</Style>
-	
-	<Style Selector=":is(mxe|PopupColorEditor)[ShowText=False]">
-		<Setter Property="ToolTip.Tip" Value="{Binding $self.DisplayText}"/>
-	</Style>	
-</Styles>
+            <Style Selector="^[ShowText=False]">
+                <Setter Property="ToolTip.Tip" Value="{Binding $self.DisplayText}"/>
+            </Style>
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="PopupColorEditorTextBoxTheme" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Style Selector="^ /template/ ContentPresenter#PART_ReadOnlyContentContainer">
+            <Setter Property="Content">
+                <Setter.Value>
+                    <Template>
+                        <DockPanel x:Name="PART_NonEditablePanel"
+                                   HorizontalAlignment="{Binding $parent[TextBox].HorizontalContentAlignment}"
+                                   VerticalAlignment="{Binding $parent[TextBox].VerticalContentAlignment}">
+                            <Border DockPanel.Dock="Left"
+                                    Name="PART_ColorValuePresenter"
+                                    BorderBrush="{DynamicResource PopupColorEditorColorIndicatorBorderBrush}"
+                                    BorderThickness="{StaticResource EditorBorderThickness}"
+                                    Height="{StaticResource PopupColorEditorColorPresenterHeight}"
+                                    Width="{StaticResource PopupColorEditorColorPresenterWidth}"/>
+                            <Panel DockPanel.Dock="Left"
+                                   IsVisible="{Binding $parent[mxe:PopupColorEditor].ShowText}"
+                                   Margin="{Binding $parent[mxe:PopupColorEditor].Padding, Converter={StaticResource EditorSplitterConverter}, ConverterParameter=Right}"/>
+                            <ContentPresenter x:Name="PART_NonEditablePresenter"
+                                              DockPanel.Dock="Left"
+                                              IsVisible="{Binding $parent[mxe:PopupColorEditor].ShowText}"
+                                              VerticalAlignment="{Binding $parent[TextBox].VerticalContentAlignment}"/>
+                        </DockPanel>
+                    </Template>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

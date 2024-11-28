@@ -1,69 +1,64 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mxtl="clr-namespace:Eremex.AvaloniaUI.Controls.TreeList;assembly=Eremex.Avalonia.Controls"
-        xmlns:ed="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
         xmlns:ec="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
         xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls"
         xmlns:mxt="clr-namespace:Eremex.AvaloniaUI.Controls.Bars;assembly=Eremex.Avalonia.Controls"
         xmlns:mxdcv="clr-namespace:Eremex.AvaloniaUI.Controls.DataControl.Visuals;assembly=Eremex.Avalonia.Controls"
+        xmlns:mxdc="clr-namespace:Eremex.AvaloniaUI.Controls.DataControl;assembly=Eremex.Avalonia.Controls"
         xmlns:mxtlv="clr-namespace:Eremex.AvaloniaUI.Controls.TreeList.Visuals;assembly=Eremex.Avalonia.Controls"
         xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
-        xmlns:other="clr-namespace:Eremex.AvaloniaUI.Icons.Other;assembly=Eremex.Avalonia.Icons">
+        xmlns:other="clr-namespace:Eremex.AvaloniaUI.Icons.Other;assembly=Eremex.Avalonia.Icons"
+        xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls">
 
-	<Styles.Resources>
-		<x:Double x:Key="ColumnHeaderFontSize">12</x:Double>
-		<x:Double x:Key="SearchPanelEditorMinWidth">250</x:Double>
+    <StreamGeometry x:Key="SortIndicatorDescendingPath">M8.35355 6.64645C8.54882 6.84171 8.54882 7.15829 8.35355 7.35355L4.85355 10.8536C4.65829 11.0488 4.3417 11.0488 4.14644 10.8536L0.646446 7.35356C0.451184 7.1583 0.451184 6.84171 0.646446 6.64645C0.841708 6.45119 1.15829 6.45119 1.35355 6.64645L3.99999 9.29289L4 0.5C4 0.223857 4.22385 -1.86916e-07 4.5 -1.74846e-07C4.77614 -1.62775e-07 5 0.223857 5 0.5L5 9.29289L7.64645 6.64645C7.84171 6.45118 8.15829 6.45118 8.35355 6.64645Z</StreamGeometry>
+    <StreamGeometry x:Key="SortIndicatorAscendingPath">M8.35355 4.35355C8.54882 4.15829 8.54882 3.84171 8.35355 3.64645L4.85355 0.146446C4.65829 -0.0488155 4.3417 -0.0488155 4.14644 0.146446L0.646447 3.64644C0.451184 3.8417 0.451184 4.15829 0.646447 4.35355C0.841709 4.54881 1.15829 4.54881 1.35355 4.35355L4 1.70711L4 10.5C4 10.7761 4.22385 11 4.5 11C4.77614 11 5 10.7761 5 10.5V1.70711L7.64645 4.35355C7.84171 4.54882 8.15829 4.54882 8.35355 4.35355Z</StreamGeometry>
 
-		<StreamGeometry x:Key="SortIndicatorDescendingPath">M8.35355 6.64645C8.54882 6.84171 8.54882 7.15829 8.35355 7.35355L4.85355 10.8536C4.65829 11.0488 4.3417 11.0488 4.14644 10.8536L0.646446 7.35356C0.451184 7.1583 0.451184 6.84171 0.646446 6.64645C0.841708 6.45119 1.15829 6.45119 1.35355 6.64645L3.99999 9.29289L4 0.5C4 0.223857 4.22385 -1.86916e-07 4.5 -1.74846e-07C4.77614 -1.62775e-07 5 0.223857 5 0.5L5 9.29289L7.64645 6.64645C7.84171 6.45118 8.15829 6.45118 8.35355 6.64645Z</StreamGeometry>
-		<StreamGeometry x:Key="SortIndicatorAscendingPath">M8.35355 4.35355C8.54882 4.15829 8.54882 3.84171 8.35355 3.64645L4.85355 0.146446C4.65829 -0.0488155 4.3417 -0.0488155 4.14644 0.146446L0.646447 3.64644C0.451184 3.8417 0.451184 4.15829 0.646447 4.35355C0.841709 4.54881 1.15829 4.54881 1.35355 4.35355L4 1.70711L4 10.5C4 10.7761 4.22385 11 4.5 11C4.77614 11 5 10.7761 5 10.5V1.70711L7.64645 4.35355C7.84171 4.54882 8.15829 4.54882 8.35355 4.35355Z</StreamGeometry>
+    <Template x:Key="DefaultColumnMenu">
+        <mxt:PopupMenu>
+            <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_SortAscending}" Command="{Binding DataControl.Commands.SortColumnAscending}" CommandParameter="{Binding}" />
+            <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_SortDescending}" Command="{Binding DataControl.Commands.SortColumnDescending}" CommandParameter="{Binding}" />
+            <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_ClearSorting}" Command="{Binding DataControl.Commands.ClearColumnSorting}" CommandParameter="{Binding}" />
 
-		<Template x:Key="DefaultColumnMenu">
-			<mxt:PopupMenu>
-				<mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_SortAscending}" Command="{Binding DataControl.Commands.SortColumnAscending}" CommandParameter="{Binding}" />
-				<mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_SortDescending}" Command="{Binding DataControl.Commands.SortColumnDescending}" CommandParameter="{Binding}" />
-				<mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_ClearSorting}" Command="{Binding DataControl.Commands.ClearColumnSorting}" CommandParameter="{Binding}" />
+            <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_ShowColumnChooser}" Command="{Binding DataControl.Commands.ShowColumnChooser}" ShowSeparator="True" IsVisible="{Binding $self.IsEffectivelyEnabled}"  />
+            <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_HideColumnChooser}" Command="{Binding DataControl.Commands.HideColumnChooser}" ShowSeparator="True" IsVisible="{Binding $self.IsEffectivelyEnabled}"/>
 
-				<mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_ShowColumnChooser}" Command="{Binding DataControl.Commands.ShowColumnChooser}" ShowSeparator="True" IsVisible="{Binding $self.IsEffectivelyEnabled}"  />
-				<mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_HideColumnChooser}" Command="{Binding DataControl.Commands.HideColumnChooser}" ShowSeparator="True" IsVisible="{Binding $self.IsEffectivelyEnabled}"/>
+            <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_ShowSearchPanel}" Command="{Binding DataControl.Commands.ShowSearchPanel}" ShowSeparator="True" IsVisible="{Binding $self.IsEffectivelyEnabled}"  />
+            <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_HideSearchPanel}" Command="{Binding DataControl.Commands.HideSearchPanel}" ShowSeparator="True" IsVisible="{Binding $self.IsEffectivelyEnabled}"/>
+        </mxt:PopupMenu>
+    </Template>
 
-				<mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_ShowSearchPanel}" Command="{Binding DataControl.Commands.ShowSearchPanel}" ShowSeparator="True" IsVisible="{Binding $self.IsEffectivelyEnabled}"  />
-				<mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_HideSearchPanel}" Command="{Binding DataControl.Commands.HideSearchPanel}" ShowSeparator="True" IsVisible="{Binding $self.IsEffectivelyEnabled}"/>
-			</mxt:PopupMenu>
-		</Template>
+    <ControlTheme x:Key="{x:Type mxtl:TreeListControl}" TargetType="mxtl:TreeListControl">
+        <Setter Property="RowLevelIndent" Value="22" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="FocusAdorner" Value="{x:Null}" />
+        <Setter Property="ColumnMenu" Value="{StaticResource DefaultColumnMenu}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="{TemplateBinding Background}" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}" BorderThickness="{TemplateBinding BorderThickness}">
+                    <Grid RowDefinitions="Auto, Auto, Auto, Auto, *">
+                        <mxdcv:SearchPanel x:Name="PART_SearchPanel" IsVisible="{TemplateBinding IsSearchPanelVisible}" SearchText="{Binding SearchText, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <mxdcv:ColumnHeaderPanel Grid.Row="1" x:Name="PART_HeadersPanel" IsVisible="{TemplateBinding ShowColumnHeaders}"/>
+                        <Border Grid.Row="2" x:Name="ColumnHeadersHorizontalSeparator" IsVisible="{TemplateBinding ShowColumnHeaders}" HorizontalAlignment="Stretch" Height="1" Background="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+                        <mxdcv:AutoFilterRowControl Grid.Row="3" x:Name="PART_AutoFilterRow" IsVisible="{TemplateBinding ShowAutoFilterRow}" />
+                        <ScrollViewer Grid.Row="4" x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto">
+                            <common:MxVirtualizingControl x:Name="PART_VirtualizingControl"/>
+                        </ScrollViewer>
+                        <Border Name="PART_HeaderDropIndicator" IsHitTestVisible="False" Grid.Row="1" Grid.RowSpan="4" HorizontalAlignment="Left" Width="{TemplateBinding HeaderDropIndicatorWidth}" Background="{DynamicResource Outline/Accent/Secondary}" IsVisible="False"/>
+                    </Grid>
+                    <Border.Styles>
+                        <StyleInclude Source="/Controls/Editors/EditorsCellStyles.axaml"/>
+                    </Border.Styles>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
 
-	</Styles.Resources>
-
-	<Style Selector="mxtl|TreeListControl">
-		<Setter Property="RowLevelIndent" Value="22" />
-		<Setter Property="Focusable" Value="True" />
-		<Setter Property="FocusAdorner" Value="{x:Null}" />
-		<Setter Property="ColumnMenu" Value="{StaticResource DefaultColumnMenu}" />
-		<Setter Property="Template">
-			<ControlTemplate>
-				<Border Background="{TemplateBinding Background}" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}" BorderThickness="{TemplateBinding BorderThickness}">
-					<Grid RowDefinitions="Auto, Auto, Auto, Auto, *">
-						<mxdcv:SearchPanel x:Name="PART_SearchPanel" IsVisible="{TemplateBinding IsSearchPanelVisible}" SearchText="{Binding SearchText, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
-						<mxdcv:ColumnHeaderPanel Grid.Row="1" x:Name="PART_HeadersPanel" IsVisible="{TemplateBinding ShowColumnHeaders}"/>
-						<Border Grid.Row="2" x:Name="ColumnHeadersHorizontalSeparator" IsVisible="{TemplateBinding ShowColumnHeaders}" HorizontalAlignment="Stretch" Height="1" Background="{DynamicResource Outline/Neutral/Transparent/Medium}" />
-						<mxdcv:AutoFilterRowControl Grid.Row="3" x:Name="PART_AutoFilterRow" IsVisible="{TemplateBinding ShowAutoFilterRow}" />
-						<ScrollViewer Grid.Row="4" x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto">
-							<mxdcv:ScrollPanel x:Name="PART_ItemsPanel" HorizontalAlignment="Left"/>
-						</ScrollViewer>
-						<Border Name="PART_HeaderDropIndicator" IsHitTestVisible="False" Grid.Row="1" Grid.RowSpan="4" HorizontalAlignment="Left" Width="{TemplateBinding HeaderDropIndicatorWidth}" Background="{DynamicResource Outline/Accent/Secondary}" IsVisible="False"/>
-					</Grid>
-					<Border.Styles>
-						<StyleInclude Source="/Controls/Editors/EditorsCellStyles.axaml"/>
-					</Border.Styles>
-				</Border>
-			</ControlTemplate>
-		</Setter>
-	</Style>
-
-	<Style Selector="mxtlv|TreeListIndentControl">
-		<Setter Property="Background" Value="Transparent" />
-		<Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Gray}" />
-		<Setter Property="Template">
-			<ControlTemplate>
+    <ControlTheme x:Key="{x:Type mxtlv:TreeListIndentControl}" TargetType="mxtlv:TreeListIndentControl">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Gray}" />
+        <Setter Property="Template">
+            <ControlTemplate>
                 <mxtlv:TreeListIndentPanel Background="{TemplateBinding Background}" IndentCount="{Binding RowControl.IndentCount, RelativeSource={RelativeSource TemplatedParent}}" LevelIndent="{Binding RowControl.LevelIndent, RelativeSource={RelativeSource TemplatedParent}}">
                     <ToggleButton x:Name="ExpandButton" HorizontalAlignment="Right"
 																	Focusable="False"
@@ -87,349 +82,44 @@
 										IsVisible="{Binding RowControl.ShowNodeCheckBox, RelativeSource={RelativeSource TemplatedParent}}" IsThreeState="{Binding RowControl.AllowIndeterminateCheckState, RelativeSource={RelativeSource TemplatedParent}}"/>
                     <Image Width="16" Height="16" IsVisible="{Binding RowControl.ShowNodeImage, RelativeSource={RelativeSource TemplatedParent}}" Source="{Binding RowControl.Image, RelativeSource={RelativeSource TemplatedParent}}"/>
                 </mxtlv:TreeListIndentPanel>
-			</ControlTemplate>
-		</Setter>
-	</Style>
+            </ControlTemplate>
+        </Setter>
 
-	<Style Selector="mxtlv|TreeListIndentControl /template/ ToggleButton#ExpandButton">
-		<Setter Property="Width" Value="16"/>
-		<Setter Property="Height" Value="16"/>
-		<Setter Property="Content">
-			<Setter.Value>
-				<Binding Path="IsChecked" RelativeSource="{RelativeSource Self}">
-					<Binding.Converter>
-						<ec:BoolToObjectConverter TrueValue="{StaticResource DataControlExpandedChevron}"
-																			FalseValue="{StaticResource DataControlCollapsedChevron}"/>
-					</Binding.Converter>
-				</Binding>
-			</Setter.Value>
-		</Setter>
-	</Style>
+        <Style Selector="^/template/ ToggleButton#ExpandButton">
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="Content">
+                <Setter.Value>
+                    <Binding Path="IsChecked" RelativeSource="{RelativeSource Self}">
+                        <Binding.Converter>
+                            <ec:BoolToObjectConverter TrueValue="{StaticResource DataControlExpandedChevron}"
+                                                                                FalseValue="{StaticResource DataControlCollapsedChevron}"/>
+                        </Binding.Converter>
+                    </Binding>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-	<Style Selector="mxtlv|TreeListRowControl">
-		<Setter Property="Background" Value="Transparent" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
-		<Setter Property="Template">
-			<ControlTemplate>
-				<Grid Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
-					<Border x:Name="RowBorder" BorderBrush="{TemplateBinding BorderBrush}" >
-						<mxdcv:CellsPanel x:Name="PART_CellsPanel"/>
-					</Border>
-					<Border x:Name="FocusBorder" />
-				</Grid>
-			</ControlTemplate>
-		</Setter>
-	</Style>
+    </ControlTheme>
 
-	<Style Selector="mxtlv|TreeListRowControl:focusedState /template/ Border#FocusBorder, mxtlv|TreeListRowControl:focusedAndSelectedState /template/ Border#FocusBorder">
-		<Setter Property="BorderThickness" Value="1" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
-	</Style>
+    <ControlTheme x:Key="{x:Type mxtlv:TreeListRowControl}" TargetType="mxtlv:TreeListRowControl" BasedOn="{StaticResource {x:Type mxdcv:DataRowControlBase}}" />
 
-	<Style Selector="mxtlv|TreeListRowControl:focusedAndSelectedState /template/ Border#RowBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Row/Hover}" />
-	</Style>
-	<Style Selector="mxtlv|TreeListRowControl:focusedState /template/ Border#RowBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
-	</Style>
-	<Style Selector="mxtlv|TreeListRowControl:selectedState /template/ Border#RowBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Row/Enabled}" />
-	</Style>
-
-	<Style Selector="mxtlv|TreeListRowControl[IsHorizontalLineVisible=true] /template/ Border#RowBorder">
-		<Setter Property="BorderThickness" Value="0,0,0,1" />
-	</Style>
-	<Style Selector="mxtlv|TreeListRowControl[IsHorizontalLineVisible=true] /template/ Border#FocusBorder">
-		<Setter Property="Margin" Value="0,0,0,1" />
-	</Style>
-
-	<Style Selector="mxtlv|TreeListRowControl[(mxtl|TreeListControl.IsFocusWithin)=false] /template/ Border#FocusBorder">
-		<Setter Property="BorderThickness" Value="0" />
-	</Style>
-
-	<Style Selector="TextBlock.ColumnHeaderControlCaption">
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-        <Setter Property="FontWeight" Value="SemiBold" />
-		<Setter Property="Text" Value="{Binding}" />
-    </Style>
-
-	<Style Selector="mxdcv|ColumnHeaderControl">
-		<Setter Property="Background" Value="Transparent"/>
-		<Setter Property="Padding" Value="6,0" />
-		<Setter Property="Focusable" Value="False" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
-		<Setter Property="Foreground" Value="{DynamicResource	Text/Neutral/Secondary}" />
-		<Setter Property="FontSize" Value="{StaticResource ColumnHeaderFontSize}" />
-		<Setter Property="Template">
-			<ControlTemplate>
-				<Border x:Name="HeaderBorder"	
-												BorderThickness="{TemplateBinding BorderThickness}"	
-												BorderBrush="{TemplateBinding BorderBrush}"	
-												Background="{TemplateBinding Background}">
-					<Grid>
-						<Grid ColumnDefinitions="Auto,Auto,*,Auto" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" >
-							<CheckBox x:Name="PART_CheckBox" Focusable="False" Grid.Column="1" IsVisible="{TemplateBinding IsCheckBoxVisible}" IsChecked="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}"	/> 
-							<ContentPresenter Grid.Column="2" Content="{TemplateBinding Content}" ContentTemplate="{Binding Column.HeaderTemplate, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center">
-								<ContentPresenter.DataTemplates>
-									<DataTemplate DataType="x:String">
-										<TextBlock Classes="ColumnHeaderControlCaption" mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"/>
-									</DataTemplate>
-								</ContentPresenter.DataTemplates>
-							</ContentPresenter>
-							<Path x:Name="SortIndicator" VerticalAlignment="Center" />					
-						</Grid>
-						<Thumb Name="PART_ColumnResizeGrip" HorizontalAlignment="Right" />
-					</Grid>
-				</Border>
-			</ControlTemplate>
-		</Setter>
-	</Style>
-		
-	<Style Selector="mxdcv|ColumnHeaderControl /template/ Path">
-		<Setter Property="Margin" Value="6,0,0,0" />
-		<Setter Property="Fill" Value="{DynamicResource Icons/Outline/Disabled}" />
-		<Setter Property="Height" Value="10" />
-		<Setter Property="Width" Value="9" />
-		<Setter Property="Grid.Column" Value="3" />
-		<Setter Property="Stretch" Value="None" />
-	</Style>
-
-	<Style Selector="mxdcv|ColumnHeaderControl /template/ Thumb">
-		<Setter Property="Cursor" Value="SizeWestEast" />
-		<Setter Property="Background" Value="Transparent" />
-		<Setter Property="Width" Value="5" />
-		<Setter Property="BorderThickness" Value="0,0,2,0"/>
-		<Setter Property="Template">
-			<ControlTemplate>
-				<Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding	BorderBrush}" BorderThickness="{TemplateBinding	BorderThickness}" />
-			</ControlTemplate>
-		</Setter>
-	</Style>
-	
-	<Style Selector="mxdcv|ColumnHeaderControl Thumb:pointerover">
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Secondary}" />
-	</Style>
-
-	<Style Selector="mxdcv|ColumnHeaderControl /template/ Path#SortIndicator">
-		<Setter Property="IsVisible" Value="False" />
-	</Style>
-
-	<Style Selector="mxdcv|ColumnHeaderControl:sortascending /template/ Path#SortIndicator">
-		<Setter Property="IsVisible" Value="True" />
-		<Setter Property="Data" Value="{StaticResource SortIndicatorAscendingPath}" />
-	</Style>
-
-	<Style Selector="mxdcv|ColumnHeaderControl:sortdescending /template/ Path#SortIndicator">
-		<Setter Property="IsVisible" Value="True" />
-		<Setter Property="Data" Value="{StaticResource SortIndicatorDescendingPath}" />
-	</Style>
-
-	<Style Selector="mxdcv|ColumnHeaderControl:pointerover">
-		<Setter Property="Background" Value="{DynamicResource	Fill/Neutral/Secondary/Enabled}" />
-		<Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
-	</Style>
-
-	<Style Selector="mxdcv|ColumnHeaderControl:pressed, mxdcv|ColumnHeaderControl:dragging">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
-	</Style>
-
-	<Style Selector="mxdcv|ColumnHeaderControl:pointerover /template/ Path#SortIndicator">
-		<Setter Property="Fill" Value="{DynamicResource Icons/Outline/Gray}" />
-	</Style>
-
-	<Style Selector="mxdcv|ColumnHeaderControl[IsVerticalLineVisible=true] /template/ Border#HeaderBorder">
-		<Setter Property="BorderThickness" Value="0,0,1,0" />
-	</Style>
-
-	<Style Selector="mxdcv|ColumnHeaderControl[HorizontalContentAlignment=Right] /template/ Path#SortIndicator">
-		<Setter Property="Grid.Column" Value="0" />
-		<Setter Property="Margin" Value="0,0,6,0" />
-	</Style>
-
-	<Style Selector="mxdcv|CellControl">
-		<Setter Property="Background" Value="Transparent" />
-		<Setter Property="Focusable" Value="False" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
-		<Setter Property="Template">
-			<ControlTemplate>
-				<Grid Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
-					<Border x:Name="CellBorder"
+    <ControlTheme x:Key="{x:Type mxtlv:TreeListCellControl}" TargetType="mxtlv:TreeListCellControl" BasedOn="{StaticResource {x:Type mxdcv:CellControl}}">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                    <Border x:Name="CellBorder"
 									BorderBrush="{TemplateBinding BorderBrush}"
 									BorderThickness="{TemplateBinding BorderThickness}">
-						<mxdcv:CellEditor x:Name="PART_CellEditor" Background="Transparent" />
-					</Border>
-					<Border x:Name="FocusBorder" />
-				</Grid>
-			</ControlTemplate>
-		</Setter>
-	</Style>
-
-	<Style Selector="mxtlv|TreeListCellControl">
-		<Setter Property="Background" Value="Transparent" />
-		<Setter Property="Focusable" Value="False" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
-		<Setter Property="Template">
-			<ControlTemplate>
-				<Grid Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
-					<Border x:Name="CellBorder"
-									BorderBrush="{TemplateBinding BorderBrush}"
-									BorderThickness="{TemplateBinding BorderThickness}">
-						<Grid x:Name="PART_LayoutPanel">
-							<mxdcv:CellEditor x:Name="PART_CellEditor" Background="Transparent"/>
-						</Grid>
-					</Border>
-					<Border x:Name="FocusBorder" />
-				</Grid>
-			</ControlTemplate>
-		</Setter>
-	</Style>
-
-	<Style Selector=":is(mxdcv|CellControl):focusedState /template/ Border#FocusBorder">
-		<Setter Property="BorderThickness" Value="1" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
-	</Style>
-
-	<Style Selector=":is(mxdcv|CellControl):focusedAndSelectedState /template/ Border#FocusBorder">
-		<Setter Property="BorderThickness" Value="1" />
-		<Setter Property="Margin" Value="0,-1" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
-	</Style>
-
-	<Style Selector=":is(mxdcv|CellControl):focusedAndSelectedState[IsFirst=true] /template/ Border#FocusBorder">
-		<Setter Property="Margin" Value="-1,-1,0,-1" />
-	</Style>
-	<Style Selector=":is(mxdcv|CellControl):focusedAndSelectedState[IsLast=true] /template/ Border#FocusBorder">
-		<Setter Property="Margin" Value="0,-1,-1,-1" />
-	</Style>
-	
-	<Style Selector=":is(mxdcv|CellControl):focusedState /template/ Border#CellBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
-	</Style>
-	<Style Selector=":is(mxdcv|CellControl):focusedAndSelectedState /template/ Border#CellBorder">
-		<Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
-	</Style>
-
-	<Style Selector=":is(mxdcv|CellControl)[IsVerticalLineVisible=true] /template/ Border#CellBorder">
-		<Setter Property="BorderThickness" Value="0,0,1,0" />
-	</Style>
-
-	<Style Selector=":is(mxdcv|CellControl)[(mxtl|TreeListControl.IsFocusWithin)=false] /template/ Border#FocusBorder">
-		<Setter Property="BorderThickness" Value="0" />
-	</Style>
-
-
-	<Style Selector="mxdcv|SearchPanel">
-		<Setter Property="Padding" Value="6" />
-		<Setter Property="Background" Value="Transparent" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
-		<Setter Property="BorderThickness" Value="0,0,0,1" />
-		<Setter Property="HorizontalContentAlignment" Value="Right" />
-		<Setter Property="Template">
-			<ControlTemplate>
-				<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
-					<Grid ColumnDefinitions="*, Auto" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
-						<mxdcv:MinWidthDecorator ChildMinWidth="{StaticResource SearchPanelEditorMinWidth}">
-							<ed:ButtonEditor x:Name="PART_SearchEditor"
-															 EditorValue="{Binding SearchText, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-															 EditorValuePostDelay="{TemplateBinding SearchDelay}"
-															 EditorValuePostMode="Delayed"
-															 Watermark="{x:Static localization:ControlsResources.DataControl_SearchPanel_PromptText}"
-															 NullValueButtonPosition="EditorBox">
-								<ed:ButtonEditor.Buttons>
-									<ed:ButtonSettings IsEnabled="False" IsLeft="True" Glyph="{x:Static other:_12.Search}" GlyphSize="14,14" />
-								</ed:ButtonEditor.Buttons>
-							</ed:ButtonEditor>
-						</mxdcv:MinWidthDecorator>
-						<Button x:Name="PART_CloseButton" Grid.Column="1" Margin="6,0,0,0" Padding="6" BorderThickness="0" IsTabStop="False" IsVisible="{TemplateBinding ShowCloseButton}" Command="{Binding CloseClickCommand, RelativeSource={RelativeSource TemplatedParent}}">
-							<Button.Content>
-								<Image Source="{x:Static other:_12.Close}"  Width="14" Height="14"/>
-							</Button.Content>
-						</Button>
-					</Grid>
-				</Border>
-			</ControlTemplate>
-		</Setter>
-	</Style>
-
-	<Style Selector="mxdcv|AutoFilterRowControl">
-		<Setter Property="Background" Value="Transparent" />
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
-		<Setter Property="BorderThickness" Value="0,0,0,1" />
-		<Setter Property="Template">
-			<ControlTemplate>
-				<Border Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-					<mxdcv:CellsPanel x:Name="PART_CellsPanel"/>
-				</Border>
-			</ControlTemplate>
-		</Setter>
-	</Style>
-
-	<Style Selector="mxdcv|ColumnChooserControl">
-		<Setter Property="Focusable" Value="True" />
-		<Setter Property="Template">
-			<ControlTemplate>
-				<Grid Margin="{TemplateBinding Padding}" RowDefinitions="Auto, *" >
-					<ed:ButtonEditor x:Name="PART_SearchEditor"
-														 Margin="8,6" 				  
-														 EditorValue="{Binding SearchText, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-														 EditorValuePostMode="Delayed"
-														 EditorValuePostDelay="500"
-														 Watermark="{x:Static localization:ControlsResources.DataControl_ColumnChooser_SearchPromptText}"
-														 NullValueButtonPosition="EditorBox">
-					</ed:ButtonEditor>
-					<ScrollViewer Grid.Row="1" x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Disabled">
-						<ItemsControl x:Name="PART_ColumnItemsControl" Background="Transparent">
-							<ItemsControl.ItemTemplate>
-								<DataTemplate>
-									<Grid ColumnDefinitions="Auto, *" Margin="8,0">
-										<CheckBox x:Name="PART_VisibilityCheckBox" IsChecked="{Binding Column.IsVisible}" IsEnabled="{Binding IsEnabled}" />
-										<mxdcv:ColumnHeaderControl Grid.Column="1" Column="{Binding Column}" MinHeight="30" Margin="8,0,0,0"/>
-									</Grid>
-								</DataTemplate>
-							</ItemsControl.ItemTemplate>
-							<ItemsControl.ItemsPanel>
-								<ItemsPanelTemplate>
-									<StackPanel x:Name="PART_Panel" Orientation="Vertical" />
-								</ItemsPanelTemplate>
-							</ItemsControl.ItemsPanel>
-						</ItemsControl>
-					</ScrollViewer>
-					<Border x:Name="PART_HeaderDropIndicator" IsHitTestVisible="False" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="{Binding DataControl.HeaderDropIndicatorWidth, RelativeSource={RelativeSource TemplatedParent}}" Background="{DynamicResource Outline/Accent/Secondary}" IsVisible="False"/>
-				</Grid>
-			</ControlTemplate>
-		</Setter>
-	</Style>
-
-	<Style Selector="mxdcv|DropIndicatorControl">
-		<Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Secondary}" />
-		<Setter Property="IsHitTestVisible" Value="False" />
-		<Setter Property="Template">
-			<ControlTemplate>
-					<Border Background="{TemplateBinding Background}" 
-									MinHeight="4" 
-									VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-									BorderThickness="{TemplateBinding BorderThickness}" 
-									BorderBrush="{TemplateBinding BorderBrush}" 
-									Margin="{TemplateBinding Padding}" />
-			</ControlTemplate>
-		</Setter>
-	</Style>
-
-	<Style Selector="mxdcv|DropIndicatorControl[DropPosition=Before]">
-		<Setter Property="VerticalContentAlignment" Value="Top" />
-		<Setter Property="BorderThickness" Value="0,2,0,0" />
-	</Style>
-
-	<Style Selector="mxdcv|DropIndicatorControl[DropPosition=After]">
-		<Setter Property="VerticalContentAlignment" Value="Bottom" />
-		<Setter Property="BorderThickness" Value="0,0,0,2" />
-	</Style>
-
-	<Style Selector="mxdcv|DropIndicatorControl[DropPosition=Inside]">
-		<Setter Property="VerticalContentAlignment" Value="Stretch" />
-		<Setter Property="BorderThickness" Value="2" />
-	</Style>
-
-</Styles>
+                        <Grid x:Name="PART_LayoutPanel">
+                            <mxdcv:CellEditor x:Name="PART_CellEditor" Background="Transparent"/>
+                        </Grid>
+                    </Border>
+                    <Border x:Name="FocusBorder" />
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+    
+</ResourceDictionary>
 

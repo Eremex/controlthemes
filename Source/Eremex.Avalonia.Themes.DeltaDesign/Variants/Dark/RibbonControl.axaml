@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Thickness x:Key="RibbonPanelBorderThickness">1</Thickness>
+    <CornerRadius x:Key="RibbonPanelCornerRadius">5</CornerRadius>
+    <ControlTemplate x:Key="RibbonPanelBorderTemplate" TargetType="ContentControl">
+        <Border Margin="5,2,5,5"
+                Background="{DynamicResource Fill/Neutral/Tertiary}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}">
+            <ContentPresenter Content="{TemplateBinding Content}" ClipToBounds="True" />
+        </Border>
+    </ControlTemplate>
+    <StaticResource x:Key="RibbonPopupControlBorderBrush" ResourceKey="Outline/Neutral/Transparent/Strong"/>
+    <StaticResource x:Key="RibbonPopupControlBackground" ResourceKey="Fill/Neutral/Tertiary"/>
+</ResourceDictionary>

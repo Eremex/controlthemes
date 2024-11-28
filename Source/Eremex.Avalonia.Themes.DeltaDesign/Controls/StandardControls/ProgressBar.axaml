@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-				xmlns:avaConv="clr-namespace:Avalonia.Controls.Converters;assembly=Avalonia.Controls"
-				xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
-                x:ClassModifier="internal">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:avaConv="clr-namespace:Avalonia.Controls.Converters;assembly=Avalonia.Controls"
+                    xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
+                    x:ClassModifier="internal">
     <Design.PreviewWith>
         <Border Padding="20">
             <StackPanel>
@@ -33,7 +33,6 @@
         <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
         <Setter Property="BorderBrush" Value="{DynamicResource ProgressBarBorderBrush}" />
         <Setter Property="MinHeight" Value="{DynamicResource ProgressBarThemeMinHeight}" />
-        <Setter Property="FontSize" Value="{StaticResource EditorFontSize}"/>
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Template">
             <ControlTemplate>
@@ -80,7 +79,7 @@
             <Setter Property="MinWidth" Value="4" />
             <Setter Property="MinHeight" Value="200" />
         </Style>
-              
+
         <Style Selector="^:vertical /template/ LayoutTransformControl#PART_LayoutTransformControl">
             <Setter Property="LayoutTransform">
                 <Setter.Value>
@@ -95,84 +94,84 @@
         <Style Selector="^:indeterminate /template/ Panel#IndeterminateRoot">
             <Setter Property="Opacity" Value="1" />
         </Style>
-        
-    <Style Selector="^.secondary">
-        <Setter Property="Background" Value="{DynamicResource ProgressBarSecondaryBackground}"/>
-    </Style>
 
-    <Style Selector="^:horizontal:indeterminate /template/ Border#IndeterminateProgressBarIndicator_">
-        <Style.Animations>
-            <Animation IterationCount="Infinite" Duration="0:0:2">
-                <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:0">
-                    <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerAnimationStartPosition}" />
-                </KeyFrame>
-                <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:1.5">
-                    <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerAnimationEndPosition}" />
-                </KeyFrame>
-                <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:2">
-                    <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerAnimationEndPosition}" />
-                </KeyFrame>
-            </Animation>
-        </Style.Animations>
-    </Style>
-    <Style Selector="^:horizontal:indeterminate /template/ Border#IndeterminateProgressBarIndicator2_">
-        <Style.Animations>
-            <Animation IterationCount="Infinite" Duration="0:0:2">
-                <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:0">
-                    <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2AnimationStartPosition}" />
-                </KeyFrame>
-                <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:0.75">
-                    <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2AnimationStartPosition}" />
-                </KeyFrame>
-                <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:2">
-                    <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2AnimationEndPosition}" />
-                </KeyFrame>
-            </Animation>
-        </Style.Animations>
-    </Style>
-    <Style Selector="^:vertical:indeterminate /template/ Border#IndeterminateProgressBarIndicator_">
-        <Style.Animations>
-            <Animation IterationCount="Infinite" Duration="0:0:2">
-                <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:0">
-                    <Setter Property="TranslateTransform.Y" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerAnimationStartPosition}" />
-                </KeyFrame>
-                <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:1.5">
-                    <Setter Property="TranslateTransform.Y" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerAnimationEndPosition}" />
-                </KeyFrame>
-                <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:2">
-                    <Setter Property="TranslateTransform.Y" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerAnimationEndPosition}" />
-                </KeyFrame>
-            </Animation>
-        </Style.Animations>
-    </Style>
-    <Style Selector="^:vertical:indeterminate /template/ Border#IndeterminateProgressBarIndicator2_">
-        <Style.Animations>
-            <Animation IterationCount="Infinite" Duration="0:0:2">
-                <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:0">
-                    <Setter Property="TranslateTransform.Y" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2AnimationStartPosition}" />
-                </KeyFrame>
-                <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:0.75">
-                    <Setter Property="TranslateTransform.Y" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2AnimationStartPosition}" />
-                </KeyFrame>
-                <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:2">
-                    <Setter Property="TranslateTransform.Y" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2AnimationEndPosition}" />
-                </KeyFrame>
-            </Animation>
-        </Style.Animations>
-    </Style>
+        <Style Selector="^.secondary">
+            <Setter Property="Background" Value="{DynamicResource ProgressBarSecondaryBackground}"/>
+        </Style>
 
-    <Style Selector="^:horizontal /template/ Border#IndeterminateProgressBarIndicator_">
-        <Setter Property="Width" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerWidth}" />
-    </Style>
-    <Style Selector="^:horizontal /template/ Border#IndeterminateProgressBarIndicator2_">
-        <Setter Property="Width" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2Width}" />
-    </Style>
-    <Style Selector="^:vertical /template/ Border#IndeterminateProgressBarIndicator_">
-        <Setter Property="Height" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerWidth}" />
-    </Style>
-    <Style Selector="^:vertical /template/ Border#IndeterminateProgressBarIndicator2_">
-        <Setter Property="Height" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2Width}" />
-    </Style>
+        <Style Selector="^:horizontal:indeterminate /template/ Border#IndeterminateProgressBarIndicator_">
+            <Style.Animations>
+                <Animation IterationCount="Infinite" Duration="0:0:2">
+                    <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:0">
+                        <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerAnimationStartPosition}" />
+                    </KeyFrame>
+                    <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:1.5">
+                        <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerAnimationEndPosition}" />
+                    </KeyFrame>
+                    <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:2">
+                        <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerAnimationEndPosition}" />
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+        <Style Selector="^:horizontal:indeterminate /template/ Border#IndeterminateProgressBarIndicator2_">
+            <Style.Animations>
+                <Animation IterationCount="Infinite" Duration="0:0:2">
+                    <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:0">
+                        <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2AnimationStartPosition}" />
+                    </KeyFrame>
+                    <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:0.75">
+                        <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2AnimationStartPosition}" />
+                    </KeyFrame>
+                    <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:2">
+                        <Setter Property="TranslateTransform.X" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2AnimationEndPosition}" />
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+        <Style Selector="^:vertical:indeterminate /template/ Border#IndeterminateProgressBarIndicator_">
+            <Style.Animations>
+                <Animation IterationCount="Infinite" Duration="0:0:2">
+                    <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:0">
+                        <Setter Property="TranslateTransform.Y" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerAnimationStartPosition}" />
+                    </KeyFrame>
+                    <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:1.5">
+                        <Setter Property="TranslateTransform.Y" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerAnimationEndPosition}" />
+                    </KeyFrame>
+                    <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:2">
+                        <Setter Property="TranslateTransform.Y" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerAnimationEndPosition}" />
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+        <Style Selector="^:vertical:indeterminate /template/ Border#IndeterminateProgressBarIndicator2_">
+            <Style.Animations>
+                <Animation IterationCount="Infinite" Duration="0:0:2">
+                    <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:0">
+                        <Setter Property="TranslateTransform.Y" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2AnimationStartPosition}" />
+                    </KeyFrame>
+                    <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:0.75">
+                        <Setter Property="TranslateTransform.Y" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2AnimationStartPosition}" />
+                    </KeyFrame>
+                    <KeyFrame KeySpline="0.4,0,0.6,1" KeyTime="0:0:2">
+                        <Setter Property="TranslateTransform.Y" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2AnimationEndPosition}" />
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+
+        <Style Selector="^:horizontal /template/ Border#IndeterminateProgressBarIndicator_">
+            <Setter Property="Width" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerWidth}" />
+        </Style>
+        <Style Selector="^:horizontal /template/ Border#IndeterminateProgressBarIndicator2_">
+            <Setter Property="Width" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2Width}" />
+        </Style>
+        <Style Selector="^:vertical /template/ Border#IndeterminateProgressBarIndicator_">
+            <Setter Property="Height" Value="{Binding $parent[ProgressBar].TemplateSettings.ContainerWidth}" />
+        </Style>
+        <Style Selector="^:vertical /template/ Border#IndeterminateProgressBarIndicator2_">
+            <Setter Property="Height" Value="{Binding $parent[ProgressBar].TemplateSettings.Container2Width}" />
+        </Style>
     </ControlTheme>
-    
+
 </ResourceDictionary>

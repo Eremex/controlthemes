@@ -1,0 +1,1075 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mxri="clr-namespace:Eremex.AvaloniaUI.Controls.Ribbon.Internal;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxr="https://schemas.eremexcontrols.net/avalonia/ribbon"
+                    xmlns:mxe="https://schemas.eremexcontrols.net/avalonia/editors"
+                    xmlns:mxti="clr-namespace:Eremex.AvaloniaUI.Controls.Bars.Internal;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxlv="https://schemas.eremexcontrols.net/avalonia/listview"
+                    xmlns:mx="https://schemas.eremexcontrols.net/avalonia"
+                    xmlns:internal="clr-namespace:Eremex.AvaloniaUI.Controls.Internal;assembly=Eremex.Avalonia.Controls"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                    xmlns:mxt="https://schemas.eremexcontrols.net/avalonia/bars">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <Thickness x:Key="RibbonPanelBorderThickness">0</Thickness>
+    <CornerRadius x:Key="RibbonPanelCornerRadius">5</CornerRadius>
+    <Thickness x:Key="RibbonPanelMargin">5,0,5,0</Thickness>
+    <ControlTemplate x:Key="RibbonPanelBorderTemplate" TargetType="ContentControl">
+        <Grid>
+            <Border IsHitTestVisible="False" BoxShadow="0 0.39 0.45 #06000000" Margin="5,2,5,5"
+                    CornerRadius="{TemplateBinding CornerRadius}" />
+            <Border IsHitTestVisible="False" BoxShadow="0 0.8 1.06 0 #09000000" Margin="5,2,5,5"
+                    CornerRadius="{TemplateBinding CornerRadius}" />
+            <Border IsHitTestVisible="False" BoxShadow="0 2.56 2.9 0 #12000000" Margin="5,2,5,5"
+                    CornerRadius="{TemplateBinding CornerRadius}" />
+            <Border IsHitTestVisible="False" BoxShadow="0 0 1 0 #52000000" Margin="5,2,5,5"
+                    CornerRadius="{TemplateBinding CornerRadius}" />
+            <Border Margin="5,2,5,5"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}" 
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                <ContentPresenter Content="{TemplateBinding Content}" ClipToBounds="True" />
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    
+    <StaticResource x:Key="RibbonPopupControlBorderBrush" ResourceKey="Outline/Neutral/Transparent/Strong"/>
+    <StaticResource x:Key="RibbonPopupControlBackground" ResourceKey="Fill/Neutral/Primary/Enabled"/>
+    
+    <DataTemplate x:Key="MxGalleryDropDownButtonGlyphTemplate">
+        <Canvas HorizontalAlignment="Center" VerticalAlignment="Center" Width="8" Height="8">
+            <Rectangle Canvas.Left="1" Canvas.Top="1" Width="6" Height="1"
+                       Fill="{DynamicResource Icons/Outline/Gray}" />
+            <Line StartPoint="1, 4" EndPoint="4, 7" Stroke="{DynamicResource Icons/Outline/Gray}" />
+            <Line StartPoint="4, 7" EndPoint="7, 4" Stroke="{DynamicResource Icons/Outline/Gray}" />
+        </Canvas>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MxGalleryDownButtonGlyphTemplate">
+        <Canvas HorizontalAlignment="Center" VerticalAlignment="Center" Width="8" Height="8">
+            <Line StartPoint="1, 2" EndPoint="4, 5" Stroke="{DynamicResource Icons/Outline/Gray}" />
+            <Line StartPoint="4, 5" EndPoint="7, 2" Stroke="{DynamicResource Icons/Outline/Gray}" />
+        </Canvas>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MxGalleryUpButtonGlyphTemplate">
+        <Canvas HorizontalAlignment="Center" VerticalAlignment="Center" Width="8" Height="8">
+            <Line StartPoint="1, 5" EndPoint="4, 2" Stroke="{DynamicResource Icons/Outline/Gray}" />
+            <Line StartPoint="4, 2" EndPoint="7, 5" Stroke="{DynamicResource Icons/Outline/Gray}" />
+        </Canvas>
+    </DataTemplate>
+
+    <!-- ToolbarCustomizationButton -->
+    <DataTemplate x:Key="MxQuickAccessToolbarCustomizationGlyphTemplate">
+        <Canvas HorizontalAlignment="Center" VerticalAlignment="Center" Width="8" Height="8">
+            <Rectangle Canvas.Left="1" Canvas.Top="1" Width="6" Height="1"
+                       Fill="{DynamicResource Icons/Outline/Gray}" />
+            <Line StartPoint="1, 4" EndPoint="4, 7" Stroke="{DynamicResource Icons/Outline/Gray}" />
+            <Line StartPoint="4, 7" EndPoint="7, 4" Stroke="{DynamicResource Icons/Outline/Gray}" />
+        </Canvas>
+    </DataTemplate>
+    
+    <!-- ToolbarCustomizationButton -->
+    <DataTemplate x:Key="MxSimplifiedPageGroupDropDownButtonGlyphTemplate">
+        <Canvas Width="13" Height="13" ClipToBounds="False">
+            <Path Data="M1,4 L6,9 L11,4" StrokeThickness="1"
+                  Stroke="{Binding $parent[mxri:RibbonSimplifiedPageGroupDropDownButton].Foreground}" />
+        </Canvas>
+    </DataTemplate>
+
+    <ControlTemplate x:Key="TopQuickAccessToolbarPresenterTemplate" TargetType="ContentControl">
+        <Border x:Name="PART_Border" Background="Transparent">
+            <ContentPresenter Content="{TemplateBinding Content}" />
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="BottomQuickAccessToolbarPresenterTemplate" TargetType="ContentControl">
+        <Border x:Name="PART_Border" Background="Transparent"
+                Padding="1"
+                BorderThickness="0,1,0,0"
+                BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Light}">
+            <ContentPresenter Content="{TemplateBinding Content}" />
+        </Border>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="RibbonPageGroupHeaderButtonGlyphTemplate">
+        <Canvas Width="8" Height="8">
+            <Line StartPoint="0,0" EndPoint="6,0" StrokeThickness="1"
+                  Stroke="{DynamicResource Text/Neutral/Primary}" StrokeLineCap="Square" />
+            <Line StartPoint="0,0" EndPoint="0,6" StrokeThickness="1"
+                  Stroke="{DynamicResource Text/Neutral/Primary}" StrokeLineCap="Square" />
+            <Line StartPoint="3,7" EndPoint="7,7" StrokeThickness="1"
+                  Stroke="{DynamicResource Text/Neutral/Primary}" StrokeLineCap="Square" />
+            <Line StartPoint="7,3" EndPoint="7,7" StrokeThickness="1"
+                  Stroke="{DynamicResource Text/Neutral/Primary}" StrokeLineCap="Square" />
+            <Line StartPoint="3,3" EndPoint="7,7" StrokeThickness="1"
+                  Stroke="{DynamicResource Text/Neutral/Primary}" StrokeLineCap="Square" />
+        </Canvas>
+    </DataTemplate>
+
+    <DataTemplate x:Key="RibbonPanelDropDownButtonGlyphTemplate">
+        <Canvas Width="13" Height="13" ClipToBounds="False">
+            <Path Data="M1,4 L6,9 L11,4" StrokeThickness="1"
+                  Stroke="{Binding $parent[mxri:RibbonPanelButton].Foreground}" />
+        </Canvas>
+    </DataTemplate>
+
+    <DataTemplate x:Key="RibbonPageGroupHeaderButtonGlyphTemplateDisabled">
+        <Canvas Width="8" Height="8">
+            <Line StartPoint="0,0" EndPoint="6,0" StrokeThickness="1"
+                  Stroke="{DynamicResource Text/Neutral/Primary}" StrokeLineCap="Square" />
+            <Line StartPoint="0,0" EndPoint="0,6" StrokeThickness="1"
+                  Stroke="{DynamicResource Text/Neutral/Primary}" StrokeLineCap="Square" />
+            <Line StartPoint="3,7" EndPoint="7,7" StrokeThickness="1"
+                  Stroke="{DynamicResource Text/Neutral/Primary}" StrokeLineCap="Square" />
+            <Line StartPoint="7,3" EndPoint="7,7" StrokeThickness="1"
+                  Stroke="{DynamicResource Text/Neutral/Primary}" StrokeLineCap="Square" />
+            <Line StartPoint="3,3" EndPoint="7,7" StrokeThickness="1"
+                  Stroke="{DynamicResource Text/Neutral/Primary}" StrokeLineCap="Square" />
+        </Canvas>
+    </DataTemplate>
+
+    <!-- RibbonControl Theme -->
+    <ControlTheme x:Key="{x:Type mxr:RibbonControl}" TargetType="mxr:RibbonControl">
+        <Setter Property="SmallGlyphSize" Value="16" />
+        <Setter Property="Template">
+            <ControlTemplate TargetType="mxr:RibbonControl">
+                <Border x:Name="PART_Border">
+                    <Grid RowDefinitions="Auto, Auto, Auto, Auto">
+                        <ContentControl Grid.Row="0" x:Name="PART_TopQuickAccessToolbarPresenter" />
+                        <ContentPresenter Grid.Row="1" x:Name="PART_PagesPresenter" />
+                        <mxri:RibbonPanelControl Grid.Row="2" x:Name="PART_Panel" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^/template/ContentControl#PART_TopQuickAccessToolbarPresenter">
+            <Setter Property="Template" Value="{DynamicResource TopQuickAccessToolbarPresenterTemplate}" />
+        </Style>
+    </ControlTheme>
+
+    <!-- Application Button Theme -->
+    <ControlTheme x:Key="{x:Type mxri:RibbonApplicationButton}" TargetType="mxri:RibbonApplicationButton">
+        <Setter Property="FontSize" Value="{StaticResource ToolbarFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}" />
+        <Setter Property="FocusAdorner" Value="{x:Null}" />
+        <Setter Property="MinWidth" Value="26" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <mxti:ToolbarItemLayoutPanel x:Name="PART_LayoutPanel"
+                                             Classes="Button RibbonApplicationButton" />
+            </ControlTemplate>
+        </Setter>
+
+        <!-- PointerOver, Focused State -->
+        <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
+            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Primary/Hover}" />
+        </Style>
+
+        <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/On Accent/Primary}" />
+        </Style>
+
+        <Style Selector="^:pointerover /template/ Border#PART_ButtonBorder">
+            <Setter Property="BorderBrush" Value="Transparent" />
+        </Style>
+
+        <!-- Pressed State -->
+        <Style Selector="^:pressed /template/ Border#PART_BackgroundBorder">
+            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Primary/Pressed}" />
+        </Style>
+
+        <Style Selector="^:pressed  /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/On Accent/Primary}" />
+            <Setter Property="Opacity" Value="0.8" />
+        </Style>
+
+        <!-- Disabled State -->
+        <Style Selector="^:disabled /template/ Border#PART_BackgroundBorder">
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonForegroundDisabled}" />
+        </Style>
+
+        <!-- Only Glyph -->
+        <Style Selector="^/template/mxti|ToolbarItemLayoutPanel#PART_LayoutPanel">
+
+        </Style>
+
+        <Style
+            Selector="^/template/mxti|ToolbarItemLayoutPanel#PART_LayoutPanel.LayoutGlyph">
+            <Setter Property="GlyphMargin" Value="18, 0, 18, 0" />
+        </Style>
+
+        <Style
+            Selector="^/template/mxti|ToolbarItemLayoutPanel#PART_LayoutPanel.LayoutContent">
+            <Setter Property="ContentMargin" Value="18, 0, 18, 0" />
+        </Style>
+
+        <Style
+            Selector="^/template/mxti|ToolbarItemLayoutPanel#PART_LayoutPanel.LayoutGlyphLeftContentRight">
+            <Setter Property="GlyphMargin" Value="12, 0, 4, 0" />
+            <Setter Property="ContentMargin" Value="4, 2, 12, 0" />
+        </Style>
+    </ControlTheme>
+
+    <!-- RibbonPagesControl Theme -->
+    <ControlTheme x:Key="{x:Type mxri:RibbonPagesControl}" TargetType="mxri:RibbonPagesControl">
+        <Setter Property="Margin" Value="10,0,10,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="mxri:RibbonPagesControl">
+                    <Grid ColumnDefinitions="Auto, Auto, *">
+                        <mxri:RibbonApplicationButton Grid.Column="0" x:Name="PART_ApplicationButton"
+                                                      DisplayMode="Both"
+                                                      IsVisible="{Binding $parent[mxr:RibbonControl].IsApplicationButtonVisible}">
+                        </mxri:RibbonApplicationButton>
+                        <ItemsPresenter Grid.Column="1" ItemsPanel="{TemplateBinding ItemsPanel}" />
+                        <Border Grid.Column="2" x:Name="PART_PageHeaderItemsBorder">
+                            <ContentPresenter x:Name="PART_PageHeaderItemsPresenter" />
+                        </Border>
+                    </Grid>
+                    <!-- TODO Arsen: RemoveLater -->
+                    <!-- <mxri:RibbonItemIndicator x:Name="PART_SelectionIndicator"/> -->
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <mxri:RibbonPagesPanel />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style Selector="^/template/Button">
+            <Setter Property="CornerRadius" Value="2" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Margin" Value="9, 2, 0, 0" />
+            <Setter Property="Padding" Value="12,6,12, 6" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="PART_Border" Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter
+                                Foreground="{TemplateBinding Foreground}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style Selector="^/template/Button:pointerover">
+            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Primary/Hover}" />
+            <Setter Property="Foreground" Value="{DynamicResource Text/On Accent/Primary}" />
+        </Style>
+
+        <Style Selector="^/template/Button:pressed">
+            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Primary/Pressed}" />
+            <Setter Property="Foreground" Value="{DynamicResource Text/On Accent/Primary}" />
+        </Style>
+    </ControlTheme>
+
+    <!-- QuickAccessToolbarCustomizationButton -->
+    <ControlTheme x:Key="{x:Type mxri:QuickAccessToolbarCustomizationButton}"
+                  TargetType="mxri:QuickAccessToolbarCustomizationButton">
+        <Setter Property="FontSize" Value="{StaticResource ToolbarFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}" />
+        <Setter Property="FocusAdorner" Value="{x:Null}" />
+        <Setter Property="MinWidth" Value="16" />
+        <Setter Property="MinHeight" Value="16" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <mxti:ToolbarItemLayoutPanel x:Name="PART_LayoutPanel" Classes="Button"
+                                             GlyphTemplate="{DynamicResource MxQuickAccessToolbarCustomizationGlyphTemplate}" />
+            </ControlTemplate>
+        </Setter>
+
+        <!-- ToolbarCustomizationButton -->
+        <Style Selector="^/template/Border#PART_Border">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="Padding" Value="{StaticResource ToolbarItemGlyphMargin}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="CornerRadius" Value="{StaticResource ToolbarItemCornerRadius}" />
+        </Style>
+    </ControlTheme>
+
+    <!-- QuickAccessToolbar Theme -->
+    <ControlTheme x:Key="{x:Type mxri:QuickAccessToolbar}" TargetType="mxri:QuickAccessToolbar">
+        <Setter Property="FocusAdorner" Value="{x:Null}" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <ContentControl x:Name="PART_Border">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Grid.Column="0" Name="PART_ItemsPresenter">
+                                <ContentPresenter.Styles>
+                                    <Style Selector=":is(mxe|BaseEditor)">
+                                        <Setter Property="MinHeight" Value="24" />
+                                    </Style>
+                                    <Style
+                                        Selector=":is(mxe|TextEditor)[EditorMode=InplaceActive]:focus-within /template/ Border#PART_RootBorder,
+															:is(mxe|PopupEditor)[EditorMode=InplaceActive]:focus-in-popup /template/ Border#PART_RootBorder">
+                                        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
+                                    </Style>
+                                </ContentPresenter.Styles>
+                            </ContentPresenter>
+                            <mxri:QuickAccessToolbarCustomizationButton x:Name="PART_CustomizationButton"
+                                                                        HorizontalAlignment="Right"
+                                                                        Grid.Column="1" />
+                        </Grid>
+                    </ContentControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </ControlTheme>
+
+    <!-- PageHeaderItemsControl Theme -->
+    <ControlTheme x:Key="{x:Type mxri:PageHeaderItemsControl}" TargetType="mxri:PageHeaderItemsControl">
+        <Setter Property="FocusAdorner" Value="{x:Null}" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <ContentControl x:Name="PART_Border">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Grid.Column="0" Name="PART_ItemsPresenter">
+                                <ContentPresenter.Styles>
+                                    <Style Selector=":is(mxe|BaseEditor)">
+                                        <Setter Property="MinHeight" Value="24" />
+                                    </Style>
+                                    <Style
+                                        Selector=":is(mxe|TextEditor)[EditorMode=InplaceActive]:focus-within /template/ Border#PART_RootBorder,
+															:is(mxe|PopupEditor)[EditorMode=InplaceActive]:focus-in-popup /template/ Border#PART_RootBorder">
+                                        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
+                                    </Style>
+                                </ContentPresenter.Styles>
+                            </ContentPresenter>
+                            <mxri:QuickAccessToolbarCustomizationButton x:Name="PART_CustomizationButton"
+                                                                        HorizontalAlignment="Right"
+                                                                        IsVisible="False"
+                                                                        Grid.Column="1" />
+                        </Grid>
+                    </ContentControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </ControlTheme>
+
+    <!-- RibbonPage Theme -->
+    <ControlTheme x:Key="{x:Type mxr:RibbonPage}" TargetType="mxr:RibbonPage">
+        <!-- <Setter Property="Background" Value="{DynamicResource Outline/Neutral/Transparent/Strong}"/> -->
+        <Setter Property="Background" Value="{DynamicResource Outline/Accent/Focus}"/>
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="mxr:RibbonPage">
+                    <Grid>
+                        <ContentControl x:Name="PART_Border">
+                            <Grid ColumnDefinitions="Auto, *">
+                                <Image x:Name="PART_Image" />
+                                <ContentPresenter Grid.Column="1" x:Name="PART_TextSelected" Opacity="0"
+                                                  Content="{TemplateBinding Header}" />
+                                <ContentPresenter Grid.Column="1" x:Name="PART_Text" Content="{TemplateBinding Header}" />
+                            </Grid>
+                        </ContentControl>
+                        <Border x:Name="PART_Indicator">
+                            <Border.Transitions>
+                                <Transitions>
+                                    <ThicknessTransition Duration="0:0:0.2" Property="Margin" />
+                                </Transitions>
+                            </Border.Transitions>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <!-- <Style Selector="^:pressed, ^:selected, ^:selected:pointerover"> -->
+        <!--     <Setter Property="Background" Value="{DynamicResource Outline/Accent/Focus}"/> -->
+        <!-- </Style> -->
+        
+        <Style Selector="^/template/Border#PART_Indicator">
+            <Setter Property="Height" Value="2" />
+            <Setter Property="Margin" Value="12, 4, 12, 2" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
+
+        <Style Selector="^:pointerover/template/Border#PART_Indicator">
+            <Setter Property="Height" Value="2" />
+            <Setter Property="Opacity" Value="0.4"/>
+            <Setter Property="Background" Value="{Binding $parent[mxr:RibbonPage].Background}" />
+            <Setter Property="Margin" Value="12, 4, 12, 2" />
+        </Style>
+
+        <Style
+            Selector="^:pressed/template/Border#PART_Indicator, ^:selected/template/Border#PART_Indicator">
+            <Setter Property="Height" Value="2" />
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Background" Value="{Binding $parent[mxr:RibbonPage].Background}" />
+            <Setter Property="Margin" Value="12, 4, 12, 2" />
+        </Style>
+
+        <Style Selector="^:selected:pointerover/template/Border#PART_Indicator">
+            <Setter Property="Height" Value="2" />
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Background" Value="{Binding $parent[mxr:RibbonPage].Background}" />
+            <Setter Property="Margin" Value="6, 4, 6, 2" />
+        </Style>
+
+        <Style Selector="^/template/ContentControl#PART_Border">
+            <Setter Property="Padding" Value="12, 8, 12 ,6" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border x:Name="PART_Border" Padding="{TemplateBinding Padding}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Background="Transparent">
+                            <StackPanel Orientation="Vertical">
+                                <ContentPresenter Content="{TemplateBinding Content}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style Selector="^:pointerover/template/ContentControl#PART_Border">
+
+        </Style>
+
+        <Style Selector="^:pressed/template/ContentControl#PART_Border">
+
+        </Style>
+
+        <Style Selector="^:selected/template/ContentControl#PART_Border">
+
+        </Style>
+
+        <Style Selector="^:selected">
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+
+        <Style Selector="^/template/ContentPresenter#PART_TextSelected">
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Opacity" Value="0" />
+        </Style>
+    </ControlTheme>
+
+    <!-- RibbonPageGroupHeaderButtonLayoutPanel Theme -->
+    <ControlTheme x:Key="{x:Type mxri:RibbonPageGroupHeaderButtonLayoutPanel}"
+                  TargetType="mxri:RibbonPageGroupHeaderButtonLayoutPanel">
+        <Setter Property="GlyphMargin" Value="3" />
+        <Setter Property="DefaultGlyphSize" Value="10,10" />
+        <Setter Property="GlyphTemplate" Value="{DynamicResource RibbonPageGroupHeaderButtonGlyphTemplate}" />
+
+        <Style Selector="^:disabled">
+            <Setter Property="GlyphTemplate" Value="{DynamicResource RibbonPageGroupHeaderButtonGlyphTemplateDisabled}" />
+        </Style>
+    </ControlTheme>
+
+    <!-- RibbonPanelButtonLayoutPanel Theme -->
+    <ControlTheme x:Key="{x:Type mxri:RibbonPanelButtonLayoutPanel}" TargetType="mxri:RibbonPanelButtonLayoutPanel">
+        <Setter Property="GlyphMargin" Value="3" />
+        <Setter Property="DefaultGlyphSize" Value="13,13" />
+        <Setter Property="GlyphTemplate" Value="{DynamicResource RibbonPanelDropDownButtonGlyphTemplate}" />
+
+        <Style Selector="^:disabled">
+            <Setter Property="GlyphTemplate" Value="{DynamicResource RibbonPageGroupHeaderButtonGlyphTemplateDisabled}" />
+        </Style>
+    </ControlTheme>
+
+
+    <!-- RibbonPageGroupHeaderButton Theme -->
+    <ControlTheme x:Key="{x:Type mxri:RibbonPageGroupHeaderButton}" TargetType="mxri:RibbonPageGroupHeaderButton">
+        <Setter Property="FontSize" Value="{StaticResource ToolbarFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}" />
+        <Setter Property="FocusAdorner" Value="{x:Null}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <mxri:RibbonPageGroupHeaderButtonLayoutPanel x:Name="PART_LayoutPanel"
+                                                             Classes="Button RibbonPageGroupHeaderButton" />
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <!-- RibbonPanelButton Theme -->
+    <ControlTheme x:Key="{x:Type mxri:RibbonPanelButton}" TargetType="mxri:RibbonPanelButton">
+        <Setter Property="FontSize" Value="{StaticResource ToolbarFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}" />
+        <Setter Property="FocusAdorner" Value="{x:Null}" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="Margin" Value="3" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <mxri:RibbonPanelButtonLayoutPanel x:Name="PART_LayoutPanel"
+                                                   Classes="Button RibbonPanelDropDownButton" />
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <!-- RibbonPageGroupControl Theme -->
+    <ControlTheme x:Key="{x:Type mxri:RibbonPageGroupControl}" TargetType="mxri:RibbonPageGroupControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid ColumnDefinitions="Auto, Auto">
+                        <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                        <mxri:RibbonSimplifiedPageGroupDropDownButton Grid.Column="1" x:Name="PART_DropDownButton"
+                                                             IsVisible="{TemplateBinding IsDropDownButtonVisible}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <mxri:RibbonPageGroupItemsPanel />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </ControlTheme>
+
+    <!-- PageGroupPopupButton Theme -->
+    <ControlTheme x:Key="{x:Type mxri:PageGroupPopupButton}" TargetType="mxri:PageGroupPopupButton"
+                  BasedOn="{StaticResource ResourceKey={x:Type mxt:ToolbarButtonItem}}">
+        <Setter Property="Margin" Value="3" />
+    </ControlTheme>
+
+    <!-- PageGroupPopupButton Theme -->
+    <!-- <ControlTheme x:Key="{x:Type mxri:PageGroupPopupButton}" TargetType="mxri:PageGroupPopupButton"> -->
+    <!--     <Setter Property="Background" Value="Transparent" /> -->
+    <!--     <Setter Property="HorizontalAlignment" Value="Stretch" /> -->
+    <!--     <Setter Property="VerticalAlignment" Value="Stretch" /> -->
+    <!--     <Setter Property="Margin" Value="3" /> -->
+    <!--     <Setter Property="CornerRadius" Value="4" /> -->
+    <!--     <Setter Property="Focusable" Value="False" /> -->
+    <!--     <Setter Property="Padding" Value="3" /> -->
+    <!--     <Setter Property="Template"> -->
+    <!--         <Setter.Value> -->
+    <!--             <ControlTemplate> -->
+    <!--                 <Border BorderThickness="{TemplateBinding BorderThickness}" -->
+    <!--                         BorderBrush="{TemplateBinding BorderBrush}" -->
+    <!--                         Background="{TemplateBinding Background}" -->
+    <!--                         CornerRadius="{TemplateBinding CornerRadius}" -->
+    <!--                         Padding="{TemplateBinding Padding}"> -->
+    <!--                     <ContentPresenter Content="{TemplateBinding Content}" /> -->
+    <!--                 </Border> -->
+    <!--             </ControlTemplate> -->
+    <!--         </Setter.Value> -->
+    <!--     </Setter> -->
+    <!-- -->
+    <!--     <Style Selector="^:pointerover"> -->
+    <!--         <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" /> -->
+    <!--     </Style> -->
+    <!-- -->
+    <!--     <Style Selector="^:pressed"> -->
+    <!--         <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" /> -->
+    <!--     </Style> -->
+    <!-- </ControlTheme> -->
+
+    <!-- RibbonPageGroup Theme -->
+    <ControlTheme x:Key="{x:Type mxr:RibbonPageGroup}" TargetType="mxr:RibbonPageGroup">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="mxr:RibbonPageGroup">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentControl x:Name="PART_BorderControl">
+                            <Grid>
+                                <Grid RowDefinitions="Auto,*, Auto"
+                                      IsVisible="{Binding !IsCollapsed, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <ContentPresenter Name="PART_ItemsPresenter">
+                                        <ContentPresenter.Styles>
+                                            <Style Selector=":is(mxe|BaseEditor)">
+                                                <Setter Property="MinHeight" Value="24" />
+                                            </Style>
+                                            <Style
+                                                Selector=":is(mxe|TextEditor)[EditorMode=InplaceActive]:focus-within /template/ Border#PART_RootBorder,
+															        :is(mxe|PopupEditor)[EditorMode=InplaceActive]:focus-in-popup /template/ Border#PART_RootBorder">
+                                                <Setter Property="BorderBrush"
+                                                        Value="{DynamicResource Outline/Accent/Focus}" />
+                                            </Style>
+                                        </ContentPresenter.Styles>
+                                    </ContentPresenter>
+                                    <ContentControl Grid.Row="2" x:Name="PART_HeaderControl"
+                                                    IsVisible="{TemplateBinding RibbonCommandLayout,
+                                                    Converter={x:Static ObjectConverters.Equal},
+                                                    ConverterParameter={x:Static mxr:RibbonCommandLayout.Classic}}">
+                                        <Grid ColumnDefinitions="*, Auto">
+                                            <ContentPresenter x:Name="PART_HeaderPresenter"
+                                                              Content="{Binding $parent[mxr:RibbonPageGroup].Header}" />
+                                            <mxri:RibbonPageGroupHeaderButton Grid.Column="1"
+                                                                              x:Name="PART_HeaderButton"
+                                                                              HorizontalAlignment="Right"
+                                                                              IsVisible="{Binding $parent[mxr:RibbonPageGroup].IsHeaderButtonVisible}" />
+                                        </Grid>
+                                    </ContentControl>
+                                </Grid>
+                                <mxri:PageGroupPopupButton Grid.Row="0" x:Name="PART_PopupButton"
+                                                           IsVisible="{TemplateBinding IsCollapsed}"
+                                                           Glyph="{TemplateBinding Glyph}"
+                                                           Header="{Binding $parent[mxr:RibbonPageGroup].Header}"
+                                                           DropDownArrowVisibility="ShowArrow">
+                                </mxri:PageGroupPopupButton>
+                            </Grid>
+                        </ContentControl>
+                        <Border x:Name="PART_Separator" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style Selector="^/template/Image#PART_PopupButtonGlyph">
+            <Setter Property="Width" Value="32" />
+            <Setter Property="Height" Value="32" />
+        </Style>
+
+        <Style Selector="^/template/ContentControl#PART_BorderControl">
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter Content="{TemplateBinding Content}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style Selector="^[RibbonCommandLayout=Simplified]/template/ContentPresenter#PART_ItemsPresenter">
+            <Setter Property="Padding" Value="8,4,8,4" />
+        </Style>
+
+        <Style Selector="^/template/ContentPresenter#PART_ItemsPresenter">
+            <Setter Property="Padding" Value="8,4,8,0" />
+        </Style>
+
+        <Style Selector="^/template/ContentPresenter#PART_HeaderPresenter">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="8,3,8,3" />
+        </Style>
+
+        <Style Selector="^/template/Border#PART_Separator">
+            <Setter Property="Margin" Value="1,6,1,6" />
+            <Setter Property="Width" Value="1" />
+            <Setter Property="Background" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxri:RibbonPopupPageGroup}" TargetType="mxri:RibbonPopupPageGroup"
+                  BasedOn="{StaticResource {x:Type mxr:RibbonPageGroup}}">
+        <Style Selector="^/template/Border#PART_Separator">
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Width" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+    </ControlTheme>
+
+    <!-- RibbonPanelControl -->
+    <ControlTheme x:Key="{x:Type mxri:RibbonPanelControl}" TargetType="mxri:RibbonPanelControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="mxri:RibbonPanelControl">
+                    <ContentControl x:Name="PART_Border">
+                        <Grid RowDefinitions="Auto, Auto" Margin="{TemplateBinding Padding}">
+                            <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
+                                <ItemsPresenter Grid.Column="0" ItemsPanel="{TemplateBinding ItemsPanel}" />
+                                <mxri:RibbonPanelButton Grid.Column="1" x:Name="PART_DropDownButton" />
+                            </Grid>
+                            <ContentControl Grid.Row="1" x:Name="PART_BottomQuickAccessToolbarPresenter" />
+                        </Grid>
+                    </ContentControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <mxri:RibbonPanel />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style Selector="^/template/ContentControl#PART_Border">
+            <Setter Property="BorderThickness" Value="{DynamicResource RibbonPanelBorderThickness}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Strong}"/>
+            <Setter Property="CornerRadius" Value="{DynamicResource RibbonPanelCornerRadius}"/>
+            <Setter Property="Margin" Value="{DynamicResource RibbonPanelMargin}"/>
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
+            <Setter Property="Template" Value="{DynamicResource RibbonPanelBorderTemplate}"/>
+        </Style>
+
+        <Style Selector="^/template/ContentControl#PART_BottomQuickAccessToolbarPresenter">
+            <Setter Property="Template" Value="{DynamicResource BottomQuickAccessToolbarPresenterTemplate}" />
+        </Style>
+    </ControlTheme>
+
+    <!-- RibbonItemContentControl -->
+    <ControlTheme x:Key="{x:Type mxri:RibbonItemContentControl}" TargetType="mxri:RibbonItemContentControl">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid RowDefinitions="Auto, Auto">
+                    <ContentPresenter x:Name="PART_FirstLine" Content="{TemplateBinding FirstLine}" />
+                    <StackPanel x:Name="PART_SecondLineArrowPanel" Orientation="Horizontal" Grid.Row="1"
+                                IsVisible="{TemplateBinding IsLarge}">
+                        <ContentPresenter x:Name="PART_SecondLine" Content="{TemplateBinding SecondLine}" />
+                        <mxti:ToolbarItemArrowControl x:Name="PART_Arrow" IsVisible="{TemplateBinding IsArrowVisible}" />
+                    </StackPanel>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+
+        <Style
+            Selector="^[IsArrowVisible=False]/template/ContentPresenter#PART_FirstLine,
+                ^[IsArrowVisible=False]/template/ContentPresenter#PART_FirstLine">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+
+        <Style
+            Selector="^[IsArrowVisible=True]/template/ContentPresenter#PART_FirstLine,
+                ^[IsArrowVisible=True]/template/StackPanel#PART_SecondLineArrowPanel">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+
+        <Style Selector="^[IsArrowVisible=True]/template/mxti|ToolbarItemArrowControl#PART_Arrow">
+            <Setter Property="Margin" Value="{DynamicResource RibbonItemLargeArrowMargin}" />
+        </Style>
+    </ControlTheme>
+
+    <!-- RibbonPopupGallery Theme -->
+    <ControlTheme x:Key="{x:Type mxr:RibbonPopupGallery}" TargetType="mxr:RibbonPopupGallery">
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="ShadowOffset" Value="10, 10" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <mx:ShadowControl x:Name="PART_PopupShadow">
+                        <mx:ShadowControl.Styles>
+                            <Style Selector=":is(mxe|BaseEditor)">
+                                <Setter Property="MinHeight" Value="24" />
+                                <Setter Property="Padding" Value="{StaticResource EditorContentPaddingInPopupMenu}" />
+                            </Style>
+                            <Style
+                                Selector=":is(mxe|TextEditor)[EditorMode=InplaceActive]:focus-within /template/ Border#PART_RootBorder,
+															:is(mxe|PopupEditor)[EditorMode=InplaceActive]:focus-in-popup /template/ Border#PART_RootBorder">
+                                <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
+                            </Style>
+                        </mx:ShadowControl.Styles>
+                        <Border x:Name="PART_Border">
+                            <Grid x:Name="PART_PopupInnerBorder" RowDefinitions="Auto, *, Auto, Auto">
+                                <TemplatedControl x:Name="PART_MenuStrip" Classes="MxMenuStrip" Grid.Row="2"
+                                                  Grid.RowSpan="3" IsVisible="{TemplateBinding ShowIconStrip}" />
+                                <mxti:PopupMenuHeaderControl Grid.Row="0" x:Name="PART_MenuHeader"
+                                                             Classes="MxMenuHeader"
+                                                             IsVisible="{TemplateBinding ShowHeader}"
+                                                             Content="{TemplateBinding Header}" />
+                                <mxlv:ListViewControl Grid.Row="1" x:Name="PART_ListView"
+                                                      MaxColumnCount="{TemplateBinding ActualMaxColumnCount}"
+                                                      IsAutoWidth="True"
+                                                      IsAutoHeight="True"
+                                                      MaxRowCount="{TemplateBinding ActualMaxRowCount}"
+                                                      ItemsSource="{TemplateBinding ActualGalleryItemsSource}"
+                                                      VerticalScrollBarVisibility="Auto"
+                                                      SelectionMode="{TemplateBinding GalleryItemSelectionMode, Converter={x:Static mxri:RibbonGalleryItemSelectionModeConverter.Default}}"
+                                                      ItemTemplate="{TemplateBinding ActualGalleryItemTemplate}"
+                                                      ItemWidth="{TemplateBinding GalleryItemWidth}"
+                                                      ItemHeight="{TemplateBinding GalleryItemHeight}">
+                                    <mxlv:ListViewControl.DataTemplates>
+                                        <DataTemplate DataType="mxr:GalleryItem">
+                                            <Grid RowDefinitions="Auto, Auto">
+                                                <Image x:Name="PART_Glyph" Source="{Binding Glyph}" Width="32"
+                                                       Height="32" />
+                                                <ContentControl x:Name="PART_Header" Grid.Row="1"
+                                                                Content="{Binding Header}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </mxlv:ListViewControl.DataTemplates>
+                                </mxlv:ListViewControl>
+                                <ContentPresenter x:Name="PART_ItemsPresenter"
+                                                  Grid.Row="2" />
+                                <internal:PopupContainerSizeGrip Grid.Row="3" x:Name="PART_SizeGrip"
+                                                                 Location="{TemplateBinding ResizeMode, Converter={x:Static mxri:RibbonPopupGallerySizeGripLocationConverter.Default}}"
+                                                                 HorizontalAlignment="{TemplateBinding ResizeMode, Converter={x:Static mxri:RibbonPopupGallerySizeGripAlignmentConverter.Default}}"
+                                                                 IsVisible="{TemplateBinding ResizeMode, Converter={x:Static ObjectConverters.NotEqual}, ConverterParameter={x:Static mxr:PopupGallerySizeMode.None}}" />
+                            </Grid>
+                        </Border>
+                    </mx:ShadowControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style Selector="^/template/Border#PART_Border">
+            <Setter Property="BorderThickness" Value="{DynamicResource MxPopupMenuBorderThickness}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Strong}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+            <Setter Property="CornerRadius" Value="{StaticResource ToolbarOuterCornerRadius}" />
+            <Setter Property="Padding" Value="1" />
+        </Style>
+
+        <Style Selector="^:no-shadow/template/Border#PART_Border">
+            <Setter Property="BorderThickness" Value="{DynamicResource MxPopupMenuBorderThickness/NoShadow}" />
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+
+        <Style Selector="^/template/mx|ShadowControl#PART_PopupShadow">
+            <Setter Property="CornerRadius" Value="{StaticResource ToolbarCornerRadius}" />
+        </Style>
+
+        <Style Selector="^/template/mxlv|ListViewControl#PART_ListView">
+            <Setter Property="BorderThickness" Value="0, 0, 0,1" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+        </Style>
+
+        <Style Selector="^[HasMenuItems=True]/template/mxlv|ListViewControl#PART_ListView">
+            <Setter Property="BorderThickness" Value="0, 0, 0,1" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/On Secondary/Light}" />
+        </Style>
+
+        <Style Selector="^/template/mxlv|ListViewControl#PART_ListView">
+            <Setter Property="Padding" Value="1" />
+        </Style>
+
+        <Style Selector="^:no-shadow">
+            <Setter Property="ShadowOffset" Value="0, 0" />
+        </Style>
+    </ControlTheme>
+
+    <!-- RibbonGalleryItem Theme -->
+    <ControlTheme x:Key="{x:Type mxr:RibbonGalleryItem}" TargetType="mxr:RibbonGalleryItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="mxr:RibbonGalleryItem">
+                    <Grid>
+                        <Border x:Name="PART_Border"
+                                IsVisible="{TemplateBinding GalleryDisplayMode, 
+                        Converter={x:Static ObjectConverters.Equal}, 
+                        ConverterParameter={x:Static mxr:RibbonGalleryItemDisplayMode.Gallery}}">
+                            <mxri:RibbonGalleryItemPanel>
+                                <mxlv:ListViewControl x:Name="PART_ListView"
+                                                      HorizontalAlignment="Left"
+                                                      IsAutoWidth="True"
+                                                      MaxColumnCount="{TemplateBinding ActualColumnCount}"
+                                                      ItemsSource="{TemplateBinding ActualItemsSource}"
+                                                      VerticalScrollBarVisibility="Hidden"
+                                                      ItemTemplate="{TemplateBinding ItemTemplate}"
+                                                      StretchItemVertically="{TemplateBinding StretchItemVertically}"
+                                                      FocusedItem="{TemplateBinding FocusedItem, Mode=TwoWay}"
+                                                      SelectionMode="{TemplateBinding ItemSelectionMode, Converter={x:Static mxri:RibbonGalleryItemSelectionModeConverter.Default}}"
+                                                      ItemWidth="{TemplateBinding ItemWidth}"
+                                                      ItemHeight="{TemplateBinding ItemHeight}">
+                                    <mxlv:ListViewControl.DataTemplates>
+                                        <DataTemplate DataType="mxr:GalleryItem">
+                                            <Grid RowDefinitions="Auto, Auto">
+                                                <Image x:Name="PART_Glyph" Source="{Binding Glyph}" Width="32"
+                                                       Height="32" />
+                                                <!-- <ContentControl x:Name="PART_Header" Grid.Row="1" Content="{Binding Header}"/> -->
+                                            </Grid>
+                                        </DataTemplate>
+                                    </mxlv:ListViewControl.DataTemplates>
+                                </mxlv:ListViewControl>
+                                <Grid RowDefinitions="*, *, *">
+                                    <Button x:Name="PART_UpButton" Grid.Row="0" Command="{TemplateBinding UpCommand}" />
+                                    <Button x:Name="PART_DownButton" Grid.Row="1"
+                                            Command="{TemplateBinding DownCommand}" />
+                                    <Button x:Name="PART_DropDownButton" Grid.Row="2"
+                                            Command="{TemplateBinding DropDownCommand}" />
+                                </Grid>
+                            </mxri:RibbonGalleryItemPanel>
+                        </Border>
+                        <mxti:ToolbarItemLayoutPanel Classes="Button"
+                                                     IsVisible="{TemplateBinding GalleryDisplayMode,
+                            Converter={x:Static ObjectConverters.Equal}, 
+                            ConverterParameter={x:Static mxr:RibbonGalleryItemDisplayMode.DropDownButton}}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style Selector="^/template/mxlv|ListViewControl#PART_ListView">
+            <Setter Property="Padding" Value="1" />
+        </Style>
+
+        <Style Selector="^/template/Border#PART_Border">
+            <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/On Secondary/Light}" />
+        </Style>
+
+        <Style Selector="^/template/Button">
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+
+        <Style Selector="^/template/Button#PART_UpButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="PART_Border" Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Light}"
+                                CornerRadius="0,6,0,0"
+                                BorderThickness="1,0,0,1">
+                            <ContentPresenter ContentTemplate="{DynamicResource MxGalleryUpButtonGlyphTemplate}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style Selector="^/template/Button#PART_DownButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="PART_Border" Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Light}"
+                                CornerRadius="0,0,0,0"
+                                BorderThickness="1,0,0,1">
+                            <ContentPresenter ContentTemplate="{DynamicResource MxGalleryDownButtonGlyphTemplate}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style Selector="^/template/Button#PART_DropDownButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="PART_Border" Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Light}"
+                                CornerRadius="0,0,6,0"
+                                BorderThickness="1,0,0,0">
+                            <ContentPresenter ContentTemplate="{DynamicResource MxGalleryDropDownButtonGlyphTemplate}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style Selector="^/template/Button:pointerover">
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+        </Style>
+
+        <Style Selector="^/template/Button:pressed">
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
+        </Style>
+
+        <Style Selector="^/template/Button:disabled">
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Disabled}" />
+        </Style>
+    </ControlTheme>
+
+    <!-- RibbonPopupControl Theme -->
+    <ControlTheme x:Key="{x:Type mxri:RibbonPopupControl}" TargetType="mxri:RibbonPopupControl">
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="ShadowOffset" Value="10, 8" />
+        <Setter Property="ShadowMargin" Value="{DynamicResource MxPopupShadowMargin}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <mx:ShadowControl x:Name="PART_PopupShadow">
+                        <Border x:Name="PART_Border">
+                            <Grid x:Name="PART_PopupInnerBorder">
+                                <ContentPresenter Content="{TemplateBinding Child}" />
+                            </Grid>
+                        </Border>
+                    </mx:ShadowControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style Selector="^/template/mx|ShadowControl#PART_PopupShadow">
+            <Setter Property="CornerRadius" Value="{StaticResource ToolbarCornerRadius}" />
+        </Style>
+
+        <Style Selector="^/template/ContentPresenter">
+            <Setter Property="Margin" Value="{StaticResource PopupContentPadding}" />
+        </Style>
+
+        <Style Selector="^/template/Border#PART_Border">
+            <Setter Property="BorderThickness" Value="{DynamicResource MxPopupMenuBorderThickness}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource RibbonPopupControlBorderBrush}" />
+            <Setter Property="Background" Value="{DynamicResource RibbonPopupControlBackground}" />
+        </Style>
+
+        <Style Selector="^:not(:no-shadow)/template/Border#PART_Border">
+            <Setter Property="CornerRadius" Value="{StaticResource ToolbarOuterCornerRadius}" />
+        </Style>
+
+        <Style Selector="^:no-shadow">
+            <Setter Property="ShadowOffset" Value="0,0" />
+            <Setter Property="ShadowMargin" Value="0"></Setter>
+        </Style>
+
+        <Style Selector="^:no-shadow/template/Border#PART_Border">
+            <Setter Property="BorderThickness" Value="{DynamicResource PopupContainerBorderThickness/NoShadow}"></Setter>
+        </Style>
+    </ControlTheme>
+    
+    <ControlTheme x:Key="{x:Type mxri:RibbonSimplifiedPageGroupDropDownButton}" TargetType="mxri:RibbonSimplifiedPageGroupDropDownButton" BasedOn="{StaticResource ToolbarItemBase}">
+        <Setter Property="MinWidth" Value="16" />
+        <Setter Property="MinHeight" Value="16" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <mxti:ToolbarItemLayoutPanel x:Name="PART_LayoutPanel" Classes="Button"
+                                             GlyphTemplate="{DynamicResource MxSimplifiedPageGroupDropDownButtonGlyphTemplate}" />
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^/template/Border#PART_Border">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="Padding" Value="{StaticResource ToolbarItemGlyphMargin}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="CornerRadius" Value="{StaticResource ToolbarItemCornerRadius}" />
+        </Style>
+    </ControlTheme>
+
+</ResourceDictionary>

@@ -188,13 +188,11 @@
 
     <!-- Resources for Slider.axaml -->
 
-    <StaticResource x:Key="SliderBackground" ResourceKey="Fill/Neutral/Secondary/Hover" />
+    <StaticResource x:Key="SliderBackground" ResourceKey="TransparentBrush" />
     <StaticResource x:Key="SliderForeground" ResourceKey="Fill/Accent/Primary/Enabled" />
     <StaticResource x:Key="SliderTickStroke" ResourceKey="Outline/Neutral/Transparent/Strong" />
-    <StaticResource x:Key="SliderTrackBackground" ResourceKey="TransparentBrush" />
     <StaticResource x:Key="SliderRailBackground" ResourceKey="Fill/Neutral/Secondary/Enabled" />
     <StaticResource x:Key="SliderRailBorderBrush" ResourceKey="Outline/Neutral/Transparent/Light" />
-    <StaticResource x:Key="SliderDecreaseButtonTrackBackground" ResourceKey="Fill/Accent/Primary/Enabled" />
     <StaticResource x:Key="SliderThumbFill" ResourceKey="Fill/Neutral/Primary/Enabled" />
     <StaticResource x:Key="SliderThumbStroke" ResourceKey="Outline/Neutral/Transparent/Strong" />
     <StaticResource x:Key="SliderThumbInnerFill" ResourceKey="Fill/Accent/Primary/Enabled" />
@@ -207,7 +205,6 @@
     <StaticResource x:Key="SliderDecreaseButtonTrackBackgroundDisabled" ResourceKey="Fill/Accent/Primary/Disabled" />
     <StaticResource x:Key="SliderColorDecreaseButtonTrackBackground" ResourceKey="TransparentBrush" />
     <StaticResource x:Key="SliderColorThumbInnerStroke" ResourceKey="Outline/Neutral/Transparent/Medium" />
-    <StaticResource x:Key="SliderColorDecreaseButtonTrackBackgroundDisabled" ResourceKey="TransparentBrush" />
     <StaticResource x:Key="SliderThumbInnerFillDisabled" ResourceKey="Fill/Accent/Primary/Disabled" />
 
     <!-- Resources for ToolTip.axaml -->

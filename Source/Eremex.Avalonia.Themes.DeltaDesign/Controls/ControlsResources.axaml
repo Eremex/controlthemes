@@ -30,7 +30,9 @@
 	<StreamGeometry x:Key="AddColorIcon">M5.5 0C5.77614 0 6 0.223858 6 0.5V5H10.5C10.7761 5 11 5.22386 11 5.5C11 5.77614 10.7761 6 10.5 6H6V10.5C6 10.7761 5.77614 11 5.5 11C5.22386 11 5 10.7761 5 10.5V6H0.5C0.223858 6 0 5.77614 0 5.5C0 5.22386 0.223858 5 0.5 5H5V0.5C5 0.223858 5.22386 0 5.5 0Z</StreamGeometry>
 
 	<x:Double x:Key="EditorFontSize">12</x:Double>
+    <!--EditorFontSize will be removed. Do not use!-->
 	<x:Double x:Key="EditorErrorFontSize">11</x:Double>
+    <x:Double x:Key="ToolTipContentThemeFontSize">12</x:Double>
 	<CornerRadius x:Key="EditorCornerRadius">6</CornerRadius>
 	<x:Double x:Key="EditorMinHeight">28</x:Double>
 	<x:Double x:Key="EditorMinWidth">16</x:Double>
@@ -46,8 +48,9 @@
 	<CornerRadius x:Key="PopupCornerRadius">8</CornerRadius>
 	<CornerRadius x:Key="PopupHeaderCornerRadius">8,8,0,0</CornerRadius>
 	<CornerRadius x:Key="PopupFooterCornerRadius">0,0,8,8</CornerRadius>
-	<Thickness x:Key="CheckBoxPadding">6,0,0,0</Thickness>
+	<Thickness x:Key="CheckBoxPadding">4,0,0,0</Thickness>
 	<Thickness x:Key="CheckEditorPadding">8,0,8,0</Thickness>
+    <Thickness x:Key="CheckEditorImageMargin">2,0</Thickness>
 	<CornerRadius x:Key="CheckEditorGlyphCornerRadius">3</CornerRadius>
 
     <Thickness x:Key="ToggleSwitchPadding">6,0,0,0</Thickness>
@@ -60,7 +63,7 @@
     <x:Double x:Key="ToggleSwitchKnobSize">10</x:Double>
     <Thickness x:Key="ToggleSwitchKnobCanvasMargin">2,0,0,0</Thickness>
 
-	<Thickness x:Key="RadioButtonPadding">6,0,0,0</Thickness>
+	<Thickness x:Key="RadioButtonPadding">4,0,0,0</Thickness>
 	<x:Double x:Key="RadioButtonEllipseBorderThickness">1</x:Double>
 	<x:Double x:Key="SliderThumbSize">22</x:Double>
 

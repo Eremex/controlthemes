@@ -32,7 +32,7 @@
                                              IsVisible="{TemplateBinding ShowSearchPanel}"/>
 
                         <ScrollViewer x:Name="PART_ScrollViewer" BringIntoViewOnFocusChange="False" Grid.Row="1">
-                            <mxpgv:PropertyGridItemsControl x:Name="PART_ItemsControl"/>
+                            <common:MxVirtualizingControl x:Name="PART_VirtualizingControl"/>
                         </ScrollViewer>
                     </Grid>
                 </Border>
@@ -202,7 +202,7 @@
 				<StackPanel>
 					<TextBlock Text="{Binding Caption}" Classes="PropertyGridRow" FontWeight="Bold" Margin="17,2"/>
 					
-					<mxe:SegmentedEditor SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding Items}" Margin="10,2">
+					<mxe:SegmentedEditor ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" Margin="10,2">
 						<mxe:SegmentedEditor.Styles>
 							<Style Selector="ListBoxItem">
 								<Setter Property="IsVisible" Value="{Binding IsVisible}"/>

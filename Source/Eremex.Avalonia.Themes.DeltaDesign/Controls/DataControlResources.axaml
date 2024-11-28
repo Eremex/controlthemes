@@ -1,5 +1,334 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	<StreamGeometry x:Key="DataControlCollapsedChevron">M0.646447 0.146447C0.841709 -0.0488155 1.15829 -0.0488155 1.35355 0.146447L5.85355 4.64645C6.04882 4.84171 6.04882 5.15829 5.85355 5.35355L1.35355 9.85355C1.15829 10.0488 0.841709 10.0488 0.646447 9.85355C0.451184 9.65829 0.451184 9.34171 0.646447 9.14645L4.79289 5L0.646447 0.853553C0.451184 0.658291 0.451184 0.341709 0.646447 0.146447Z</StreamGeometry>
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxdc="clr-namespace:Eremex.AvaloniaUI.Controls.DataControl;assembly=Eremex.Avalonia.Controls"
+                    xmlns:other="clr-namespace:Eremex.AvaloniaUI.Icons.Other;assembly=Eremex.Avalonia.Icons"
+                    xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls"
+                    xmlns:ed="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxdcv="clr-namespace:Eremex.AvaloniaUI.Controls.DataControl.Visuals;assembly=Eremex.Avalonia.Controls">
+
+    <x:Double x:Key="ColumnHeaderFontSize">12</x:Double>
+    <x:Double x:Key="SearchPanelEditorMinWidth">250</x:Double>
+
+    <StreamGeometry x:Key="DataControlCollapsedChevron">M0.646447 0.146447C0.841709 -0.0488155 1.15829 -0.0488155 1.35355 0.146447L5.85355 4.64645C6.04882 4.84171 6.04882 5.15829 5.85355 5.35355L1.35355 9.85355C1.15829 10.0488 0.841709 10.0488 0.646447 9.85355C0.451184 9.65829 0.451184 9.34171 0.646447 9.14645L4.79289 5L0.646447 0.853553C0.451184 0.658291 0.451184 0.341709 0.646447 0.146447Z</StreamGeometry>
 	<StreamGeometry x:Key="DataControlExpandedChevron">M9.85355 0.646447C10.0488 0.841709 10.0488 1.15829 9.85355 1.35355L5.35355 5.85355C5.15829 6.04882 4.84171 6.04882 4.64645 5.85355L0.146446 1.35355C-0.0488158 1.15829 -0.0488157 0.841708 0.146446 0.646446C0.341709 0.451184 0.658291 0.451184 0.853554 0.646446L5 4.79289L9.14645 0.646447C9.34171 0.451184 9.65829 0.451184 9.85355 0.646447Z</StreamGeometry>
+
+    <ControlTheme x:Key="ColumnHeaderControlCaptionTheme" TargetType="TextBlock">
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Text" Value="{Binding}" />
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:ColumnHeaderControl}" TargetType="mxdcv:ColumnHeaderControl">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="6" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+        <Setter Property="Foreground" Value="{DynamicResource	Text/Neutral/Secondary}" />
+        <Setter Property="FontSize" Value="{StaticResource ColumnHeaderFontSize}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid Background="Transparent">
+                    <Border x:Name="HeaderBorder" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid ColumnDefinitions="Auto,Auto,*,Auto" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" >
+                                <CheckBox x:Name="PART_CheckBox" Focusable="False" Grid.Column="1" IsVisible="{TemplateBinding IsCheckBoxVisible}" IsChecked="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}"	/>
+                                <ContentPresenter Grid.Column="2" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" VerticalAlignment="Center">
+                                    <ContentPresenter.DataTemplates>
+                                        <DataTemplate DataType="x:String">
+                                            <TextBlock Theme="{DynamicResource ColumnHeaderControlCaptionTheme}" mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"/>
+                                        </DataTemplate>
+                                    </ContentPresenter.DataTemplates>
+                                </ContentPresenter>
+                                <Path x:Name="SortIndicator" VerticalAlignment="Center" />
+                            </Grid>
+                            <Thumb Name="PART_ColumnResizeGrip" HorizontalAlignment="Right" />
+                        </Grid>
+                    </Border>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^/template/ Path">
+            <Setter Property="Margin" Value="6,0,0,0" />
+            <Setter Property="Fill" Value="{DynamicResource Icons/Outline/Disabled}" />
+            <Setter Property="Height" Value="10" />
+            <Setter Property="Width" Value="9" />
+            <Setter Property="Grid.Column" Value="3" />
+            <Setter Property="Stretch" Value="None" />
+        </Style>
+
+        <Style Selector="^/template/ Thumb">
+            <Setter Property="Cursor" Value="SizeWestEast" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Width" Value="5" />
+            <Setter Property="BorderThickness" Value="0,0,2,0"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding	BorderBrush}" BorderThickness="{TemplateBinding	BorderThickness}" />
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="^Thumb:pointerover">
+            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Secondary}" />
+        </Style>
+
+        <Style Selector="^/template/ Path#SortIndicator">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+
+        <Style Selector="^:sortascending /template/ Path#SortIndicator">
+            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Data" Value="{StaticResource SortIndicatorAscendingPath}" />
+        </Style>
+
+        <Style Selector="^:sortdescending /template/ Path#SortIndicator">
+            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Data" Value="{StaticResource SortIndicatorDescendingPath}" />
+        </Style>
+
+        <Style Selector="^:pointerover">
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+            <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+        </Style>
+
+        <Style Selector="^:pressed">
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
+        </Style>
+
+        <Style Selector="^:dragging">
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
+            <Setter Property="Opacity" Value="0.85" />
+        </Style>        
+
+        <Style Selector="^:pointerover /template/ Path#SortIndicator">
+            <Setter Property="Fill" Value="{DynamicResource Icons/Outline/Gray}" />
+        </Style>
+
+        <Style Selector="^[IsVerticalLineVisible=true] /template/ Border#HeaderBorder">
+            <Setter Property="BorderThickness" Value="0,0,1,0" />
+        </Style>
+
+        <Style Selector="^[HorizontalContentAlignment=Right] /template/ Path#SortIndicator">
+            <Setter Property="Grid.Column" Value="0" />
+            <Setter Property="Margin" Value="0,0,6,0" />
+        </Style>
+
+        <Style Selector="^[(mxdcv|ColumnHeaderControl.ColumnHeaderPlacement)=GroupPanel] /template/ Border#HeaderBorder">
+            <Setter Property="Margin" Value="6,0,0,0" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:DataRowControlBase}" TargetType="mxdcv:DataRowControlBase">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                    <Border x:Name="RowBorder" BorderBrush="{TemplateBinding BorderBrush}" >
+                        <mxdcv:CellsPanel x:Name="PART_CellsPanel"/>
+                    </Border>
+                    <Border x:Name="FocusBorder" />
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:focusedState /template/ Border#FocusBorder, ^:focusedAndSelectedState /template/ Border#FocusBorder">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
+        </Style>
+
+        <Style Selector="^:focusedAndSelectedState /template/ Border#RowBorder">
+            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Row/Hover}" />
+        </Style>
+
+        <Style Selector="^:focusedState /template/ Border#RowBorder">
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+        </Style>
+
+        <Style Selector="^:selectedState /template/ Border#RowBorder">
+            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Row/Enabled}" />
+        </Style>
+
+        <Style Selector="^[IsHorizontalLineVisible=true] /template/ Border#RowBorder">
+            <Setter Property="BorderThickness" Value="0,0,0,1" />
+        </Style>
+
+        <Style Selector="^[IsHorizontalLineVisible=true] /template/ Border#FocusBorder">
+            <Setter Property="Margin" Value="0,0,0,1" />
+        </Style>
+
+        <Style Selector="^[(mxdc|DataControlBase.IsFocusWithin)=false] /template/ Border#FocusBorder">
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:CellControl}" TargetType="mxdcv:CellControl">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                    <Border x:Name="CellBorder"
+									BorderBrush="{TemplateBinding BorderBrush}"
+									BorderThickness="{TemplateBinding BorderThickness}">
+                        <mxdcv:CellEditor x:Name="PART_CellEditor" Background="Transparent" />
+                    </Border>
+                    <Border x:Name="FocusBorder" />
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:focusedState /template/ Border#FocusBorder">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
+        </Style>
+
+        <Style Selector="^:focusedAndSelectedState /template/ Border#FocusBorder">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Margin" Value="0,-1" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
+        </Style>
+
+        <Style Selector="^:focusedAndSelectedState[IsFirst=true] /template/ Border#FocusBorder">
+            <Setter Property="Margin" Value="-1,-1,0,-1" />
+        </Style>
+        <Style Selector="^:focusedAndSelectedState[IsLast=true] /template/ Border#FocusBorder">
+            <Setter Property="Margin" Value="0,-1,-1,-1" />
+        </Style>
+
+        <Style Selector="^:focusedState /template/ Border#CellBorder">
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+        </Style>
+        <Style Selector="^:focusedAndSelectedState /template/ Border#CellBorder">
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+        </Style>
+
+        <Style Selector="^[IsVerticalLineVisible=true] /template/ Border#CellBorder">
+            <Setter Property="BorderThickness" Value="0,0,1,0" />
+        </Style>
+
+        <Style Selector="^[(mxdc|DataControlBase.IsFocusWithin)=false] /template/ Border#FocusBorder">
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:SearchPanel}" TargetType="mxdcv:SearchPanel">
+        <Setter Property="Padding" Value="6" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                    <Grid ColumnDefinitions="*, Auto" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                        <mxdcv:MinWidthDecorator ChildMinWidth="{StaticResource SearchPanelEditorMinWidth}">
+                            <ed:ButtonEditor x:Name="PART_SearchEditor"
+															 EditorValue="{Binding SearchText, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+															 EditorValuePostDelay="{TemplateBinding SearchDelay}"
+															 EditorValuePostMode="Delayed"
+															 Watermark="{x:Static localization:ControlsResources.DataControl_SearchPanel_PromptText}"
+															 NullValueButtonPosition="EditorBox">
+                                <ed:ButtonEditor.Buttons>
+                                    <ed:ButtonSettings IsEnabled="False" IsLeft="True" Glyph="{x:Static other:_12.Search}" GlyphSize="14,14" />
+                                </ed:ButtonEditor.Buttons>
+                            </ed:ButtonEditor>
+                        </mxdcv:MinWidthDecorator>
+                        <Button x:Name="PART_CloseButton" Grid.Column="1" Margin="6,0,0,0" Padding="6" BorderThickness="0" IsTabStop="False" IsVisible="{TemplateBinding ShowCloseButton}" Command="{Binding CloseClickCommand, RelativeSource={RelativeSource TemplatedParent}}">
+                            <Button.Content>
+                                <Image Source="{x:Static other:_12.Close}"  Width="14" Height="14"/>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:AutoFilterRowControl}" TargetType="mxdcv:AutoFilterRowControl">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                    <mxdcv:CellsPanel x:Name="PART_CellsPanel"/>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:ColumnChooserControl}" TargetType="mxdcv:ColumnChooserControl">
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid Margin="{TemplateBinding Padding}" RowDefinitions="Auto, *" >
+                    <ed:ButtonEditor x:Name="PART_SearchEditor"
+														 Margin="8,6"
+														 EditorValue="{Binding SearchText, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+														 EditorValuePostMode="Delayed"
+														 EditorValuePostDelay="500"
+														 Watermark="{x:Static localization:ControlsResources.DataControl_ColumnChooser_SearchPromptText}"
+														 NullValueButtonPosition="EditorBox">
+                    </ed:ButtonEditor>
+                    <ScrollViewer Grid.Row="1" x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Disabled">
+                        <ItemsControl x:Name="PART_ColumnItemsControl" Background="Transparent">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="Auto, *" Margin="8,0">
+                                        <CheckBox x:Name="PART_VisibilityCheckBox" IsChecked="{Binding Column.IsVisible}" IsEnabled="{Binding IsEnabled}" />
+                                        <mxdcv:ColumnHeaderControl Grid.Column="1" Column="{Binding Column}" MinHeight="30" Margin="8,0,0,0"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel x:Name="PART_Panel" Orientation="Vertical" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </ScrollViewer>
+                    <Border x:Name="PART_HeaderDropIndicator" IsHitTestVisible="False" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="{Binding DataControl.HeaderDropIndicatorWidth, RelativeSource={RelativeSource TemplatedParent}}" Background="{DynamicResource Outline/Accent/Secondary}" IsVisible="False"/>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:DropIndicatorControl}" TargetType="mxdcv:DropIndicatorControl">
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Secondary}" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="{TemplateBinding Background}"
+                                MinHeight="4"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Margin="{TemplateBinding Padding}" />
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^[DropPosition=Before]">
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="BorderThickness" Value="0,2,0,0" />
+        </Style>
+
+        <Style Selector="^[DropPosition=After]">
+            <Setter Property="VerticalContentAlignment" Value="Bottom" />
+            <Setter Property="BorderThickness" Value="0,0,0,2" />
+        </Style>
+
+        <Style Selector="^[DropPosition=Inside]">
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            <Setter Property="BorderThickness" Value="2" />
+        </Style>
+
+    </ControlTheme>
+
 </ResourceDictionary>

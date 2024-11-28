@@ -1,236 +1,209 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-				xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
-        xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls">
 
-	<Design.PreviewWith>
-		<Border Padding="20">
-			<StackPanel Spacing="20">
-				<Button Classes="EditorIconButton" Content="X" Height="{StaticResource EditorMinHeight}" />
-				<ToggleButton Classes="EditorIconButton" Content="X" IsEnabled="True" Height="{StaticResource EditorMinHeight}"/>
-				<Button Classes="EditorIconButton" Content="D" IsEnabled="False" Height="{StaticResource EditorMinHeight}"/>
-				<ToggleButton Classes="EditorIconButton" Content="D" IsEnabled="False" IsChecked="true" Height="{StaticResource EditorMinHeight}"/>
-				<Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
-					<StackPanel Spacing="20">
-						<Button Classes="EditorIconButton secondary" Content="X" Height="{StaticResource EditorMinHeight}" />
-						<ToggleButton Classes="EditorIconButton secondary" Content="X" IsEnabled="True" Height="{StaticResource EditorMinHeight}"/>
-						<Button Classes="EditorIconButton secondary" Content="D" IsEnabled="False" Height="{StaticResource EditorMinHeight}"/>
-						<ToggleButton Classes="EditorIconButton secondary" Content="D" IsEnabled="False" IsChecked="true" Height="{StaticResource EditorMinHeight}"/>
-					</StackPanel>
-				</Border>			
-			</StackPanel>
-		</Border>
-	</Design.PreviewWith>	
-	
-	<Style Selector="Button.EditorIconButton, ToggleButton.EditorIconButton, RepeatButton.EditorIconButton">
-		<Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}"/>
-		<Setter Property="MinWidth" Value="{StaticResource ButtonMinWidth}"/>
-		<Setter Property="Foreground" Value="{DynamicResource IconButtonForeground}" />
-		<Setter Property="VerticalAlignment" Value="Stretch"/>
-		<Setter Property="BorderThickness" Value="0"/>
-		<Setter Property="FontWeight" Value="Normal" />
-		<Setter Property="FontSize" Value="{StaticResource EditorFontSize}" />
-		<Setter Property="Focusable" Value="False"/>
-	</Style>
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <StackPanel Spacing="20">
+                <mxev:EditorIconButton Content="X" Height="{StaticResource EditorMinHeight}" />
+                <mxev:EditorIconToggleButton Content="X" IsEnabled="True" Height="{StaticResource EditorMinHeight}"/>
+                <mxev:EditorIconButton Content="D" IsEnabled="False" Height="{StaticResource EditorMinHeight}"/>
+                <mxev:EditorIconToggleButton Content="D" IsEnabled="False" IsChecked="true" Height="{StaticResource EditorMinHeight}"/>
+                <Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
+                    <StackPanel Spacing="20">
+                        <mxev:EditorIconButton Classes="secondary" Content="X" Height="{StaticResource EditorMinHeight}" />
+                        <mxev:EditorIconToggleButton Classes="secondary" Content="X" IsEnabled="True" Height="{StaticResource EditorMinHeight}"/>
+                        <mxev:EditorIconButton Classes="secondary" Content="D" IsEnabled="False" Height="{StaticResource EditorMinHeight}"/>
+                        <mxev:EditorIconToggleButton Classes="secondary" Content="D" IsEnabled="False" IsChecked="true" Height="{StaticResource EditorMinHeight}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
 
-	<Style Selector="ToggleButton.EditorIconButton">
-		<Setter Property="VerticalContentAlignment" Value="Center"/>
-		<Setter Property="HorizontalContentAlignment" Value="Center"/>
-		<Setter Property="Template">
-			<ControlTemplate>
-				<Panel>
-					<Border x:Name="PART_BackgroundBorder"
-														Background="{TemplateBinding Background}"
-														CornerRadius="{TemplateBinding CornerRadius}"
-														Padding="{TemplateBinding Padding}">
-						<ContentPresenter x:Name="PART_ContentPresenter"
-															Content="{TemplateBinding Content}"
-															ContentTemplate="{TemplateBinding ContentTemplate}"
-															RecognizesAccessKey="True"
-															HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-															VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-					</Border>
-					<Border Name="PART_ButtonBorder"
-										BorderBrush="{TemplateBinding BorderBrush}"
-										BorderThickness="{TemplateBinding BorderThickness}"
-										CornerRadius="{TemplateBinding CornerRadius}"
-										Background="{x:Null}"/>
-				</Panel>
-			</ControlTemplate>
-		</Setter>
-	</Style>
-
-    <Style Selector="Button.EditorIconButton, ToggleButton.EditorIconButton">
+    <ControlTheme x:Key="EditorIconButtonBaseTheme" TargetType="Button">
+        <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}"/>
+        <Setter Property="FocusAdorner" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False"/>
         <Setter Property="Padding" Value="{DynamicResource EditorIconButtonPadding}"/>
-    </Style>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="MinWidth" Value="{StaticResource ButtonMinWidth}"/>
+        <Setter Property="Foreground" Value="{DynamicResource IconButtonForeground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrush}" />
+        <Setter Property="Background" Value="{DynamicResource IconButtonBackground}"/>
 
-	<Style Selector="Button.EditorIconButton /template/ Border#PART_BackgroundBorder,
-					 RepeatButton.EditorIconButton /template/ Border#PART_BackgroundBorder,
-					 ToggleButton.EditorIconButton /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource IconButtonBackground}" />
-	</Style>
-	<Style Selector="Button.EditorIconButton /template/ ContentPresenter#PART_ContentPresenter,
-					 RepeatButton.EditorIconButton /template/ ContentPresenter#PART_ContentPresenter,
-					 ToggleButton.EditorIconButton /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource IconButtonForeground}" />
-	</Style>
-	<Style Selector="Button.EditorIconButton.secondary /template/ Border#PART_ButtonBorder,
-					 RepeatButton.EditorIconButton.secondary /template/ Border#PART_ButtonBorder,
-					 ToggleButton.EditorIconButton.secondary /template/ Border#PART_ButtonBorder">
-		<Setter Property="BorderBrush" Value="{DynamicResource IconButtonBorderBrush}" />
-	</Style>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Border x:Name="PART_BackgroundBorder"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter x:Name="PART_ContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          CornerRadius="{TemplateBinding CornerRadius}"
+                                          RecognizesAccessKey="True"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <Border Name="PART_ButtonBorder"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Background="{x:Null}"/>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
 
-	<!-- PointerOver, KeyboardFocused State -->
-	<Style Selector="Button.EditorIconButton:pointerover /template/ Border#PART_BackgroundBorder,
-					 Button.EditorIconButton:focus-visible /template/ Border#PART_BackgroundBorder,
-					 RepeatButton.EditorIconButton:pointerover /template/ Border#PART_BackgroundBorder,
-					 RepeatButton.EditorIconButton:focus-visible /template/ Border#PART_BackgroundBorder,
-					 ToggleButton.EditorIconButton:pointerover /template/ Border#PART_BackgroundBorder,
-					 ToggleButton.EditorIconButton:focus-visible /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource IconButtonBackgroundPointerOver}" />
-	</Style>
-	<Style Selector="Button.EditorIconButton:pointerover, Button.EditorIconButton:focus-visible,
-					 RepeatButton.EditorIconButton:pointerover, RepeatButton.EditorIconButton:focus-visible,
-					 ToggleButton.EditorIconButton:pointerover, ToggleButton.EditorIconButton:focus-visible">
-		<Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundPointerOver}" />
-	</Style>
-	<Style Selector="Button.EditorIconButton:pointerover /template/ ContentPresenter#PART_ContentPresenter,
-					 Button.EditorIconButton:focus-visible /template/ ContentPresenter#PART_ContentPresenter,
-					 RepeatButton.EditorIconButton:pointerover /template/ ContentPresenter#PART_ContentPresenter,
-					 RepeatButton.EditorIconButton:focus-visible /template/ ContentPresenter#PART_ContentPresenter,
-					 ToggleButton.EditorIconButton:pointerover /template/ ContentPresenter#PART_ContentPresenter,
-					 ToggleButton.EditorIconButton:focus-visible /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource IconButtonForegroundPointerOver}" />
-	</Style>
-	<Style Selector="Button.EditorIconButton.secondary:pointerover /template/ Border#PART_ButtonBorder,
-					 RepeatButton.EditorIconButton.secondary:pointerover /template/ Border#PART_ButtonBorder,
-					 ToggleButton.EditorIconButton.secondary:pointerover /template/ Border#PART_ButtonBorder">
-		<Setter Property="BorderBrush" Value="{DynamicResource IconButtonSecondaryBorderBrushPointerOver}" />
-		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}"/>
-	</Style>
-	<Style Selector="Button.EditorIconButton.secondary:pointerover /template/ Border#PART_BackgroundBorder,
-					 Button.EditorIconButton.secondary:focus-visible /template/ Border#PART_BackgroundBorder,
-					 RepeatButton.EditorIconButton.secondary:pointerover /template/ Border#PART_BackgroundBorder,
-					 RepeatButton.EditorIconButton.secondary:focus-visible /template/ Border#PART_BackgroundBorder,
-					 ToggleButton.EditorIconButton.secondary:pointerover /template/ Border#PART_BackgroundBorder,
-					 ToggleButton.EditorIconButton.secondary:focus-visible /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource IconButtonSecondaryBackgroundPointerOver}" />
-	</Style>
-	<Style Selector="Button.EditorIconButton.secondary:focus-visible /template/ Border#PART_ButtonBorder,
-					 RepeatButton.EditorIconButton.secondary:focus-visible /template/ Border#PART_ButtonBorder,
-					 ToggleButton.EditorIconButton.secondary:focus-visible /template/ Border#PART_ButtonBorder">
-		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
-		<Setter Property="BorderThickness" Value="0"/>
-	</Style>
-	
-	<!-- Pressed State -->
-	<Style Selector="Button.EditorIconButton:pressed /template/ Border#PART_BackgroundBorder,
-					 RepeatButton.EditorIconButton:pressed /template/ Border#PART_BackgroundBorder,
-					 ToggleButton.EditorIconButton:pressed /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource IconButtonBackgroundPressed}" />
-	</Style>
-	<Style Selector="Button.EditorIconButton:pressed, RepeatButton.EditorIconButton:pressed, ToggleButton.EditorIconButton:pressed">
-		<Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundPressed}" />
-	</Style>
-	<Style Selector="Button.EditorIconButton:pressed /template/ ContentPresenter#PART_ContentPresenter,
-					 RepeatButton.EditorIconButton:pressed /template/ ContentPresenter#PART_ContentPresenter,
-					 ToggleButton.EditorIconButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource IconButtonForegroundPressed}" />
-		<Setter Property="Opacity" Value="0.8"/>
-	</Style>
-	<Style Selector="Button.EditorIconButton.secondary:pressed /template/ Border#PART_ButtonBorder,
-					 RepeatButton.EditorIconButton.secondary:pressed /template/ Border#PART_ButtonBorder,
-					 ToggleButton.EditorIconButton.secondary:pressed /template/ Border#PART_ButtonBorder">
-		<Setter Property="BorderBrush" Value="{DynamicResource IconButtonSecondaryBorderBrushPressed}" />
-		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}"/>
-	</Style>
-	<Style Selector="Button.EditorIconButton.secondary:pressed /template/ Border#PART_BackgroundBorder,
-					 RepeatButton.EditorIconButton.secondary:pressed /template/ Border#PART_BackgroundBorder,
-					 ToggleButton.EditorIconButton.secondary:pressed /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource IconButtonSecondaryBackgroundPressed}" />
-	</Style>
+        <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource IconButtonForeground}" />
+        </Style>
 
-	<!-- Disabled State -->
-	<Style Selector="Button.EditorIconButton:disabled /template/ Border#PART_BackgroundBorder,
-					 RepeatButton.EditorIconButton:disabled /template/ Border#PART_BackgroundBorder,
-					 ToggleButton.EditorIconButton:disabled /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource IconButtonBackgroundDisabled}" />
-	</Style>
-	<Style Selector="Button.EditorIconButton:disabled, RepeatButton.EditorIconButton:disabled, ToggleButton.EditorIconButton:disabled">
-		<Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundDisabled}" />
-	</Style>
-	<Style Selector="Button.EditorIconButton:disabled /template/ ContentPresenter#PART_ContentPresenter,
-					 RepeatButton.EditorIconButton:disabled /template/ ContentPresenter#PART_ContentPresenter,
-					 ToggleButton.EditorIconButton:disabled /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="Background" Value="{DynamicResource IconButtonBackgroundDisabled}" />
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource IconButtonForegroundDisabled}" />
-	</Style>
+        <!-- PointerOver, KeyboardFocused State -->
+        <Style Selector="^:pointerover, ^:focus-visible">
+            <Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundPointerOver}" />
 
-	<!--Toggle button-->
-	<!-- Checked State -->
-	
-	<Style Selector="ToggleButton.EditorIconButton:checked">
-		<Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForeground}" />
-	</Style>
-	<Style Selector="ToggleButton.EditorIconButton:checked /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource IconButtonCheckedBackground}" />
-	</Style>
-	<Style Selector="ToggleButton.EditorIconButton:checked /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource IconButtonCheckedForeground}" />
-	</Style>
+            <Style Selector="^ /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource IconButtonBackgroundPointerOver}" />
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundPointerOver}" />
+            </Style>
+        </Style>
 
-	<!-- CheckedPointerOver, KeyboardFocused State -->
-	<Style Selector="ToggleButton.EditorIconButton:checked:pointerover, ToggleButton.EditorIconButton:checked:focus-visible">
-		<Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundPointerOver}" />
-	</Style>
-	<Style Selector="ToggleButton.EditorIconButton:checked:pointerover /template/ Border#PART_BackgroundBorder,
-					 ToggleButton.EditorIconButton:checked:focus-visible /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource IconButtonCheckedBackgroundPointerOver}" />
-	</Style>
-	<Style Selector="ToggleButton.EditorIconButton:checked:pointerover /template/ ContentPresenter#PART_ContentPresenter,
-					 ToggleButton.EditorIconButton:checked:focus-visible /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource IconButtonCheckedForegroundPointerOver}" />
-	</Style>
-	<Style Selector="ToggleButton.EditorIconButton.secondary:checked:pointerover /template/ Border#PART_ButtonBorder,
-					 ToggleButton.EditorIconButton.secondary:checked:focus-visible /template/ Border#PART_ButtonBorder">
-		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
-		<Setter Property="BorderThickness" Value="0"/>
-	</Style>
-	
-	<!-- CheckedPressed State -->
-	<Style Selector="ToggleButton.EditorIconButton:checked:pressed">
-		<Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundPressed}" />
-	</Style>
-	<Style Selector="ToggleButton.EditorIconButton:checked:pressed /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource IconButtonCheckedBackgroundPressed}" />
-	</Style>
-	<Style Selector="ToggleButton.EditorIconButton:checked:pressed /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource IconButtonCheckedForegroundPressed}" />
-	</Style>
+        <!-- Pressed State -->
+        <Style Selector="^:pressed">
+            <Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundPressed}" />
 
-	<!-- CheckedDisabled State -->
-	<Style Selector="ToggleButton.EditorIconButton:checked:disabled">
-		<Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundDisabled}" />
-	</Style>
-	<Style Selector="ToggleButton.EditorIconButton:checked:disabled /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource IconButtonCheckedBackgroundDisabled}" />
-	</Style>
-	<Style Selector="ToggleButton.EditorIconButton:checked:disabled /template/ ContentPresenter#PART_ContentPresenter">
-		<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource IconButtonCheckedForegroundDisabled}" />
-	</Style>
+            <Style Selector="^ /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource IconButtonBackgroundPressed}" />
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundPressed}" />
+                <Setter Property="Opacity" Value="0.8"/>
+            </Style>
+        </Style>
 
-	<Style Selector="ToggleButton.EditorIconButton.secondary:checked:disabled /template/ Border#PART_BackgroundBorder">
-		<Setter Property="Background" Value="{DynamicResource IconButtonSecondaryCheckedBackgroundDisabled}" />
-	</Style>
-	<Style Selector="ToggleButton.EditorIconButton.secondary:checked:disabled /template/ Border#PART_ButtonBorder">
-		<Setter Property="BorderBrush" Value="{DynamicResource IconButtonSecondaryCheckedBorderBrushDisabled}" />
-		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}"/>
-	</Style>
-</Styles>
+        <!-- Disabled State -->
+        <Style Selector="^:disabled">
+            <Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundDisabled}" />
+
+            <Style Selector="^ /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource IconButtonBackgroundDisabled}" />
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource IconButtonBackgroundDisabled}" />
+                <Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundDisabled}" />
+            </Style>
+        </Style>
+
+        <!--Secondary style-->
+        <Style Selector="^.secondary">
+            <Style Selector="^ /template/ Border#PART_ButtonBorder">
+                <Setter Property="BorderBrush" Value="{DynamicResource IconButtonBorderBrush}" />
+            </Style>
+
+            <!-- PointerOver, KeyboardFocused State -->
+            <Style Selector="^:pointerover /template/ Border#PART_ButtonBorder">
+                <Setter Property="BorderBrush" Value="{DynamicResource IconButtonSecondaryBorderBrushPointerOver}" />
+                <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}"/>
+            </Style>
+            <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder,
+					 ^:focus-visible /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource IconButtonSecondaryBackgroundPointerOver}" />
+            </Style>
+            <Style Selector="^:focus-visible /template/ Border#PART_ButtonBorder">
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style>
+
+            <!-- Pressed State -->
+            <Style Selector="^:pressed /template/ Border#PART_ButtonBorder">
+                <Setter Property="BorderBrush" Value="{DynamicResource IconButtonSecondaryBorderBrushPressed}" />
+                <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}"/>
+            </Style>
+            <Style Selector="^:pressed /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource IconButtonSecondaryBackgroundPressed}" />
+            </Style>
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxev:EditorIconButton}" TargetType="mxev:EditorIconButton" BasedOn="{StaticResource EditorIconButtonBaseTheme}"/>
+
+    <ControlTheme x:Key="{x:Type mxev:EditorIconToggleButton}" TargetType="mxev:EditorIconToggleButton" BasedOn="{StaticResource EditorIconButtonBaseTheme}">
+        <Style Selector="^:checked">
+            <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForeground}" />
+
+            <Style Selector="^ /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource IconButtonCheckedBackground}" />
+            </Style>
+            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForeground}" />
+            </Style>
+
+            <!-- CheckedPointerOver, KeyboardFocused State -->
+            <Style Selector="^:pointerover, ^:focus-visible">
+                <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundPointerOver}" />
+
+                <Style Selector="^ /template/ Border#PART_BackgroundBorder">
+                    <Setter Property="Background" Value="{DynamicResource IconButtonCheckedBackgroundPointerOver}" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+                    <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundPointerOver}" />
+                </Style>
+            </Style>
+
+            <!-- CheckedPressed State -->
+            <Style Selector="^:pressed">
+                <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundPressed}" />
+
+                <Style Selector="^ /template/ Border#PART_BackgroundBorder">
+                    <Setter Property="Background" Value="{DynamicResource IconButtonCheckedBackgroundPressed}" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+                    <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundPressed}" />
+                </Style>
+            </Style>
+
+            <!-- CheckedDisabled State -->
+            <Style Selector="^:disabled">
+                <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundDisabled}" />
+
+                <Style Selector="^/template/ Border#PART_BackgroundBorder">
+                    <Setter Property="Background" Value="{DynamicResource IconButtonCheckedBackgroundDisabled}" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+                    <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundDisabled}" />
+                </Style>
+            </Style>
+        </Style>
+
+        <Style Selector="^.secondary">
+            <Style Selector="^:checked">
+                <Style Selector="^:pointerover /template/ Border#PART_ButtonBorder,
+                           ^:focus-visible /template/ Border#PART_ButtonBorder">
+                    <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+
+                <!-- CheckedDisabled State -->
+                <Style Selector="^:disabled /template/ Border#PART_BackgroundBorder">
+                    <Setter Property="Background" Value="{DynamicResource IconButtonSecondaryCheckedBackgroundDisabled}" />
+                </Style>
+                <Style Selector="^:disabled /template/ Border#PART_ButtonBorder">
+                    <Setter Property="BorderBrush" Value="{DynamicResource IconButtonSecondaryCheckedBorderBrushDisabled}" />
+                    <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}"/>
+                </Style>
+            </Style>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

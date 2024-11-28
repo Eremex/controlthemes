@@ -3,145 +3,144 @@
                     xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
                     xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
                     x:ClassModifier="internal">
-	<Design.PreviewWith>
-		<Border Padding="20">
-			<StackPanel Spacing="20">
-				<Calendar/>
-				<mxe:CalendarControl/>
-			</StackPanel>
-		</Border>
-	</Design.PreviewWith>
-	
-	<mxev:CornerRadiusConverter x:Key="cornerRadiusConverter"/>
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <StackPanel Spacing="20">
+                <Calendar/>
+                <mxe:CalendarControl/>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <mxev:CornerRadiusConverter x:Key="cornerRadiusConverter"/>
 
     <ControlTheme x:Key="{x:Type CalendarItem}" TargetType="CalendarItem">
-		<Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
-		<Setter Property="Background" Value="{DynamicResource CalendarItemBackground}"/>
-		<Setter Property="DayTitleTemplate">
-			<Template>
-				<TextBlock Text="{Binding}"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="12"/>
-			</Template>
-		</Setter>
-		<Setter Property="Template">
-			<ControlTemplate>
-				<Border BorderThickness="{TemplateBinding BorderThickness}"
-                Background="{TemplateBinding Background}"
-                BorderBrush="{TemplateBinding BorderBrush}"
-                CornerRadius="{TemplateBinding CornerRadius}">
-					<Border.Styles>
-						<Style Selector="Button.CalendarHeader /template/ Border#PART_BackgroundBorder">
-							<Setter Property="Background" Value="{DynamicResource CalendarItemHeaderButtonBackground}" />
-						</Style>
-						<Style Selector="Button.CalendarHeader /template/ Border#PART_ButtonBorder">
-							<Setter Property="BorderThickness" Value="0" />
-						</Style>
-						<Style Selector="Button.CalendarHeader /template/ ContentPresenter#PART_ContentPresenter">
-							<Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarItemHeaderButtonForeground}" />
-							<Setter Property="FontWeight" Value="Bold"/>
-						</Style>
-						<Style Selector="Button.CalendarHeader:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-							<Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarItemHeaderButtonForegroundPointerOver}" />
-						</Style>
-						<Style Selector="Button.CalendarHeader:pressed /template/ ContentPresenter#PART_ContentPresenter">
-							<Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-							<Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarItemHeaderButtonForegroundPressed}" />
-							<Setter Property="Opacity" Value="0.8"/>
-						</Style>
+        <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
+        <Setter Property="Background" Value="{DynamicResource CalendarItemBackground}"/>
+        <Setter Property="DayTitleTemplate">
+            <Template>
+                <TextBlock Text="{Binding}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Template>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border.Styles>
+                        <Style Selector="Button.CalendarHeader /template/ Border#PART_BackgroundBorder">
+                            <Setter Property="Background" Value="{DynamicResource CalendarItemHeaderButtonBackground}" />
+                        </Style>
+                        <Style Selector="Button.CalendarHeader /template/ Border#PART_ButtonBorder">
+                            <Setter Property="BorderThickness" Value="0" />
+                        </Style>
+                        <Style Selector="Button.CalendarHeader /template/ ContentPresenter#PART_ContentPresenter">
+                            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarItemHeaderButtonForeground}" />
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                        <Style Selector="Button.CalendarHeader:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarItemHeaderButtonForegroundPointerOver}" />
+                        </Style>
+                        <Style Selector="Button.CalendarHeader:pressed /template/ ContentPresenter#PART_ContentPresenter">
+                            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+                            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarItemHeaderButtonForegroundPressed}" />
+                            <Setter Property="Opacity" Value="0.8"/>
+                        </Style>
 
-					</Border.Styles>
-					<Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RowDefinitions="28, *" MinWidth="254">
-						<Border Name="PART_HeaderDecorationBorder"
-										Background="{DynamicResource CalendarItemHeaderBackground}"
-										BorderThickness="0,0,0,1"
-										BorderBrush="{DynamicResource CalendarItemHeaderBorderBrush}"/>
-						<Grid ColumnDefinitions="Auto, *, Auto" >
-							<Button Name="PART_PreviousButton" Grid.Column="0" Classes="EditorIconButton" HorizontalContentAlignment="Center">
-								<PathIcon Width="5"
-													Height="8"
-													Data="{StaticResource ChevronLeftIcon}"
-													Foreground="{Binding #PART_PreviousButton.Foreground}"/>
-							</Button>
-							<Button Name="PART_HeaderButton" Grid.Column="1" Classes="CalendarHeader" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-							<Button Name="PART_NextButton" Grid.Column="2"
-											Classes="EditorIconButton"
-											HorizontalContentAlignment="Center">
-								<PathIcon Width="5"
-													Height="8"
-													Data="{StaticResource ChevronRightIcon}"
-													Foreground="{Binding #PART_NextButton.Foreground}"/>
-							</Button>
-						</Grid>
-						<Border Name="BackgroundLayer" Background="{TemplateBinding Background}" Grid.Row="1" />
-						<Grid Name="PART_MonthView" Grid.Row="1" IsVisible="False" MinHeight="168" Margin="4">
-							<Grid.RowDefinitions>
-								<!--This should always be the week day names??-->
-								<RowDefinition Height="0" />
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
-							</Grid.RowDefinitions>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="Auto" />
-							</Grid.ColumnDefinitions>
-						</Grid>
-						<Grid Name="PART_YearView" MinHeight="168"
+                    </Border.Styles>
+                    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" RowDefinitions="28, *" MinWidth="254">
+                        <Border Name="PART_HeaderDecorationBorder"
+                                Background="{DynamicResource CalendarItemHeaderBackground}"
+                                BorderThickness="0,0,0,1"
+                                BorderBrush="{DynamicResource CalendarItemHeaderBorderBrush}"/>
+                        <Grid ColumnDefinitions="Auto, *, Auto" >
+                            <Button Name="PART_PreviousButton" Grid.Column="0" Theme="{StaticResource EditorIconButtonBaseTheme}" HorizontalContentAlignment="Center">
+                                <PathIcon Width="5"
+                                          Height="8"
+                                          Data="{StaticResource ChevronLeftIcon}"
+                                          Foreground="{Binding #PART_PreviousButton.Foreground}"/>
+                            </Button>
+                            <Button Name="PART_HeaderButton" Grid.Column="1" Classes="CalendarHeader" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                            <Button Name="PART_NextButton" Grid.Column="2"
+                                    Theme="{StaticResource EditorIconButtonBaseTheme}"
+                                    HorizontalContentAlignment="Center">
+                                <PathIcon Width="5"
+                                          Height="8"
+                                          Data="{StaticResource ChevronRightIcon}"
+                                          Foreground="{Binding #PART_NextButton.Foreground}"/>
+                            </Button>
+                        </Grid>
+                        <Border Name="BackgroundLayer" Background="{TemplateBinding Background}" Grid.Row="1" />
+                        <Grid Name="PART_MonthView" Grid.Row="1" IsVisible="False" MinHeight="168" Margin="4">
+                            <Grid.RowDefinitions>
+                                <!--This should always be the week day names??-->
+                                <RowDefinition Height="0" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                        <Grid Name="PART_YearView" MinHeight="168"
                     Grid.Row="1" IsVisible="False" Margin="4">
-							<Grid.RowDefinitions>
-								<RowDefinition Height="*" />
-								<RowDefinition Height="*" />
-								<RowDefinition Height="*" />
-							</Grid.RowDefinitions>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="*" />
-								<ColumnDefinition Width="*" />
-								<ColumnDefinition Width="*" />
-								<ColumnDefinition Width="*" />
-							</Grid.ColumnDefinitions>
-						</Grid>
-					</Grid>
-				</Border>
-			</ControlTemplate>
-		</Setter>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
 
-	<Style Selector="^ /template/ Border#PART_HeaderDecorationBorder">
-		<Setter Property="CornerRadius" Value="{Binding $parent[CalendarItem].CornerRadius, Converter={StaticResource cornerRadiusConverter}, ConverterParameter=Top}"/>
-	</Style>
+        <Style Selector="^ /template/ Border#PART_HeaderDecorationBorder">
+            <Setter Property="CornerRadius" Value="{Binding $parent[CalendarItem].CornerRadius, Converter={StaticResource cornerRadiusConverter}, ConverterParameter=Top}"/>
+        </Style>
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type Calendar}" TargetType="Calendar">
-		<Setter Property="Foreground" Value="{DynamicResource CalendarForeground}" />
-		<Setter Property="Background" Value="{DynamicResource CalendarBackground}" />
-		<Setter Property="BorderBrush" Value="{DynamicResource CalendarBorderBrush}" />
-		<Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
-		<Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}"/>
-		<Setter Property="HorizontalAlignment" Value="Left" />
-		<Setter Property="VerticalAlignment" Value="Center" />
-		<Setter Property="Template">
-			<ControlTemplate>
-				<StackPanel Name="PART_Root"
-                    HorizontalAlignment="Center"
-                    ClipToBounds="True">
-					<CalendarItem Name="PART_CalendarItem"
-							Background="{TemplateBinding Background}"
-							BorderBrush="{TemplateBinding BorderBrush}"
-							BorderThickness="{TemplateBinding BorderThickness}"
-							HeaderBackground="{TemplateBinding HeaderBackground}"
-							CornerRadius="{TemplateBinding CornerRadius}"/>
-				</StackPanel>
-			</ControlTemplate>
-		</Setter>
+        <Setter Property="Foreground" Value="{DynamicResource CalendarForeground}" />
+        <Setter Property="Background" Value="{DynamicResource CalendarBackground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource CalendarBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
+        <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}"/>
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <StackPanel Name="PART_Root"
+                            HorizontalAlignment="Center"
+                            ClipToBounds="True">
+                    <CalendarItem Name="PART_CalendarItem"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  HeaderBackground="{TemplateBinding HeaderBackground}"
+                                  CornerRadius="{TemplateBinding CornerRadius}"/>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
 
     </ControlTheme>
 

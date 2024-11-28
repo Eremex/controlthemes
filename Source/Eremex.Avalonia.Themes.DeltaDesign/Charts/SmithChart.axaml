@@ -18,7 +18,7 @@
 		<Setter Property="BorderThickness" Value="{StaticResource DrawingAreaBorderThickness}" />
 	</Style>
 
-	<!-- CartesianChart -->
+	<!-- SmithChart -->
 	<Style Selector="charts|SmithChart">
 	  <Setter Property="Background" Value="{StaticResource Fill/Chart}" />
 	  <Setter Property="BorderBrush" Value="{StaticResource Border/Chart}" />

@@ -1,15 +1,11 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Styles.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceInclude Source="/Controls/TabControl/Composition.axaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Styles.Resources>
-    
-    <StyleInclude  Source="/Controls/TabControl/TabControl.axaml"/>
-    <StyleInclude Source="/Controls/TabControl/TabItem.axaml"/>
-    <StyleInclude Source="/Controls/TabControl/Buttons.axaml"/>
-    <StyleInclude Source="/Controls/TabControl/TabStrip.axaml"/>
-</Styles>
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="/Controls/TabControl/Composition.axaml"/>
+        <ResourceInclude Source="/Controls/TabControl/Buttons.axaml"/>
+        <ResourceInclude Source="/Controls/TabControl/TabControl.axaml"/>
+        <ResourceInclude Source="/Controls/TabControl/TabItem.axaml"/>
+        
+        <ResourceInclude Source="/Controls/TabControl/TabStrip.axaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

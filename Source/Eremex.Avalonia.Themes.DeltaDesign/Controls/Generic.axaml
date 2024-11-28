@@ -1,24 +1,28 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-		<Styles.Resources>
-				<ResourceDictionary>
-						<ResourceDictionary.MergedDictionaries>
-								<ResourceInclude Source="/Controls/DataControlResources.axaml"/>
-								<ResourceInclude Source="/Controls/ControlsResources.axaml"/>
-						</ResourceDictionary.MergedDictionaries>
-				</ResourceDictionary>
-		</Styles.Resources>
-		<StyleInclude Source="/Controls/StandardControls/StandardControls.axaml"/>
-		<StyleInclude Source="/Controls/Common.axaml"/>
-		<StyleInclude Source="/Controls/Window.axaml"/>
-		<StyleInclude Source="/Controls/Editors/Editors.axaml"/>
-    <StyleInclude Source="/Controls/PropertyGridControl.axaml"/>
-    <StyleInclude Source="/Controls/TreeListControl.axaml"/>
-    <StyleInclude Source="/Controls/TreeViewControl.axaml"/>
-		<StyleInclude Source="/Controls/ListViewControl.axaml"/>
-    <StyleInclude Source="/Controls/DataGridControl.axaml"/>
-    <StyleInclude Source="/Controls/Toolbars.axaml"/>
-    <StyleInclude Source="/Controls/DockManager.axaml"/>
-    <StyleInclude Source="/Controls/TabControl/Generic.axaml"/>
-    <StyleInclude Source="/Controls/TrialWatermarkControl.axaml"/>
+
+    <Styles.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Controls/DataControlResources.axaml" />
+                <ResourceInclude Source="/Controls/ControlsResources.axaml" />
+                <ResourceInclude Source="/Controls/TreeListControl.axaml" />
+                <ResourceInclude Source="/Controls/TreeViewControl.axaml" />
+                <ResourceInclude Source="/Controls/DataGridControl.axaml" />
+                <ResourceInclude Source="/Controls/Toolbars.axaml" />
+                <ResourceInclude Source="/Controls/GroupBox.axaml"/>
+                <ResourceInclude Source="/Controls/Window.axaml" />
+		        <ResourceInclude Source="/Controls/RibbonControl.axaml" />
+                <ResourceInclude Source="/Controls/DockManager.axaml" />
+                <ResourceInclude Source="/Controls/TabControl/Generic.axaml" />
+                <ResourceInclude Source="/Controls/ListViewControl.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Styles.Resources>
+    <StyleInclude Source="/Controls/StandardControls/StandardControls.axaml" />
+    <StyleInclude Source="/Controls/Common.axaml" />
+    <StyleInclude Source="/Controls/Editors/Editors.axaml" />
+    <StyleInclude Source="/Controls/SplitContainerControl.axaml"/>
+    <StyleInclude Source="/Controls/PropertyGridControl.axaml" />
+    <StyleInclude Source="/Controls/TrialWatermarkControl.axaml" />
 </Styles>

@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:avaConv="clr-namespace:Avalonia.Controls.Converters;assembly=Avalonia.Controls"
-        x:ClassModifier="internal">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:avaConv="clr-namespace:Avalonia.Controls.Converters;assembly=Avalonia.Controls"
+                    x:ClassModifier="internal">
 
     <Design.PreviewWith>
         <Border Padding="20" Width="320">
@@ -29,16 +29,15 @@
             </StackPanel>
         </Border>
     </Design.PreviewWith>
-       
+
     <Thickness x:Key="MenuIconPresenterMargin">0,0,8,0</Thickness>
     <Thickness x:Key="MenuInputGestureTextMargin">16,0,0,0</Thickness>
     <avaConv:PlatformKeyGestureConverter x:Key="KeyGestureConverter" />
-    
+
     <ControlTheme x:Key="{x:Type MenuItem}" TargetType="MenuItem">
         <Setter Property="Background" Value="{DynamicResource MenuItemBackground}" />
         <Setter Property="Foreground" Value="{DynamicResource MenuItemForeground}" />
         <Setter Property="Padding" Value="10,6,10,6" />
-        <Setter Property="FontSize" Value="{StaticResource EditorFontSize}" />
         <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}"/>
         <Setter Property="Template">
             <ControlTemplate>
@@ -119,7 +118,7 @@
         <Style Selector="^:icon /template/ Viewbox#PART_IconPresenter">
             <Setter Property="IsVisible" Value="True" />
         </Style>
-        
+
         <Style Selector="^ /template/ Border#PART_LayoutRoot TextBlock#PART_InputGestureText">
             <Setter Property="Foreground" Value="{DynamicResource MenuItemGestureTextForeground}" />
         </Style>
@@ -129,7 +128,7 @@
                 <Setter Property="Background" Value="{DynamicResource MenuItemBackgroundSelected}" />
             </Style>
         </Style>
-        
+
         <Style Selector="^:pointerover /template/ Border#PART_LayoutRoot">
             <Style Selector="^">
                 <Setter Property="Background" Value="{DynamicResource MenuItemBackgroundPointerOver}" />
@@ -176,5 +175,5 @@
             </Setter>
         </Style>
     </ControlTheme>
-    
+
 </ResourceDictionary>

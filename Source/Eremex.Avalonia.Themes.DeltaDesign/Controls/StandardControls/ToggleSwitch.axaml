@@ -23,94 +23,85 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="FontSize" Value="{StaticResource EditorFontSize}" />
         <Setter Property="MinHeight" Value="{StaticResource EditorMinHeight}" />
         <Setter Property="FocusAdorner" Value="{x:Null}"/>
         <Setter Property="KnobTransitions">
             <Transitions>
-                <DoubleTransition
-                    Easing="CubicEaseOut"
-                    Property="Canvas.Left"
-                    Duration="0:0:0.2" />
+                <DoubleTransition Easing="CubicEaseOut"
+                                  Property="Canvas.Left"
+                                  Duration="0:0:0.2" />
             </Transitions>
         </Setter>
         <Setter Property="Template">
             <ControlTemplate>
                 <Grid Background="{TemplateBinding Background}" RowDefinitions="Auto,*">
 
-                    <ContentPresenter
-                        x:Name="PART_ContentPresenter"
-                        Grid.Row="0"
-                        VerticalAlignment="Top"
-                        Content="{TemplateBinding Content}"
-                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                        Margin="{DynamicResource ToggleSwitchTopHeaderMargin}"
-                        RecognizesAccessKey="True" />
+                    <ContentPresenter x:Name="PART_ContentPresenter"
+                                      Grid.Row="0"
+                                      VerticalAlignment="Top"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      Margin="{DynamicResource ToggleSwitchTopHeaderMargin}"
+                                      RecognizesAccessKey="True" />
 
-                    <Grid
-                        Grid.Row="1" ColumnDefinitions="Auto, *"
-                        MinWidth="{DynamicResource ToggleSwitchThemeMinWidth}"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center">
+                    <Grid Grid.Row="1" ColumnDefinitions="Auto, *"
+                          MinWidth="{DynamicResource ToggleSwitchThemeMinWidth}"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center">
 
-                        <ContentPresenter
-                            x:Name="PART_OffContentPresenter"
-                            Grid.Column="1"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Margin="{TemplateBinding Padding}"
-                            Content="{TemplateBinding OffContent}"
-                            ContentTemplate="{TemplateBinding OffContentTemplate}" />
+                        <ContentPresenter x:Name="PART_OffContentPresenter"
+                                          Grid.Column="1"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}"
+                                          Content="{TemplateBinding OffContent}"
+                                          ContentTemplate="{TemplateBinding OffContentTemplate}" />
 
-                        <ContentPresenter
-                            x:Name="PART_OnContentPresenter"
-                            Grid.Column="1"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Margin="{TemplateBinding Padding}"
-                            Content="{TemplateBinding OnContent}"
-                            ContentTemplate="{TemplateBinding OnContentTemplate}" />
+                        <ContentPresenter x:Name="PART_OnContentPresenter"
+                                          Grid.Column="1"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}"
+                                          Content="{TemplateBinding OnContent}"
+                                          ContentTemplate="{TemplateBinding OnContentTemplate}" />
 
                         <Border x:Name="FocusRectangle"
                                 BorderThickness="{StaticResource FocusAdornerBorderThickness}"
                                 Padding="{StaticResource FocusAdornerBorderThickness}"
                                 CornerRadius="{StaticResource ToggleSwitchSelectorCornerRadius}">
                             <Grid>
-                                <Border
-                                    x:Name="OuterBorder"
-                                    Width="{StaticResource ToggleSwitchSelectorWidth}"
-                                    Height="{StaticResource ToggleSwitchSelectorHeight}"
-                                    Background="{DynamicResource ToggleSwitchFillOff}"
-                                    BorderBrush="{DynamicResource ToggleSwitchStrokeOff}"
-                                    BorderThickness="{StaticResource EditorBorderThickness}"
-                                    CornerRadius="{StaticResource ToggleSwitchSelectorCornerRadius}" />
+                                <Border x:Name="OuterBorder"
+                                        Width="{StaticResource ToggleSwitchSelectorWidth}"
+                                        Height="{StaticResource ToggleSwitchSelectorHeight}"
+                                        Background="{DynamicResource ToggleSwitchFillOff}"
+                                        BorderBrush="{DynamicResource ToggleSwitchStrokeOff}"
+                                        BorderThickness="{StaticResource EditorBorderThickness}"
+                                        CornerRadius="{StaticResource ToggleSwitchSelectorCornerRadius}" />
 
-                                <Border
-                                    x:Name="SwitchKnobBounds"
-                                    Width="{StaticResource ToggleSwitchSelectorWidth}"
-                                    Height="{StaticResource ToggleSwitchSelectorHeight}"
-                                    Background="{DynamicResource ToggleSwitchFillOn}"
-                                    BorderBrush="{DynamicResource ToggleSwitchStrokeOn}"
-                                    BorderThickness="{StaticResource EditorBorderThickness}"
-                                    CornerRadius="{StaticResource ToggleSwitchSelectorCornerRadius}" />
+                                <Border x:Name="SwitchKnobBounds"
+                                        Width="{StaticResource ToggleSwitchSelectorWidth}"
+                                        Height="{StaticResource ToggleSwitchSelectorHeight}"
+                                        Background="{DynamicResource ToggleSwitchFillOn}"
+                                        BorderBrush="{DynamicResource ToggleSwitchStrokeOn}"
+                                        BorderThickness="{StaticResource EditorBorderThickness}"
+                                        CornerRadius="{StaticResource ToggleSwitchSelectorCornerRadius}" />
 
-                                <Canvas
-                                    x:Name="PART_SwitchKnob"
-                                    Width="{StaticResource ToggleSwitchKnobSize}"
-                                    Height="{StaticResource ToggleSwitchSelectorHeight}"
-                                    Margin="{StaticResource ToggleSwitchKnobCanvasMargin}"
-                                    HorizontalAlignment="Left" >
+                                <Canvas x:Name="PART_SwitchKnob"
+                                        Width="{StaticResource ToggleSwitchKnobSize}"
+                                        Height="{StaticResource ToggleSwitchSelectorHeight}"
+                                        Margin="{StaticResource ToggleSwitchKnobCanvasMargin}"
+                                        HorizontalAlignment="Left" >
                                     <Grid x:Name="PART_MovingKnobs" Width="{StaticResource ToggleSwitchKnobsContainerWidth}"
                                           Height="{StaticResource ToggleSwitchSelectorHeight}">
-                                        <Border x:Name="SwitchKnobOn" 
-                                                CornerRadius="{StaticResource ToggleSwitchSelectorCornerRadius}" 
+                                        <Border x:Name="SwitchKnobOn"
+                                                CornerRadius="{StaticResource ToggleSwitchSelectorCornerRadius}"
                                                 BoxShadow="{DynamicResource ToggleSwitchBoxShadow}"
                                                 Background="{DynamicResource ToggleSwitchKnobFillOn}"
                                                 Width="{StaticResource ToggleSwitchKnobSize}"
                                                 Height="{StaticResource ToggleSwitchKnobSize}" />
                                         <Border x:Name="SwitchKnobOff"
                                                 CornerRadius="{StaticResource ToggleSwitchSelectorCornerRadius}"
-                                                BoxShadow="{DynamicResource ToggleSwitchBoxShadow}" 
+                                                BoxShadow="{DynamicResource ToggleSwitchBoxShadow}"
                                                 Background="{DynamicResource ToggleSwitchKnobFillOff}"
                                                 Width="{StaticResource ToggleSwitchKnobSize}"
                                                 Height="{StaticResource ToggleSwitchKnobSize}" />

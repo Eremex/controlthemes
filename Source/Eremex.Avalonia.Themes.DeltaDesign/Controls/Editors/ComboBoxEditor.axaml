@@ -1,246 +1,267 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:sys="using:System"
-        xmlns:col="using:System.Collections"
-        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
-		xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
-        xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls"
-        xmlns:ec="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
-        xmlns:mxb="clr-namespace:Eremex.AvaloniaUI.Controls.Bars;assembly=Eremex.Avalonia.Controls"
-        xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
-        xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="using:System"
+                    xmlns:col="using:System.Collections"
+                    xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
+                    xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls"
+                    xmlns:ec="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxb="clr-namespace:Eremex.AvaloniaUI.Controls.Bars;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+                    xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
 
     <Design.PreviewWith>
-			<Border Padding="20">
-				<Border.Resources>
-					<col:ArrayList x:Key="ComboBoxEditorSource">
-						<sys:String>Item1</sys:String>
-						<sys:String>Item2</sys:String>
-						<sys:String>Item3</sys:String>
-					</col:ArrayList>
-				</Border.Resources>
-				<StackPanel>
-					<Border Background="{DynamicResource Fill/Neutral/Primary/Enabled}" Padding="10">
-						<StackPanel Spacing="10">
-							<mxe:ComboBoxEditor SelectedItem="Item1" Width="250">
-								<mxe:ComboBoxEditor.Buttons>
-									<mxe:ButtonSettings Content="X" ButtonKind="Toggle" IsChecked="True"/>
-									<mxe:ButtonSettings Content="Y"/>
-								</mxe:ComboBoxEditor.Buttons>
-							</mxe:ComboBoxEditor>
-							<mxe:ComboBoxEditor SelectedItem="Item1" EditorMode="InplaceInactive" Width="250" Items="{StaticResource ComboBoxEditorSource}">
-								<mxe:ComboBoxEditor.Buttons>
-									<mxe:ButtonSettings Content="Y" IsEnabled="False"/>
-								</mxe:ComboBoxEditor.Buttons>
-							</mxe:ComboBoxEditor>
-							<mxe:ComboBoxEditor SelectedItem="Item1" IsEnabled="False" Width="250"/>
-						</StackPanel>
-					</Border>
-					<Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
-						<StackPanel Spacing="10">
-							<mxe:ComboBoxEditor SelectedItem="Item1" Width="250" Classes="secondary"/>
-							<mxe:ComboBoxEditor SelectedItem="Item1" EditorMode="InplaceInactive" Width="250"  Items="{StaticResource ComboBoxEditorSource}" Classes="secondary"/>
-							<mxe:ComboBoxEditor SelectedItem="Item1" IsEnabled="False" Width="250" Classes="secondary"/>
-						</StackPanel>
-					</Border>
-				</StackPanel>
-			</Border>
+        <Border Padding="20">
+            <Border.Resources>
+                <col:ArrayList x:Key="ComboBoxEditorSource">
+                    <sys:String>Item1</sys:String>
+                    <sys:String>Item2</sys:String>
+                    <sys:String>Item3</sys:String>
+                </col:ArrayList>
+            </Border.Resources>
+            <StackPanel>
+                <Border Background="{DynamicResource Fill/Neutral/Primary/Enabled}" Padding="10">
+                    <StackPanel Spacing="10">
+                        <mxe:ComboBoxEditor SelectedItem="Item1" Width="250">
+                            <mxe:ComboBoxEditor.Buttons>
+                                <mxe:ButtonSettings Content="X" ButtonKind="Toggle" IsChecked="True"/>
+                                <mxe:ButtonSettings Content="Y"/>
+                            </mxe:ComboBoxEditor.Buttons>
+                        </mxe:ComboBoxEditor>
+                        <mxe:ComboBoxEditor SelectedItem="Item1" EditorMode="InplaceInactive" Width="250" ItemsSource="{StaticResource ComboBoxEditorSource}">
+                            <mxe:ComboBoxEditor.Buttons>
+                                <mxe:ButtonSettings Content="Y" IsEnabled="False"/>
+                            </mxe:ComboBoxEditor.Buttons>
+                        </mxe:ComboBoxEditor>
+                        <mxe:ComboBoxEditor SelectedItem="Item1" IsEnabled="False" Width="250"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
+                    <StackPanel Spacing="10">
+                        <mxe:ComboBoxEditor SelectedItem="Item1" Width="250" Classes="secondary"/>
+                        <mxe:ComboBoxEditor SelectedItem="Item1" EditorMode="InplaceInactive" Width="250"  ItemsSource="{StaticResource ComboBoxEditorSource}" Classes="secondary"/>
+                        <mxe:ComboBoxEditor SelectedItem="Item1" IsEnabled="False" Width="250" Classes="secondary"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
     </Design.PreviewWith>
-    
-    <Styles.Resources>
-			<mxev:EnumMemberInfoInstanceConverter x:Key="InstanceToDescriptionConverter"/>
-    </Styles.Resources>
 
-	<Style Selector=":is(mxe|ComboBoxEditor)">
-		<Setter Property="Template">
-			<ControlTemplate>
-				<mxev:EditorInactiveContainer Name="PART_InactiveContentContainer" ColumnDefinitions="Auto, *, Auto">
-					<mxev:EditorInactiveContainer.Styles>
-						<Style Selector="TextBlock">
-							<Setter Property="mxc:TextBlockHelper.ShowTooltipWhenTrimming" Value="True"/>
-							<Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis"/>
-						</Style>
-					</mxev:EditorInactiveContainer.Styles>
-				</mxev:EditorInactiveContainer>
-			</ControlTemplate>
-		</Setter>
-	</Style>
-	
-    <Style Selector=":is(mxe|ComboBoxEditor):activeMode">
-        <Setter Property="PopupContent">
-            <Setter.Value>
-                <Template>
-                    <mxev:ComboBoxPopupControl x:Name="PART_ComboBoxPopupControl"
-                                              ReadOnly="{Binding $parent[mxe:ComboBoxEditor].ReadOnly}"
-                                              SelectionMode="{Binding $parent[mxe:ComboBoxEditor].SelectionMode}"
-                                              ShowPredefinedSelectItem="{Binding $parent[mxe:ComboBoxEditor].ShowPredefinedSelectItem}"/>
-                </Template>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <mxev:EnumMemberInfoInstanceConverter x:Key="InstanceToDescriptionConverter"/>
 
-	<Style Selector=":is(mxe|ComboBoxEditor):enumSelector">
-        <Setter Property="ItemTemplate">
+    <ControlTheme x:Key="ComboBoxCheckBoxBaseTheme" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+        <Style Selector="^ /template/ ContentPresenter#ContentPresenter">
+            <Setter Property="RecognizesAccessKey" Value="False"/>
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="ComboBoxRealOnlyCheckBoxTheme" TargetType="CheckBox" BasedOn="{StaticResource ComboBoxCheckBoxBaseTheme}">
+        <Style Selector="^:disabled /template/ ContentPresenter#ContentPresenter">
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource ComboBoxEditorItemForegroundDisabled}"/>
+        </Style>
+        <Style Selector="^:disabled /template/ Border#NormalRectangle">
+            <Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemCheckBoxBackgroundDisabled}" />
+        </Style>
+        <Style Selector="^:checked:disabled /template/ Border#NormalRectangle">
+            <Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemCheckBoxCheckedBackgroundDisabled}" />
+        </Style>
+        <Style Selector="^:indeterminate:disabled /template/ Border#NormalRectangle">
+            <Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemCheckBoxCheckedBackgroundDisabled}" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="ComboBoxItemReadOnlyTheme" TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxEditorItemForegroundDisabled}"/>
+        </Style>
+        <Style Selector="^:selected:disabled /template/ Border#PART_BackgroundBorder">
+            <Setter Property="Background" Value="{DynamicResource ComboBoxEditorItemSelectedBackgroundDisabled}"/>
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="ComboBoxCheckerItemBaseTheme" TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+        <!--  PointerOver State  -->
+        <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
+            <Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemBackgroundPointerOver}"/>
+        </Style>
+        <!--  Pressed State  -->
+        <Style Selector="^:pressed /template/ Border#PART_BackgroundBorder">
+            <Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemBackgroundPressed}"/>
+        </Style>
+        <!--  Selected State  -->
+        <Style Selector="^:selected /template/ Border#PART_BackgroundBorder">
+            <Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemSelectedBackground}"/>
+        </Style>
+        <!--  Selected Unfocused State  -->
+        <Style Selector="^:selected:not(:focus) /template/ Border#PART_BackgroundBorder">
+            <Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemSelectedBackground}"/>
+        </Style>
+        <!--  Selected PointerOver State  -->
+        <Style Selector="^:selected:pointerover /template/ Border#PART_BackgroundBorder">
+            <Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemSelectedBackgroundPointerOver}"/>
+        </Style>
+        <!--  Selected Pressed State  -->
+        <Style Selector="^:selected:pressed /template/ Border#PART_BackgroundBorder">
+            <Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemSelectedBackgroundPressed}"/>
+        </Style>
+        <!--  Disabled State  -->
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxEditorItemForegroundDisabled}"/>
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="ComboBoxCheckerItemTheme" TargetType="ListBoxItem" BasedOn="{StaticResource ComboBoxCheckerItemBaseTheme}">
+        <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-									<DockPanel>
-										<Image DockPanel.Dock="Left"
-													 Source="{Binding Image}"
-													 Width="{Binding ImageWidth}"
-													 Height="{Binding ImageHeight}"
-													 IsVisible="{Binding ShowImage}"
-													 VerticalAlignment="Center"/>
-										<Border DockPanel.Dock="Left"
-														Height="{Binding ImageHeight}"
-														Width="{StaticResource EnumItemTemplateElementSpacing}">
-											<Border.IsVisible>
-												<MultiBinding Converter="{x:Static BoolConverters.And}">
-													<Binding Path="ShowImage"/>
-													<Binding Path="ShowName"/>
-												</MultiBinding>
-											</Border.IsVisible>
-										</Border>
-										<TextBlock DockPanel.Dock="Right"
-															 Text="{Binding Name}"
-															 IsVisible="{Binding ShowName}"
-															 VerticalAlignment="Center"/>
-									</DockPanel>
+                    <CheckBox Content="{Binding}"
+                              ContentTemplate="{Binding $parent[ListBox].ItemTemplate}"
+                              IsChecked="{Binding $parent[ListBoxItem].IsSelected, Mode=TwoWay}"
+                              HorizontalAlignment="Stretch"
+                              Theme="{StaticResource ComboBoxCheckBoxBaseTheme}"
+                              HorizontalContentAlignment="Stretch"/>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </ControlTheme>
 
-	<Style Selector=":is(mxe|ComboBoxEditor):enumSelector ListBoxItem">
-        <Setter Property="ToolTip.Tip" Value="{Binding Converter={StaticResource InstanceToDescriptionConverter}}"/>
-    </Style>
-    <Style Selector=":is(mxe|ComboBoxEditor)[SelectionMode=Single]:enumSelector /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer">
-        <Setter Property="ToolTip.Tip" Value="{Binding $parent[mxe:ComboBoxEditor].SelectedItem, Converter={StaticResource InstanceToDescriptionConverter}}"/>
-    </Style>
-    
-    <Style Selector="mxev|ComboBoxPopupControl">
+    <ControlTheme x:Key="ComboBoxCheckerItemReadOnlyTheme" TargetType="ListBoxItem" BasedOn="{StaticResource ComboBoxCheckerItemBaseTheme}">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <CheckBox Content="{Binding}"
+                              ContentTemplate="{Binding $parent[ListBox].ItemTemplate}"
+                              IsChecked="{Binding $parent[ListBoxItem].IsSelected, Mode=TwoWay}"
+                              HorizontalAlignment="Stretch"
+                              Theme="{StaticResource ComboBoxRealOnlyCheckBoxTheme}"
+                              HorizontalContentAlignment="Stretch"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxev:ComboBoxPopupControl}" TargetType="mxev:ComboBoxPopupControl">
         <Setter Property="Template">
             <ControlTemplate>
                 <Grid RowDefinitions="Auto, *" HorizontalAlignment="Stretch">
-                    <ListBox x:Name="PART_EmptyValueSelector" 
+                    <ListBox x:Name="PART_EmptyValueSelector"
                              IsVisible="{TemplateBinding ShowEmptyValueSelector}"
                              Padding="{StaticResource ComboBoxEmptyValueSelectorPadding}"
                              HorizontalAlignment="Stretch" >
-                        <ListBoxItem Content="{x:Static localization:ControlsResources.SelectEmptyValueButton_Content}"/>
-											<ListBox.ItemsPanel>
-												<ItemsPanelTemplate>
-													<VirtualizingStackPanel IsEnabled="{Binding !$parent[mxev:ComboBoxPopupControl].ReadOnly}" />
-												</ItemsPanelTemplate>
-											</ListBox.ItemsPanel>
+                        <ListBoxItem x:Name="PART_EmptyValueSelectorItem" Content="{x:Static localization:ControlsResources.SelectEmptyValueButton_Content}"/>
                     </ListBox>
-                    <Border Name="PART_SelectAllCheckerContainer" 
-                            Padding="{StaticResource ComboBoxSelectAllCheckerPadding}" 
-                            IsVisible="{TemplateBinding ShowSelectAllChecker}" 
+                    <Border Name="PART_SelectAllCheckerContainer"
+                            Padding="{StaticResource ComboBoxSelectAllCheckerPadding}"
+                            IsVisible="{TemplateBinding ShowSelectAllChecker}"
                             HorizontalAlignment="Stretch" >
-                        <CheckBox x:Name="PART_SelectAllChecker" 
+                        <CheckBox x:Name="PART_SelectAllChecker"
                                   Content="{x:Static localization:ControlsResources.SelectAllChecker_Content}"
                                   IsChecked="{TemplateBinding CheckAll, Mode=TwoWay}"
                                   HorizontalAlignment="Stretch"
-																	IsEnabled="{Binding !$parent[mxev:ComboBoxPopupControl].ReadOnly}"
+                                  IsEnabled="{Binding !$parent[mxev:ComboBoxPopupControl].ReadOnly}"
                                   IsThreeState="True" />
                     </Border>
-	                <ListBox x:Name="PART_ItemsSelector" Grid.Row="1"
-	                         SelectionMode="{Binding SelectionMode, Converter={mxev:ItemSelectionModeConverter}, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
-	                         ItemsSource="{TemplateBinding Items}"
-	                         ItemTemplate="{TemplateBinding ItemTemplate}"
-	                         HorizontalAlignment="Stretch">
-		                <ListBox.ItemsPanel>
-			                <ItemsPanelTemplate>
-				                <VirtualizingStackPanel IsEnabled="{Binding !$parent[mxev:ComboBoxPopupControl].ReadOnly}" />
-			                </ItemsPanelTemplate>
-		                </ListBox.ItemsPanel>
-	                </ListBox>
-                    <Grid.Resources>
-                        <DataTemplate x:Key="ComboBoxCheckedItemTemplate">
-                            <CheckBox Content="{Binding}"
-                                      ContentTemplate="{Binding $parent[ListBox].ItemTemplate}"
-                                      IsChecked="{Binding $parent[ListBoxItem].IsSelected, Mode=TwoWay}"
-                                      HorizontalAlignment="Stretch"
-																			HorizontalContentAlignment="Stretch"/>
-                        </DataTemplate>
-                    </Grid.Resources>
-                    <Grid.Styles>
-	                    <Style Selector="mxev|ComboBoxPopupControl[SelectionMode=Multiple] ListBoxItem">
-		                    <Setter Property="ContentTemplate" Value="{DynamicResource ComboBoxCheckedItemTemplate}" />
-	                    </Style>
-                        <!--  PointerOver State  -->
-                        <Style Selector="mxev|ComboBoxPopupControl[SelectionMode=Multiple] ListBoxItem:pointerover /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemBackgroundPointerOver}"/>
-                        </Style>
-                        <!--  Pressed State  -->
-                        <Style Selector="mxev|ComboBoxPopupControl[SelectionMode=Multiple] ListBoxItem:pressed /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemBackgroundPressed}"/>
-                        </Style>
-                        <!--  Selected State  -->
-                        <Style Selector="mxev|ComboBoxPopupControl[SelectionMode=Multiple] ListBoxItem:selected /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemSelectedBackground}"/>													
-                        </Style>
-                        <!--  Selected Unfocused State  -->
-                        <Style Selector="mxev|ComboBoxPopupControl[SelectionMode=Multiple] ListBoxItem:selected:not(:focus) /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemSelectedBackground}"/>
-                        </Style>
-                        <!--  Selected PointerOver State  -->
-                        <Style Selector="mxev|ComboBoxPopupControl[SelectionMode=Multiple] ListBoxItem:selected:pointerover /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemSelectedBackgroundPointerOver}"/>
-                        </Style>
-                        <!--  Selected Pressed State  -->
-                        <Style Selector="mxev|ComboBoxPopupControl[SelectionMode=Multiple] ListBoxItem:selected:pressed /template/ Border#PART_BackgroundBorder">
-													<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemSelectedBackgroundPressed}"/>
-                        </Style>
-											<!--  Disabled State  -->
-
-											<Style Selector="mxev|ComboBoxPopupControl[ReadOnly=True] ListBoxItem:disabled /template/ ContentPresenter#PART_ContentPresenter">
-												<Setter Property="TextBlock.Foreground" Value="{DynamicResource ComboBoxEditorItemForegroundDisabled}"/>
-											</Style>
-											<Style Selector="mxev|ComboBoxPopupControl[ReadOnly=True][SelectionMode=Single] ListBoxItem:selected:disabled /template/ Border#PART_BackgroundBorder">
-												<Setter Property="Background" Value="{DynamicResource ComboBoxEditorItemSelectedBackgroundDisabled}"/>
-											</Style>
-											<Style Selector="mxev|ComboBoxPopupControl[ReadOnly=True][SelectionMode=Multiple] CheckBox:disabled /template/ ContentPresenter#ContentPresenter">
-												<Setter Property="TextBlock.Foreground" Value="{DynamicResource ComboBoxEditorItemForegroundDisabled}"/>
-											</Style>
-											<Style Selector="mxev|ComboBoxPopupControl[ReadOnly=True][SelectionMode=Multiple] CheckBox:disabled /template/ Border#NormalRectangle">
-												<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemCheckBoxBackgroundDisabled}" />
-											</Style>
-											<Style Selector="mxev|ComboBoxPopupControl[ReadOnly=True][SelectionMode=Multiple] CheckBox:checked:disabled /template/ Border#NormalRectangle">
-												<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemCheckBoxCheckedBackgroundDisabled}" />
-											</Style>
-											<Style Selector="mxev|ComboBoxPopupControl[ReadOnly=True][SelectionMode=Multiple] CheckBox:indeterminate:disabled /template/ Border#NormalRectangle">
-												<Setter Property="Background" Value="{DynamicResource ComboBoxEditorMultipleItemCheckBoxCheckedBackgroundDisabled}" />
-											</Style>
-											<Style Selector="CheckBox /template/ ContentPresenter#ContentPresenter">
-												<Setter Property="RecognizesAccessKey" Value="False"/>
-											</Style>
-										</Grid.Styles>
+                    <ListBox x:Name="PART_ItemsSelector" Grid.Row="1"
+                             SelectionMode="{Binding $parent[mxev:ComboBoxPopupControl].SelectionMode, Converter={mxev:ItemSelectionModeConverter}}"
+                             ItemsSource="{TemplateBinding Items}"
+                             ItemTemplate="{TemplateBinding ItemTemplate}"
+                             HorizontalAlignment="Stretch"/>
                 </Grid>
             </ControlTemplate>
         </Setter>
-    </Style>
 
-	<Style Selector="mxe|ComboBoxEditor[IsTextEditable=false] /template/ TextBox#PART_RealEditor">
-		<Setter Property="mxb:ToolbarManager.ContextPopup" Value="{x:Null}" />
-	</Style>
+        <Style Selector="^ /template/ ListBox#PART_ItemsSelector,
+                   ^ /template/ ListBox#PART_EmptyValueSelector">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel IsEnabled="{Binding !$parent[mxev:ComboBoxPopupControl].ReadOnly}" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style Selector="^[ReadOnly=True] /template/ ListBoxItem#PART_EmptyValueSelectorItem">
+            <Setter Property="Theme" Value="{StaticResource ComboBoxItemReadOnlyTheme}" />
+        </Style>
+        <Style Selector="^[ReadOnly=True][SelectionMode=Single] /template/ ListBox#PART_ItemsSelector">
+            <Setter Property="ItemContainerTheme" Value="{StaticResource ComboBoxItemReadOnlyTheme}" />
+        </Style>
+        <Style Selector="^[ReadOnly=True][SelectionMode=Multiple] /template/ CheckBox#PART_SelectAllChecker">
+            <Setter Property="Theme" Value="{StaticResource ComboBoxRealOnlyCheckBoxTheme}" />
+        </Style>
+        <Style Selector="^[SelectionMode=Multiple] /template/ ListBox#PART_ItemsSelector">
+            <Setter Property="ItemContainerTheme" Value="{StaticResource ComboBoxCheckerItemTheme}" />
+        </Style>
+        <Style Selector="^[ReadOnly=True][SelectionMode=Multiple] /template/ ListBox#PART_ItemsSelector">
+            <Setter Property="ItemContainerTheme" Value="{StaticResource ComboBoxCheckerItemReadOnlyTheme}" />
+        </Style>
+    </ControlTheme>
 
-	<Style Selector="mxe|ComboBoxEditor:focus-visible /template/ TextBox#PART_RealEditor /template/ Border#PART_BorderElement">
-		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
-		<Setter Property="Background" Value="{DynamicResource ComboBoxEditorFocusedBackground}" />
-	</Style>
-	<Style Selector="mxe|ComboBoxEditor[SecondaryAppearance=true]:focus-visible /template/ TextBox#PART_RealEditor /template/ Border#PART_BorderElement">
-		<Setter Property="Background" Value="{DynamicResource ComboBoxEditorSecondaryFocusedBackground}" />
-		<Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
-	</Style>
+    <ControlTheme x:Key="{x:Type mxe:ComboBoxEditor}" TargetType="mxe:ComboBoxEditor" BasedOn="{StaticResource {x:Type mxe:PopupEditor}}">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <mxev:EditorInactiveContainer Name="PART_InactiveContentContainer" ColumnDefinitions="Auto, *, Auto">
+                    <mxev:EditorInactiveContainer.Styles>
+                        <Style Selector="TextBlock">
+                            <Setter Property="mxc:TextBlockHelper.ShowTooltipWhenTrimming" Value="True"/>
+                            <Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis"/>
+                        </Style>
+                    </mxev:EditorInactiveContainer.Styles>
+                </mxev:EditorInactiveContainer>
+            </ControlTemplate>
+        </Setter>
 
-    <Style Selector=":is(mxe|ComboBoxEditor)[IsTextEditable=False][ApplyItemTemplateToEditBox=False]:showWatermark /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer,
-           :is(mxe|ComboBoxEditor)[SelectionMode=Multiple]:showWatermark /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer">
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBoxWatermarkBrush}"/>
-    </Style>
+        <Style Selector="^[ActualErrorShowMode=Inplace][IsEnabled=true] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
+            <Setter Property="TextElement.Foreground" Value="{DynamicResource EditorForegroundOnError}"/>
+        </Style>
 
-    <Style Selector=":is(mxe|ComboBoxEditor)[IsTextEditable=False][ApplyItemTemplateToEditBox=False]:showWatermark:disabled /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer,
-           :is(mxe|ComboBoxEditor)[SelectionMode=Multiple]:showWatermark:disabled /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer">
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBoxWatermarkBrushDisabled}"/>
-    </Style>
-    
-</Styles>
+        <Style Selector="^:activeMode">
+            <Setter Property="PopupContent">
+                <Setter.Value>
+                    <Template>
+                        <mxev:ComboBoxPopupControl x:Name="PART_ComboBoxPopupControl"
+                                                   ReadOnly="{Binding $parent[mxe:ComboBoxEditor].ReadOnly}"
+                                                   SelectionMode="{Binding $parent[mxe:ComboBoxEditor].SelectionMode}"
+                                                   ShowPredefinedSelectItem="{Binding $parent[mxe:ComboBoxEditor].ShowPredefinedSelectItem}"/>
+                    </Template>
+                </Setter.Value>
+            </Setter>
+
+            <Style Selector="^[IsTextEditable=false] /template/ TextBox#PART_RealEditor">
+                <Setter Property="mxb:ToolbarManager.ContextPopup" Value="{x:Null}" />
+            </Style>
+        </Style>
+
+        <Style Selector="^:enumSelector">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Image DockPanel.Dock="Left"
+                                   Source="{Binding Image}"
+                                   Width="{Binding ImageWidth}"
+                                   Height="{Binding ImageHeight}"
+                                   IsVisible="{Binding ShowImage}"
+                                   VerticalAlignment="Center"/>
+                            <Border DockPanel.Dock="Left"
+                                    Height="{Binding ImageHeight}"
+                                    Width="{StaticResource EnumItemTemplateElementSpacing}">
+                                <Border.IsVisible>
+                                    <MultiBinding Converter="{x:Static BoolConverters.And}">
+                                        <Binding Path="ShowImage"/>
+                                        <Binding Path="ShowName"/>
+                                    </MultiBinding>
+                                </Border.IsVisible>
+                            </Border>
+                            <TextBlock DockPanel.Dock="Right"
+                                       Text="{Binding Name}"
+                                       IsVisible="{Binding ShowName}"
+                                       VerticalAlignment="Center"/>
+                        </DockPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </ControlTheme>
+</ResourceDictionary>

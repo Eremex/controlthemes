@@ -8,6 +8,9 @@
     <ControlTemplate x:Key="MxSmallShadowTemplate" TargetType="{x:Type controls:ShadowControl}">
         <ContentPresenter Content="{TemplateBinding Content}" Margin="10"/>
     </ControlTemplate>
+    <ControlTemplate x:Key="MxExtraSmallShadowTemplate" TargetType="{x:Type controls:ShadowControl}">
+        <ContentPresenter Content="{TemplateBinding Content}" Margin="10"/>
+    </ControlTemplate>
     <ControlTemplate x:Key="MxNoShadowTemplate" TargetType="{x:Type controls:ShadowControl}">
         <ContentPresenter Content="{TemplateBinding Content}"/>
     </ControlTemplate>

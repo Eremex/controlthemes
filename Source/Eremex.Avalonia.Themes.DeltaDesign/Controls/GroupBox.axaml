@@ -1,0 +1,65 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls">
+
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <mxe:GroupBox Header="Group 1" Width="180" ShowHeader="True">
+                <StackPanel>
+                    <RadioButton Content="RadioButton 1" GroupName="G1"/>
+                    <RadioButton Content="RadioButton 2" GroupName="G1"/>
+                    <RadioButton Content="RadioButton 3" GroupName="G1"/>
+                </StackPanel>
+            </mxe:GroupBox>
+        </Border>
+    </Design.PreviewWith>
+
+    <Thickness x:Key="GroupBoxHeaderMargin">0,0,0,13</Thickness>
+    <Thickness x:Key="GroupBoxContentMargin">0,0,0,16</Thickness>
+    <Thickness x:Key="GroupBoxPadding">16,16,16,0</Thickness>
+    <Thickness x:Key="GroupBoxDecoratorThickness">0,0,0,1</Thickness>
+    <CornerRadius x:Key="GroupBoxCornerRadius">0</CornerRadius>
+
+    <ControlTheme x:Key="{x:Type mxe:GroupBox}" TargetType="mxe:GroupBox">
+        <Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
+        <Setter Property="Padding" Value="{DynamicResource GroupBoxPadding}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource GroupBoxSplitterBrush}" />
+        <Setter Property="BorderThickness" Value="{StaticResource GroupBoxDecoratorThickness}" />
+        <Setter Property="CornerRadius" Value="{StaticResource GroupBoxCornerRadius}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid RowDefinitions="Auto, *">
+                            <ContentPresenter Name="PART_HeaderPresenter"
+                                              Background="Transparent"
+                                              BorderBrush="Transparent"
+                                              BorderThickness="0"
+                                              CornerRadius="{TemplateBinding CornerRadius}"
+                                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                              Content="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Converter={mxe:StringUpperCaseConverter}}"
+                                              Margin="{DynamicResource GroupBoxHeaderMargin}"
+                                              RecognizesAccessKey="True"
+                                              IsVisible="{TemplateBinding ShowHeader}"
+                                              TextBlock.Foreground="{DynamicResource GroupBoxHeaderForeground}"
+                                              HorizontalAlignment="{TemplateBinding HeaderHorizontalAlignment}"
+                                              VerticalAlignment="{TemplateBinding HeaderVerticalAlignment}"
+                                              VerticalContentAlignment="{TemplateBinding HeaderVerticalContentAlignment}"
+                                              HorizontalContentAlignment="{TemplateBinding HeaderHorizontalContentAlignment}"/>
+                            <ContentPresenter Grid.Row="1" Name="PART_ContentPresenter"
+                                              Margin="{DynamicResource GroupBoxContentMargin}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

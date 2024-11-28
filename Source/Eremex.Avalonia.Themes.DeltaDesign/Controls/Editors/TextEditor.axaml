@@ -1,113 +1,177 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
-				xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
-				xmlns:ec="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
-        xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
+                    xmlns:ec="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+                    xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
 
     <Design.PreviewWith>
         <Border Padding="20">
-					<StackPanel>
-						<Border Background="{DynamicResource Fill/Neutral/Primary/Enabled}" Padding="10">
-							<StackPanel Spacing="10">
-            <mxe:TextEditor EditorValue="Text Editor" Width="120"/>
-						<mxe:TextEditor EditorValue="Inactive Editor" EditorMode="InplaceInactive" Width="120"/>
-						<mxe:TextEditor EditorValue="Disabled" IsEnabled="False" Width="120"/>
-							</StackPanel>
-						</Border>
-						<Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
-							<StackPanel Spacing="10">
-								<mxe:TextEditor EditorValue="Secondary Editor" EditorMode="InplaceActive" Width="120" Classes="secondary"/>
-								<mxe:TextEditor EditorValue="Inactive Editor" EditorMode="InplaceInactive" Width="120" Classes="secondary"/>
-								<mxe:TextEditor EditorValue="Secondary Disabled" IsEnabled="False" Width="120" Classes="secondary"/>
-							</StackPanel>
-						</Border>
-					</StackPanel>
+            <StackPanel>
+                <Border Background="{DynamicResource Fill/Neutral/Primary/Enabled}" Padding="10">
+                    <StackPanel Spacing="10">
+                        <mxe:TextEditor EditorValue="Text Editor" Width="120"/>
+                        <mxe:TextEditor EditorValue="Inactive Editor" EditorMode="InplaceInactive" Width="120"/>
+                        <mxe:TextEditor EditorValue="Disabled" IsEnabled="False" Width="120"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
+                    <StackPanel Spacing="10">
+                        <mxe:TextEditor EditorValue="Secondary Editor" EditorMode="InplaceActive" Width="120" Classes="secondary"/>
+                        <mxe:TextEditor EditorValue="Inactive Editor" EditorMode="InplaceInactive" Width="120" Classes="secondary"/>
+                        <mxe:TextEditor EditorValue="Secondary Disabled" IsEnabled="False" Width="120" Classes="secondary"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
         </Border>
     </Design.PreviewWith>
-    
-    <Styles.Resources>
-        <ResourceDictionary>
-        </ResourceDictionary>
-    </Styles.Resources>
-    
-    <Style Selector="mxe|TextEditor[EditorMode=InplaceInactive][ShowHoverDecorator=true]:pointerover /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
-        <Setter Property="InactiveDecoratorTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <Panel>
-											<Border CornerRadius="{StaticResource EditorCornerRadius}"
-															BorderThickness="{StaticResource EditorBorderThickness}"
-															MinHeight="0">
-												<Border.Background>
-													<MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
-														<Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/> 
-														<DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBackground"/>
-														<DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBackground"/>
-													</MultiBinding>
-												</Border.Background>
-												<Border.BorderBrush>
-													<MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
-														<Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
-														<DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBorderBrush"/>
-														<DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBorderBrush"/>
-													</MultiBinding>
-												</Border.BorderBrush>
-											</Border>
-                    </Panel>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
-    <Style Selector="mxe|TextEditor:activeMode">
+    <ControlTheme x:Key="{x:Type mxe:TextEditor}" TargetType="mxe:TextEditor" BasedOn="{StaticResource {x:Type mxe:BaseEditor}}">
         <Setter Property="Template">
             <ControlTemplate>
-							<DockPanel>
-								<TextBlock x:Name="PART_ErrorTextPresenter"
-													 DockPanel.Dock="Bottom"
-													 Text="{TemplateBinding ErrorText}" 
-													 FontSize="{StaticResource EditorErrorFontSize}"
-													 Foreground="{DynamicResource TextEditorErrorTextForeground}"
-													 Margin="{StaticResource ErrorTextPresenterMargin}"
-													 TextWrapping="Wrap"/>
-                <Panel x:Name="PART_RealEditorPanel">
-                    <TextBox Name="PART_RealEditor"												 
-                             IsReadOnly="{TemplateBinding ReadOnly}"
-                             Background="{TemplateBinding Background}"
-                             Foreground="{TemplateBinding Foreground}"
-                             TextWrapping="{TemplateBinding TextWrapping}"
-                             AcceptsReturn="{TemplateBinding AcceptsReturn}"
-                             SelectionStart="{Binding $parent[mxe:TextEditor].SelectionStart, Mode=TwoWay}"
-                             SelectionEnd="{Binding $parent[mxe:TextEditor].SelectionEnd, Mode=TwoWay}"
-                             BorderThickness="0"
-                             Focusable="{TemplateBinding Focusable}"
-                             Padding="{TemplateBinding Padding}"
-                             CornerRadius="{TemplateBinding CornerRadius}"
-                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                             Watermark="{TemplateBinding Watermark}"
-                             MinHeight="0"
-                             FontSize="{TemplateBinding FontSize}"
-														 Classes.secondary="{TemplateBinding SecondaryAppearance}">
-                        <TextBox.Styles>
-                            <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
-                                <Setter Property="BorderThickness" Value="0" />
-                            </Style>
-                        </TextBox.Styles>
-                    </TextBox>
-                    <Border Name="PART_RootBorder"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}"
-                            Background="{x:Null}"
-                            Focusable="False"
-                            FocusAdorner="{x:Null}"
-                            MinHeight="0"/>
-                </Panel>
-							</DockPanel>
+                <mxev:EditorInactiveContainer Name="PART_InactiveContentContainer" ColumnDefinitions="Auto, *, Auto" >
+                    <TextBlock DockPanel.Dock="Left"
+                               Grid.Column="1"
+                               Name="PART_RealEditorPresenter"
+                               TextTrimming="CharacterEllipsis"
+                               mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"/>
+                </mxev:EditorInactiveContainer>
             </ControlTemplate>
         </Setter>
-    </Style>
-</Styles>
+
+        <Style Selector="^[EditorMode=InplaceInactive]">
+            <Style Selector="^[ShowHoverDecorator=true]:pointerover /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
+                <Setter Property="InactiveDecoratorTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <Panel>
+                                <Border CornerRadius="{StaticResource EditorCornerRadius}"
+                                        BorderThickness="{StaticResource EditorBorderThickness}"
+                                        MinHeight="0">
+                                    <Border.Background>
+                                        <MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
+                                            <Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
+                                            <DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBackground"/>
+                                            <DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBackground"/>
+                                        </MultiBinding>
+                                    </Border.Background>
+                                    <Border.BorderBrush>
+                                        <MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
+                                            <Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
+                                            <DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBorderBrush"/>
+                                            <DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBorderBrush"/>
+                                        </MultiBinding>
+                                    </Border.BorderBrush>
+                                </Border>
+                            </Panel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style Selector="^[ActualErrorShowMode=Inplace][IsEnabled=true] /template/ TextBlock#PART_RealEditorPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource EditorForegroundOnError}"/>
+            </Style>
+            <Style Selector="^:showWatermark">
+                <Style Selector="^ /template/ TextBlock#PART_RealEditorPresenter">
+                    <Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrush}"/>
+                </Style>
+                <Style Selector="^:disabled /template/ TextBlock#PART_RealEditorPresenter">
+                    <Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrushDisabled}"/>
+                </Style>
+            </Style>
+        </Style>
+
+        <Style Selector="^:readOnly">
+            <Setter Property="Foreground" Value="{DynamicResource TextEditorReadOnlyForeground}"/>
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextEditorForegroundDisabled}"/>
+            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+        </Style>
+
+        <Style Selector="^:activeMode">
+            <Setter Property="Background" Value="{DynamicResource TextEditorBackground}"/>
+            <Setter Property="Focusable" Value="True"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <DockPanel>
+                        <TextBlock x:Name="PART_ErrorTextPresenter"
+                                   DockPanel.Dock="Bottom"
+                                   Text="{TemplateBinding ErrorText}"
+                                   FontSize="{DynamicResource EditorErrorFontSize}"
+                                   Foreground="{DynamicResource TextEditorErrorTextForeground}"
+                                   Margin="{StaticResource ErrorTextPresenterMargin}"
+                                   TextWrapping="Wrap"/>
+                        <Panel x:Name="PART_RealEditorPanel">
+                            <TextBox Name="PART_RealEditor"
+                                     IsReadOnly="{TemplateBinding ReadOnly}"
+                                     Background="{TemplateBinding Background}"
+                                     Foreground="{TemplateBinding Foreground}"
+                                     TextWrapping="{TemplateBinding TextWrapping}"
+                                     AcceptsReturn="{TemplateBinding AcceptsReturn}"
+                                     SelectionStart="{Binding $parent[mxe:TextEditor].SelectionStart, Mode=TwoWay}"
+                                     SelectionEnd="{Binding $parent[mxe:TextEditor].SelectionEnd, Mode=TwoWay}"
+                                     BorderThickness="0"
+                                     Focusable="{TemplateBinding Focusable}"
+                                     Padding="{TemplateBinding Padding}"
+                                     CornerRadius="{TemplateBinding CornerRadius}"
+                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                     Watermark="{TemplateBinding Watermark}"
+                                     MinHeight="0"
+                                     Classes.secondary="{TemplateBinding SecondaryAppearance}">
+                                <TextBox.Styles>
+                                    <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </Style>
+                                </TextBox.Styles>
+                            </TextBox>
+                            <Border Name="PART_RootBorder"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    Background="{x:Null}"
+                                    Focusable="False"
+                                    FocusAdorner="{x:Null}"
+                                    MinHeight="0"/>
+                        </Panel>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter>
+
+            <Style Selector="^ /template/ TextBlock#PART_ErrorTextPresenter">
+                <Setter Property="IsVisible" Value="False" />
+            </Style>
+            <Style Selector="^[ActualErrorShowMode=Full] /template/ TextBlock#PART_ErrorTextPresenter">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+            <Style Selector="^[EditorMode=InplaceActive]:readOnly /template/ TextBox#PART_RealEditor">
+                <Setter Property="Foreground" Value="{DynamicResource TextEditorReadOnlyForeground}" />
+            </Style>
+            <Style Selector="^[ActualErrorShowMode=Full] /template/ Panel#PART_RealEditorPanel">
+                <Setter Property="MinHeight" Value="{Binding $parent[mxe:BaseEditor].MinHeight}" />
+            </Style>
+            <Style Selector="^[EditorMode=Standalone]">
+                <Setter Property="BorderBrush" Value="{DynamicResource TextEditorBorderBrush}"/>
+            </Style>
+            <Style Selector="^[EditorMode=Standalone]:focus-within /template/ Border#PART_RootBorder">
+                <Setter Property="BorderBrush" Value="{DynamicResource TextEditorFocusBorderBrush}"/>
+            </Style>
+            <Style Selector="^[ActualErrorShowMode=Full] /template/ Border#PART_RootBorder">
+                <Setter Property="BorderBrush" Value="{DynamicResource TextEditorFullErrorBorderBrush}"/>
+            </Style>
+            <Style Selector="^:disabled">
+                <Setter Property="Background" Value="{DynamicResource TextEditorActiveModeBackgroundDisabled}"/>
+            </Style>
+            <Style Selector="^.secondary">
+                <Setter Property="Background" Value="{DynamicResource TextEditorSecondaryBackground}"/>
+            </Style>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

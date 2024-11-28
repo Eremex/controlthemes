@@ -1,234 +1,273 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
-				xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
-				xmlns:ec="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
-        xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
-        xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
+                    xmlns:ec="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+                    xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
 
-	<Design.PreviewWith>
-		<Border Padding="20">
-			<StackPanel>
-				<Border Background="{DynamicResource Fill/Neutral/Primary/Enabled}" Padding="10">
-					<StackPanel Spacing="10">
-						<mxe:SpinEditor EditorValue="40.5" Width="180" Prefix="H=" Suffix="mm" />
-						<mxe:SpinEditor EditorValue="120" EditorMode="InplaceInactive" Width="180" Prefix="V=" Suffix="km/h"/>
-						<mxe:SpinEditor EditorValue="56.2" IsEnabled="False" Width="180"/>
-					</StackPanel>
-				</Border>
-				<Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
-					<StackPanel Spacing="10">
-						<mxe:SpinEditor EditorValue="40.5" EditorMode="InplaceActive" Width="180" Prefix="H=" Suffix="mm" Classes="secondary"/>
-						<mxe:SpinEditor EditorValue="120" EditorMode="InplaceInactive" Width="180" Prefix="V=" Suffix="km/h" Classes="secondary"/>
-						<mxe:SpinEditor EditorValue="56.2" IsEnabled="False" Width="180" Classes="secondary"/>
-					</StackPanel>
-				</Border>
-			</StackPanel>
-		</Border>
-	</Design.PreviewWith>
-	
-	
-    <Styles.Resources>
-        <ResourceDictionary>
-        </ResourceDictionary>
-    </Styles.Resources>
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <StackPanel>
+                <Border Background="{DynamicResource Fill/Neutral/Primary/Enabled}" Padding="10">
+                    <StackPanel Spacing="10">
+                        <mxe:SpinEditor EditorValue="40.5" Width="180" Prefix="H=" Suffix="mm" />
+                        <mxe:SpinEditor EditorValue="120" EditorMode="InplaceInactive" Width="180" Prefix="V=" Suffix="km/h"/>
+                        <mxe:SpinEditor EditorValue="56.2" IsEnabled="False" Width="180"/>
+                    </StackPanel>
+                </Border>
+                <Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
+                    <StackPanel Spacing="10">
+                        <mxe:SpinEditor EditorValue="40.5" EditorMode="InplaceActive" Width="180" Prefix="H=" Suffix="mm" Classes="secondary"/>
+                        <mxe:SpinEditor EditorValue="120" EditorMode="InplaceInactive" Width="180" Prefix="V=" Suffix="km/h" Classes="secondary"/>
+                        <mxe:SpinEditor EditorValue="56.2" IsEnabled="False" Width="180" Classes="secondary"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
 
-    <Style Selector=":is(mxe|SpinEditor)">
+    <ControlTheme x:Key="{x:Type mxe:SpinEditor}" TargetType="mxe:SpinEditor" BasedOn="{StaticResource {x:Type mxe:ButtonEditor}}">
         <Setter Property="HorizontalContentAlignment" Value="Right"/>
-    </Style>
-
-    <Style Selector=":is(mxe|SpinEditor)">
         <Setter Property="Template">
             <ControlTemplate>
-							<mxev:EditorInactiveContainer Name="PART_InactiveContentContainer" ColumnDefinitions="Auto, *, Auto">
-                        <Grid ColumnDefinitions="*, Auto, Auto" Name="PART_ContentPanel" Grid.Column="1">
-													<DockPanel Name="PART_RealEditorPresenterContainer" Grid.Column="1">
-                            <TextBlock Name="PART_RealEditorPresenter" 
-																			 DockPanel.Dock="Left" 
-																			 TextTrimming="CharacterEllipsis"
-																			 mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"/>
-													</DockPanel>
-                        </Grid>
-               </mxev:EditorInactiveContainer>
+                <mxev:EditorInactiveContainer Name="PART_InactiveContentContainer" ColumnDefinitions="Auto, *, Auto">
+                    <Grid ColumnDefinitions="*, Auto, Auto" Name="PART_ContentPanel" Grid.Column="1">
+                        <DockPanel Name="PART_RealEditorPresenterContainer" Grid.Column="1">
+                            <TextBlock Name="PART_RealEditorPresenter"
+                                       DockPanel.Dock="Left"
+                                       TextTrimming="CharacterEllipsis"
+                                       mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"/>
+                        </DockPanel>
+                    </Grid>
+                </mxev:EditorInactiveContainer>
             </ControlTemplate>
         </Setter>
-    </Style>
 
-    <Style Selector=":is(mxe|SpinEditor):activeMode">
-			<Setter Property="HorizontalContentAlignment" Value="Right"/>
-        <Setter Property="Template">
-            <ControlTemplate>
-							<DockPanel>
-								<TextBlock x:Name="PART_ErrorTextPresenter"
-													 DockPanel.Dock="Bottom"
-													 Text="{TemplateBinding ErrorText}"
-													 FontSize="{StaticResource EditorErrorFontSize}"
-													 Foreground="{DynamicResource TextEditorErrorTextForeground}"
-													 Margin="{StaticResource ErrorTextPresenterMargin}"
-													 TextWrapping="Wrap"/>
-                <Panel x:Name="PART_RealEditorPanel">
-                    <TextBox Name="PART_RealEditor"
-                             IsReadOnly="{TemplateBinding ReadOnly}"
-                             Background="{TemplateBinding Background}"
-                             Foreground="{TemplateBinding Foreground}"
-                             BorderThickness="0"
-                             Focusable="{TemplateBinding Focusable}"
-                             Padding="{TemplateBinding Padding}"
-                             CornerRadius="{TemplateBinding CornerRadius}"
-                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                             Watermark="{TemplateBinding Watermark}"
-                             SelectionStart="{Binding $parent[mxe:SpinEditor].SelectionStart, Mode=TwoWay}"
-                             SelectionEnd="{Binding $parent[mxe:SpinEditor].SelectionEnd, Mode=TwoWay}"
-                             MinHeight="0"
-                             FontSize="{TemplateBinding FontSize}"
-														 Classes.secondary="{TemplateBinding SecondaryAppearance}">
-											<TextBox.InnerLeftContent>
-												<StackPanel Orientation="Horizontal"/>
-											</TextBox.InnerLeftContent>
-                        <TextBox.InnerRightContent>
-													<StackPanel Orientation="Horizontal">
-                            <Grid Name="PART_SpinnerPanel" RowDefinitions="*, *" IsVisible="{Binding $parent[mxe:BaseEditor].ShowEditorButtons}">
-                                <RepeatButton Name="PART_IncreaseButton"
-                                              VerticalAlignment="Stretch"
-                                              VerticalContentAlignment="Bottom"
-                                              Classes="EditorIconButton"
-                                              Command="{Binding $parent[mxe:SpinEditor].IncreaseCommand}"
-                                              Padding="0">
-                                    <PathIcon Width="8"
-                                              Height="8"
-                                              Data="{StaticResource ChevronUpIcon}"
-                                              Foreground="{Binding #PART_IncreaseButton.Foreground}"/>
-                                </RepeatButton>
-                                <RepeatButton Name="PART_DecreaseButton"
-                                              Grid.Row="1"
-                                              VerticalAlignment="Stretch"
-                                              VerticalContentAlignment="Top"
-                                              Classes="EditorIconButton"
-                                              Command="{Binding $parent[mxe:SpinEditor].DecreaseCommand}"
-                                              Padding="0">
-                                    <PathIcon Width="8"
-                                              Height="8"
-                                              Data="{StaticResource ChevronDownIcon}"
-                                              Foreground="{Binding #PART_DecreaseButton.Foreground}"/>
-                                </RepeatButton>
-                            </Grid>
-													</StackPanel>
-                        </TextBox.InnerRightContent>
-                        <TextBox.Styles>
-                            <Style Selector="RepeatButton.EditorIconButton">
-                                <Setter Property="MinWidth" Value="0"/>
-                                <Setter Property="Width" Value="28"/>
-                            </Style>
-                            <Style Selector="TextBox">
-                                <Setter Property="Template">
-                                    <ControlTemplate>
-                                        <DataValidationErrors>
-                                            <Panel>
-                                                <Border
-                                                  Name="PART_BorderElement"
-                                                  Background="{TemplateBinding Background}"
-                                                  BorderBrush="{TemplateBinding BorderBrush}"
-                                                  BorderThickness="{TemplateBinding BorderThickness}"
-                                                  CornerRadius="{TemplateBinding CornerRadius}"
-                                                  MinWidth="{TemplateBinding MinWidth}"
-                                                  MinHeight="{TemplateBinding MinHeight}">
-                                                </Border>
-                                                <Border Margin="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="{TemplateBinding CornerRadius}">
-                                                    <Grid ColumnDefinitions="Auto,*,Auto" >
-                                                        <ContentPresenter Grid.Column="0" Grid.ColumnSpan="1" Content="{TemplateBinding InnerLeftContent}"/>
-                                                        <DockPanel x:Name="PART_InnerDockPanel" Grid.Column="1" Grid.ColumnSpan="1" Margin="{TemplateBinding Padding}">
-                                                            <TextBlock Name="PART_FloatingWatermark"
-                                                                       FontSize="{TemplateBinding FontSize}"
-                                                                       Text="{TemplateBinding Watermark}"
-                                                                       DockPanel.Dock="Top" />
-                                                            <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
-                                                                          VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
-                                                                <Grid ColumnDefinitions="*,Auto,Auto" Name="PART_ContentPanel">
-                                                                    <TextBlock Name="PART_PrefixPresenter"
-                                                                               Foreground="{DynamicResource SpinEditorPrefixForeground}"
-                                                                               HorizontalAlignment="Right"
-                                                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                               Margin="{TemplateBinding Padding, Converter={StaticResource EditorSplitterConverter}, ConverterParameter=Right}"
-                                                                               IsVisible="{Binding $self.Text, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                                                                               FontSize="{TemplateBinding FontSize}"
-                                                                               Text="{Binding $parent[mxe:SpinEditor].Prefix}"/>
-																																	<Grid ColumnDefinitions="Auto, *" Grid.Column="1"
-																																				HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-																																				VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-																																		<PathIcon Width="{StaticResource ErrorIconSize}"
-																																							Height="{StaticResource ErrorIconSize}"
-																																							Data="{StaticResource ErrorIcon}"
-																																							x:Name="PART_ErrorIndicator"
-																																							Foreground="{DynamicResource EditorsErrorIconBrush}"
-																																							VerticalAlignment="Center"/>
-                                                                    <TextBlock Name="PART_Watermark" Grid.Column="1"
-                                                                            Text="{TemplateBinding Watermark}"
-                                                                            TextAlignment="{TemplateBinding TextAlignment}"
-                                                                            TextWrapping="{TemplateBinding TextWrapping}"
-                                                                            IsVisible="{TemplateBinding Text, Converter={x:Static StringConverters.IsNullOrEmpty}}"
-                                                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                                                    <TextPresenter Name="PART_TextPresenter" Grid.Column="1"
-                                                                                   Background="Transparent"
-                                                                                  Text="{TemplateBinding Text, Mode=TwoWay}"
-                                                                                  CaretIndex="{TemplateBinding CaretIndex}"
-                                                                                  SelectionStart="{TemplateBinding SelectionStart}"
-                                                                                  SelectionEnd="{TemplateBinding SelectionEnd}"
-                                                                                  TextAlignment="{TemplateBinding TextAlignment}"
-                                                                                  TextWrapping="{TemplateBinding TextWrapping}"
-                                                                                  PasswordChar="{TemplateBinding PasswordChar}"
-                                                                                  RevealPassword="{TemplateBinding RevealPassword}"
-                                                                                  SelectionBrush="{TemplateBinding SelectionBrush}"
-                                                                                  SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
-                                                                                  CaretBrush="{TemplateBinding CaretBrush}"
-                                                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                                                      <ContentPresenter x:Name="PART_ReadOnlyContentContainer"
-                                                                                        Grid.Column="1"
-                                                                                        CornerRadius="{TemplateBinding CornerRadius}"/>
-																																	</Grid>
-                                                                    <TextBlock Name="PART_SuffixPresenter"
-                                                                               Foreground="{DynamicResource SpinEditorSuffixForeground}"
-                                                                               Grid.Column="2"
-                                                                               HorizontalAlignment="Left"
-                                                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                                               Margin="{TemplateBinding Padding, Converter={StaticResource EditorSplitterConverter}, ConverterParameter=Left}"
-                                                                               IsVisible="{Binding $self.Text, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                                                                               FontSize="{TemplateBinding FontSize}"
-                                                                               Text="{Binding $parent[mxe:SpinEditor].Suffix}"/>
-                                                                </Grid>
-                                                            </ScrollViewer>
-                                                        </DockPanel>
-                                                        <ContentPresenter Grid.Column="2" Grid.ColumnSpan="1" Content="{TemplateBinding InnerRightContent}"/>
-                                                    </Grid>
-                                                </Border>
-                                            </Panel>
-                                        </DataValidationErrors>
-                                    </ControlTemplate>
-                                </Setter>
-                            </Style>
-                            <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
-                                <Setter Property="BorderThickness" Value="0" />
-                            </Style>
-                        </TextBox.Styles>
-                    </TextBox>
-                    <Grid Name="PART_ButtonsContainer"/>
-                    <Border Name="PART_RootBorder"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}"
-                            Background="{x:Null}"
-                            Focusable="False"
-                            FocusAdorner="{x:Null}"
-                            MinHeight="0"/>
-                </Panel>
-							</DockPanel>
-            </ControlTemplate>
-        </Setter>
-    </Style>
+        <Style Selector="^[EditorMode=InplaceInactive]">
+            <Style Selector="^[ShowEditorButtons=true][HasButtons=false] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
+                <Setter Property="InactiveRightButtonsPlaceholderWidth" Value="{StaticResource InactiveButtonPlaceholderWidth}"/>
+            </Style>
+            <Style Selector="^[ShowHoverDecorator=true]:pointerover /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer,
+                   ^[ShowEditorButtons=true][HasButtons=true] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
+                <Setter Property="InactiveRightButtonsPlaceholderWidth" Value="{Binding Buttons, RelativeSource={RelativeSource TemplatedParent}, Converter={mxev:PlaceholderMinWidthConverter FixedButtonsCount=1}, ConverterParameter=28}"/>
+                <Setter Property="InactiveLeftButtonsPlaceholderWidth" Value="{Binding Buttons, RelativeSource={RelativeSource TemplatedParent}, Converter={mxev:PlaceholderMinWidthConverter LeftButtonsFilter=True}, ConverterParameter=28}"/>
+            </Style>
+            <Style Selector="^[ShowEditorButtons=true][HasButtons=false] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
+                <Setter Property="InactiveDecoratorTemplate" Value="{StaticResource SpinUpDownButtonsPresenterTemplate}"/>
+            </Style>
+            <Style Selector="^[ShowEditorButtons=true][HasButtons=true] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
+                <Setter Property="InactiveDecoratorTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <Panel>
+                                <mxev:InactiveIconButtonsPanel IsLeft="True" HorizontalAlignment="Left" Buttons="{Binding $parent[mxe:SpinEditor].Buttons}"/>
+                                <mxev:InactiveIconButtonsPanel HorizontalAlignment="Right" Buttons="{Binding $parent[mxe:SpinEditor].Buttons}"
+                                                               DefaultButtonTemplate="{StaticResource SpinUpDownButtonsPresenterTemplate}"/>
+                            </Panel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style Selector="^[ShowHoverDecorator=true]:pointerover /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
+                <Setter Property="InactiveDecoratorTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <Panel>
+                                <Border BorderThickness="{StaticResource EditorBorderThickness}"
+                                        CornerRadius="{StaticResource EditorCornerRadius}"
+                                        MinHeight="0">
+                                    <Border.Background>
+                                        <MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
+                                            <Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
+                                            <DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBackground"/>
+                                            <DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBackground"/>
+                                        </MultiBinding>
+                                    </Border.Background>
+                                    <Border.BorderBrush>
+                                        <MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
+                                            <Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
+                                            <DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBorderBrush"/>
+                                            <DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBorderBrush"/>
+                                        </MultiBinding>
+                                    </Border.BorderBrush>
+                                </Border>
+                                <mxev:InactiveIconButtonsPanel IsLeft="True" HorizontalAlignment="Left" Buttons="{Binding $parent[mxe:SpinEditor].Buttons}"/>
+                                <mxev:InactiveIconButtonsPanel HorizontalAlignment="Right" Buttons="{Binding $parent[mxe:SpinEditor].Buttons}"
+                                                               DefaultButtonTemplate="{StaticResource SpinUpDownButtonsPresenterTemplate}"/>
+                            </Panel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Style>
+        <Style Selector="^:activeMode">
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <DockPanel>
+                        <TextBlock x:Name="PART_ErrorTextPresenter"
+                                   DockPanel.Dock="Bottom"
+                                   Text="{TemplateBinding ErrorText}"
+                                   FontSize="{DynamicResource EditorErrorFontSize}"
+                                   Foreground="{DynamicResource TextEditorErrorTextForeground}"
+                                   Margin="{StaticResource ErrorTextPresenterMargin}"
+                                   TextWrapping="Wrap"/>
+                        <Panel x:Name="PART_RealEditorPanel">
+                            <TextBox Name="PART_RealEditor"
+                                     IsReadOnly="{TemplateBinding ReadOnly}"
+                                     Background="{TemplateBinding Background}"
+                                     Foreground="{TemplateBinding Foreground}"
+                                     BorderThickness="0"
+                                     Focusable="{TemplateBinding Focusable}"
+                                     Padding="{TemplateBinding Padding}"
+                                     CornerRadius="{TemplateBinding CornerRadius}"
+                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                     Watermark="{TemplateBinding Watermark}"
+                                     SelectionStart="{Binding $parent[mxe:SpinEditor].SelectionStart, Mode=TwoWay}"
+                                     SelectionEnd="{Binding $parent[mxe:SpinEditor].SelectionEnd, Mode=TwoWay}"
+                                     MinHeight="0"
+                                     Classes.secondary="{TemplateBinding SecondaryAppearance}">
+                                <TextBox.InnerLeftContent>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </TextBox.InnerLeftContent>
+                                <TextBox.InnerRightContent>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Name="PART_SpinnerPanel" RowDefinitions="*, *" IsVisible="{Binding $parent[mxe:BaseEditor].ShowEditorButtons}">
+                                            <RepeatButton Name="PART_IncreaseButton"
+                                                          VerticalAlignment="Stretch"
+                                                          VerticalContentAlignment="Bottom"
+                                                          Theme="{StaticResource EditorIconButtonBaseTheme}"
+                                                          Command="{Binding $parent[mxe:SpinEditor].IncreaseCommand}"
+                                                          Padding="0">
+                                                <PathIcon Width="8"
+                                                          Height="8"
+                                                          Data="{StaticResource ChevronUpIcon}"
+                                                          Foreground="{Binding #PART_IncreaseButton.Foreground}"/>
+                                            </RepeatButton>
+                                            <RepeatButton Name="PART_DecreaseButton"
+                                                          Grid.Row="1"
+                                                          VerticalAlignment="Stretch"
+                                                          VerticalContentAlignment="Top"
+                                                          Theme="{StaticResource EditorIconButtonBaseTheme}"
+                                                          Command="{Binding $parent[mxe:SpinEditor].DecreaseCommand}"
+                                                          Padding="0">
+                                                <PathIcon Width="8"
+                                                          Height="8"
+                                                          Data="{StaticResource ChevronDownIcon}"
+                                                          Foreground="{Binding #PART_DecreaseButton.Foreground}"/>
+                                            </RepeatButton>
+                                        </Grid>
+                                    </StackPanel>
+                                </TextBox.InnerRightContent>
+                                <TextBox.Styles>
+                                    <Style Selector="RepeatButton">
+                                        <Setter Property="MinWidth" Value="0"/>
+                                        <Setter Property="Width" Value="28"/>
+                                    </Style>
+                                    <Style Selector="TextBox">
+                                        <Setter Property="Template">
+                                            <ControlTemplate>
+                                                <DataValidationErrors>
+                                                    <Panel>
+                                                        <Border Name="PART_BorderElement"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                CornerRadius="{TemplateBinding CornerRadius}"
+                                                                MinWidth="{TemplateBinding MinWidth}"
+                                                                MinHeight="{TemplateBinding MinHeight}">
+                                                        </Border>
+                                                        <Border Margin="{TemplateBinding BorderThickness}"
+                                                                CornerRadius="{TemplateBinding CornerRadius}">
+                                                            <Grid ColumnDefinitions="Auto,*,Auto" >
+                                                                <ContentPresenter Grid.Column="0" Grid.ColumnSpan="1" Content="{TemplateBinding InnerLeftContent}"/>
+                                                                <DockPanel x:Name="PART_InnerDockPanel" Grid.Column="1" Grid.ColumnSpan="1" Margin="{TemplateBinding Padding}">
+                                                                    <TextBlock Name="PART_FloatingWatermark"
+                                                                               Text="{TemplateBinding Watermark}"
+                                                                               DockPanel.Dock="Top" />
+                                                                    <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                                                                                  VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+                                                                        <Grid ColumnDefinitions="*,Auto,Auto" Name="PART_ContentPanel">
+                                                                            <TextBlock Name="PART_PrefixPresenter"
+                                                                                       Foreground="{DynamicResource SpinEditorPrefixForeground}"
+                                                                                       HorizontalAlignment="Right"
+                                                                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                                       Margin="{TemplateBinding Padding, Converter={StaticResource EditorSplitterConverter}, ConverterParameter=Right}"
+                                                                                       IsVisible="{Binding $self.Text, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                                                                       Text="{Binding $parent[mxe:SpinEditor].Prefix}"/>
+                                                                            <Grid ColumnDefinitions="Auto, *" Grid.Column="1"
+                                                                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                                                                <PathIcon Width="{StaticResource ErrorIconSize}"
+                                                                                          Height="{StaticResource ErrorIconSize}"
+                                                                                          Data="{StaticResource ErrorIcon}"
+                                                                                          x:Name="PART_ErrorIndicator"
+                                                                                          Foreground="{DynamicResource EditorsErrorIconBrush}"
+                                                                                          VerticalAlignment="Center"/>
+                                                                                <TextBlock Name="PART_Watermark" Grid.Column="1"
+                                                                                           Text="{TemplateBinding Watermark}"
+                                                                                           TextAlignment="{TemplateBinding TextAlignment}"
+                                                                                           TextWrapping="{TemplateBinding TextWrapping}"
+                                                                                           IsVisible="{TemplateBinding Text, Converter={x:Static StringConverters.IsNullOrEmpty}}"
+                                                                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                                                <TextPresenter Name="PART_TextPresenter" Grid.Column="1"
+                                                                                               Background="Transparent"
+                                                                                               Text="{TemplateBinding Text, Mode=TwoWay}"
+                                                                                               CaretIndex="{TemplateBinding CaretIndex}"
+                                                                                               SelectionStart="{TemplateBinding SelectionStart}"
+                                                                                               SelectionEnd="{TemplateBinding SelectionEnd}"
+                                                                                               TextAlignment="{TemplateBinding TextAlignment}"
+                                                                                               TextWrapping="{TemplateBinding TextWrapping}"
+                                                                                               PasswordChar="{TemplateBinding PasswordChar}"
+                                                                                               RevealPassword="{TemplateBinding RevealPassword}"
+                                                                                               SelectionBrush="{TemplateBinding SelectionBrush}"
+                                                                                               SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                                                                               CaretBrush="{TemplateBinding CaretBrush}"
+                                                                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                                                <ContentPresenter x:Name="PART_ReadOnlyContentContainer"
+                                                                                                  Grid.Column="1"
+                                                                                                  CornerRadius="{TemplateBinding CornerRadius}"/>
+                                                                            </Grid>
+                                                                            <TextBlock Name="PART_SuffixPresenter"
+                                                                                       Foreground="{DynamicResource SpinEditorSuffixForeground}"
+                                                                                       Grid.Column="2"
+                                                                                       HorizontalAlignment="Left"
+                                                                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                                       Margin="{TemplateBinding Padding, Converter={StaticResource EditorSplitterConverter}, ConverterParameter=Left}"
+                                                                                       IsVisible="{Binding $self.Text, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                                                                       Text="{Binding $parent[mxe:SpinEditor].Suffix}"/>
+                                                                        </Grid>
+                                                                    </ScrollViewer>
+                                                                </DockPanel>
+                                                                <ContentPresenter Grid.Column="2" Grid.ColumnSpan="1" Content="{TemplateBinding InnerRightContent}"/>
+                                                            </Grid>
+                                                        </Border>
+                                                    </Panel>
+                                                </DataValidationErrors>
+                                            </ControlTemplate>
+                                        </Setter>
+                                    </Style>
+                                    <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </Style>
+                                </TextBox.Styles>
+                            </TextBox>
+                            <Grid Name="PART_ButtonsContainer"/>
+                            <Border Name="PART_RootBorder"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    Background="{x:Null}"
+                                    Focusable="False"
+                                    FocusAdorner="{x:Null}"
+                                    MinHeight="0"/>
+                        </Panel>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter>
+        </Style>
 
-	<Style Selector=":is(mxe|SpinEditor)[IsTextEditable=False]:activeMode /template/ TextBox#PART_RealEditor /template/ DockPanel#PART_InnerDockPanel">
-		<Setter Property="Cursor" Value="{x:Null}" />
-	</Style>
-	
-</Styles>
+    </ControlTheme>
+</ResourceDictionary>

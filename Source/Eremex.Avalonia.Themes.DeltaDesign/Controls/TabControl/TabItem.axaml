@@ -1,10 +1,9 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:internal="clr-namespace:Eremex.AvaloniaUI.Controls.Internal;assembly=Eremex.Avalonia.Controls"
         xmlns:controls="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
         xmlns:other="clr-namespace:Eremex.AvaloniaUI.Icons.Other;assembly=Eremex.Avalonia.Icons">
-
-    <Style Selector="controls|MxTabItem">
+    <ControlTheme x:Key="{x:Type controls:MxTabItem}" TargetType="controls:MxTabItem">
         <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}"></Setter>
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="FontSize" Value="{DynamicResource MxTabItemFontSize}"></Setter>
@@ -20,7 +19,8 @@
                         <DockPanel x:Name="PART_ContentPanel" 
                                    Margin="{TemplateBinding Padding}">
                             <Button x:Name="PART_CloseButton"
-                                    Classes="TabControlButton TabItemButton">
+                                    Classes="TabControlButton TabItemButton"
+                                    Theme="{StaticResource TabItemButtonTheme}">
                                 <Image Height="12"
                                        Width="12"
                                        Source="{x:Static other:_12.Close}"/>
@@ -56,346 +56,347 @@
                 </Grid>
             </ControlTemplate>
         </Setter>
-    </Style>
-    <Style Selector="controls|MxTabItem:selected">
+        
+        <Style Selector="^:selected">
         <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
         <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"></Setter>
         <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/On Secondary/Light}"></Setter>
         <Setter Property="ClipToBounds" Value="False"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:selected:pressed">
-        <Setter Property="ZIndex" Value="1"></Setter>
-        <Setter Property="Opacity" Value="0.8"></Setter>
-    </Style>
-	
-    <Style Selector="controls|MxTabItem:not(:selected) /template/ internal|TabItemOuterCorner">
-	    <Setter Property="IsVisible" Value="False"></Setter>
-    </Style>
-	
-    <Style Selector="controls|MxTabItem:pointerover:not(:selected)">
-        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"></Setter>
-	    <Setter Property="BorderBrush" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:disabled">
-        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}" />
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:disable-separator /template/ Border#PART_Separator">
-        <Setter Property="IsVisible" Value="False"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem /template/ Image#PART_Image">
-        <Setter Property="Margin" Value="{DynamicResource MxTabItemGlyphMargin}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem /template/ internal|TabItemOuterCorner">
-        <Setter Property="Radius" Value="4"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:horizontal">
-        <Setter Property="MinHeight" Value="{DynamicResource MxTabItemMinHeight}"></Setter>
-        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:vertical">
-	    <Setter Property="MinWidth" Value="{DynamicResource MxTabItemMinHeight}"></Setter>
-	    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-    </Style>
-    
-    <!-- top -->
-    <Style Selector="controls|MxTabItem:top:selected">
-	    <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Selected/Top/BorderThickness}"></Setter>
-	    <Setter Property="CornerRadius" Value="{DynamicResource TabItem/Selected/Top/CornerRadius}" />
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:top:not(:selected)">
-	    <Setter Property="Margin" Value="{DynamicResource TabItem/Top/Margin}"></Setter>
-	    <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Top/BorderThickness}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:top:horizontal">
-	    <Setter Property="Padding" Value="{DynamicResource TabItem/Horizontal/Padding}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:top:vertical">
-	    <Setter Property="Padding" Value="{DynamicResource TabItem/Top/Vertical/Padding}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:top:pointerover:not(:selected)">
-	    <Setter Property="CornerRadius" Value="{DynamicResource TabItem/PointerOver/Top/CornerRadius}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:top:not(:selected) /template/ Border#PART_Separator">
-        <Setter Property="Width" Value="1"></Setter>
-        <Setter Property="Height" Value="{DynamicResource MxTabItemSeparatorSize}"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:top /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
-	    <Setter Property="DockPanel.Dock" Value="Right"/>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:top:horizontal /template/ LayoutTransformControl#PART_TransformControl">
-	    <Setter Property="Margin" Value="{DynamicResource TabItem/Horizontal/Content/Margin}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:top:vertical /template/ LayoutTransformControl#PART_TransformControl">
-        <Setter Property="LayoutTransform">
-            <Setter.Value>
-                <RotateTransform Angle="-90"></RotateTransform>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:top:vertical /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
-        <Setter Property="DockPanel.Dock" Value="Top"/>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:top:vertical /template/ LayoutTransformControl#PART_TransformControl">
-        <Setter Property="Margin" Value="{DynamicResource TabItem/Top/Vertical/Content/Margin}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:top /template/ internal|TabItemOuterCorner#PART_NearCorner">
-	    <Setter Property="Position" Value="BottomLeft" />
-	    <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
-	    <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-	    <Setter Property="Margin" Value="-3 0 0 0"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:top /template/ internal|TabItemOuterCorner#PART_FarCorner">
-	    <Setter Property="Position" Value="BottomRight" />
-	    <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
-	    <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-	    <Setter Property="Margin" Value="0 0 -3 0"></Setter>
-    </Style>
-    
-    <!-- left -->
-    <Style Selector="controls|MxTabItem:left:not(:selected)">
-	    <Setter Property="Margin" Value="{DynamicResource TabItem/Left/Margin}"></Setter>
-	    <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Left/BorderThickness}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:horizontal:left">
-	    <Setter Property="Padding" Value="{DynamicResource TabItem/Horizontal/Padding}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:vertical:left">
-	    <Setter Property="Padding" Value="{DynamicResource TabItem/Left/Vertical/Padding}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:left:not(:selected) /template/ Border#PART_Separator">
-	    <Setter Property="Width" Value="{DynamicResource MxTabItemSeparatorSize}"></Setter>
-	    <Setter Property="Height" Value="1"></Setter>
-	    <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-	    <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:left /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
-	    <Setter Property="DockPanel.Dock" Value="Right"/>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:left:horizontal /template/ LayoutTransformControl#PART_TransformControl">
-	    <Setter Property="Margin" Value="{DynamicResource TabItem/Horizontal/Content/Margin}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:left:vertical /template/ LayoutTransformControl#PART_TransformControl">
-	    <Setter Property="LayoutTransform">
-		    <Setter.Value>
-			    <RotateTransform Angle="-90"></RotateTransform>
-		    </Setter.Value>
-	    </Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:left:vertical /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
-	    <Setter Property="DockPanel.Dock" Value="Top"/>
-    </Style>
-    <Style Selector="controls|MxTabItem:left:vertical /template/ LayoutTransformControl#PART_TransformControl">
-	    <Setter Property="Margin" Value="{DynamicResource TabItem/Left/Vertical/Content/Margin}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:left:selected">
-        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/Selected/Left/CornerRadius}" />
-        <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Selected/Left/BorderThickness}" />
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:left:pointerover:not(:selected)">
-        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/PointerOver/Left/CornerRadius}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:left /template/ internal|TabItemOuterCorner#PART_NearCorner">
-        <Setter Property="Position" Value="BottomLeft" />
-        <Setter Property="VerticalAlignment" Value="Top"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-        <Setter Property="Margin" Value="0 -3 0 0"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:left /template/ internal|TabItemOuterCorner#PART_FarCorner">
-        <Setter Property="Position" Value="TopLeft" />
-        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-        <Setter Property="Margin" Value="0 0 0 -3"></Setter>
-    </Style>
-    
-    <!-- bottom -->
-    <Style Selector="controls|MxTabItem:bottom:not(:selected)">
-	    <Setter Property="Margin" Value="{DynamicResource TabItem/Bottom/Margin}"></Setter>
-	    <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Bottom/BorderThickness}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:horizontal:bottom">
-	    <Setter Property="Padding" Value="{DynamicResource TabItem/Horizontal/Padding}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:vertical:bottom">
-	    <Setter Property="Padding" Value="{DynamicResource TabItem/Bottom/Vertical/Padding}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:bottom:not(:selected) /template/ Border#PART_Separator">
-	    <Setter Property="Width" Value="1"></Setter>
-	    <Setter Property="Height" Value="{DynamicResource MxTabItemSeparatorSize}"></Setter>
-	    <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-	    <Setter Property="VerticalAlignment" Value="Center"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:bottom /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
-	    <Setter Property="DockPanel.Dock" Value="Right"/>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:bottom:horizontal /template/ LayoutTransformControl#PART_TransformControl">
-	    <Setter Property="Margin" Value="{DynamicResource TabItem/Horizontal/Content/Margin}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:bottom:vertical /template/ LayoutTransformControl#PART_TransformControl">
-	    <Setter Property="LayoutTransform">
-		    <Setter.Value>
-			    <RotateTransform Angle="90"></RotateTransform>
-		    </Setter.Value>
-	    </Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:bottom:vertical /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
-	    <Setter Property="DockPanel.Dock" Value="Bottom"/>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:bottom:vertical /template/ LayoutTransformControl#PART_TransformControl">
-	    <Setter Property="Margin" Value="{DynamicResource TabItem/Bottom/Vertical/Content/Margin}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:bottom:selected">
-	    <Setter Property="CornerRadius" Value="{DynamicResource TabItem/Selected/Bottom/CornerRadius}" />
-	    <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Selected/Bottom/BorderThickness}" />
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:bottom:pointerover:not(:selected)">
-	    <Setter Property="CornerRadius" Value="{DynamicResource TabItem/PointerOver/Bottom/CornerRadius}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:bottom /template/ internal|TabItemOuterCorner#PART_NearCorner">
-	    <Setter Property="Position" Value="TopLeft" />
-	    <Setter Property="VerticalAlignment" Value="Top"></Setter>
-	    <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-	    <Setter Property="Margin" Value="-3 0 0 0"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:bottom /template/ internal|TabItemOuterCorner#PART_FarCorner">
-	    <Setter Property="Position" Value="TopRight" />
-	    <Setter Property="VerticalAlignment" Value="Top"></Setter>
-	    <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-	    <Setter Property="Margin" Value="0 0 -3 0"></Setter>
-    </Style>
-    
-    <!-- right -->
-    <Style Selector="controls|MxTabItem:right:not(:selected)">
-	    <Setter Property="Margin" Value="{DynamicResource TabItem/Right/Margin}"></Setter>
-	    <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Right/BorderThickness}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:horizontal:right">
-	    <Setter Property="Padding" Value="{DynamicResource TabItem/Horizontal/Padding}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:vertical:right">
-	    <Setter Property="Padding" Value="{DynamicResource TabItem/Right/Vertical/Padding}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:right:not(:selected) /template/ Border#PART_Separator">
-	    <Setter Property="Width" Value="{DynamicResource MxTabItemSeparatorSize}"></Setter>
-	    <Setter Property="Height" Value="1"></Setter>
-	    <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-	    <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:right /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
-	    <Setter Property="DockPanel.Dock" Value="Right"/>
-    </Style>
-    <Style Selector="controls|MxTabItem:right:horizontal /template/ LayoutTransformControl#PART_TransformControl">
-	    <Setter Property="Margin" Value="{DynamicResource TabItem/Horizontal/Content/Margin}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:right:vertical /template/ LayoutTransformControl#PART_TransformControl">
-	    <Setter Property="LayoutTransform">
-		    <Setter.Value>
-			    <RotateTransform Angle="90"></RotateTransform>
-		    </Setter.Value>
-	    </Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:right:vertical /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
-	    <Setter Property="DockPanel.Dock" Value="Bottom"/>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:right:vertical /template/ LayoutTransformControl#PART_TransformControl">
-	    <Setter Property="Margin" Value="{DynamicResource TabItem/Right/Vertical/Content/Margin}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:right:selected">
-        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/Selected/Right/CornerRadius}" />
-        <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Selected/Right/BorderThickness}" />
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:right:pointerover:not(:selected)">
-        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/PointerOver/Right/CornerRadius}"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:right /template/ internal|TabItemOuterCorner#PART_NearCorner">
-        <Setter Property="Position" Value="BottomRight" />
-        <Setter Property="VerticalAlignment" Value="Top"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-        <Setter Property="Margin" Value="0 -3 0 0"></Setter>
-    </Style>
-    
-    <Style Selector="controls|MxTabItem:right /template/ internal|TabItemOuterCorner#PART_FarCorner">
-        <Setter Property="Position" Value="TopRight" />
-        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-        <Setter Property="Margin" Value="0 0 0 -3"></Setter>
-    </Style>
-    
-    <!-- Stretch -->
-    <Style Selector="controls|MxTabItem[TabStripLayoutType=Stretch] TextBlock">
-        <Setter Property="TextTrimming" Value="CharacterEllipsis"></Setter>
-    </Style>
-    
-    <!-- Light RenderMode -->
-    <Style Selector="controls|MxTabItem:light">
-        <Setter Property="CornerRadius" Value="0" />
-    </Style>
-    <Style Selector="controls|MxTabItem:light /template/ internal|TabItemOuterCorner">
-        <Setter Property="IsVisible" Value="False"></Setter>
-    </Style>
-    <Style Selector="controls|MxTabItem:top:selected:light">
-        <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Light/Selected/Top/BorderThickness}"></Setter>
-    </Style>
-    <Style Selector="controls|MxTabItem:bottom:selected:light">
-        <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Light/Selected/Bottom/BorderThickness}"></Setter>
-    </Style>
-    <Style Selector="controls|MxTabItem:left:selected:light">
-        <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Light/Selected/Left/BorderThickness}"></Setter>
-    </Style>
-    <Style Selector="controls|MxTabItem:right:selected:light">
-        <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Light/Selected/Right/BorderThickness}"></Setter>
-    </Style>
-</Styles>
+        </Style>
+        
+        <Style Selector="^:selected:pressed">
+            <Setter Property="ZIndex" Value="1"></Setter>
+            <Setter Property="Opacity" Value="0.8"></Setter>
+        </Style>
+	    
+        <Style Selector="^:not(:selected) /template/ internal|TabItemOuterCorner">
+	        <Setter Property="IsVisible" Value="False"></Setter>
+        </Style>
+	    
+        <Style Selector="^:pointerover:not(:selected)">
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"></Setter>
+	        <Setter Property="BorderBrush" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"></Setter>
+        </Style>
+        
+        <Style Selector="^:disabled">
+            <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
+        </Style>
+        
+        <Style Selector="^:disable-separator /template/ Border#PART_Separator">
+            <Setter Property="IsVisible" Value="False"></Setter>
+        </Style>
+        
+        <Style Selector="^ /template/ Image#PART_Image">
+            <Setter Property="Margin" Value="{DynamicResource MxTabItemGlyphMargin}"></Setter>
+        </Style>
+        
+        <Style Selector="^ /template/ internal|TabItemOuterCorner">
+            <Setter Property="Radius" Value="4"></Setter>
+        </Style>
+        
+        <Style Selector="^:horizontal">
+            <Setter Property="MinHeight" Value="{DynamicResource MxTabItemMinHeight}"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+        
+        <Style Selector="^:vertical">
+	        <Setter Property="MinWidth" Value="{DynamicResource MxTabItemMinHeight}"></Setter>
+	        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        </Style>
+        
+        <!-- top -->
+        <Style Selector="^:top:selected">
+	        <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Selected/Top/BorderThickness}"></Setter>
+	        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/Selected/Top/CornerRadius}" />
+        </Style>
+        
+        <Style Selector="^:top:not(:selected)">
+	        <Setter Property="Margin" Value="{DynamicResource TabItem/Top/Margin}"></Setter>
+	        <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Top/BorderThickness}"></Setter>
+        </Style>
+        
+        <Style Selector="^:top:horizontal">
+	        <Setter Property="Padding" Value="{DynamicResource TabItem/Horizontal/Padding}"></Setter>
+        </Style>
+        
+        <Style Selector="^:top:vertical">
+	        <Setter Property="Padding" Value="{DynamicResource TabItem/Top/Vertical/Padding}"></Setter>
+        </Style>
+        
+        <Style Selector="^:top:pointerover:not(:selected)">
+	        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/PointerOver/Top/CornerRadius}"></Setter>
+        </Style>
+        
+        <Style Selector="^:top:not(:selected) /template/ Border#PART_Separator">
+            <Setter Property="Width" Value="1"></Setter>
+            <Setter Property="Height" Value="{DynamicResource MxTabItemSeparatorSize}"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+        
+        <Style Selector="^:top /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
+	        <Setter Property="DockPanel.Dock" Value="Right"/>
+        </Style>
+        
+        <Style Selector="^:top:horizontal /template/ LayoutTransformControl#PART_TransformControl">
+	        <Setter Property="Margin" Value="{DynamicResource TabItem/Horizontal/Content/Margin}"></Setter>
+        </Style>
+        
+        <Style Selector="^:top:vertical /template/ LayoutTransformControl#PART_TransformControl">
+            <Setter Property="LayoutTransform">
+                <Setter.Value>
+                    <RotateTransform Angle="-90"></RotateTransform>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style Selector="^:top:vertical /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
+            <Setter Property="DockPanel.Dock" Value="Top"/>
+        </Style>
+        
+        <Style Selector="^:top:vertical /template/ LayoutTransformControl#PART_TransformControl">
+            <Setter Property="Margin" Value="{DynamicResource TabItem/Top/Vertical/Content/Margin}"></Setter>
+        </Style>
+        
+        <Style Selector="^:top /template/ internal|TabItemOuterCorner#PART_NearCorner">
+	        <Setter Property="Position" Value="BottomLeft" />
+	        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+	        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+	        <Setter Property="Margin" Value="-3 0 0 0"></Setter>
+        </Style>
+        
+        <Style Selector="^:top /template/ internal|TabItemOuterCorner#PART_FarCorner">
+	        <Setter Property="Position" Value="BottomRight" />
+	        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+	        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+	        <Setter Property="Margin" Value="0 0 -3 0"></Setter>
+        </Style>
+        
+        <!-- left -->
+        <Style Selector="^:left:not(:selected)">
+	        <Setter Property="Margin" Value="{DynamicResource TabItem/Left/Margin}"></Setter>
+	        <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Left/BorderThickness}"></Setter>
+        </Style>
+        
+        <Style Selector="^:horizontal:left">
+	        <Setter Property="Padding" Value="{DynamicResource TabItem/Horizontal/Padding}"></Setter>
+        </Style>
+        
+        <Style Selector="^:vertical:left">
+	        <Setter Property="Padding" Value="{DynamicResource TabItem/Left/Vertical/Padding}"></Setter>
+        </Style>
+        
+        <Style Selector="^:left:not(:selected) /template/ Border#PART_Separator">
+	        <Setter Property="Width" Value="{DynamicResource MxTabItemSeparatorSize}"></Setter>
+	        <Setter Property="Height" Value="1"></Setter>
+	        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+	        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+        </Style>
+        
+        <Style Selector="^:left /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
+	        <Setter Property="DockPanel.Dock" Value="Right"/>
+        </Style>
+        
+        <Style Selector="^:left:horizontal /template/ LayoutTransformControl#PART_TransformControl">
+	        <Setter Property="Margin" Value="{DynamicResource TabItem/Horizontal/Content/Margin}"></Setter>
+        </Style>
+        
+        <Style Selector="^:left:vertical /template/ LayoutTransformControl#PART_TransformControl">
+	        <Setter Property="LayoutTransform">
+		        <Setter.Value>
+			        <RotateTransform Angle="-90"></RotateTransform>
+		        </Setter.Value>
+	        </Setter>
+        </Style>
+        
+        <Style Selector="^:left:vertical /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
+	        <Setter Property="DockPanel.Dock" Value="Top"/>
+        </Style>
+        <Style Selector="^:left:vertical /template/ LayoutTransformControl#PART_TransformControl">
+	        <Setter Property="Margin" Value="{DynamicResource TabItem/Left/Vertical/Content/Margin}"></Setter>
+        </Style>
+        
+        <Style Selector="^:left:selected">
+            <Setter Property="CornerRadius" Value="{DynamicResource TabItem/Selected/Left/CornerRadius}" />
+            <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Selected/Left/BorderThickness}" />
+        </Style>
+        
+        <Style Selector="^:left:pointerover:not(:selected)">
+            <Setter Property="CornerRadius" Value="{DynamicResource TabItem/PointerOver/Left/CornerRadius}"></Setter>
+        </Style>
+        
+        <Style Selector="^:left /template/ internal|TabItemOuterCorner#PART_NearCorner">
+            <Setter Property="Position" Value="BottomLeft" />
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="Margin" Value="0 -3 0 0"></Setter>
+        </Style>
+        
+        <Style Selector="^:left /template/ internal|TabItemOuterCorner#PART_FarCorner">
+            <Setter Property="Position" Value="TopLeft" />
+            <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="Margin" Value="0 0 0 -3"></Setter>
+        </Style>
+        
+        <!-- bottom -->
+        <Style Selector="^:bottom:not(:selected)">
+	        <Setter Property="Margin" Value="{DynamicResource TabItem/Bottom/Margin}"></Setter>
+	        <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Bottom/BorderThickness}"></Setter>
+        </Style>
+        
+        <Style Selector="^:horizontal:bottom">
+	        <Setter Property="Padding" Value="{DynamicResource TabItem/Horizontal/Padding}"></Setter>
+        </Style>
+        
+        <Style Selector="^:vertical:bottom">
+	        <Setter Property="Padding" Value="{DynamicResource TabItem/Bottom/Vertical/Padding}"></Setter>
+        </Style>
+        
+        <Style Selector="^:bottom:not(:selected) /template/ Border#PART_Separator">
+	        <Setter Property="Width" Value="1"></Setter>
+	        <Setter Property="Height" Value="{DynamicResource MxTabItemSeparatorSize}"></Setter>
+	        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+	        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+        
+        <Style Selector="^:bottom /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
+	        <Setter Property="DockPanel.Dock" Value="Right"/>
+        </Style>
+        
+        <Style Selector="^:bottom:horizontal /template/ LayoutTransformControl#PART_TransformControl">
+	        <Setter Property="Margin" Value="{DynamicResource TabItem/Horizontal/Content/Margin}"></Setter>
+        </Style>
+        
+        <Style Selector="^:bottom:vertical /template/ LayoutTransformControl#PART_TransformControl">
+	        <Setter Property="LayoutTransform">
+		        <Setter.Value>
+			        <RotateTransform Angle="90"></RotateTransform>
+		        </Setter.Value>
+	        </Setter>
+        </Style>
+        
+        <Style Selector="^:bottom:vertical /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
+	        <Setter Property="DockPanel.Dock" Value="Bottom"/>
+        </Style>
+        
+        <Style Selector="^:bottom:vertical /template/ LayoutTransformControl#PART_TransformControl">
+	        <Setter Property="Margin" Value="{DynamicResource TabItem/Bottom/Vertical/Content/Margin}"></Setter>
+        </Style>
+        
+        <Style Selector="^:bottom:selected">
+	        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/Selected/Bottom/CornerRadius}" />
+	        <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Selected/Bottom/BorderThickness}" />
+        </Style>
+        
+        <Style Selector="^:bottom:pointerover:not(:selected)">
+	        <Setter Property="CornerRadius" Value="{DynamicResource TabItem/PointerOver/Bottom/CornerRadius}"></Setter>
+        </Style>
+        
+        <Style Selector="^:bottom /template/ internal|TabItemOuterCorner#PART_NearCorner">
+	        <Setter Property="Position" Value="TopLeft" />
+	        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+	        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+	        <Setter Property="Margin" Value="-3 0 0 0"></Setter>
+        </Style>
+        
+        <Style Selector="^:bottom /template/ internal|TabItemOuterCorner#PART_FarCorner">
+	        <Setter Property="Position" Value="TopRight" />
+	        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+	        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+	        <Setter Property="Margin" Value="0 0 -3 0"></Setter>
+        </Style>
+        
+        <!-- right -->
+        <Style Selector="^:right:not(:selected)">
+	        <Setter Property="Margin" Value="{DynamicResource TabItem/Right/Margin}"></Setter>
+	        <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Right/BorderThickness}"></Setter>
+        </Style>
+        
+        <Style Selector="^:horizontal:right">
+	        <Setter Property="Padding" Value="{DynamicResource TabItem/Horizontal/Padding}"></Setter>
+        </Style>
+        
+        <Style Selector="^:vertical:right">
+	        <Setter Property="Padding" Value="{DynamicResource TabItem/Right/Vertical/Padding}"></Setter>
+        </Style>
+        
+        <Style Selector="^:right:not(:selected) /template/ Border#PART_Separator">
+	        <Setter Property="Width" Value="{DynamicResource MxTabItemSeparatorSize}"></Setter>
+	        <Setter Property="Height" Value="1"></Setter>
+	        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+	        <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+        </Style>
+        
+        <Style Selector="^:right /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
+	        <Setter Property="DockPanel.Dock" Value="Right"/>
+        </Style>
+        <Style Selector="^:right:horizontal /template/ LayoutTransformControl#PART_TransformControl">
+	        <Setter Property="Margin" Value="{DynamicResource TabItem/Horizontal/Content/Margin}"></Setter>
+        </Style>
+        
+        <Style Selector="^:right:vertical /template/ LayoutTransformControl#PART_TransformControl">
+	        <Setter Property="LayoutTransform">
+		        <Setter.Value>
+			        <RotateTransform Angle="90"></RotateTransform>
+		        </Setter.Value>
+	        </Setter>
+        </Style>
+        
+        <Style Selector="^:right:vertical /template/ DockPanel#PART_ContentPanel > Button#PART_CloseButton">
+	        <Setter Property="DockPanel.Dock" Value="Bottom"/>
+        </Style>
+        
+        <Style Selector="^:right:vertical /template/ LayoutTransformControl#PART_TransformControl">
+	        <Setter Property="Margin" Value="{DynamicResource TabItem/Right/Vertical/Content/Margin}"></Setter>
+        </Style>
+        
+        <Style Selector="^:right:selected">
+            <Setter Property="CornerRadius" Value="{DynamicResource TabItem/Selected/Right/CornerRadius}" />
+            <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Selected/Right/BorderThickness}" />
+        </Style>
+        
+        <Style Selector="^:right:pointerover:not(:selected)">
+            <Setter Property="CornerRadius" Value="{DynamicResource TabItem/PointerOver/Right/CornerRadius}"></Setter>
+        </Style>
+        
+        <Style Selector="^:right /template/ internal|TabItemOuterCorner#PART_NearCorner">
+            <Setter Property="Position" Value="BottomRight" />
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Margin" Value="0 -3 0 0"></Setter>
+        </Style>
+        
+        <Style Selector="^:right /template/ internal|TabItemOuterCorner#PART_FarCorner">
+            <Setter Property="Position" Value="TopRight" />
+            <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Margin" Value="0 0 0 -3"></Setter>
+        </Style>
+        
+        <!-- Stretch -->
+        <Style Selector="^[TabStripLayoutType=Stretch] /template/ ContentPresenter">
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"></Setter>
+        </Style>
+        
+        <!-- Light RenderMode -->
+        <Style Selector="^:light">
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+        <Style Selector="^:light /template/ internal|TabItemOuterCorner">
+            <Setter Property="IsVisible" Value="False"></Setter>
+        </Style>
+        <Style Selector="^:top:selected:light">
+            <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Light/Selected/Top/BorderThickness}"></Setter>
+        </Style>
+        <Style Selector="^:bottom:selected:light">
+            <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Light/Selected/Bottom/BorderThickness}"></Setter>
+        </Style>
+        <Style Selector="^:left:selected:light">
+            <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Light/Selected/Left/BorderThickness}"></Setter>
+        </Style>
+        <Style Selector="^:right:selected:light">
+            <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Light/Selected/Right/BorderThickness}"></Setter>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

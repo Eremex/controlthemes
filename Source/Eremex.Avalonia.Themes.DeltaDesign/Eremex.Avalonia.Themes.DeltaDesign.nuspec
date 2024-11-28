@@ -5,15 +5,15 @@
     <version>$version$</version>
     <authors>Eremex.Avalonia.Themes.DeltaDesign</authors>
     <description>A collection of themes for the Eremex Avalonia UI Controls.</description>
-    <copyright>�2010-2024 Eremex</copyright>
+    <copyright>©2010-2024 Eremex</copyright>
     <dependencies>
       <group targetFramework="net6.0">
 		<dependency id="Eremex.Avalonia.Controls" version="$version$" exclude="Build,Analyzers" />
-	    <dependency id="Avalonia" version="11.1.1" exclude="Build,Analyzers" />
-        <dependency id="Avalonia.Fonts.Inter" version="11.1.1" exclude="Build,Analyzers" />
-        <dependency id="Avalonia.Svg.Skia" version="11.0.0.18" exclude="Build,Analyzers" />
+	    <dependency id="Avalonia" version="11.2.0" exclude="Build,Analyzers" />
+        <dependency id="Avalonia.Fonts.Inter" version="11.2.0" exclude="Build,Analyzers" />
+        <dependency id="Avalonia.Svg.Skia" version="11.2.0" exclude="Build,Analyzers" />
         <dependency id="DynamicData" version="8.1.1" exclude="Build,Analyzers" />
-        <dependency id="SkiaSharp" version="2.88.6" exclude="Build,Analyzers" />
+        <dependency id="SkiaSharp" version="2.88.8" exclude="Build,Analyzers" />
         <dependency id="System.Resources.Extensions" version="6.0.0" exclude="Build,Analyzers" />
       </group>
     </dependencies>

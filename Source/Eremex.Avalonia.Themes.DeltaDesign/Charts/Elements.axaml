@@ -36,6 +36,11 @@
                         Background="{StaticResource Fill/CrosshairSeriesLabel}"
                         BorderBrush="{StaticResource Border/CrosshairSeriesLabel}"
                         Padding="6">
+                    <Border.Styles>
+                        <Style Selector="TextBlock">
+                            <Setter Property="Foreground" Value="{DynamicResource Stroke/Strong/Color}" />
+                        </Style>
+                    </Border.Styles>
                     <Grid ColumnDefinitions="Auto 6 Auto" RowDefinitions="Auto Auto Auto Auto">
                         <Border Grid.Column="0" Grid.Row="0"
                                 CornerRadius="{StaticResource SeriesColorMarker}"
@@ -69,10 +74,9 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <StackPanel Margin="0 2" Orientation="Horizontal">
-                    <Border Classes="SeriesMarker" Background="{Binding ValueItems[0].Color}" />
-                    <TextBlock Text="{Binding SeriesName}" Margin="6 0" />
-                    <TextBlock Text="{Binding ValueItems[0].FormattedValue}" />
-                    <TextBlock Text="{Binding ValueItems[0].UnderlyingData}" IsVisible="{Binding ValueItems[0].HasUnderlyingData}" Margin="6 0 0 0" />
+                    <Border Classes="SeriesMarker" Background="{Binding Color}" />
+                    <TextBlock Text="{Binding SeriesName}" VerticalAlignment="Center" Margin="6 0" />
+                    <TextBlock Text="{Binding ValueItems[0].FormattedValue}" VerticalAlignment="Center" />
                 </StackPanel>
             </ControlTemplate>
         </Setter>
@@ -83,7 +87,10 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="{Binding SeriesName}" HorizontalAlignment="Left" />
+                    <StackPanel Orientation="Horizontal">
+                        <Border Classes="SeriesMarker" Background="{Binding Color}" IsVisible="{Binding ShowMarker}" Margin="0 0 6 0" />
+                        <TextBlock Text="{Binding SeriesName}" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" />
+                    </StackPanel>
                     
                     <ItemsControl ItemsSource="{Binding ValueItems}">
                         <ItemsControl.ItemsPanel>
@@ -94,14 +101,18 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="0 2">
-                                    <Border Classes="SeriesMarker" Background="{Binding Color}" />
-                                    <TextBlock Text="{Binding ValuePrefix}" Margin="6 0" />
-                                    <TextBlock Text="{Binding FormattedValue}" />
-                                    <TextBlock Text="{Binding UnderlyingData}" IsVisible="{Binding HasUnderlyingData}" Margin="6 0 0 0" />
+                                    <Border Classes="SeriesMarker" Background="{Binding Color}" IsVisible="{Binding ShowMarker}" Margin="0 0 6 0" />
+                                    <TextBlock Text="{Binding ValuePrefix}" VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding FormattedValue}" VerticalAlignment="Center" Margin="6 0 0 0" />
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+                    
+                    <Grid ColumnDefinitions="Auto 6 Auto" IsVisible="{Binding HasUnderlyingData}">
+                        <TextBlock Grid.Column="0" Text="{Binding UnderlyingDataPrefix}" />
+                        <TextBlock Grid.Column="2" Text="{Binding UnderlyingData}" />
+                    </Grid>
                 </StackPanel>
             </ControlTemplate>
         </Setter>
@@ -118,6 +129,11 @@
                         BorderBrush="{StaticResource Border/CrosshairSeriesLabel}"
                         Padding="6">
                     <ItemsControl ItemsSource="{Binding Groups}">
+                        <ItemsControl.Styles>
+                            <Style Selector="TextBlock">
+                                <Setter Property="Foreground" Value="{DynamicResource Stroke/Strong/Color}" />
+                            </Style>
+                        </ItemsControl.Styles>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Vertical" />
