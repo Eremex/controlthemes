@@ -23,10 +23,6 @@
     <RectangleGeometry x:Key="CheckBoxIndeterminateIcon" Rect="0,0,6,6" RadiusX="0.5" RadiusY="0.5"/>
 
 	<StreamGeometry x:Key="ErrorIcon">M7.15302 2C6.54447 2 6.07701 2.53899 6.16307 3.14142L6.87736 8.14142C6.94773 8.63407 7.36966 9 7.86731 9H8.13271C8.63036 9 9.05229 8.63407 9.12266 8.14142L9.83695 3.14142C9.92301 2.53899 9.45555 2 8.847 2H7.15302Z M8.00001 11C7.17158 11 6.50001 11.6716 6.50001 12.5C6.50001 13.3284 7.17158 14 8.00001 14C8.82844 14 9.50001 13.3284 9.50001 12.5C9.50001 11.6716 8.82844 11 8.00001 11Z</StreamGeometry>
-	<StreamGeometry x:Key="SpinEditorUpDownIcon">
-		M8.14645 10.3536C8.34171 10.5488 8.65829 10.5488 8.85355 10.3536L12 7.20711L15.1464 10.3536C15.3417 10.5488 15.6583 10.5488 15.8536 10.3536C16.0488 10.1583 16.0488 9.84171 15.8536 9.64645L12.3536 6.14645C12.1583 5.95118 11.8417 5.95118 11.6464 6.14645L8.14645 9.64645C7.95118 9.84171 7.95118 10.1583 8.14645 10.3536Z
-		M8.14645 13.6464C8.34171 13.4512 8.65829 13.4512 8.85355 13.6464L12 16.7929L15.1464 13.6464C15.3417 13.4512 15.6583 13.4512 15.8536 13.6464C16.0488 13.8417 16.0488 14.1583 15.8536 14.3536L12.3536 17.8536C12.1583 18.0488 11.8417 18.0488 11.6464 17.8536L8.14645 14.3536C7.95118 14.1583 7.95118 13.8417 8.14645 13.6464Z
-	</StreamGeometry>
 	<StreamGeometry x:Key="AddColorIcon">M5.5 0C5.77614 0 6 0.223858 6 0.5V5H10.5C10.7761 5 11 5.22386 11 5.5C11 5.77614 10.7761 6 10.5 6H6V10.5C6 10.7761 5.77614 11 5.5 11C5.22386 11 5 10.7761 5 10.5V6H0.5C0.223858 6 0 5.77614 0 5.5C0 5.22386 0.223858 5 0.5 5H5V0.5C5 0.223858 5.22386 0 5.5 0Z</StreamGeometry>
 
 	<x:Double x:Key="EditorFontSize">12</x:Double>
@@ -118,13 +114,6 @@
 			<Path Fill="{DynamicResource Icons/Outline/Gray}"
 						VerticalAlignment="Center" HorizontalAlignment="Center"
 						Data="{StaticResource ChevronDownIcon}"/>
-		</Panel>
-	</DataTemplate>
-	<DataTemplate x:Key="SpinUpDownButtonsPresenterTemplate" >
-		<Panel Width="{StaticResource InactiveButtonPlaceholderWidth}" HorizontalAlignment="Right">
-			<Path Fill="{DynamicResource Icons/Outline/Gray}"
-						VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,8,6"
-						Data="{StaticResource SpinEditorUpDownIcon}" />
 		</Panel>
 	</DataTemplate>
 	<SolidColorBrush x:Key="HighlightedTextBlockBackgroundBrush" Color="{DynamicResource HighlightedTextBackgroundColor}"/>

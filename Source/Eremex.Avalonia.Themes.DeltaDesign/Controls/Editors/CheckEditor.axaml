@@ -32,24 +32,14 @@
         <Setter Property="Padding" Value="{StaticResource CheckBoxPadding}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Panel>
-                    <DockPanel Name="PART_InactiveContentContainer">
-                        <CheckBox DockPanel.Dock="Left" Name="PART_RealEditorPresenter"
-                                  IsHitTestVisible="False"
-                                  BorderBrush="Transparent"
-                                  BorderThickness="0"
-                                  HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Stretch"
-                                  MinHeight="0"
-                                  Theme="{StaticResource CheckEditorCheckerTheme}"
-                                  Classes.secondary="{TemplateBinding SecondaryAppearance}"/>
-                    </DockPanel>
-                </Panel>
+                <DockPanel Name="PART_InactiveContentContainer" Margin="{StaticResource CheckEditorPadding}">
+                    <Image x:Name="PART_RealEditorPresenter" Stretch="None" Margin="{StaticResource CheckEditorImageMargin}"/>
+                </DockPanel>
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^[ActualErrorShowMode=Inplace][IsEnabled=true] /template/ CheckBox#PART_RealEditorPresenter">
-            <Setter Property="Theme" Value="{StaticResource CheckEditorCheckerErrorTheme}"/>
+        <Style Selector="^[ActualErrorShowMode=Inplace][IsEnabled=true]">
+            <Setter Property="Foreground" Value="{DynamicResource EditorForegroundOnError}"/>
         </Style>
 
         <Style Selector="^:activeMode">
@@ -139,7 +129,8 @@
                             </Grid>
                             <Image x:Name="PART_StateIndicator" VerticalAlignment="Center" Margin="{StaticResource CheckEditorImageMargin}"
                                    Source="{Binding $parent[mxe:CheckEditor].ActualStateGlyph}"
-                                   IsVisible="{Binding $self.Source, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+                                   IsVisible="{Binding $self.Source, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                   Stretch="None"/>
                             <ContentPresenter x:Name="ContentPresenter"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               Content="{TemplateBinding Content}"

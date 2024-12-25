@@ -200,20 +200,16 @@
     <ControlTheme x:Key="{x:Type mxe:ComboBoxEditor}" TargetType="mxe:ComboBoxEditor" BasedOn="{StaticResource {x:Type mxe:PopupEditor}}">
         <Setter Property="Template">
             <ControlTemplate>
-                <mxev:EditorInactiveContainer Name="PART_InactiveContentContainer" ColumnDefinitions="Auto, *, Auto">
-                    <mxev:EditorInactiveContainer.Styles>
-                        <Style Selector="TextBlock">
+                <DockPanel x:Name="PART_InactiveContentContainer">
+                    <DockPanel.Styles>
+                        <Style Selector="mxev|MxTextBlock">
                             <Setter Property="mxc:TextBlockHelper.ShowTooltipWhenTrimming" Value="True"/>
                             <Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis"/>
                         </Style>
-                    </mxev:EditorInactiveContainer.Styles>
-                </mxev:EditorInactiveContainer>
+                    </DockPanel.Styles>
+                </DockPanel>
             </ControlTemplate>
         </Setter>
-
-        <Style Selector="^[ActualErrorShowMode=Inplace][IsEnabled=true] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
-            <Setter Property="TextElement.Foreground" Value="{DynamicResource EditorForegroundOnError}"/>
-        </Style>
 
         <Style Selector="^:activeMode">
             <Setter Property="PopupContent">

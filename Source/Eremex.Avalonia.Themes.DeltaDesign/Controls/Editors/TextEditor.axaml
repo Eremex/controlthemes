@@ -31,55 +31,22 @@
     <ControlTheme x:Key="{x:Type mxe:TextEditor}" TargetType="mxe:TextEditor" BasedOn="{StaticResource {x:Type mxe:BaseEditor}}">
         <Setter Property="Template">
             <ControlTemplate>
-                <mxev:EditorInactiveContainer Name="PART_InactiveContentContainer" ColumnDefinitions="Auto, *, Auto" >
-                    <TextBlock DockPanel.Dock="Left"
-                               Grid.Column="1"
-                               Name="PART_RealEditorPresenter"
-                               TextTrimming="CharacterEllipsis"
-                               mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"/>
-                </mxev:EditorInactiveContainer>
+                <mxev:MxTextBlock x:Name="PART_RealEditorPresenter"
+                                  TextBlock.TextTrimming="CharacterEllipsis"
+                                  mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"/>
             </ControlTemplate>
         </Setter>
 
         <Style Selector="^[EditorMode=InplaceInactive]">
-            <Style Selector="^[ShowHoverDecorator=true]:pointerover /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
-                <Setter Property="InactiveDecoratorTemplate">
-                    <Setter.Value>
-                        <DataTemplate>
-                            <Panel>
-                                <Border CornerRadius="{StaticResource EditorCornerRadius}"
-                                        BorderThickness="{StaticResource EditorBorderThickness}"
-                                        MinHeight="0">
-                                    <Border.Background>
-                                        <MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
-                                            <Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
-                                            <DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBackground"/>
-                                            <DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBackground"/>
-                                        </MultiBinding>
-                                    </Border.Background>
-                                    <Border.BorderBrush>
-                                        <MultiBinding Converter="{ec:BoolToObjectSelectionConverter}">
-                                            <Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
-                                            <DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBorderBrush"/>
-                                            <DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBorderBrush"/>
-                                        </MultiBinding>
-                                    </Border.BorderBrush>
-                                </Border>
-                            </Panel>
-                        </DataTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style Selector="^[ActualErrorShowMode=Inplace][IsEnabled=true] /template/ TextBlock#PART_RealEditorPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource EditorForegroundOnError}"/>
+            <Style Selector="^[ActualErrorShowMode=Inplace][IsEnabled=true] /template/ mxev|MxTextBlock#PART_RealEditorPresenter">
+                <Setter Property="TextElement.Foreground" Value="{DynamicResource EditorForegroundOnError}"/>
             </Style>
             <Style Selector="^:showWatermark">
-                <Style Selector="^ /template/ TextBlock#PART_RealEditorPresenter">
-                    <Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrush}"/>
+                <Style Selector="^ /template/ mxev|MxTextBlock#PART_RealEditorPresenter">
+                    <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBoxWatermarkBrush}"/>
                 </Style>
-                <Style Selector="^:disabled /template/ TextBlock#PART_RealEditorPresenter">
-                    <Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrushDisabled}"/>
+                <Style Selector="^:disabled /template/ mxev|MxTextBlock#PART_RealEditorPresenter">
+                    <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBoxWatermarkBrushDisabled}"/>
                 </Style>
             </Style>
         </Style>

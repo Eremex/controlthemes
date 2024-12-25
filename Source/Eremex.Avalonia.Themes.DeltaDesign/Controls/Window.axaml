@@ -72,7 +72,7 @@
                                             BorderBrush="{TemplateBinding BorderBrush}"
                                             BorderThickness="{TemplateBinding BorderThickness}"
                                             Background="{TemplateBinding Background}"
-                                            >
+                                            Padding="{Binding $parent[Window].OffScreenMargin, Converter={internal:OffScreenMarginConverter}}">
                                         <Grid RowDefinitions="Auto, *" Background="Transparent">
                                             <Panel Grid.Row="0" Background="Transparent">
                                                 <Border x:Name="PART_CaptionTransparentBack">

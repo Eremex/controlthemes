@@ -121,64 +121,6 @@
             <Setter Property="PopupHorizontalOffset" Value="0"/>
         </Style>
 
-        <Style Selector="^[EditorMode=InplaceInactive]">
-            <Style Selector="^[ShowEditorButtons=true][HasButtons=false] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
-                <Setter Property="InactiveRightButtonsPlaceholderWidth" Value="{StaticResource InactiveButtonPlaceholderWidth}"/>
-            </Style>
-            <Style Selector="^[ShowHoverDecorator=true]:pointerover /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer,
-                   ^[ShowEditorButtons=true][HasButtons=true] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
-                <Setter Property="InactiveRightButtonsPlaceholderWidth" Value="{Binding Buttons, RelativeSource={RelativeSource TemplatedParent}, Converter={mxev:PlaceholderMinWidthConverter FixedButtonsCount=1}, ConverterParameter=28}"/>
-                <Setter Property="InactiveLeftButtonsPlaceholderWidth" Value="{Binding Buttons, RelativeSource={RelativeSource TemplatedParent}, Converter={mxev:PlaceholderMinWidthConverter LeftButtonsFilter=True}, ConverterParameter=28}"/>
-            </Style>
-            <Style Selector="^[ShowEditorButtons=true][HasButtons=false] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
-                <Setter Property="InactiveDecoratorTemplate" Value="{StaticResource OpenPopupButtonPresenterTemplate}"/>
-            </Style>
-            <Style Selector="^[ShowEditorButtons=true][HasButtons=true] /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
-                <Setter Property="InactiveDecoratorTemplate">
-                    <Setter.Value>
-                        <DataTemplate>
-                            <Panel>
-                                <mxev:InactiveIconButtonsPanel IsLeft="True" HorizontalAlignment="Left" Buttons="{Binding $parent[mxe:PopupEditor].Buttons}"/>
-                                <mxev:InactiveIconButtonsPanel HorizontalAlignment="Right" Buttons="{Binding $parent[mxe:PopupEditor].Buttons}"
-                                                               DefaultButtonTemplate="{StaticResource OpenPopupButtonPresenterTemplate}"/>
-                            </Panel>
-                        </DataTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style Selector="^[ShowHoverDecorator=true]:pointerover /template/ mxev|EditorInactiveContainer#PART_InactiveContentContainer">
-                <Setter Property="InactiveDecoratorTemplate">
-                    <Setter.Value>
-                        <DataTemplate>
-                            <Panel>
-                                <Border BorderThickness="{StaticResource EditorBorderThickness}"
-                                        CornerRadius="{StaticResource EditorCornerRadius}"
-                                        MinHeight="0">
-                                    <Border.Background>
-                                        <MultiBinding Converter="{controls:BoolToObjectSelectionConverter}">
-                                            <Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
-                                            <DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBackground"/>
-                                            <DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBackground"/>
-                                        </MultiBinding>
-                                    </Border.Background>
-                                    <Border.BorderBrush>
-                                        <MultiBinding Converter="{controls:BoolToObjectSelectionConverter}">
-                                            <Binding Path="$parent[mxe:BaseEditor].SecondaryAppearance"/>
-                                            <DynamicResourceExtension ResourceKey="TextEditorInactiveDecoratorBorderBrush"/>
-                                            <DynamicResourceExtension ResourceKey="TextEditorSecondaryInactiveDecoratorBorderBrush"/>
-                                        </MultiBinding>
-                                    </Border.BorderBrush>
-                                </Border>
-                                <mxev:InactiveIconButtonsPanel IsLeft="True" HorizontalAlignment="Left" Buttons="{Binding $parent[mxe:PopupEditor].Buttons}"/>
-                                <mxev:InactiveIconButtonsPanel HorizontalAlignment="Right" Buttons="{Binding $parent[mxe:PopupEditor].Buttons}"
-                                                               DefaultButtonTemplate="{StaticResource OpenPopupButtonPresenterTemplate}"/>
-                            </Panel>
-                        </DataTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </Style>
-
         <Style Selector="^:activeMode">
             <Setter Property="Template">
                 <ControlTemplate>

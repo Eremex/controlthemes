@@ -41,18 +41,6 @@
         <Setter Property="PopupMinWidth" Value="{StaticResource MemoEditorPopupMinWidth}"/>
         <Setter Property="PopupHorizontalOffset" Value="{DynamicResource PopupHorizontalOffset}"/>
         <Setter Property="PopupBottomOffset" Value="{DynamicResource PopupBottomOffset}"/>
-        <Setter Property="Template">
-            <ControlTemplate>
-                <mxev:EditorInactiveContainer Name="PART_InactiveContentContainer" ColumnDefinitions="Auto, *, Auto" >
-                    <DockPanel Name="PART_RealEditorPresenterContainer" Grid.Column="1">
-                        <TextBlock DockPanel.Dock="Left"
-                                   Name="PART_RealEditorPresenter"
-                                   TextTrimming="CharacterEllipsis"
-                                   mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"/>
-                    </DockPanel>
-                </mxev:EditorInactiveContainer>
-            </ControlTemplate>
-        </Setter>
 
         <Style Selector="^:activeMode">
             <Setter Property="PopupContent">

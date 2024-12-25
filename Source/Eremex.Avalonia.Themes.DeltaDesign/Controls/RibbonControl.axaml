@@ -167,41 +167,6 @@
             </ControlTemplate>
         </Setter>
 
-        <!-- PointerOver, Focused State -->
-        <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Primary/Hover}" />
-        </Style>
-
-        <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/On Accent/Primary}" />
-        </Style>
-
-        <Style Selector="^:pointerover /template/ Border#PART_ButtonBorder">
-            <Setter Property="BorderBrush" Value="Transparent" />
-        </Style>
-
-        <!-- Pressed State -->
-        <Style Selector="^:pressed /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Primary/Pressed}" />
-        </Style>
-
-        <Style Selector="^:pressed  /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/On Accent/Primary}" />
-            <Setter Property="Opacity" Value="0.8" />
-        </Style>
-
-        <!-- Disabled State -->
-        <Style Selector="^:disabled /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="Transparent" />
-        </Style>
-
-        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource ButtonForegroundDisabled}" />
-        </Style>
-
         <!-- Only Glyph -->
         <Style Selector="^/template/mxti|ToolbarItemLayoutPanel#PART_LayoutPanel">
 
@@ -334,8 +299,8 @@
                                         <Setter Property="MinHeight" Value="24" />
                                     </Style>
                                     <Style
-                                        Selector=":is(mxe|TextEditor)[EditorMode=InplaceActive]:focus-within /template/ Border#PART_RootBorder,
-															:is(mxe|PopupEditor)[EditorMode=InplaceActive]:focus-in-popup /template/ Border#PART_RootBorder">
+                                        Selector=":is(mxe|TextEditor):activeMode:focus-within,
+															:is(mxe|PopupEditor):activeMode:focus-in-popup">
                                         <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
                                     </Style>
                                 </ContentPresenter.Styles>
@@ -369,8 +334,8 @@
                                         <Setter Property="MinHeight" Value="24" />
                                     </Style>
                                     <Style
-                                        Selector=":is(mxe|TextEditor)[EditorMode=InplaceActive]:focus-within /template/ Border#PART_RootBorder,
-															:is(mxe|PopupEditor)[EditorMode=InplaceActive]:focus-in-popup /template/ Border#PART_RootBorder">
+                                        Selector=":is(mxe|TextEditor):activeMode:focus-within,
+															:is(mxe|PopupEditor):activeMode:focus-in-popup">
                                         <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
                                     </Style>
                                 </ContentPresenter.Styles>
@@ -397,7 +362,9 @@
                     <Grid>
                         <ContentControl x:Name="PART_Border">
                             <Grid ColumnDefinitions="Auto, *">
-                                <Image x:Name="PART_Image" />
+                                <Image x:Name="PART_Image" 
+                                       Source="{TemplateBinding Glyph}"
+                                       IsVisible="{Binding Path=Glyph, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"/>
                                 <ContentPresenter Grid.Column="1" x:Name="PART_TextSelected" Opacity="0"
                                                   Content="{TemplateBinding Header}" />
                                 <ContentPresenter Grid.Column="1" x:Name="PART_Text" Content="{TemplateBinding Header}" />
@@ -424,6 +391,10 @@
             <Setter Property="Margin" Value="12, 4, 12, 2" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
+        
+        <Style Selector="^/template/Image#PART_Image">
+            <Setter Property="Margin" Value="0, 0, 4, 0" />
         </Style>
 
         <Style Selector="^:pointerover/template/Border#PART_Indicator">
@@ -613,7 +584,7 @@
                     <StackPanel Orientation="Horizontal">
                         <ContentControl x:Name="PART_BorderControl">
                             <Grid>
-                                <Grid RowDefinitions="Auto,*, Auto"
+                                <Grid RowDefinitions="*, Auto"
                                       IsVisible="{Binding !IsCollapsed, RelativeSource={RelativeSource TemplatedParent}}">
                                     <ContentPresenter Name="PART_ItemsPresenter">
                                         <ContentPresenter.Styles>
@@ -621,14 +592,13 @@
                                                 <Setter Property="MinHeight" Value="24" />
                                             </Style>
                                             <Style
-                                                Selector=":is(mxe|TextEditor)[EditorMode=InplaceActive]:focus-within /template/ Border#PART_RootBorder,
-															        :is(mxe|PopupEditor)[EditorMode=InplaceActive]:focus-in-popup /template/ Border#PART_RootBorder">
-                                                <Setter Property="BorderBrush"
-                                                        Value="{DynamicResource Outline/Accent/Focus}" />
+                                                Selector=":is(mxe|TextEditor):activeMode:focus-within,
+															:is(mxe|PopupEditor):activeMode:focus-in-popup">
+                                                <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
                                             </Style>
                                         </ContentPresenter.Styles>
                                     </ContentPresenter>
-                                    <ContentControl Grid.Row="2" x:Name="PART_HeaderControl"
+                                    <ContentControl Grid.Row="1" x:Name="PART_HeaderControl"
                                                     IsVisible="{TemplateBinding RibbonCommandLayout,
                                                     Converter={x:Static ObjectConverters.Equal},
                                                     ConverterParameter={x:Static mxr:RibbonCommandLayout.Classic}}">
@@ -794,8 +764,8 @@
                                 <Setter Property="Padding" Value="{StaticResource EditorContentPaddingInPopupMenu}" />
                             </Style>
                             <Style
-                                Selector=":is(mxe|TextEditor)[EditorMode=InplaceActive]:focus-within /template/ Border#PART_RootBorder,
-															:is(mxe|PopupEditor)[EditorMode=InplaceActive]:focus-in-popup /template/ Border#PART_RootBorder">
+                                Selector=":is(mxe|TextEditor):activeMode:focus-within,
+															:is(mxe|PopupEditor):activeMode:focus-in-popup">
                                 <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
                             </Style>
                         </mx:ShadowControl.Styles>

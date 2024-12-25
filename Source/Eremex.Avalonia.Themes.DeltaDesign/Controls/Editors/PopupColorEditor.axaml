@@ -42,33 +42,21 @@
         <Setter Property="PopupBottomOffset" Value="{DynamicResource PopupBottomOffset}"/>
         <Setter Property="Template">
             <ControlTemplate>
-                <mxev:EditorInactiveContainer Name="PART_InactiveContentContainer" ColumnDefinitions="Auto, *, Auto" >
-                    <DockPanel Name="PART_RealEditorPresenterContainer" Grid.Column="1">
-                        <Border DockPanel.Dock="Left" Name="PART_ColorValuePresenter" Grid.Column="1"
-                                BorderBrush="{DynamicResource PopupColorEditorColorIndicatorBorderBrush}"
-                                BorderThickness="{StaticResource EditorBorderThickness}"
-                                Height="{StaticResource PopupColorEditorColorPresenterHeight}"
-                                Width="{StaticResource PopupColorEditorColorPresenterWidth}"/>
-                        <TextBlock DockPanel.Dock="Left"
-                                   Name="PART_RealEditorPresenter"
-                                   TextTrimming="CharacterEllipsis"
-                                   mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"/>
-                    </DockPanel>
-                </mxev:EditorInactiveContainer>
+                <DockPanel x:Name="PART_InactiveContentContainer">
+                    <mxev:MxTextBlock x:Name="PART_RealEditorPresenter"
+                                      TextBlock.TextTrimming="CharacterEllipsis"
+                                      mxc:TextBlockHelper.ShowTooltipWhenTrimming="True">
+                        <mxev:MxTextBlock.CustomContent>
+                            <Border Name="PART_ColorValuePresenter"
+                                    BorderBrush="{DynamicResource PopupColorEditorColorIndicatorBorderBrush}"
+                                    BorderThickness="{StaticResource EditorBorderThickness}"
+                                    Height="{StaticResource PopupColorEditorColorPresenterHeight}"
+                                    Width="{StaticResource PopupColorEditorColorPresenterWidth}"/>
+                        </mxev:MxTextBlock.CustomContent>
+                    </mxev:MxTextBlock>
+                </DockPanel>
             </ControlTemplate>
         </Setter>
-
-        <Style Selector="^[EditorMode=InplaceInactive]">
-            <Style Selector="^ /template/ Border#PART_ColorValuePresenter">
-                <Setter Property="Margin" Value="{Binding  $parent[mxe:PopupColorEditor].Padding, Converter={StaticResource EditorSplitterConverter}, ConverterParameter=Right}"/>
-            </Style>
-            <Style Selector="^[ShowText=False] /template/ Border#PART_ColorValuePresenter">
-                <Setter Property="Margin" Value="0"/>
-            </Style>
-            <Style Selector="^[ShowText=False] /template/ TextBlock#PART_RealEditorPresenter">
-                <Setter Property="IsVisible" Value="False"/>
-            </Style>
-        </Style>
 
         <Style Selector="^:activeMode">
             <Setter Property="PopupContent">

@@ -107,16 +107,13 @@
     <ControlTheme x:Key="{x:Type mxtlv:TreeListCellControl}" TargetType="mxtlv:TreeListCellControl" BasedOn="{StaticResource {x:Type mxdcv:CellControl}}">
         <Setter Property="Template">
             <ControlTemplate>
-                <Grid Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
-                    <Border x:Name="CellBorder"
-									BorderBrush="{TemplateBinding BorderBrush}"
-									BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid x:Name="PART_LayoutPanel">
-                            <mxdcv:CellEditor x:Name="PART_CellEditor" Background="Transparent"/>
-                        </Grid>
-                    </Border>
-                    <Border x:Name="FocusBorder" />
-                </Grid>
+                <Border x:Name="CellBorder" Background="{TemplateBinding Background}"
+                        BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}"
+                        BorderThickness="0,0,1,0">
+                    <Grid x:Name="PART_LayoutPanel">
+                        <mxdcv:CellEditor x:Name="PART_CellEditor" Background="Transparent"/>
+                    </Grid>
+                </Border>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
