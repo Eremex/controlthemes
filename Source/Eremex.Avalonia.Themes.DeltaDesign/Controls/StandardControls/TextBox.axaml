@@ -85,25 +85,23 @@
                                     <TextBlock Name="PART_FloatingWatermark"
                                                Text="{TemplateBinding Watermark}"
                                                DockPanel.Dock="Top" />
-                                    <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
-                                                  VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
-                                        <Panel>
-                                            <Grid ColumnDefinitions="Auto, *"
-                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                                <PathIcon Width="{StaticResource ErrorIconSize}"
-                                                          Height="{StaticResource ErrorIconSize}"
-                                                          Data="{StaticResource ErrorIcon}"
-                                                          x:Name="PART_ErrorIndicator"
-                                                          Foreground="{DynamicResource EditorsErrorIconBrush}"
-                                                          VerticalAlignment="Center"/>
-                                                <TextBlock Name="PART_Watermark" Grid.Column="1"
+                                    <Grid ColumnDefinitions="Auto, *" Name="PART_ContentPanel"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
+                                        <Image Source="{x:Static icons:Basic.Error}"
+                                               x:Name="PART_ErrorIndicator"
+                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                                                      VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
+                                                      Grid.Column="1">
+                                            <Panel>
+                                                <TextBlock Name="PART_Watermark"
                                                            Text="{TemplateBinding Watermark}"
                                                            TextAlignment="{TemplateBinding TextAlignment}"
                                                            TextWrapping="{TemplateBinding TextWrapping}"
                                                            IsVisible="{TemplateBinding Text, Converter={x:Static StringConverters.IsNullOrEmpty}}"
                                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                                <TextPresenter Name="PART_TextPresenter" Grid.Column="1"
+                                                <TextPresenter Name="PART_TextPresenter"
                                                                Text="{TemplateBinding Text, Mode=TwoWay}"
                                                                CaretIndex="{TemplateBinding CaretIndex}"
                                                                SelectionStart="{TemplateBinding SelectionStart}"
@@ -116,9 +114,9 @@
                                                                SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
                                                                CaretBrush="{TemplateBinding CaretBrush}"
                                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                            </Grid>
-                                        </Panel>
-                                    </ScrollViewer>
+                                            </Panel>
+                                        </ScrollViewer>
+                                    </Grid>
                                 </DockPanel>
                                 <ContentPresenter x:Name="PART_ReadOnlyContentContainer"
                                                   Grid.Column="1"
@@ -222,7 +220,7 @@
             <Setter Property="IsVisible" Value="False" />
         </Style>
 
-        <Style Selector="^ /template/ PathIcon#PART_ErrorIndicator">
+        <Style Selector="^ /template/ Image#PART_ErrorIndicator">
             <Setter Property="IsVisible" Value="False" />
         </Style>
 

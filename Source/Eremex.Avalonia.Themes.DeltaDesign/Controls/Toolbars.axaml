@@ -52,11 +52,22 @@
             <Thickness x:Key="PopupMenuHeaderPadding">8,5,8,5</Thickness>
             <Thickness x:Key="ToolbarItemGlyphMargin">6</Thickness>
             <Thickness x:Key="ToolbarItemContentMargin">8,6,8,6</Thickness>
+            
             <Thickness x:Key="ToolbarItemArrowMargin">6</Thickness>
             <Thickness x:Key="PopupMenuScrollButtonPadding">5</Thickness>
             
             <Thickness x:Key="ToolbarItemLeftContentMargin">8,6,6,6</Thickness>
             <Thickness x:Key="ToolbarItemRightContentMargin">0,6,8,6</Thickness>
+            
+            <Thickness x:Key="ToolbarItemGlyphMarginWithCheckBoxLeft">3,6,6,6</Thickness>
+            <Thickness x:Key="ToolbarItemGlyphMarginWithCheckBoxRight">6,6,3,6</Thickness>
+            <Thickness x:Key="ToolbarItemContentMarginWithCheckBoxLeft">3,6,8,6</Thickness>
+            <Thickness x:Key="ToolbarItemContentMarginWithCheckBoxRight">8,6,3,6</Thickness>
+            <Thickness x:Key="ToolbarItemLeftContentMarginWithCheckBoxLeft">3,6,6,6</Thickness>
+            <Thickness x:Key="ToolbarItemRightContentMarginWithCheckBoxLeft">0,6,8,6</Thickness>
+            <Thickness x:Key="ToolbarItemLeftContentMarginWithCheckBoxRight">8,6,6,6</Thickness>
+            <Thickness x:Key="ToolbarItemRightContentMarginWithCheckBoxRight">0,6,3,6</Thickness>
+            
             <Thickness x:Key="ToolbarItemBottomContentMargin">8,0,8,6</Thickness>
             
             <Thickness x:Key="ToolbarItemLeftContentArrowMargin">6,6,2,6</Thickness>
@@ -947,11 +958,112 @@
         <!-- TextItem -->
     </ControlTheme>
     
+    <ControlTheme x:Key="{x:Type mxti:ToolbarCheckBox}" TargetType="mxti:ToolbarCheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+        
+    </ControlTheme>
+    
+    <ControlTheme x:Key="{x:Type mxti:ToolbarRadioButton}" TargetType="mxti:ToolbarRadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
+        
+    </ControlTheme>
+    
     <ControlTheme x:Key="{x:Type mxti:ToolbarCheckItemLayoutPanel}" TargetType="mxti:ToolbarCheckItemLayoutPanel" BasedOn="{StaticResource ToolbarItemLayoutPanelBase}">
         <!-- CheckItem -->
         <Style Selector="^.Menu">
             <Setter Property="GlyphTemplate" Value="{DynamicResource MxToolbarCheckItemGlyphTemplate}" />
         </Style>
+        
+        <Style Selector="^[CheckBoxStyle=CheckBox]">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="CheckBoxTemplate">
+                <Setter.Value>
+                    <DataTemplate DataType="mxt:ToolbarCheckItem">
+                        <mxti:ToolbarCheckBox x:Name="PART_Check" 
+                                              Padding="0" 
+                                              Margin="0" 
+                                              Focusable="False" 
+                                              IsHitTestVisible="False"
+                                              IsOwnerPointerOver="{Binding IsPointerOver}"
+                                              IsChecked="{Binding IsChecked}"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style Selector="^[CheckBoxStyle=RadioButton]">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="CheckBoxTemplate">
+                <Setter.Value>
+                    <DataTemplate DataType="mxt:ToolbarCheckItem">
+                        <mxti:ToolbarRadioButton x:Name="PART_Radio" 
+                                                 Padding="0" 
+                                                 Margin="0" 
+                                                 Focusable="False" 
+                                                 IsHitTestVisible="False"
+                                                 IsOwnerPointerOver="{Binding IsPointerOver}"
+                                                 IsChecked="{Binding IsChecked}"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Only Content -->
+        <Style Selector="^[CheckBoxStyle=CheckBox][CheckBoxAlignment=Before].LayoutContent, ^[CheckBoxStyle=RadioButton][CheckBoxAlignment=Before].LayoutContent">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="IsHitTestVisible" Value="True"/>
+            <Setter Property="ContentMargin" Value="{StaticResource ToolbarItemContentMarginWithCheckBoxLeft}" />
+        </Style>
+
+        <!-- Only Glyph -->
+        <Style Selector="^[CheckBoxStyle=CheckBox][CheckBoxAlignment=Before].LayoutGlyph,^[CheckBoxStyle=RadioButton][CheckBoxAlignment=Before].LayoutGlyph">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="IsHitTestVisible" Value="True"/>
+            <Setter Property="GlyphMargin" Value="{StaticResource ToolbarItemGlyphMarginWithCheckBoxLeft}" />
+        </Style>
+        
+        <!-- Only Content -->
+        <Style Selector="^[CheckBoxStyle=CheckBox][CheckBoxAlignment=After].LayoutContent,^[CheckBoxStyle=RadioButton][CheckBoxAlignment=After].LayoutContent">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="IsHitTestVisible" Value="True"/>
+            <Setter Property="ContentMargin" Value="{StaticResource ToolbarItemContentMarginWithCheckBoxRight}" />
+        </Style>
+
+        <!-- Only Glyph -->
+        <Style Selector="^[CheckBoxStyle=CheckBox][CheckBoxAlignment=After].LayoutGlyph,^[CheckBoxStyle=RadioButton][CheckBoxAlignment=After].LayoutGlyph">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="IsHitTestVisible" Value="True"/>
+            <Setter Property="GlyphMargin" Value="{StaticResource ToolbarItemGlyphMarginWithCheckBoxRight}" />
+        </Style>
+
+        <!-- Glyph <> Content -->
+        <Style Selector="^[CheckBoxStyle=CheckBox][CheckBoxAlignment=Before].LayoutGlyphLeftContentRight,^[CheckBoxStyle=RadioButton][CheckBoxAlignment=Before].LayoutGlyphLeftContentRight">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="IsHitTestVisible" Value="True"/>
+            <Setter Property="GlyphMargin" Value="{StaticResource ToolbarItemLeftContentMarginWithCheckBoxLeft}" />
+            <Setter Property="ContentMargin" Value="{StaticResource ToolbarItemRightContentMarginWithCheckBoxLeft}" />
+        </Style>
+
+        <Style Selector="^[CheckBoxStyle=CheckBox][CheckBoxAlignment=Before].LayoutContentLeftGlyphRight,^[CheckBoxStyle=RadioButton][CheckBoxAlignment=Before].LayoutContentLeftGlyphRight">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="IsHitTestVisible" Value="True"/>
+            <Setter Property="ContentMargin" Value="{StaticResource ToolbarItemLeftContentMarginWithCheckBoxLeft}" />
+            <Setter Property="GlyphMargin" Value="{StaticResource ToolbarItemRightContentMarginWithCheckBoxLeft}" />
+        </Style>
+        
+        <!-- Glyph <> Content -->
+        <Style Selector="^[CheckBoxStyle=CheckBox][CheckBoxAlignment=After].LayoutGlyphLeftContentRight,^[CheckBoxStyle=RadioButton][CheckBoxAlignment=After].LayoutGlyphLeftContentRight">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="IsHitTestVisible" Value="True"/>
+            <Setter Property="GlyphMargin" Value="{StaticResource ToolbarItemLeftContentMarginWithCheckBoxRight}" />
+            <Setter Property="ContentMargin" Value="{StaticResource ToolbarItemRightContentMarginWithCheckBoxRight}" />
+        </Style>
+
+        <Style Selector="^[CheckBoxStyle=CheckBox][CheckBoxAlignment=After].LayoutContentLeftGlyphRight,^[CheckBoxStyle=RadioButton][CheckBoxAlignment=After].LayoutContentLeftGlyphRight">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="IsHitTestVisible" Value="True"/>
+            <Setter Property="ContentMargin" Value="{StaticResource ToolbarItemLeftContentMarginWithCheckBoxRight}" />
+            <Setter Property="GlyphMargin" Value="{StaticResource ToolbarItemRightContentMarginWithCheckBoxRight}" />
+        </Style>
+        
         <!-- CheckItem -->
     </ControlTheme>
 
@@ -1610,7 +1722,7 @@
             </Setter>
         </Style>
     </ControlTheme>
-
+    
     <ControlTheme x:Key="{x:Type mxt:ToolbarCheckItem}" TargetType="mxt:ToolbarCheckItem" BasedOn="{StaticResource ToolbarItemBase}">
         <Setter Property="Template">
             <ControlTemplate>

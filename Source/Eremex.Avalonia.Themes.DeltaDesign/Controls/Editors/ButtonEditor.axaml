@@ -117,12 +117,12 @@
                                         <Button Name="PART_ClearTextButton"
                                                 Theme="{StaticResource EditorIconButtonBaseTheme}"
                                                 Command="{Binding $parent[TextBox].Clear}" >
-                                            <PathIcon Width="8"
-                                                      Height="8"
-                                                      Data="{StaticResource ClearCrossIcon}"
-                                                      Foreground="{Binding #PART_ClearTextButton.Foreground}"
-                                                      VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
+                                            <Path Width="8"
+                                                  Height="8"
+                                                  Data="{StaticResource ClearCrossIcon}"
+                                                  Fill="{Binding #PART_ClearTextButton.Foreground}"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
                                             <Button.IsVisible>
                                                 <MultiBinding Converter="{x:Static BoolConverters.And}">
                                                     <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"

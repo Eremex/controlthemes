@@ -41,12 +41,10 @@
                         IsVisible="{Binding $parent[mxe:ColorEditor].IsColorPickerVisible}"
                         Theme="{StaticResource EditorIconButtonBaseTheme}"
                         Focusable="False">
-                    <PathIcon Width="5"
-                              Height="8"
-                              Data="{StaticResource ChevronLeftIcon}"
-                              Foreground="{Binding #PART_BackButton.Foreground}"
-                              VerticalAlignment="Center"
-                              HorizontalAlignment="Center"/>
+                    <Path Data="{StaticResource ChevronLeftIcon}"
+                          Fill="{Binding #PART_BackButton.Foreground}"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"/>
                     <Button.CommandParameter>
                         <sys:Boolean>False</sys:Boolean>
                     </Button.CommandParameter>
@@ -63,12 +61,10 @@
                         Command="{Binding $parent[mxe:ColorEditor].CloseCommand}"
                         Theme="{StaticResource EditorIconButtonBaseTheme}"
                         Focusable="False">
-                    <PathIcon Width="8"
-                              Height="8"
-                              Data="{StaticResource ClearCrossIcon}"
-                              Foreground="{Binding #PART_CloseButton.Foreground}"
-                              VerticalAlignment="Center"
-                              HorizontalAlignment="Center"/>
+                    <Path Data="{StaticResource ClearCrossIcon}"
+                          Fill="{Binding #PART_CloseButton.Foreground}"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"/>
                 </Button>
             </Grid>
         </Border>

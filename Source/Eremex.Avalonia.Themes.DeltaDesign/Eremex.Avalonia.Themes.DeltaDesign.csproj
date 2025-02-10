@@ -8,6 +8,7 @@
 		<Description>A collection of themes for the Eremex Avalonia UI Controls.</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<NuspecProperties>$(NuspecProperties);version=$(Version)</NuspecProperties>
+                <PackageLicenseFile>eula.txt</PackageLicenseFile>
         <NuspecProperties>$(NuspecProperties);configuration=$(Configuration)</NuspecProperties>
 		<NuspecFile>Eremex.Avalonia.Themes.DeltaDesign.nuspec</NuspecFile>
         <Nullable>enable</Nullable>
@@ -17,6 +18,9 @@
 		<Configurations>Debug;Release</Configurations>
 
 	</PropertyGroup>
+        <ItemGroup>
+           <None Include="..\..\eula.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
+        </ItemGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
 		<DebugSymbols>true</DebugSymbols>
 	</PropertyGroup>
@@ -33,12 +37,12 @@
 		<PackageReference Include="Avalonia.Svg.Skia" />
 		<PackageReference Include="SkiaSharp" />
 		<PackageReference Include="System.Resources.Extensions" />
-		<PackageReference Include="Eremex.Avalonia.Controls" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
-	  <AvaloniaResource Include="**/*.axaml" />
-    <EmbeddedResource Include="Palettes\*.css" />
+		<PackageReference Include="Eremex.Avalonia.Controls"/>
+		<AvaloniaResource Include="**/*.axaml"/>
+		<EmbeddedResource Include="Palettes\*.css"/>
 	</ItemGroup>
 
 	<ItemGroup>
