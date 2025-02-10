@@ -58,19 +58,15 @@
                                 BorderBrush="{DynamicResource CalendarItemHeaderBorderBrush}"/>
                         <Grid ColumnDefinitions="Auto, *, Auto" >
                             <Button Name="PART_PreviousButton" Grid.Column="0" Theme="{StaticResource EditorIconButtonBaseTheme}" HorizontalContentAlignment="Center">
-                                <PathIcon Width="5"
-                                          Height="8"
-                                          Data="{StaticResource ChevronLeftIcon}"
-                                          Foreground="{Binding #PART_PreviousButton.Foreground}"/>
+                                <Path Data="{StaticResource ChevronLeftIcon}"
+                                      Fill="{Binding #PART_PreviousButton.Foreground}"/>
                             </Button>
                             <Button Name="PART_HeaderButton" Grid.Column="1" Classes="CalendarHeader" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                             <Button Name="PART_NextButton" Grid.Column="2"
                                     Theme="{StaticResource EditorIconButtonBaseTheme}"
                                     HorizontalContentAlignment="Center">
-                                <PathIcon Width="5"
-                                          Height="8"
-                                          Data="{StaticResource ChevronRightIcon}"
-                                          Foreground="{Binding #PART_NextButton.Foreground}"/>
+                                <Path Data="{StaticResource ChevronRightIcon}"
+                                      Fill="{Binding #PART_NextButton.Foreground}"/>
                             </Button>
                         </Grid>
                         <Border Name="BackgroundLayer" Background="{TemplateBinding Background}" Grid.Row="1" />

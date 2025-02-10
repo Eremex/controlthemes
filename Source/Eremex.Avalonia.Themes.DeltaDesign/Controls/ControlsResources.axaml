@@ -8,7 +8,6 @@
     <x:Double x:Key="ControlContentThemeFontSize">12</x:Double>
 
 	<mxev:SplitterThicknessConverter x:Key="EditorSplitterConverter"/>
-	<mxev:SplitterThicknessConverter Factor="0.5" x:Key="ErrorIconSplitterThicknessConverter"/>
 
 	<StreamGeometry x:Key="ChevronUpIcon">M0.146447 4.35355C0.341709 4.54882 0.658291 4.54882 0.853553 4.35355L4 1.20711L7.14645 4.35355C7.34171 4.54882 7.65829 4.54882 7.85355 4.35355C8.04882 4.15829 8.04882 3.84171 7.85355 3.64645L4.35355 0.146447C4.15829 -0.0488157 3.84171 -0.0488157 3.64645 0.146447L0.146447 3.64645C-0.0488155 3.84171 -0.0488155 4.15829 0.146447 4.35355Z</StreamGeometry>
 	<StreamGeometry x:Key="ChevronDownIcon">M0.146447 0.646447C0.341709 0.451184 0.658291 0.451184 0.853553 0.646447L4 3.79289L7.14645 0.646447C7.34171 0.451184 7.65829 0.451184 7.85355 0.646447C8.04882 0.841709 8.04882 1.15829 7.85355 1.35355L4.35355 4.85355C4.15829 5.04882 3.84171 5.04882 3.64645 4.85355L0.146447 1.35355C-0.0488155 1.15829 -0.0488155 0.841709 0.146447 0.646447Z</StreamGeometry>
@@ -22,7 +21,6 @@
 	<StreamGeometry x:Key="CheckBoxCheckIcon">M9.70636 0.154788C10.0351 0.406808 10.0973 0.877594 9.84524 1.20632L4.09524 8.70632C3.95426 8.8902 3.7362 8.9986 3.50449 8.99998C3.27278 9.00136 3.05345 8.89556 2.91029 8.71336L0.160293 5.21336C-0.0956169 4.88765 -0.0390379 4.41616 0.286666 4.16025C0.61237 3.90434 1.08386 3.96092 1.33977 4.28663L3.49276 7.0268L8.65483 0.293669C8.90685 -0.0350537 9.37763 -0.097233 9.70636 0.154788Z</StreamGeometry>
     <RectangleGeometry x:Key="CheckBoxIndeterminateIcon" Rect="0,0,6,6" RadiusX="0.5" RadiusY="0.5"/>
 
-	<StreamGeometry x:Key="ErrorIcon">M7.15302 2C6.54447 2 6.07701 2.53899 6.16307 3.14142L6.87736 8.14142C6.94773 8.63407 7.36966 9 7.86731 9H8.13271C8.63036 9 9.05229 8.63407 9.12266 8.14142L9.83695 3.14142C9.92301 2.53899 9.45555 2 8.847 2H7.15302Z M8.00001 11C7.17158 11 6.50001 11.6716 6.50001 12.5C6.50001 13.3284 7.17158 14 8.00001 14C8.82844 14 9.50001 13.3284 9.50001 12.5C9.50001 11.6716 8.82844 11 8.00001 11Z</StreamGeometry>
 	<StreamGeometry x:Key="AddColorIcon">M5.5 0C5.77614 0 6 0.223858 6 0.5V5H10.5C10.7761 5 11 5.22386 11 5.5C11 5.77614 10.7761 6 10.5 6H6V10.5C6 10.7761 5.77614 11 5.5 11C5.22386 11 5 10.7761 5 10.5V6H0.5C0.223858 6 0 5.77614 0 5.5C0 5.22386 0.223858 5 0.5 5H5V0.5C5 0.223858 5.22386 0 5.5 0Z</StreamGeometry>
 
 	<x:Double x:Key="EditorFontSize">12</x:Double>
@@ -37,9 +35,11 @@
 	<Thickness x:Key="EditorTopBorderThickness">0,1,0,0</Thickness>
 	<Thickness x:Key="TextEditorPadding">8,4,8,4</Thickness>
 	<Thickness x:Key="ErrorTextPresenterMargin">4,4,4,4</Thickness>
-	<x:Double x:Key="ErrorIconSize">12</x:Double>
+	<x:Double x:Key="ErrorIconSize">16</x:Double>
 
     <Thickness x:Key="EditorIconButtonPadding">6,4</Thickness>
+    <Thickness x:Key="SpinEditorIncreaseButtonPadding">0,0,0,1</Thickness>
+    <Thickness x:Key="SpinEditorDecreaseButtonPadding">0,1,0,0</Thickness>
 
 	<CornerRadius x:Key="PopupCornerRadius">8</CornerRadius>
 	<CornerRadius x:Key="PopupHeaderCornerRadius">8,8,0,0</CornerRadius>

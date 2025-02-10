@@ -36,6 +36,7 @@
                 <ResourceInclude Source="/Controls/StandardControls/Expander.axaml" />
                 
                 <utils:DesignOnlyResourceProvider Source="/Controls/StandardControls/DesignOnlyWindow.axaml" />
+                <utils:WebOnlyResourceProvider Source="/Controls/StandardControls/EmbeddableControlRoot.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Styles.Resources>

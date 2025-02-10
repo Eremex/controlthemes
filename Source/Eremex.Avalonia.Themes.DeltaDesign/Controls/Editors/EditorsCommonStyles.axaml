@@ -34,11 +34,10 @@
            mxe|CheckEditor[EditorMode=InplaceInactive] CheckBox /template/ Grid#RootGrid">
         <Setter Property="Margin" Value="{StaticResource CheckEditorPadding}"/>
     </Style>
-    <Style Selector=":is(mxe|TextEditor)[ActualErrorShowMode=Inplace]:activeMode /template/ TextBox#PART_RealEditor /template/ PathIcon#PART_ErrorIndicator">
+    <Style Selector=":is(mxe|TextEditor)[ActualErrorShowMode=Inplace]:activeMode /template/ TextBox#PART_RealEditor /template/ Image#PART_ErrorIndicator">
         <Setter Property="IsVisible" Value="True"/>
-        <Setter Property="Margin" Value="{Binding $parent[mxe:BaseEditor].Padding, Converter={StaticResource ErrorIconSplitterThicknessConverter}, ConverterParameter=Right}"/>
     </Style>
-    <Style Selector=":is(mxe|SpinEditor)[IsTextEditable=False][ActualErrorShowMode=Inplace]:activeMode /template/ TextBox#PART_RealEditor /template/ PathIcon#PART_ErrorIndicator">
+    <Style Selector=":is(mxe|SpinEditor)[IsTextEditable=False][ActualErrorShowMode=Inplace]:activeMode /template/ TextBox#PART_RealEditor /template/ Image#PART_ErrorIndicator">
         <Setter Property="IsVisible" Value="False"/>
     </Style>
     <Style Selector=":is(mxe|SpinEditor)[IsTextEditable=False]:activeMode /template/ TextBox#PART_RealEditor /template/ DockPanel#PART_InnerDockPanel">

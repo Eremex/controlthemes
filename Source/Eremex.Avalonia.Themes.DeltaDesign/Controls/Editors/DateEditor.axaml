@@ -29,6 +29,23 @@
 
     <sys:Double x:Key="DateEditorPopupWidth">256</sys:Double>
 
+    <ControlTheme x:Key="DateEditorClearButtonTheme" TargetType="Button" BasedOn="{StaticResource SetNullValuePopupButtonTheme}">
+        <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonWarningForeground}" />
+        </Style>
+        <Style Selector="^:pointerover, ^:focus">
+            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource ButtonWarningForegroundPointerOver}" />
+            </Style>
+        </Style>
+        <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonWarningForegroundPressed}" />
+        </Style>
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource ButtonWarningForegroundDisabled}" />
+        </Style>
+    </ControlTheme>
+
     <ControlTheme x:Key="{x:Type mxe:DateEditor}" TargetType="mxe:DateEditor" BasedOn="{StaticResource {x:Type mxe:PopupEditor}}">
         <Setter Property="PopupWidth" Value="{DynamicResource DateEditorPopupWidth}"/>
         <Style Selector="^:activeMode">
@@ -47,7 +64,7 @@
                                     Width="116" Theme="{StaticResource PopupFooterButtonTheme}"
                                     IsVisible="{Binding $parent[mxe:PopupEditor].ShowToday}"
                                     Command="{Binding $parent[mxe:PopupEditor].SetTodayCommand}"/>
-                            <Button x:Name="PART_SetNullValueButton" Theme="{StaticResource SetNullValuePopupButtonTheme}" Classes="warning" Width="116" Grid.Column="1" Margin="0"/>
+                            <Button x:Name="PART_SetNullValueButton" Theme="{StaticResource DateEditorClearButtonTheme}" Width="116" Grid.Column="1" Margin="0"/>
                         </Grid>
                     </Grid>
                 </ControlTemplate>
