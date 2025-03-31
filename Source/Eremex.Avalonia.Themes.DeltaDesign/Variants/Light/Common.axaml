@@ -44,4 +44,7 @@
     <Thickness x:Key="MxToolTipBorderThemeThickness/NoShadow">1</Thickness>
 
     <BoxShadows x:Key="ToggleSwitchBoxShadow">0 0.39 1.45 0 #06000000, 0 0 1 0 #32000000</BoxShadows>
+
+    <Thickness x:Key="NotificationCardBorderThemeThickness">0</Thickness>
+    <Thickness x:Key="NotificationCardBorderThemeThickness/NoShadow">1</Thickness>
 </ResourceDictionary>

@@ -129,7 +129,7 @@
                             <Grid ColumnDefinitions="Auto,*,Auto" >
                                 <ContentPresenter Content="{TemplateBinding InnerLeftContent}"/>
                                 <DockPanel x:Name="PART_InnerDockPanel" Grid.Column="1"
-                                           Margin="{TemplateBinding Padding}">
+                                           Margin="{TemplateBinding Padding}" Background="Transparent">
                                     <Grid ColumnDefinitions="Auto, Auto, *, Auto" Name="PART_ContentPanel"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                         <TextBlock Name="PART_PrefixPresenter"
@@ -146,7 +146,7 @@
                                         <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
                                                       VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
                                                       Grid.Column="2">
-                                            <Panel>
+                                            <Panel MinWidth="2">
                                                 <TextBlock Name="PART_Watermark"
                                                            Text="{TemplateBinding Watermark}"
                                                            TextAlignment="{TemplateBinding TextAlignment}"

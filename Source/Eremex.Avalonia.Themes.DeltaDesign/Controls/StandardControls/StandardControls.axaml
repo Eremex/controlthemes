@@ -34,6 +34,8 @@
                 <ResourceInclude Source="/Controls/StandardControls/CalendarControl.axaml"/>
                 <ResourceInclude Source="/Controls/StandardControls/ToggleButton.axaml" />
                 <ResourceInclude Source="/Controls/StandardControls/Expander.axaml" />
+                <ResourceInclude Source="/Controls/StandardControls/NotificationCard.axaml" />
+                <ResourceInclude Source="/Controls/StandardControls/WindowNotificationManager.axaml" />
                 
                 <utils:DesignOnlyResourceProvider Source="/Controls/StandardControls/DesignOnlyWindow.axaml" />
                 <utils:WebOnlyResourceProvider Source="/Controls/StandardControls/EmbeddableControlRoot.axaml" />

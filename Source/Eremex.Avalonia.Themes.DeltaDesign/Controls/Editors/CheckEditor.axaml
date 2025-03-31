@@ -69,6 +69,8 @@
                                           CornerRadius="{TemplateBinding CornerRadius}"
                                           BorderBrush="Transparent"
                                           Focusable="{TemplateBinding Focusable}"
+                                          Command="{TemplateBinding Command}"
+                                          CommandParameter="{TemplateBinding CommandParameter}"
                                           BorderThickness="0"
                                           Theme="{StaticResource CheckEditorCheckerTheme}"
                                           MinHeight="0"

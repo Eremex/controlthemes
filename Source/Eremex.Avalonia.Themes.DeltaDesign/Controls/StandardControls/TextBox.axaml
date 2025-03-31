@@ -81,7 +81,7 @@
                                 CornerRadius="{TemplateBinding CornerRadius}">
                             <Grid ColumnDefinitions="Auto,*,Auto" >
                                 <ContentPresenter Grid.Column="0" Grid.ColumnSpan="1" Content="{TemplateBinding InnerLeftContent}"/>
-                                <DockPanel x:Name="PART_InnerDockPanel" Grid.Column="1" Grid.ColumnSpan="1" Margin="{TemplateBinding Padding}">
+                                <DockPanel x:Name="PART_InnerDockPanel" Grid.Column="1" Grid.ColumnSpan="1" Margin="{TemplateBinding Padding}" Background="Transparent">
                                     <TextBlock Name="PART_FloatingWatermark"
                                                Text="{TemplateBinding Watermark}"
                                                DockPanel.Dock="Top" />
@@ -94,7 +94,7 @@
                                         <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
                                                       VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
                                                       Grid.Column="1">
-                                            <Panel>
+                                            <Panel MinWidth="2">
                                                 <TextBlock Name="PART_Watermark"
                                                            Text="{TemplateBinding Watermark}"
                                                            TextAlignment="{TemplateBinding TextAlignment}"

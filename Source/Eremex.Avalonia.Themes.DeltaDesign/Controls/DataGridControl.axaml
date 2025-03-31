@@ -61,10 +61,11 @@
         <Setter Property="RowLevelIndent" Value="22" />
         <Setter Property="Focusable" Value="True" />
         <Setter Property="FocusAdorner" Value="{x:Null}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
         <Setter Property="ColumnMenu" Value="{StaticResource DefaultColumnMenu}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Background="{TemplateBinding Background}" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}" BorderThickness="{TemplateBinding BorderThickness}">
+                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                     <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *">
                         <mxdcv:SearchPanel  x:Name="PART_SearchPanel" IsVisible="{TemplateBinding IsSearchPanelVisible}" SearchText="{Binding SearchText, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                         <Border Grid.Row="1" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}" BorderThickness="0, 0, 0, 1" IsVisible="{Binding ShowGroupPanel, RelativeSource={RelativeSource TemplatedParent}}">

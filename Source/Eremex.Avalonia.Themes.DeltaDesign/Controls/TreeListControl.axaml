@@ -31,11 +31,12 @@
     <ControlTheme x:Key="{x:Type mxtl:TreeListControl}" TargetType="mxtl:TreeListControl">
         <Setter Property="RowLevelIndent" Value="22" />
         <Setter Property="Focusable" Value="True" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
         <Setter Property="FocusAdorner" Value="{x:Null}" />
         <Setter Property="ColumnMenu" Value="{StaticResource DefaultColumnMenu}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Background="{TemplateBinding Background}" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}" BorderThickness="{TemplateBinding BorderThickness}">
+                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                     <Grid RowDefinitions="Auto, Auto, Auto, Auto, *">
                         <mxdcv:SearchPanel x:Name="PART_SearchPanel" IsVisible="{TemplateBinding IsSearchPanelVisible}" SearchText="{Binding SearchText, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                         <mxdcv:ColumnHeaderPanel Grid.Row="1" x:Name="PART_HeadersPanel" IsVisible="{TemplateBinding ShowColumnHeaders}"/>
@@ -105,10 +106,11 @@
     <ControlTheme x:Key="{x:Type mxtlv:TreeListRowControl}" TargetType="mxtlv:TreeListRowControl" BasedOn="{StaticResource {x:Type mxdcv:DataRowControlBase}}" />
 
     <ControlTheme x:Key="{x:Type mxtlv:TreeListCellControl}" TargetType="mxtlv:TreeListCellControl" BasedOn="{StaticResource {x:Type mxdcv:CellControl}}">
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border x:Name="CellBorder" Background="{TemplateBinding Background}"
-                        BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="0,0,1,0">
                     <Grid x:Name="PART_LayoutPanel">
                         <mxdcv:CellEditor x:Name="PART_CellEditor" Background="Transparent"/>

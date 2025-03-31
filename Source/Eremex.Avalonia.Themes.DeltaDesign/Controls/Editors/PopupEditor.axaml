@@ -207,39 +207,15 @@
                                                     Placement="BottomEdgeAlignedLeft"
                                                     IsLightDismissEnabled="{Binding !StaysPopupOpen, RelativeSource={RelativeSource TemplatedParent}}">
                                 <Border x:Name="PopupBorder"
-                                        BorderThickness="{StaticResource EditorBorderThickness}"
-                                        BorderBrush="{DynamicResource PopupBorderBrush}"
-                                        Background="{DynamicResource PopupEditorPopupBackground}"
-                                        HorizontalAlignment="Stretch"
-                                        CornerRadius="{StaticResource PopupCornerRadius}"
-                                        BoxShadow="{DynamicResource PopupBoxShadow}"
-                                        Margin="{DynamicResource PopupBoxShadowMargin}"
-                                        TextElement.FontFamily="{TemplateBinding FontFamily}">
-                                    <Grid RowDefinitions="Auto, *, Auto" ClipToBounds="True">
-                                        <Border x:Name="PART_PopupHeaderContainer"
-                                                Grid.Row="0"
-                                                CornerRadius="{StaticResource PopupHeaderCornerRadius}"
-                                                Background="{DynamicResource PopupEditorPopupHeaderBackground}">
-
-                                        </Border>
-                                        <ContentControl x:Name="PART_PopupHeader"
-                                                        Grid.Row="{TemplateBinding  ActualSizeGripLocation, Converter={StaticResource SizeGripLocationToHeaderRowConverter}}"
-                                                        HorizontalAlignment="Stretch"
-                                                        VerticalContentAlignment="Center"
-                                                        Template="{TemplateBinding PopupHeaderTemplate}" />
-                                        <ContentPresenter Grid.Row="1" x:Name="PART_PopupContent" />
-                                        <Border x:Name="PART_PopupFooterContainer" CornerRadius="{StaticResource PopupFooterCornerRadius}"
-                                                Grid.Row="2"
-                                                Background="{DynamicResource PopupEditorPopupFooterBackground}">
-
-                                        </Border>
-                                        <ContentControl x:Name="PART_PopupFooter"
-                                                        Grid.Row="{TemplateBinding  ActualSizeGripLocation, Converter={StaticResource SizeGripLocationToFooterRowConverter}}"
-                                                        HorizontalAlignment="Stretch"
-                                                        VerticalContentAlignment="Center"
-                                                        Template="{TemplateBinding PopupFooterTemplate}"
-                                                        Classes="PopupEditorFooterControl" />
-                                    </Grid>
+                                      BorderThickness="{StaticResource EditorBorderThickness}"
+                                      BorderBrush="{DynamicResource PopupBorderBrush}"
+                                      Background="{DynamicResource PopupEditorPopupBackground}"
+                                      HorizontalAlignment="Stretch"
+                                      CornerRadius="{StaticResource PopupCornerRadius}"
+                                      BoxShadow="{DynamicResource PopupBoxShadow}"
+                                      Margin="{DynamicResource PopupBoxShadowMargin}"
+                                      TextElement.FontFamily="{TemplateBinding FontFamily}">
+                                    <mxev:PopupContentContainer Name="PART_PopupContentContainer"/>
                                 </Border>
                             </common:ResizeablePopup>
                         </Panel>
@@ -297,5 +273,36 @@
                 </ControlTemplate>
             </Setter>
         </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxev:PopupContentContainer}" TargetType="mxev:PopupContentContainer">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid RowDefinitions="Auto, *, Auto" ClipToBounds="True">
+                    <Border x:Name="PART_PopupHeaderContainer"
+                            Grid.Row="0"
+                            CornerRadius="{StaticResource PopupHeaderCornerRadius}"
+                            Background="{DynamicResource PopupEditorPopupHeaderBackground}">
+
+                    </Border>
+                    <ContentControl x:Name="PART_PopupHeader"
+                                    Grid.Row="{Binding $parent[mxe:PopupEditor].ActualSizeGripLocation, Converter={StaticResource SizeGripLocationToHeaderRowConverter}}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalContentAlignment="Center"
+                                    Template="{Binding $parent[mxe:PopupEditor].PopupHeaderTemplate}" />
+                    <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                    <Border x:Name="PART_PopupFooterContainer" CornerRadius="{StaticResource PopupFooterCornerRadius}"
+                            Grid.Row="2"
+                            Background="{DynamicResource PopupEditorPopupFooterBackground}">
+                    </Border>
+                    <ContentControl x:Name="PART_PopupFooter"
+                                    Grid.Row="{Binding $parent[mxe:PopupEditor].ActualSizeGripLocation, Converter={StaticResource SizeGripLocationToFooterRowConverter}}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalContentAlignment="Center"
+                                    Template="{Binding $parent[mxe:PopupEditor].PopupFooterTemplate}"
+                                    Classes="PopupEditorFooterControl" />
+                </Grid>
+            </ControlTemplate>
+        </Setter>
     </ControlTheme>
 </ResourceDictionary>

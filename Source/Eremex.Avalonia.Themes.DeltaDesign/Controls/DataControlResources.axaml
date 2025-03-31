@@ -169,11 +169,12 @@
 
     <ControlTheme x:Key="{x:Type mxdcv:CellControl}" TargetType="mxdcv:CellControl">
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border x:Name="CellBorder" Background="{TemplateBinding Background}"
-                        BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="0,0,1,0">
                     <mxdcv:CellEditor x:Name="PART_CellEditor" Background="Transparent"/>
                 </Border>
