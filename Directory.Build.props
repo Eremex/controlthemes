@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <EMXControlsVersion>1.1.130</EMXControlsVersion>
+    <EMXControlsVersion>1.1.142</EMXControlsVersion>
     <Company>Eremex</Company>
     <Copyright>©2010-2025 Eremex</Copyright>
     <Product>Eremex Controls</Product>

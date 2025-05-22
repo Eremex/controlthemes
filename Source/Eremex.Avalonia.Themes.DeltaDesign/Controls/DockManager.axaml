@@ -825,9 +825,8 @@
         </Style>
     </ControlTheme>
     
-    <ControlTheme x:Key="{x:Type doi:FloatWindow}" TargetType="doi:FloatWindow" BasedOn="{StaticResource {x:Type Window}}">
+    <ControlTheme x:Key="{x:Type doi:FloatWindow}" TargetType="doi:FloatWindow" BasedOn="{StaticResource WindowBasedClassesTheme}">
         <Setter Property="Padding" Value="{Binding $self.OffScreenMargin}"/>
-        <Setter Property="Theme" Value="{StaticResource WindowBasedClassesTheme}"/>
     </ControlTheme>
     
     <ControlTheme x:Key="{x:Type doi:ControlBox}" TargetType="doi:ControlBox">
