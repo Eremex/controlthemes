@@ -1244,6 +1244,10 @@
             <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
             <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
         </Style>
+        
+        <Style Selector="^.Check:checked:selected /template/Border#PART_Border">
+            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Enabled}" />
+        </Style>
 
         <!-- ToolbarItemBorder Selected -->
         <Style Selector="^.Editor:selected /template/Border#PART_Border">
