@@ -6,7 +6,7 @@
     <SolidColorBrush x:Key="Fill/Accent/Primary/Enabled" Color="#ff005f61"/>
     <SolidColorBrush x:Key="Fill/Accent/Primary/Hover" Color="#ff006b6b"/>
     <SolidColorBrush x:Key="Fill/Accent/Primary/Pressed" Color="#ff007575"/>
-    <SolidColorBrush x:Key="Fill/Accent/Primary/Disabled" Color="#ffd1d6d6"/>
+    <SolidColorBrush x:Key="Fill/Accent/Primary/Disabled" Color="#ffdfe3e3"/>
     <SolidColorBrush x:Key="Fill/Accent/Highlighting/Text" Color="#ff6be2e6"/>
     <SolidColorBrush x:Key="Fill/Accent/Highlighting/Error" Color="#ffffc7c7"/>
     <SolidColorBrush x:Key="Fill/Accent/Highlighting/Row/Enabled" Color="#ffe2f8f6"/>
@@ -49,7 +49,7 @@
     <SolidColorBrush x:Key="Text/Neutral/Primary" Color="#ff1f2323"/>
     <SolidColorBrush x:Key="Text/Neutral/Secondary" Color="#ff424d4d"/>
     <SolidColorBrush x:Key="Text/Neutral/Tertiary" Color="#ff5d6969"/>
-    <SolidColorBrush x:Key="Text/Neutral/Disabled" Color="#ff849090"/>
+    <SolidColorBrush x:Key="Text/Neutral/Disabled" Color="#ffa9b2b2"/>
     <SolidColorBrush x:Key="Icons/Fill/Red" Color="#ffffb4b3"/>
     <SolidColorBrush x:Key="Icons/Fill/Yellow" Color="#ffdec78c"/>
     <SolidColorBrush x:Key="Icons/Fill/Green" Color="#ff79dc8b"/>
@@ -67,7 +67,7 @@
     <SolidColorBrush x:Key="Icons/Outline/Violet" Color="#ff9d37a4"/>
     <SolidColorBrush x:Key="Icons/Outline/Gray" Color="#ff4c5757"/>
     <SolidColorBrush x:Key="Icons/Outline/Selected" Color="#ff005f61"/>
-    <SolidColorBrush x:Key="Icons/Outline/Disabled" Color="#ff9ea9a9"/>
+    <SolidColorBrush x:Key="Icons/Outline/Disabled" Color="#ffb1baba"/>
     <SolidColorBrush x:Key="Icons/Outline/On Accent" Color="#ffffffff"/>
     
     <!--Uncomment only if needed!   
@@ -159,10 +159,6 @@
 	<!-- End Arsen Theme Extractor Tool -->
 	
 	<SolidColorBrush x:Key="Stroke Color/Surface Strok/Default" Color="#66757575"/>
-
-	<!--Colors for ColorEditor (from dark resources). !Don't move or delete!-->
-	<SolidColorBrush x:Key="Fill/Neutral/Primary/Enabled/Inverted" Color="#ff000000"/>
-	<!--End of ColorEditor colors-->
 
 	<!--Colors for HighlightedText. !Don't move or delete!-->
 	<Color x:Key="HighlightedTextBackgroundColor">#ff79dc8b</Color>

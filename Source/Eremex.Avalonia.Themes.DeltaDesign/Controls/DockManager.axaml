@@ -6,7 +6,8 @@
         xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls"
         xmlns:system="clr-namespace:System;assembly=System.Runtime"
         xmlns:other="clr-namespace:Eremex.AvaloniaUI.Icons.Other;assembly=Eremex.Avalonia.Icons"
-        xmlns:internal="clr-namespace:Eremex.AvaloniaUI.Controls.Internal;assembly=Eremex.Avalonia.Controls"><!-- attached properties doesn't work without assembly -->
+        xmlns:internal="clr-namespace:Eremex.AvaloniaUI.Controls.Internal;assembly=Eremex.Avalonia.Controls"
+        xmlns:mx="https://schemas.eremexcontrols.net/avalonia"><!-- attached properties doesn't work without assembly -->
     <Thickness x:Key="DockPaneBorderThickness">1</Thickness>
     
     <system:Double x:Key="ResizingCornerLength">10</system:Double>
@@ -23,14 +24,15 @@
                   RowDefinitions="Auto,*"
                   Margin="{TemplateBinding Padding}">
                 <doi:DockItemDragControl IsVisible="{TemplateBinding IsHeaderVisible}">
-                    <Grid Background="Transparent" ColumnDefinitions="Auto,*,Auto"
+                    <Grid Background="Transparent" ColumnDefinitions="*,Auto"
                           Margin="0,0,0,6">
                         <doi:DockPaneHeaderControl Header="{TemplateBinding Header}"
                                                    HeaderTemplate="{TemplateBinding HeaderTemplate}"
                                                    Glyph="{TemplateBinding Glyph}"
                                                    GlyphSize="{TemplateBinding GlyphSize}"
-                                                   ShowGlyphMode="{TemplateBinding ShowGlyphMode}"/>
-                        <doi:ControlBox Grid.Column="2"></doi:ControlBox>
+                                                   ShowGlyphMode="{TemplateBinding ShowGlyphMode}"
+                                                   HorizontalAlignment="Left"/>
+                        <doi:ControlBox Grid.Column="1"></doi:ControlBox>
                     </Grid>
                 </doi:DockItemDragControl>
                 <ContentPresenter Grid.Row="1"
@@ -116,7 +118,7 @@
                                            Background="Transparent">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <doi:DockGroupItemsPanel />
+                            <doi:DockGroupLayoutPanel></doi:DockGroupLayoutPanel>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </doi:DockGroupItemsControl>
@@ -301,7 +303,8 @@
                                                        Orientation="{TemplateBinding Orientation}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <doi:DockGroupItemsPanel />
+                                        <!-- <doi:DockGroupItemsPanel /> -->
+                                        <doi:DockGroupLayoutPanel></doi:DockGroupLayoutPanel>
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                             </doi:DockGroupItemsControl>
@@ -335,7 +338,7 @@
                                     Orientation="{TemplateBinding Orientation}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <doi:DockGroupItemsPanel />
+                                            <doi:DockGroupLayoutPanel />
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
                                 </doi:DockGroupItemsControl>
@@ -416,11 +419,11 @@
     
     <ControlTheme x:Key="{x:Type doi:DockGroupItem}" TargetType="doi:DockGroupItem">
         <Setter Property="Orientation" Value="{Binding $parent.Orientation}"></Setter>
-        <Setter Property="ClipToBounds" Value="False"></Setter>
+        <Setter Property="ClipToBounds" Value="True"></Setter>
         <Setter Property="Template">
             <ControlTemplate>
                 <DockPanel>
-                    <doi:DockGroupSplitterItem x:Name="PART_Splitter"
+                    <doi:DockGroupLayoutSplitter x:Name="PART_Splitter"
                                                Orientation="{TemplateBinding Orientation}"
                                                DockPanel.Dock="{Binding Orientation, RelativeSource={RelativeSource TemplatedParent}, Converter={doi:OrientationToDockConverter}}"
                                                IsVisible="{Binding Path=!(do:DockGroup.IsFirst), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -606,6 +609,45 @@
             <Setter Property="Margin" Value="-4,0"></Setter>
         </Style>
     </ControlTheme>
+    
+    <ControlTheme x:Key="{x:Type doi:DockGroupLayoutSplitter}" TargetType="doi:DockGroupLayoutSplitter">
+        <Setter Property="Cursor" Value="{Binding $self.Orientation, Converter={doi:OrientationToCursorConverter}}"></Setter>
+        <Setter Property="MinHeight" Value="{Binding $self.(doi:DockGroupItemsControl.SplitterSize)}"></Setter>
+        <Setter Property="MinWidth" Value="{Binding $self.(doi:DockGroupItemsControl.SplitterSize)}"></Setter>
+        <Setter Property="Background" Value="{DynamicResource Outline/Neutral/Transparent/Medium}"></Setter>
+        <Setter Property="ClipToBounds" Value="False"></Setter>
+        <Setter Property="ZIndex" Value="1"></Setter>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="Transparent"
+                        ClipToBounds="False"
+                        x:Name="PART_Background">
+                    <Border Background="{TemplateBinding Background}"
+                            x:Name="PART_Splitter">
+                    </Border>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        
+        <Style Selector="^[Orientation=Vertical] /template/ Border#PART_Splitter">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Height" Value="1"></Setter>
+        </Style>
+
+        <Style Selector="^[Orientation=Horizontal] /template/ Border#PART_Splitter">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Width" Value="1"></Setter>
+        </Style>
+
+        <Style Selector="^[Orientation=Vertical] /template/ Border#PART_Background">
+            <Setter Property="Margin" Value="0, -4"></Setter>
+        </Style>
+
+        <Style Selector="^[Orientation=Horizontal] /template/ Border#PART_Background">
+            <Setter Property="Margin" Value="-4,0"></Setter>
+        </Style>
+    </ControlTheme>
+    
     <ControlTheme x:Key="{x:Type doi:AutoHidePane}" TargetType="doi:AutoHidePane">
         <Setter Property="ZIndex" Value="1"></Setter>
         <Setter Property="Template">
@@ -763,7 +805,14 @@
                            Width="{Binding ActualGlyphSize.Width, RelativeSource={RelativeSource TemplatedParent}}"/>
                     <ContentPresenter Content="{TemplateBinding ActualHeader}"
                                       ContentTemplate="{TemplateBinding ActualHeaderTemplate}"
-                                      VerticalAlignment="Center"></ContentPresenter>    
+                                      VerticalAlignment="Center">
+                        <ContentPresenter.Styles>
+                            <Style Selector="TextBlock">
+                                <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                <Setter Property="mx:TextBlockHelper.ShowTooltipWhenTrimming" Value="True"/>
+                            </Style>
+                        </ContentPresenter.Styles>
+                    </ContentPresenter>    
                 </DockPanel>
             </ControlTemplate>
         </Setter>
@@ -881,6 +930,94 @@
     <ControlTheme x:Key="{x:Type doi:TabbedGroupItem}" TargetType="doi:TabbedGroupItem" BasedOn="{StaticResource {x:Type controls:MxTabItem}}">
         <Style Selector="^/template/ Button.TabControlButton">
             <Setter Property="Focusable" Value="False"></Setter>   
+        </Style>
+    </ControlTheme>
+    
+    <ControlTheme x:Key="{x:Type doi:DocumentSwitcherControl}" TargetType="doi:DocumentSwitcherControl">
+        <ControlTheme.Resources>
+            <DataTemplate x:Key="ItemTemplate" x:DataType="do:DockPane">
+                <doi:DockPaneHeaderControl Header="{Binding Header}"
+                                           HeaderTemplate="{Binding HeaderTemplate}"
+                                           Glyph="{Binding Glyph}"
+                                           GlyphSize="{Binding GlyphSize}"
+                                           ShowGlyphMode="{Binding ShowGlyphMode}"
+                                           HorizontalAlignment="Left"/>
+            </DataTemplate>
+            <DataTemplate x:DataType="do:DockPane" x:Key="DescriptionTemplate">
+                <Border>
+                    <StackPanel>
+                        <doi:DockPaneHeaderControl Header="{Binding Header}"
+                                                   HeaderTemplate="{Binding HeaderTemplate}"
+                                                   Glyph="{Binding Glyph}"
+                                                   GlyphSize="{Binding GlyphSize}"
+                                                   ShowGlyphMode="{Binding ShowGlyphMode}"
+                                                   HorizontalAlignment="Left"
+                                                   FontSize="14"
+                                                   FontWeight="Bold"/>
+                        <TextBlock Text="{Binding DocumentSwitcherDescription}"
+                                   Margin="0 4 0 0"/>
+                    </StackPanel>
+                </Border>                
+            </DataTemplate>
+            <DataTemplate x:DataType="do:DockPane" x:Key="FooterTemplate">
+                <TextBlock Text="{Binding DocumentSwitcherFooterDescription}" />
+            </DataTemplate>
+        </ControlTheme.Resources>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="doi:DocumentSwitcherControl">
+                <DockPanel>
+                    <ContentControl Content="{TemplateBinding SelectedItem}"
+                                    DockPanel.Dock="Top"
+                                    Classes="Description"/>
+                    <ContentControl Content="{TemplateBinding SelectedItem}"
+                                    DockPanel.Dock="Bottom"
+                                    Classes="Footer"/>
+                    <Grid ColumnDefinitions="* *">
+                        <ListBox x:Name="PART_Panes"
+                                 ItemsSource="{TemplateBinding PanesSource}"
+                                 SelectedItem="{TemplateBinding SelectedPane}"
+                                 ItemTemplate="{StaticResource ItemTemplate}">
+                        </ListBox>
+                        <ListBox x:Name="PART_Documents"
+                                 Grid.Column="1"
+                                 ItemsSource="{TemplateBinding DocumentsSource}"
+                                 SelectedItem="{TemplateBinding SelectedDocument}"
+                                 ItemTemplate="{StaticResource ItemTemplate}">
+                        </ListBox>
+                    </Grid>
+                </DockPanel>
+            </ControlTemplate>
+        </Setter>
+        
+        <Style Selector="^ /template/ ContentControl.Description">
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}"/>
+            <Setter Property="MinHeight" Value="32"/>
+            <Setter Property="Padding" Value="8 8 8 4"/>
+            <Setter Property="ContentTemplate" Value="{StaticResource DescriptionTemplate}"/>
+        </Style>
+        
+        <Style Selector="^ /template/ ContentControl.Footer">
+            <Setter Property="BorderThickness" Value="0 1 0 0"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}"/>
+            <Setter Property="MinHeight" Value="32"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="ContentTemplate" Value="{StaticResource FooterTemplate}"/>
+        </Style>
+    </ControlTheme>
+    
+    <ControlTheme x:Key="{x:Type doi:DocumentSwitcherWindow}" TargetType="doi:DocumentSwitcherWindow" BasedOn="{StaticResource {x:Type mx:MxWindow}}">
+        <Setter Property="WindowStartupLocation" Value="CenterOwner" />
+        <Setter Property="ShowInTaskbar" Value="False"/>
+        <Setter Property="ShowCloseButton" Value="False"/>
+        <Setter Property="ShowMaximizeButton" Value="False"/>
+        <Setter Property="ShowMinimizeButton" Value="False"/>
+        <Setter Property="CanResize" Value="False"/>
+        <Setter Property="Width" Value="600"/>
+        <Setter Property="Height" Value="400"></Setter>
+        
+        <Style Selector="^:no-caption">
+            <Setter Property="BorderThickness" Value="1"></Setter>
         </Style>
     </ControlTheme>
 </ResourceDictionary>

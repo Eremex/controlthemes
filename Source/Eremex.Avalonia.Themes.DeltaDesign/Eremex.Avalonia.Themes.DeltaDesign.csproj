@@ -1,25 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<OutputType>Library</OutputType>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
 		<RootNamespace>Eremex.AvaloniaUI.Themes.DeltaDesign</RootNamespace>
 		<AssemblyName>Eremex.Avalonia.Themes.DeltaDesign</AssemblyName>
 		<Description>A collection of themes for the Eremex Avalonia UI Controls.</Description>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<NuspecProperties>$(NuspecProperties);version=$(Version)</NuspecProperties>
+
+    <NuspecProperties>$(NuspecProperties);version=$(Version)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);configuration=$(Configuration)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);avaloniaversion=$(AvaloniaVersion)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);avaloniasvgskiaversion=$(AvaloniaSvgSkiaVersion)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);skiasharpversion=$(SkiaSharpVersion)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);buildtasksname=$(BuildTasksAssemblyName)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);nugetauthors=$(NugetAuthors)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);nugetcopyright=$(NugetCopyright)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);nugetprojecturl=$(NugetProjectUrl)</NuspecProperties>
+
                 <PackageLicenseFile>eula.txt</PackageLicenseFile>
-        <NuspecProperties>$(NuspecProperties);configuration=$(Configuration)</NuspecProperties>
 		<NuspecFile>Eremex.Avalonia.Themes.DeltaDesign.nuspec</NuspecFile>
-        <Nullable>enable</Nullable>
+                <Nullable>enable</Nullable>
 		<TrimMode>copyused</TrimMode>
 		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-		<OutputPath>..\..\Bin\$(Configuration)\</OutputPath>
 		<Configurations>Debug;Release</Configurations>
 
 	</PropertyGroup>
         <ItemGroup>
-           <None Include="..\..\eula.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
+			<None Include="..\..\eula.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
         </ItemGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
 		<DebugSymbols>true</DebugSymbols>
@@ -34,15 +41,15 @@
 		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.CSharp.Scripting" />
 		<PackageReference Include="Avalonia.Fonts.Inter" />
 		<PackageReference Include="DynamicData" />
-		<PackageReference Include="Avalonia.Svg.Skia" />
+		<PackageReference Include="Svg.Controls.Skia.Avalonia" />
 		<PackageReference Include="SkiaSharp" />
 		<PackageReference Include="System.Resources.Extensions" />
 	</ItemGroup>
-
+	
 	<ItemGroup>
 		<PackageReference Include="Eremex.Avalonia.Controls"/>
-		<AvaloniaResource Include="**/*.axaml"/>
-		<EmbeddedResource Include="Palettes\*.css"/>
+	  <AvaloniaResource Include="**/*.axaml" />
+    <EmbeddedResource Include="Palettes\*.css" />
 	</ItemGroup>
 
 	<ItemGroup>

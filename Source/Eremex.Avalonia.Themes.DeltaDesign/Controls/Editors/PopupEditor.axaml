@@ -42,36 +42,28 @@
     </Design.PreviewWith>
 
     <controls:EnumToObjectConverter x:Key="SizeGripLocationToHeaderRowConverter" DefaultValue="0">
-        <controls:EnumToObjectConverter.Values>
-            <controls:EnumToObjectConverterValue x:Key="BottomLeft" Value="0"/>
-            <controls:EnumToObjectConverterValue x:Key="BottomRight" Value="0"/>
-            <controls:EnumToObjectConverterValue x:Key="TopLeft" Value="2"/>
-            <controls:EnumToObjectConverterValue x:Key="TopRight" Value="2"/>
-        </controls:EnumToObjectConverter.Values>
+        <controls:EnumToObjectConverterValue x:Key="BottomLeft" Value="0"/>
+        <controls:EnumToObjectConverterValue x:Key="BottomRight" Value="0"/>
+        <controls:EnumToObjectConverterValue x:Key="TopLeft" Value="2"/>
+        <controls:EnumToObjectConverterValue x:Key="TopRight" Value="2"/>
     </controls:EnumToObjectConverter>
     <controls:EnumToObjectConverter x:Key="SizeGripLocationToFooterRowConverter" DefaultValue="2">
-        <controls:EnumToObjectConverter.Values>
-            <controls:EnumToObjectConverterValue x:Key="BottomLeft" Value="2"/>
-            <controls:EnumToObjectConverterValue x:Key="BottomRight" Value="2"/>
-            <controls:EnumToObjectConverterValue x:Key="TopLeft" Value="0"/>
-            <controls:EnumToObjectConverterValue x:Key="TopRight" Value="0"/>
-        </controls:EnumToObjectConverter.Values>
+        <controls:EnumToObjectConverterValue x:Key="BottomLeft" Value="2"/>
+        <controls:EnumToObjectConverterValue x:Key="BottomRight" Value="2"/>
+        <controls:EnumToObjectConverterValue x:Key="TopLeft" Value="0"/>
+        <controls:EnumToObjectConverterValue x:Key="TopRight" Value="0"/>
     </controls:EnumToObjectConverter>
     <controls:EnumToObjectConverter x:Key="SizeGripLocationToHorizontalAlignmentConverter" DefaultValue="{x:Static HorizontalAlignment.Right}">
-        <controls:EnumToObjectConverter.Values>
-            <controls:EnumToObjectConverterValue x:Key="BottomLeft" Value="{x:Static HorizontalAlignment.Left}"/>
-            <controls:EnumToObjectConverterValue x:Key="BottomRight" Value="{x:Static HorizontalAlignment.Right}"/>
-            <controls:EnumToObjectConverterValue x:Key="TopLeft" Value="{x:Static HorizontalAlignment.Left}"/>
-            <controls:EnumToObjectConverterValue x:Key="TopRight" Value="{x:Static HorizontalAlignment.Right}"/>
-        </controls:EnumToObjectConverter.Values>
+        <controls:EnumToObjectConverterValue x:Key="BottomLeft" Value="{x:Static HorizontalAlignment.Left}"/>
+        <controls:EnumToObjectConverterValue x:Key="BottomRight" Value="{x:Static HorizontalAlignment.Right}"/>
+        <controls:EnumToObjectConverterValue x:Key="TopLeft" Value="{x:Static HorizontalAlignment.Left}"/>
+        <controls:EnumToObjectConverterValue x:Key="TopRight" Value="{x:Static HorizontalAlignment.Right}"/>
     </controls:EnumToObjectConverter>
     <controls:EnumToObjectConverter x:Key="SizeGripLocationToVerticalAlignmentConverter" DefaultValue="{x:Static VerticalAlignment.Bottom}">
-        <controls:EnumToObjectConverter.Values>
-            <controls:EnumToObjectConverterValue x:Key="BottomLeft" Value="{x:Static VerticalAlignment.Bottom}"/>
-            <controls:EnumToObjectConverterValue x:Key="BottomRight" Value="{x:Static VerticalAlignment.Bottom}"/>
-            <controls:EnumToObjectConverterValue x:Key="TopLeft" Value="{x:Static VerticalAlignment.Top}"/>
-            <controls:EnumToObjectConverterValue x:Key="TopRight" Value="{x:Static VerticalAlignment.Top}"/>
-        </controls:EnumToObjectConverter.Values>
+        <controls:EnumToObjectConverterValue x:Key="BottomLeft" Value="{x:Static VerticalAlignment.Bottom}"/>
+        <controls:EnumToObjectConverterValue x:Key="BottomRight" Value="{x:Static VerticalAlignment.Bottom}"/>
+        <controls:EnumToObjectConverterValue x:Key="TopLeft" Value="{x:Static VerticalAlignment.Top}"/>
+        <controls:EnumToObjectConverterValue x:Key="TopRight" Value="{x:Static VerticalAlignment.Top}"/>
     </controls:EnumToObjectConverter>
 
     <ControlTheme x:Key="PopupFooterButtonTheme" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -181,7 +173,7 @@
                                                                      HorizontalContentAlignment="Center"
                                                                      IsVisible="{Binding $parent[mxe:BaseEditor].ShowEditorButtons}"
                                                                      Padding="0">
-                                                <Image Source="{x:Static otherIcons:_8.Chevron_Down}" Width="8" Height="8"/>
+                                                <Image Source="{Binding $parent[mxe:BaseEditor].DefaultButtonImage}" Stretch="None"/>
                                         </mxev:EditorIconToggleButton>
                                     </StackPanel>
                                 </TextBox.InnerRightContent>

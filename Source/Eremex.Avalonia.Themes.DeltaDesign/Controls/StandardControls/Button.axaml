@@ -8,6 +8,7 @@
                 <Button Classes="accent" Content="Click Me!" IsEnabled="True" />
                 <Button Classes="warning" Content="Click Me!" />
                 <Button Classes="warning accent" Content="Click Me!" />
+                <Button Content="Click Me!" IsEnabled="False" />
                 <Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
                     <StackPanel Spacing="20">
                         <Button Content="Click Me!" Classes="secondary" />
@@ -95,6 +96,9 @@
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Foreground" Value="{DynamicResource ButtonForegroundDisabled}" />
+            </Style>
+            <Style Selector="^ /template/ Border#PART_ButtonBorder">
+                <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrushDisabled}" />
             </Style>
         </Style>
         <!-- Accent style -->
@@ -185,6 +189,9 @@
                 </Style>
                 <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                     <Setter Property="Foreground" Value="{DynamicResource ButtonWarningForegroundDisabled}" />
+                </Style>
+                <Style Selector="^ /template/ Border#PART_ButtonBorder">
+                    <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrushDisabled}" />
                 </Style>
             </Style>
         </Style>

@@ -148,14 +148,14 @@
                              IsVisible="{TemplateBinding ShowEmptyValueSelector}"
                              Padding="{StaticResource ComboBoxEmptyValueSelectorPadding}"
                              HorizontalAlignment="Stretch" >
-                        <ListBoxItem x:Name="PART_EmptyValueSelectorItem" Content="{x:Static localization:ControlsResources.SelectEmptyValueButton_Content}"/>
+                        <ListBoxItem x:Name="PART_EmptyValueSelectorItem" Content="{TemplateBinding ClearValueItemText}"/>
                     </ListBox>
                     <Border Name="PART_SelectAllCheckerContainer"
                             Padding="{StaticResource ComboBoxSelectAllCheckerPadding}"
                             IsVisible="{TemplateBinding ShowSelectAllChecker}"
                             HorizontalAlignment="Stretch" >
                         <CheckBox x:Name="PART_SelectAllChecker"
-                                  Content="{x:Static localization:ControlsResources.SelectAllChecker_Content}"
+                                  Content="{TemplateBinding SelectAllItemText}"
                                   IsChecked="{TemplateBinding CheckAll, Mode=TwoWay}"
                                   HorizontalAlignment="Stretch"
                                   IsEnabled="{Binding !$parent[mxev:ComboBoxPopupControl].ReadOnly}"
@@ -218,6 +218,8 @@
                         <mxev:ComboBoxPopupControl x:Name="PART_ComboBoxPopupControl"
                                                    ReadOnly="{Binding $parent[mxe:ComboBoxEditor].ReadOnly}"
                                                    SelectionMode="{Binding $parent[mxe:ComboBoxEditor].SelectionMode}"
+                                                   SelectAllItemText="{Binding $parent[mxe:ComboBoxEditor].SelectAllItemText}"
+                                                   ClearValueItemText="{Binding $parent[mxe:ComboBoxEditor].ClearValueItemText}"
                                                    ShowPredefinedSelectItem="{Binding $parent[mxe:ComboBoxEditor].ShowPredefinedSelectItem}"/>
                     </Template>
                 </Setter.Value>

@@ -58,8 +58,9 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <ControlTemplate>
-                <Panel>
+                <Panel Background="Transparent">
                     <Border x:Name="PART_BackgroundBorder"
+                            Margin="{StaticResource ListBoxItemBackgroundMargin}"
                             Background="{TemplateBinding Background}"
                             CornerRadius="{TemplateBinding CornerRadius}"
                             Padding="{TemplateBinding Padding}">
@@ -71,6 +72,7 @@
                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
                     </Border>
                     <Border Name="PART_ButtonBorder"
+                            Margin="{StaticResource ListBoxItemBackgroundMargin}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"

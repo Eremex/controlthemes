@@ -10,22 +10,68 @@
         xmlns:mxdcv="clr-namespace:Eremex.AvaloniaUI.Controls.DataControl.Visuals;assembly=Eremex.Avalonia.Controls"
         xmlns:mxtlv="clr-namespace:Eremex.AvaloniaUI.Controls.TreeList.Visuals;assembly=Eremex.Avalonia.Controls"
         xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls">
-   
+
+    <ControlTemplate x:Key="TreeViewScrollViewerTemplate" TargetType="ScrollViewer">
+        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, *, Auto">
+            <mxdcv:SearchPanel x:Name="PART_SearchPanel" Theme="{DynamicResource TreeViewControlSearchPanelTheme}" HorizontalContentAlignment="Stretch" Grid.ColumnSpan="2"
+                               IsVisible="{Binding $parent[mxtl:TreeViewControl].IsSearchPanelVisible}" SearchText="{Binding $parent[mxtl:TreeViewControl].SearchText, Mode=TwoWay}" />
+
+            <ScrollContentPresenter Name="PART_ContentPresenter"
+                                    Grid.Row="1"
+                                    Grid.RowSpan="2"
+                                    Grid.ColumnSpan="2"
+                                    Background="{TemplateBinding Background}"
+                                    HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
+                                    VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}"
+                                    HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
+                                    VerticalSnapPointsAlignment="{TemplateBinding VerticalSnapPointsAlignment}"
+                                    Padding="{TemplateBinding Padding}"
+                                    ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}">
+                <ScrollContentPresenter.GestureRecognizers>
+                    <ScrollGestureRecognizer CanHorizontallyScroll="{Binding CanHorizontallyScroll, ElementName=PART_ContentPresenter}"
+                                             CanVerticallyScroll="{Binding CanVerticallyScroll, ElementName=PART_ContentPresenter}"
+                                             IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_ContentPresenter}"/>
+                </ScrollContentPresenter.GestureRecognizers>
+            </ScrollContentPresenter>
+
+            <ScrollBar Name="PART_HorizontalScrollBar"
+                       Orientation="Horizontal"
+                       Grid.Row="2" />
+
+            <ScrollBar Name="PART_VerticalScrollBar"
+                       Orientation="Vertical"
+                       Grid.Column="1"
+                       Grid.Row="1"/>
+
+            <Panel x:Name="PART_ScrollBarsSeparator"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                   Opacity="0">
+                <Panel.Transitions>
+                    <Transitions>
+                        <DoubleTransition Property="Opacity" Duration="0:0:0.1" />
+                    </Transitions>
+                </Panel.Transitions>
+            </Panel>
+        </Grid>
+    </ControlTemplate>
+    
 	<ControlTheme x:Key="{x:Type mxtl:TreeViewControl}" TargetType="mxtl:TreeViewControl">
 		<Setter Property="RowLevelIndent" Value="22" />
 		<Setter Property="Focusable" Value="True" />
 		<Setter Property="FocusAdorner" Value="{x:Null}" />
 		<Setter Property="Template">
 			<ControlTemplate>
-				<DockPanel Background="{TemplateBinding Background}">
-					<mxdcv:SearchPanel x:Name="PART_SearchPanel" Theme="{DynamicResource TreeViewControlSearchPanelTheme}" HorizontalContentAlignment="Stretch" DockPanel.Dock="Top" IsVisible="{TemplateBinding IsSearchPanelVisible}" SearchText="{Binding SearchText, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
-					<ScrollViewer x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto">
+                <Border Background="{TemplateBinding Background}" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}" BorderThickness="{TemplateBinding BorderThickness}">
+					<ScrollViewer x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto" Template="{DynamicResource TreeViewScrollViewerTemplate}"
+                                  Background="{TemplateBinding Background}">
                         <common:MxVirtualizingControl x:Name="PART_VirtualizingControl"/>
 					</ScrollViewer>
-					<DockPanel.Styles>
-						<StyleInclude Source="/Controls/Editors/EditorsCellStyles.axaml"/>
-					</DockPanel.Styles>
-				</DockPanel>
+                    <Border.Styles>
+                        <StyleInclude Source="/Controls/Editors/EditorsCellStyles.axaml"/>
+                    </Border.Styles>
+                </Border>
 			</ControlTemplate>
 		</Setter>
 	</ControlTheme>

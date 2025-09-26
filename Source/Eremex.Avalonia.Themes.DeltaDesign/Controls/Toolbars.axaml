@@ -134,6 +134,8 @@
 
             <Thickness x:Key="MxCustomizationLayoutItem">12</Thickness>
             <system:Double x:Key="KeyTipFilteredOpacity">0.4</system:Double>
+            
+            <system:Double x:Key="ToolTipTextOpacity">0.6</system:Double>
 
             <ControlTemplate x:Key="MxPopupContainerCloseButtonTemplate">
                 <Border>
@@ -2303,12 +2305,12 @@
         <Setter Property="VerticalAlignment" Value="Top" />
         
         <Style Selector="^.ToolbarItemToolTipTitle">
-            <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}" />
         </Style>
 
         <Style Selector="^.ToolbarItemToolTipText">
             <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}" />
+            <Setter Property="Opacity" Value="{DynamicResource ToolTipTextOpacity}" />
         </Style>
     </ControlTheme>
     <ControlTheme x:Key="{x:Type mxti:ToolbarItemToolTip}" TargetType="mxti:ToolbarItemToolTip">

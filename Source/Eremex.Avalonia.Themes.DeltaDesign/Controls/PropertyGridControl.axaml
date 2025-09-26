@@ -113,6 +113,7 @@
                     <Border Background="Transparent" Width="7">
                         <Border Background="{TemplateBinding Background}"
                                 Opacity="{Binding $parent[mxpgv:PropertyGridRowPanel].PropertyGrid.IsResizerVisible, Converter={mxc:BoolToObjectConverter FalseValue=0.1, TrueValue=1}}"
+                                IsVisible="{Binding $parent[mxpgv:PropertyGridRowPanel].PropertyGrid.IsPointerOver}"
                                 Width="1" HorizontalAlignment="Center">
                             <Border.Transitions>
                                 <Transitions>
@@ -134,7 +135,8 @@
                     
                     <mxpgv:PropertyGridRowPanel x:Name="PART_RowPanel" Margin="4, 0" Grid.Row="1">
                         <Border Background="Transparent">
-                            <Grid ColumnDefinitions="Auto, *" Margin="{Binding Path=Level, Converter={mxpgv:LevelToMarginConverter Indent=28}}">
+                            <Grid x:Name="CaptionContainer" ColumnDefinitions="Auto, *" Margin="{Binding Path=Level, Converter={mxpgv:LevelToMarginConverter Indent=28}}"
+                                  HorizontalAlignment="{Binding PropertyGridControl.CaptionHorizontalAlignment}">
                                 <ToggleButton VerticalAlignment="Stretch" IsChecked="{Binding IsExpanded}" Width="12" IsVisible="{Binding HasChildren}" Margin="0,0,6,0">
                                     <ToggleButton.Template>
                                         <ControlTemplate>

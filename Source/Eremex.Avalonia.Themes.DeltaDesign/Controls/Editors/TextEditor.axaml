@@ -133,8 +133,12 @@
             <Style Selector="^[ActualErrorShowMode=Full] /template/ Border#PART_RootBorder">
                 <Setter Property="BorderBrush" Value="{DynamicResource TextEditorFullErrorBorderBrush}"/>
             </Style>
+            <Style Selector="^:readOnly">
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
+            </Style>
             <Style Selector="^:disabled">
                 <Setter Property="Background" Value="{DynamicResource TextEditorActiveModeBackgroundDisabled}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
             </Style>
             <Style Selector="^.secondary">
                 <Setter Property="Background" Value="{DynamicResource TextEditorSecondaryBackground}"/>

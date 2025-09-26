@@ -28,6 +28,68 @@
         </mxt:PopupMenu>
     </Template>
 
+    <ControlTemplate x:Key="TreeListScrollViewerTemplate" TargetType="ScrollViewer">
+        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto, Auto, *, Auto, Auto">
+            <mxdcv:SearchPanel x:Name="PART_SearchPanel" Grid.ColumnSpan="2" IsVisible="{Binding $parent[mxtl:TreeListControl].IsSearchPanelVisible}"
+                                SearchText="{Binding $parent[mxtl:TreeListControl].SearchText, Mode=TwoWay}" />
+
+            <mxdcv:BandHeadersControl x:Name="PART_BandHeadersControl" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+            <mxdcv:ColumnHeadersControl x:Name="PART_HeadersControl" Grid.Row="2" Grid.ColumnSpan="2" IsVisible="{Binding $parent[mxtl:TreeListControl].ShowColumnHeaders}"/>
+
+            <mxdcv:AutoFilterRowControl x:Name="PART_AutoFilterRow" Grid.Row="3" Grid.ColumnSpan="2" IsVisible="{Binding $parent[mxtl:TreeListControl].ShowAutoFilterRow}" />
+
+            <ScrollContentPresenter Name="PART_ContentPresenter"
+                                    Grid.Row="4"
+                                    Grid.Column="0"
+                                    Grid.RowSpan="2"
+                                    Grid.ColumnSpan="2"
+                                    Background="{TemplateBinding Background}"
+                                    HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
+                                    VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}"
+                                    HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
+                                    VerticalSnapPointsAlignment="{TemplateBinding VerticalSnapPointsAlignment}"
+                                    Padding="{TemplateBinding Padding}"
+                                    ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}">
+                <ScrollContentPresenter.GestureRecognizers>
+                    <ScrollGestureRecognizer CanHorizontallyScroll="{Binding CanHorizontallyScroll, ElementName=PART_ContentPresenter}"
+                                             CanVerticallyScroll="{Binding CanVerticallyScroll, ElementName=PART_ContentPresenter}"
+                                             IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_ContentPresenter}"/>
+                </ScrollContentPresenter.GestureRecognizers>
+            </ScrollContentPresenter>
+
+            <mxdcv:FocusedElementAdornerPanel x:Name="PART_FocusedElementAdornerPanel" Grid.Row="1" Grid.RowSpan="5" Grid.ColumnSpan="2" ClipToBounds="True"/>
+
+            <ScrollBar Name="PART_HorizontalScrollBar"
+                       Orientation="Horizontal"
+                       Grid.Row="5" />
+
+            <ScrollBar Name="PART_VerticalScrollBar"
+                       Orientation="Vertical"
+                       Grid.Column="1"
+                       Grid.Row="4"/>
+
+            <Panel x:Name="PART_ScrollBarsSeparator"
+                   Grid.Row="5"
+                   Grid.Column="1"
+                   Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                   Opacity="0">
+                <Panel.Transitions>
+                    <Transitions>
+                        <DoubleTransition Property="Opacity" Duration="0:0:0.1" />
+                    </Transitions>
+                </Panel.Transitions>
+            </Panel>
+
+            <mxdcv:FilterPanel x:Name="PART_FilterPanel" Grid.Row="6" Grid.ColumnSpan="2" IsFilterEnabled="{Binding $parent[mxtl:TreeListControl].IsFilterEnabled}"
+                               FilterString="{Binding $parent[mxtl:TreeListControl].FilterPanelText}"
+                               IsVisible="{Binding $parent[mxtl:TreeListControl].IsFilterPanelVisible}"/>
+
+            <Border Name="PART_HeaderDropIndicator" IsHitTestVisible="False" Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                    Width="{Binding $parent[mxtl:TreeListControl].HeaderDropIndicatorWidth}" Background="{DynamicResource Outline/Accent/Secondary}" IsVisible="False"/>
+        </Grid>
+    </ControlTemplate>
+
     <ControlTheme x:Key="{x:Type mxtl:TreeListControl}" TargetType="mxtl:TreeListControl">
         <Setter Property="RowLevelIndent" Value="22" />
         <Setter Property="Focusable" Value="True" />
@@ -37,16 +99,9 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                    <Grid RowDefinitions="Auto, Auto, Auto, Auto, *">
-                        <mxdcv:SearchPanel x:Name="PART_SearchPanel" IsVisible="{TemplateBinding IsSearchPanelVisible}" SearchText="{Binding SearchText, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
-                        <mxdcv:ColumnHeaderPanel Grid.Row="1" x:Name="PART_HeadersPanel" IsVisible="{TemplateBinding ShowColumnHeaders}"/>
-                        <Border Grid.Row="2" x:Name="ColumnHeadersHorizontalSeparator" IsVisible="{TemplateBinding ShowColumnHeaders}" HorizontalAlignment="Stretch" Height="1" Background="{DynamicResource Outline/Neutral/Transparent/Medium}" />
-                        <mxdcv:AutoFilterRowControl Grid.Row="3" x:Name="PART_AutoFilterRow" IsVisible="{TemplateBinding ShowAutoFilterRow}" />
-                        <ScrollViewer Grid.Row="4" x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto">
-                            <common:MxVirtualizingControl x:Name="PART_VirtualizingControl"/>
-                        </ScrollViewer>
-                        <Border Name="PART_HeaderDropIndicator" IsHitTestVisible="False" Grid.Row="1" Grid.RowSpan="4" HorizontalAlignment="Left" Width="{TemplateBinding HeaderDropIndicatorWidth}" Background="{DynamicResource Outline/Accent/Secondary}" IsVisible="False"/>
-                    </Grid>
+                    <ScrollViewer x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto" Template="{DynamicResource TreeListScrollViewerTemplate}">
+                        <common:MxVirtualizingControl x:Name="PART_VirtualizingControl"/>
+                    </ScrollViewer>
                     <Border.Styles>
                         <StyleInclude Source="/Controls/Editors/EditorsCellStyles.axaml"/>
                     </Border.Styles>
@@ -105,8 +160,10 @@
 
     <ControlTheme x:Key="{x:Type mxtlv:TreeListRowControl}" TargetType="mxtlv:TreeListRowControl" BasedOn="{StaticResource {x:Type mxdcv:DataRowControlBase}}" />
 
-    <ControlTheme x:Key="{x:Type mxtlv:TreeListCellControl}" TargetType="mxtlv:TreeListCellControl" BasedOn="{StaticResource {x:Type mxdcv:CellControl}}">
+    <ControlTheme x:Key="{x:Type mxtlv:TreeListCellControl}" TargetType="mxtlv:TreeListCellControl">
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border x:Name="CellBorder" Background="{TemplateBinding Background}"
@@ -118,6 +175,18 @@
                 </Border>
             </ControlTemplate>
         </Setter>
+
+        <Style Selector="^[IsCellFocused=true] /template/ Grid#PART_LayoutPanel">
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+        </Style>
+
+        <Style Selector="^[IsVerticalLineVisible=false] /template/ Border#CellBorder">
+            <Setter Property="BorderBrush" Value="Transparent" />
+        </Style>
+
+        <Style Selector="^[HasBandSeparator=true] /template/ Border#CellBorder">
+            <Setter Property="BorderThickness" Value="0,0,3,0" />
+        </Style>
     </ControlTheme>
     
 </ResourceDictionary>

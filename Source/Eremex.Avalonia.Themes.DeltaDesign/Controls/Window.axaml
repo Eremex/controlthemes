@@ -211,7 +211,6 @@
         </Style>
 
         <Style Selector="^/template/Border#PART_CaptionTransparentBack">
-            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
             <Setter Property="CornerRadius" Value="8,8,0,0" />
             <Setter Property="ClipToBounds" Value="True" />
         </Style>

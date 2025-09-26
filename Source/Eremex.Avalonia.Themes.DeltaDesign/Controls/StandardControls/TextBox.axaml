@@ -89,7 +89,7 @@
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
                                         <Image Source="{x:Static icons:Basic.Error}"
-                                               x:Name="PART_ErrorIndicator"
+                                               x:Name="PART_ErrorIndicator" Stretch="None"
                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                         <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
                                                       VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
@@ -136,6 +136,41 @@
             </ControlTemplate>
         </Setter>
 
+        <Style Selector="^:errorBlink /template/ Image#PART_ErrorIndicator">
+            <Style.Animations>
+                <Animation Duration="0:0:0.2">
+                    <KeyFrame Cue="0">
+                        <Setter Property="ScaleTransform.ScaleX" Value="1"/>
+                        <Setter Property="ScaleTransform.ScaleY" Value="1"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="50">
+                        <Setter Property="ScaleTransform.ScaleX" Value="0"/>
+                        <Setter Property="ScaleTransform.ScaleY" Value="0"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="100">
+                        <Setter Property="ScaleTransform.ScaleX" Value="1"/>
+                        <Setter Property="ScaleTransform.ScaleY" Value="1"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+
+        <Style Selector="^:errorBlink /template/ TextPresenter#PART_TextPresenter">
+            <Style.Animations>
+                <Animation Duration="0:0:0.2">
+                    <KeyFrame Cue="0">
+                        <Setter Property="Opacity" Value="1"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="50">
+                        <Setter Property="Opacity" Value="0"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="100">
+                        <Setter Property="Opacity" Value="1"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+
         <Style Selector="^ /template/ TextBlock#PART_Watermark,
                ^ /template/ TextBlock#PART_FloatingWatermark">
             <Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrush}" />
@@ -171,7 +206,7 @@
         </Style>
 
         <!-- PointerOver State-->
-        <Style Selector="^:pointerover">
+        <Style Selector="^:pointerover[IsReadOnly=False]">
             <Setter Property="Foreground" Value="{DynamicResource TextBoxForegroundPointerOver}" />
 
             <Style Selector="^ /template/ Border#PART_BorderElement">
@@ -189,7 +224,7 @@
         </Style>
 
         <!-- Focused State -->
-        <Style Selector="^:focus">
+        <Style Selector="^:focus[IsReadOnly=False]">
             <Setter Property="Foreground" Value="{DynamicResource TextBoxFocusForeground}" />
 
             <Style Selector="^ /template/ TextBlock#PART_Watermark,

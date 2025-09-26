@@ -2,7 +2,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:internal="clr-namespace:Eremex.AvaloniaUI.Controls.Internal;assembly=Eremex.Avalonia.Controls"
         xmlns:other="clr-namespace:Eremex.AvaloniaUI.Icons.Other;assembly=Eremex.Avalonia.Icons"
-        xmlns:avaConv="clr-namespace:Avalonia.Controls.Converters;assembly=Avalonia.Controls">
+        xmlns:avaConv="clr-namespace:Avalonia.Controls.Converters;assembly=Avalonia.Controls"
+        xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls">
     
     <ControlTheme x:Key="TabControlButtonTheme" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Height" Value="{DynamicResource TabControlButtonSize}" />
@@ -76,7 +77,8 @@
                             Command="{TemplateBinding NewCommand}"
                             CommandParameter="{TemplateBinding NewCommandParameter}"
                             x:Name="PART_NewButton"
-                            Theme="{StaticResource TabControlButtonTheme}">
+                            Theme="{StaticResource TabControlButtonTheme}"
+                            ToolTip.Tip="{x:Static localization:ControlsResources.TabControl_NewTabButton}">
 	                    <Image Height="12"
 	                           Width="12"
 	                           Source="{x:Static other:_12.Add}"/>
@@ -86,7 +88,8 @@
                             Command="{TemplateBinding CloseCommand}"
                             CommandParameter="{TemplateBinding CloseCommandParameter}"
                             x:Name="PART_CloseButton"
-                            Theme="{StaticResource TabControlButtonTheme}">
+                            Theme="{StaticResource TabControlButtonTheme}"
+                            ToolTip.Tip="{x:Static localization:ControlsResources.TabControl_CloseTabButton}">
                         <Image Height="12"
                                Width="12"
                                Source="{x:Static other:_12.Close}"/>

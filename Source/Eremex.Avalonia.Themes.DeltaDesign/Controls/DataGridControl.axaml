@@ -11,7 +11,10 @@
 
     <Template x:Key="DefaultColumnMenu">
         <mxt:PopupMenu>
-            <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_SortAscending}" Command="{Binding DataControl.Commands.SortColumnAscending}" CommandParameter="{Binding}" />
+            <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_ExpandAllGroups}" Command="{Binding DataControl.Commands.ExpandAllGroups}" CommandParameter="{Binding}" IsVisible="{Binding $self.IsEffectivelyEnabled}" />
+            <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_CollapseAllGroups}" Command="{Binding DataControl.Commands.CollapseAllGroups}" CommandParameter="{Binding}" IsVisible="{Binding $self.IsEffectivelyEnabled}" />
+
+            <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_SortAscending}" Command="{Binding DataControl.Commands.SortColumnAscending}" ShowSeparator="True" CommandParameter="{Binding}" />
             <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_SortDescending}" Command="{Binding DataControl.Commands.SortColumnDescending}" CommandParameter="{Binding}" />
             <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_ClearSorting}" Command="{Binding DataControl.Commands.ClearColumnSorting}" CommandParameter="{Binding}" />
 
@@ -34,12 +37,30 @@
         <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type mxdgv:DataGridGroupPanelControl}" TargetType="mxdgv:DataGridGroupPanelControl" BasedOn="{StaticResource {x:Type ItemsControl}}">
+    <ControlTheme x:Key="{x:Type mxdgv:DataGridGroupPanelControl}" TargetType="mxdgv:DataGridGroupPanelControl">
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                    <Grid>
+                        <TextBlock Text="{x:Static localization:ControlsResources.DataControl_GroupPanelText}" Theme="{DynamicResource GroupPanelTextTheme}" VerticalAlignment="Center" Margin="6,10" IsVisible="{Binding !#PART_GroupPanelItemsControl.ItemsSource.Count}"/>
+                        <mxdgv:DataGridGroupPanelItemsControl x:Name="PART_GroupPanelItemsControl" Padding="0, 10" HeaderDropIndicatorWidth="{TemplateBinding HeaderDropIndicatorWidth}" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdgv:DataGridGroupPanelItemsControl}" TargetType="mxdgv:DataGridGroupPanelItemsControl" BasedOn="{StaticResource {x:Type ItemsControl}}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="HeaderDropIndicatorOffset" Value="10" />
         <Setter Property="ItemTemplate">
             <DataTemplate>
-                <mxdcv:ColumnHeaderControl Column="{Binding Column}" BorderThickness="1" Margin="{Binding Level, Converter={mxdgv:GroupLevelToThicknessConverter TopLevelIndent=10}}" />
+                <mxdcv:ColumnHeaderControl Column="{Binding Column}" BorderThickness="1" 
+                                           Margin="{Binding Level, Converter={mxdgv:GroupLevelToThicknessConverter TopLevelIndent=10}}" 
+                                           MinHeight="{Binding Column.DataControl.HeaderPanelMinHeight, Converter={mxdgv:PanelToGroupHeaderMinHeightConverter BorderHeight=2}}"
+                                           VerticalAlignment="Top"/>
             </DataTemplate>
         </Setter>
         <Setter Property="ItemsPanel">
@@ -56,6 +77,71 @@
             </ControlTemplate>
         </Setter>
     </ControlTheme>
+
+    <ControlTemplate x:Key="DataGridScrollViewerTemplate" TargetType="ScrollViewer">
+        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto, Auto, Auto, *, Auto, Auto">
+            <mxdcv:SearchPanel x:Name="PART_SearchPanel" Grid.ColumnSpan="2" IsVisible="{Binding $parent[mxdg:DataGridControl].IsSearchPanelVisible}" 
+                                SearchText="{Binding $parent[mxdg:DataGridControl].SearchText, Mode=TwoWay}" />
+            
+            <mxdgv:DataGridGroupPanelControl x:Name="PART_GroupPanel" Grid.Row="1" Grid.ColumnSpan="2" IsVisible="{Binding $parent[mxdg:DataGridControl].ShowGroupPanel}" 
+                                             HeaderDropIndicatorWidth="{Binding $parent[mxdg:DataGridControl].HeaderDropIndicatorWidth}" />
+            
+            <mxdcv:BandHeadersControl x:Name="PART_BandHeadersControl" Grid.Row="2" Grid.ColumnSpan="2"/>
+
+            <mxdcv:ColumnHeadersControl x:Name="PART_HeadersControl" Grid.Row="3" Grid.ColumnSpan="2" IsVisible="{Binding $parent[mxdg:DataGridControl].ShowColumnHeaders}"/>
+            
+            <mxdcv:AutoFilterRowControl x:Name="PART_AutoFilterRow" Grid.Row="4" Grid.ColumnSpan="2" IsVisible="{Binding $parent[mxdg:DataGridControl].ShowAutoFilterRow}" />
+            
+            <ScrollContentPresenter Name="PART_ContentPresenter"
+                                    Grid.Row="5"
+                                    Grid.Column="0"
+                                    Grid.RowSpan="2"
+                                    Grid.ColumnSpan="2"
+                                    Background="{TemplateBinding Background}"
+                                    HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
+                                    VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}"
+                                    HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
+                                    VerticalSnapPointsAlignment="{TemplateBinding VerticalSnapPointsAlignment}"
+                                    Padding="{TemplateBinding Padding}"
+                                    ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}">
+                <ScrollContentPresenter.GestureRecognizers>
+                    <ScrollGestureRecognizer CanHorizontallyScroll="{Binding CanHorizontallyScroll, ElementName=PART_ContentPresenter}"
+                                             CanVerticallyScroll="{Binding CanVerticallyScroll, ElementName=PART_ContentPresenter}"
+                                             IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_ContentPresenter}"/>
+                </ScrollContentPresenter.GestureRecognizers>
+            </ScrollContentPresenter>
+
+            <mxdcv:FocusedElementAdornerPanel x:Name="PART_FocusedElementAdornerPanel" Grid.Row="2" Grid.RowSpan="5" Grid.ColumnSpan="2" ClipToBounds="True"/>
+            
+            <ScrollBar Name="PART_HorizontalScrollBar"
+                       Orientation="Horizontal"
+                       Grid.Row="6" />
+            
+            <ScrollBar Name="PART_VerticalScrollBar"
+                       Orientation="Vertical"
+                       Grid.Column="1" 
+                       Grid.Row="5"/>
+            
+            <Panel x:Name="PART_ScrollBarsSeparator"
+                   Grid.Row="6"
+                   Grid.Column="1"
+                   Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                   Opacity="0">
+                <Panel.Transitions>
+                    <Transitions>
+                        <DoubleTransition Property="Opacity" Duration="0:0:0.1" />
+                    </Transitions>
+                </Panel.Transitions>
+            </Panel>
+
+            <mxdcv:FilterPanel x:Name="PART_FilterPanel" Grid.Row="7" Grid.ColumnSpan="2" IsFilterEnabled="{Binding $parent[mxdg:DataGridControl].IsFilterEnabled}"
+                               FilterString="{Binding $parent[mxdg:DataGridControl].FilterPanelText}"
+                               IsVisible="{Binding $parent[mxdg:DataGridControl].IsFilterPanelVisible}"/>
+            
+            <Border Name="PART_HeaderDropIndicator" IsHitTestVisible="False" Grid.Row="3" Grid.RowSpan="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" 
+                    Width="{Binding $parent[mxdg:DataGridControl].HeaderDropIndicatorWidth}" Background="{DynamicResource Outline/Accent/Secondary}" IsVisible="False"/>
+        </Grid>
+    </ControlTemplate>
     
     <ControlTheme x:Key="{x:Type mxdg:DataGridControl}" TargetType="mxdg:DataGridControl">
         <Setter Property="RowLevelIndent" Value="22" />
@@ -65,23 +151,10 @@
         <Setter Property="ColumnMenu" Value="{StaticResource DefaultColumnMenu}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *">
-                        <mxdcv:SearchPanel  x:Name="PART_SearchPanel" IsVisible="{TemplateBinding IsSearchPanelVisible}" SearchText="{Binding SearchText, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
-                        <Border Grid.Row="1" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}" BorderThickness="0, 0, 0, 1" IsVisible="{Binding ShowGroupPanel, RelativeSource={RelativeSource TemplatedParent}}">
-                            <Grid>
-                                <TextBlock Text="{x:Static localization:ControlsResources.DataControl_GroupPanelText}" Theme="{DynamicResource GroupPanelTextTheme}" VerticalAlignment="Center" Margin="6,10" IsVisible="{Binding !GroupedColumns.Count, RelativeSource={RelativeSource TemplatedParent}}"/>
-                                <mxdgv:DataGridGroupPanelControl x:Name="PART_GroupPanel" Padding="0, 10" HeaderDropIndicatorWidth="{TemplateBinding HeaderDropIndicatorWidth}" />
-                            </Grid>
-                        </Border>
-                        <mxdcv:ColumnHeaderPanel Grid.Row="2" x:Name="PART_HeadersPanel" IsVisible="{TemplateBinding ShowColumnHeaders}"/>
-                        <Border Grid.Row="3" x:Name="ColumnHeadersHorizontalSeparator" IsVisible="{TemplateBinding ShowColumnHeaders}" HorizontalAlignment="Stretch" Height="1" Background="{DynamicResource Outline/Neutral/Transparent/Medium}" />
-                        <mxdcv:AutoFilterRowControl Grid.Row="4" x:Name="PART_AutoFilterRow" IsVisible="{TemplateBinding ShowAutoFilterRow}" />
-                        <ScrollViewer Grid.Row="5" x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto">
-                            <common:MxVirtualizingControl x:Name="PART_VirtualizingControl"/>
-                        </ScrollViewer>
-                        <Border Name="PART_HeaderDropIndicator" IsHitTestVisible="False" Grid.Row="2" Grid.RowSpan="4" HorizontalAlignment="Left" Width="{TemplateBinding HeaderDropIndicatorWidth}" Background="{DynamicResource Outline/Accent/Secondary}" IsVisible="False"/>
-                    </Grid>
+                <Border Background="{TemplateBinding Background}" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}" BorderThickness="{TemplateBinding BorderThickness}">
+                    <ScrollViewer x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto" Template="{DynamicResource DataGridScrollViewerTemplate}">
+                        <common:MxVirtualizingControl x:Name="PART_VirtualizingControl"/>
+                    </ScrollViewer>
                     <Border.Styles>
                         <StyleInclude Source="/Controls/Editors/EditorsCellStyles.axaml"/>
                     </Border.Styles>
@@ -93,22 +166,18 @@
     <ControlTheme x:Key="{x:Type mxdgv:DataGridRowControl}" TargetType="mxdgv:DataGridRowControl" BasedOn="{StaticResource {x:Type mxdcv:DataRowControlBase}}">
         <Setter Property="Template">
             <ControlTemplate>
-                <Grid Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
-                    <Border x:Name="RowBorder" BorderBrush="{TemplateBinding BorderBrush}">
-                        <mxdcv:CellsPanel x:Name="PART_CellsPanel">
-                            <mxdcv:CellsPanel.Margin>
-                                <MultiBinding Converter="{mxdgv:LevelAndIndentToThicknessConverter}">
-                                    <Binding Path="Level" RelativeSource="{RelativeSource TemplatedParent}" />
-                                    <Binding Path="LevelIndent" RelativeSource="{RelativeSource TemplatedParent}" />
-                                </MultiBinding>
-                            </mxdcv:CellsPanel.Margin>
-                        </mxdcv:CellsPanel>
-                    </Border>
-                    <Border x:Name="FocusBorder" />
-                </Grid>
+                <Border x:Name="RowBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,0,1">
+                    <mxdcv:CellsPanel x:Name="PART_CellsPanel">
+                        <mxdcv:CellsPanel.Margin>
+                            <MultiBinding Converter="{mxdgv:LevelAndIndentToThicknessConverter}">
+                                <Binding Path="Level" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Path="LevelIndent" RelativeSource="{RelativeSource TemplatedParent}" />
+                            </MultiBinding>
+                        </mxdcv:CellsPanel.Margin>
+                    </mxdcv:CellsPanel>
+                </Border>
             </ControlTemplate>
         </Setter>
-
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type mxdgv:DataGridGroupRowControl}" TargetType="mxdgv:DataGridGroupRowControl">
@@ -149,16 +218,10 @@
                             <TextBlock Text="{TemplateBinding GroupValueDisplayText}" HorizontalAlignment="Left" VerticalAlignment="Center" />
                         </DockPanel>
                     </Border>
-                    <Border x:Name="FocusBorder" />
                 </Grid>
             </ControlTemplate>
         </Setter>
-
-        <Style Selector="^:focusedState /template/ Border#FocusBorder, ^:focusedAndSelectedState /template/ Border#FocusBorder">
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
-        </Style>
-
+        
         <Style Selector="^:focusedAndSelectedState /template/ Border#RowBorder">
             <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Row/Hover}" />
         </Style>
@@ -172,14 +235,6 @@
         <Style Selector="^[IsHorizontalLineVisible=true] /template/ Border#RowBorder">
             <Setter Property="BorderThickness" Value="0,0,0,1" />
         </Style>
-        <Style Selector="^[IsHorizontalLineVisible=true] /template/ Border#FocusBorder">
-            <Setter Property="Margin" Value="0,0,0,1" />
-        </Style>
-
-        <Style Selector="^[(mxdg|DataGridControl.IsFocusWithin)=false] /template/ Border#FocusBorder">
-            <Setter Property="BorderThickness" Value="0" />
-        </Style>
-        
     </ControlTheme>
 
 </ResourceDictionary>

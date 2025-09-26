@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="using:System"
         xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
 		xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
         xmlns:media="clr-namespace:Avalonia.Media;assembly=Avalonia.Visuals">
@@ -19,9 +20,10 @@
     <StreamGeometry x:Key="ExpanderChevronDownIcon">M9.85355 0.646447C10.0488 0.841709 10.0488 1.15829 9.85355 1.35355L5.35355 5.85355C5.15829 6.04882 4.84171 6.04882 4.64645 5.85355L0.146446 1.35355C-0.0488158 1.15829 -0.0488157 0.841708 0.146446 0.646446C0.341709 0.451184 0.658291 0.451184 0.853554 0.646446L5 4.79289L9.14645 0.646447C9.34171 0.451184 9.65829 0.451184 9.85355 0.646447Z</StreamGeometry>
 
 	<StreamGeometry x:Key="CheckBoxCheckIcon">M9.70636 0.154788C10.0351 0.406808 10.0973 0.877594 9.84524 1.20632L4.09524 8.70632C3.95426 8.8902 3.7362 8.9986 3.50449 8.99998C3.27278 9.00136 3.05345 8.89556 2.91029 8.71336L0.160293 5.21336C-0.0956169 4.88765 -0.0390379 4.41616 0.286666 4.16025C0.61237 3.90434 1.08386 3.96092 1.33977 4.28663L3.49276 7.0268L8.65483 0.293669C8.90685 -0.0350537 9.37763 -0.097233 9.70636 0.154788Z</StreamGeometry>
+    <StreamGeometry x:Key="ColorEditorCheckIcon">M10.5103 0.257916C9.99677 -0.135544 9.27462 -0.0693278 8.84038 0.391706L8.75738 0.489364L3.98683 6.7111L2.23292 4.47768C1.83296 3.96895 1.11664 3.85432 0.581536 4.1935L0.477043 4.26772C-0.0652726 4.69425 -0.159045 5.47994 0.267081 6.02261L3.0171 9.52264L3.11183 9.63007C3.34684 9.86722 3.6695 10.0021 4.00734 10.0002C4.39335 9.99778 4.75682 9.81726 4.99172 9.51093L10.7418 2.01086L10.814 1.90539C11.1468 1.3662 11.024 0.651736 10.5103 0.257916Z</StreamGeometry>
     <RectangleGeometry x:Key="CheckBoxIndeterminateIcon" Rect="0,0,6,6" RadiusX="0.5" RadiusY="0.5"/>
 
-	<StreamGeometry x:Key="AddColorIcon">M5.5 0C5.77614 0 6 0.223858 6 0.5V5H10.5C10.7761 5 11 5.22386 11 5.5C11 5.77614 10.7761 6 10.5 6H6V10.5C6 10.7761 5.77614 11 5.5 11C5.22386 11 5 10.7761 5 10.5V6H0.5C0.223858 6 0 5.77614 0 5.5C0 5.22386 0.223858 5 0.5 5H5V0.5C5 0.223858 5.22386 0 5.5 0Z</StreamGeometry>
+	<StreamGeometry x:Key="AddColorIcon">M6.16699 0C6.44313 0 6.66699 0.223858 6.66699 0.5V5H11.167C11.4431 5 11.667 5.22386 11.667 5.5C11.667 5.77614 11.4431 6 11.167 6H6.66699V10.5C6.66699 10.7761 6.44313 11 6.16699 11C5.89085 11 5.66699 10.7761 5.66699 10.5V6H1.16699C0.89085 6 0.666992 5.77614 0.666992 5.5C0.666992 5.22386 0.89085 5 1.16699 5H5.66699V0.5C5.66699 0.223858 5.89085 0 6.16699 0Z</StreamGeometry>
 
 	<x:Double x:Key="EditorFontSize">12</x:Double>
     <!--EditorFontSize will be removed. Do not use!-->
@@ -83,11 +85,12 @@
     <Thickness x:Key="MenuFlyoutSeparatorThemePadding">4,2</Thickness>
     <x:Double x:Key="MenuFlyoutSeparatorThemeHeight">1</x:Double>
 
-    <Thickness x:Key="ListBoxPadding">0,0,2,2</Thickness>
-	<Thickness x:Key="ListBoxItemMargin">2,2,0,0</Thickness>
+    <Thickness x:Key="ListBoxPadding">0</Thickness>
+	<Thickness x:Key="ListBoxItemMargin">0</Thickness>
+    <Thickness x:Key="ListBoxItemBackgroundMargin">2,1</Thickness>
 	<Thickness x:Key="ListBoxItemPadding">8,0,8,0</Thickness>
-	<x:Double x:Key="ListBoxItemMinHeight">26</x:Double>
-	<Thickness x:Key="ComboBoxEmptyValueSelectorPadding">0,0,2,0</Thickness>
+	<x:Double x:Key="ListBoxItemMinHeight">28</x:Double>
+	<Thickness x:Key="ComboBoxEmptyValueSelectorPadding">0</Thickness>
 	<Thickness x:Key="ComboBoxSelectAllCheckerPadding">10,0,10,0</Thickness>
 	<x:Double x:Key="EnumItemTemplateElementSpacing">8</x:Double>
 
@@ -128,6 +131,32 @@
 	</DataTemplate>
 	<SolidColorBrush x:Key="HighlightedTextBlockBackgroundBrush" Color="{DynamicResource HighlightedTextBackgroundColor}"/>
 	<SolidColorBrush x:Key="HighlightedTextBlockForegroundBrush" Color="{DynamicResource HighlightedTextForegroundColor}"/>
+
+    <sys:Double x:Key="ColorIndicatorDefaultSize">16</sys:Double>
+    <CornerRadius x:Key="TransparentIndicatorColorCornerRadius">3,0,0,3</CornerRadius>
+    <CornerRadius x:Key="TransparentIndicatorCellularElementCornerRadius">0,3,3,0</CornerRadius>
+    
+    <DrawingBrush x:Key="ColorToggleButtonTransparencyBrush" TileMode="Tile" DestinationRect="0,0,8,8" Opacity="0.15">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="White">
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="0,0,8,8"/>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="Black">
+                    <GeometryDrawing.Geometry>
+                        <GeometryGroup>
+                            <RectangleGeometry Rect="0,0,4,4"/>
+                            <RectangleGeometry Rect="4,4,4,4"/>
+                        </GeometryGroup>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <SolidColorBrush x:Key="ColorToggleButtonCheckedForeground" Color="White"/>
 
     <ControlTheme x:Key="WindowBasedClassesTheme" TargetType="{x:Type Window}">
         <Setter Property="Background" Value="{DynamicResource NativeWindowBackground}"/>

@@ -12,6 +12,9 @@
                 <ResourceInclude Source="/Controls/Toolbars.axaml" />
                 <ResourceInclude Source="/Controls/GroupBox.axaml"/>
                 <ResourceInclude Source="/Controls/Window.axaml" />
+                <ResourceInclude Source="/Controls/MxSplitButton/MxSplitButtonPrimary.axaml" />
+                <ResourceInclude Source="/Controls/MxSplitButton/MxSplitButtonToggle.axaml" />
+                <ResourceInclude Source="/Controls/MxSplitButton/MxSplitButton.axaml" />
 		        <ResourceInclude Source="/Controls/RibbonControl.axaml" />
                 <ResourceInclude Source="/Controls/DockManager.axaml" />
                 <ResourceInclude Source="/Controls/TabControl/Generic.axaml" />

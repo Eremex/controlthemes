@@ -3,24 +3,25 @@
   <metadata>
     <id>Eremex.Avalonia.Themes.DeltaDesign</id>
     <version>$version$</version>
-    <authors>Eremex.Avalonia.Themes.DeltaDesign</authors>
     <license type="file">eula.txt</license>
     <description>A collection of themes for the Eremex Avalonia UI Controls.</description>
-    <copyright>©2010-2025 Eremex</copyright>
+    <authors>$nugetauthors$</authors>
+    <copyright>$nugetcopyright$</copyright>
+    <projectUrl>$nugetprojecturl$</projectUrl>
     <dependencies>
       <group targetFramework="net6.0">
 		<dependency id="Eremex.Avalonia.Controls" version="$version$" exclude="Build,Analyzers" />
-	    <dependency id="Avalonia" version="11.2.2" exclude="Build,Analyzers" />
-        <dependency id="Avalonia.Fonts.Inter" version="11.2.2" exclude="Build,Analyzers" />
-        <dependency id="Avalonia.Svg.Skia" version="11.2.0.2" exclude="Build,Analyzers" />
+	    <dependency id="Avalonia" version="$avaloniaversion$" exclude="Build,Analyzers" />
+        <dependency id="Avalonia.Fonts.Inter" version="$avaloniaversion$" exclude="Build,Analyzers" />
+        <dependency id="Svg.Controls.Skia.Avalonia" version="$avaloniasvgskiaversion$" exclude="Build,Analyzers" />
         <dependency id="DynamicData" version="8.1.1" exclude="Build,Analyzers" />
-        <dependency id="SkiaSharp" version="2.88.8" exclude="Build,Analyzers" />
+        <dependency id="SkiaSharp" version="$skiasharpversion$" exclude="Build,Analyzers" />
         <dependency id="System.Resources.Extensions" version="6.0.0" exclude="Build,Analyzers" />
       </group>
     </dependencies>
   </metadata>
   <files>
     <file src="../../eula.txt" target="eula.txt" />
-    <file src="../../Bin/$configuration$/Eremex.Avalonia.Themes.DeltaDesign.dll" target="lib\net6.0\Eremex.Avalonia.Themes.DeltaDesign.dll" />
+    <file src="bin/$configuration$/Eremex.Avalonia.Themes.DeltaDesign.dll" target="lib\net6.0\Eremex.Avalonia.Themes.DeltaDesign.dll" />
   </files>
 </package>

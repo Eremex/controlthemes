@@ -1,6 +1,7 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls">
+        xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
+        xmlns:internal="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Internal;assembly=Eremex.Avalonia.Controls">
 
     <Design.PreviewWith>
         <Border Padding="20">
@@ -30,19 +31,20 @@
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="{TemplateBinding CornerRadius}"
                                 Padding="{TemplateBinding Padding}">
-                            <Grid Name="PART_MainContainer">
+                            <internal:SplitContainerLayoutPanel Name="PART_MainContainer" Orientation="{TemplateBinding Orientation}">
                                 <ContentPresenter Name="PART_Content1"
                                                   Content="{TemplateBinding Panel1}"
                                                   ContentTemplate="{TemplateBinding Panel1Template}"
                                                   ClipToBounds="True"/>
-                                <GridSplitter Name="PART_Splitter"
+                                <internal:SplitContainerLayoutSplitter Name="PART_Splitter"
                                               Theme="{StaticResource SplitContainerControlSplitterTheme}"
-                                              IsVisible="{TemplateBinding IsSplitterVisible}"/>
+                                              IsVisible="{TemplateBinding IsSplitterVisible}"
+                                              Orientation="{TemplateBinding Orientation}"/>
                                 <ContentPresenter Name="PART_Content2"
                                                   Content="{TemplateBinding Panel2}"
                                                   ContentTemplate="{TemplateBinding Panel2Template}"
                                                   ClipToBounds="True"/>
-                            </Grid>
+                            </internal:SplitContainerLayoutPanel>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -62,17 +64,17 @@
             </Style>
         </ControlTheme>
 
-        <ControlTheme x:Key="SplitContainerControlSplitterTheme" TargetType="GridSplitter">
+        <ControlTheme x:Key="SplitContainerControlSplitterTheme" TargetType="internal:SplitContainerLayoutSplitter">
             <Setter Property="Focusable" Value="True" />
             <Setter Property="MinWidth" Value="12" />
             <Setter Property="MinHeight" Value="12" />
             <Setter Property="Background" Value="{DynamicResource SplitContainerControlSplitterBackground}" />
             <Setter Property="Foreground" Value="{DynamicResource SplitContainerControlSplitterForeground}"/>
-            <Setter Property="PreviewContent">
-                <Template>
-                    <Rectangle Fill="{DynamicResource SplitContainerControlSplitterBackground}" />
-                </Template>
-            </Setter>
+            <!-- <Setter Property="PreviewContent"> -->
+            <!--     <Template> -->
+            <!--         <Rectangle Fill="{DynamicResource SplitContainerControlSplitterBackground}" /> -->
+            <!--     </Template> -->
+            <!-- </Setter> -->
             <Setter Property="Template">
                 <ControlTemplate>
                     <Border Name="PART_SplitterBorder"

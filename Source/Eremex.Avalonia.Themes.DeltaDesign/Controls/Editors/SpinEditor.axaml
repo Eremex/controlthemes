@@ -140,7 +140,7 @@
                                                    IsVisible="{Binding $self.Text, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                                                    Text="{Binding $parent[mxe:SpinEditor].Prefix}"/>
                                         <Image Source="{x:Static icons:Basic.Error}"
-                                               x:Name="PART_ErrorIndicator"
+                                               x:Name="PART_ErrorIndicator" Stretch="None"
                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                Grid.Column="1"/>
                                         <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"

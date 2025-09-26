@@ -2,7 +2,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:internal="clr-namespace:Eremex.AvaloniaUI.Controls.Internal;assembly=Eremex.Avalonia.Controls"
         xmlns:controls="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
-        xmlns:other="clr-namespace:Eremex.AvaloniaUI.Icons.Other;assembly=Eremex.Avalonia.Icons">
+        xmlns:other="clr-namespace:Eremex.AvaloniaUI.Icons.Other;assembly=Eremex.Avalonia.Icons"
+        xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls">
     <ControlTheme x:Key="{x:Type controls:MxTabItem}" TargetType="controls:MxTabItem">
         <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}"></Setter>
         <Setter Property="Background" Value="Transparent"></Setter>
@@ -20,7 +21,8 @@
                                    Margin="{TemplateBinding Padding}">
                             <Button x:Name="PART_CloseButton"
                                     Classes="TabControlButton TabItemButton"
-                                    Theme="{StaticResource TabItemButtonTheme}">
+                                    Theme="{StaticResource TabItemButtonTheme}"
+                                    ToolTip.Tip="{x:Static localization:ControlsResources.TabItem_CloseTabButton}">
                                 <Image Height="12"
                                        Width="12"
                                        Source="{x:Static other:_12.Close}"/>

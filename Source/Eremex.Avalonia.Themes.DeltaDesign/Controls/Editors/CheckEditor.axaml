@@ -56,8 +56,7 @@
                                    TextWrapping="Wrap"/>
                         <Panel x:Name="PART_RealEditorPanel">
                             <Grid Name="PART_RootContainer"
-                                Background="{TemplateBinding Background}"
-                                IsHitTestVisible="{Binding !ReadOnly, RelativeSource={RelativeSource TemplatedParent}}">
+                                Background="{TemplateBinding Background}">
                                 <CheckBox Grid.Column="1" Name="PART_RealEditor"
                                           HorizontalAlignment="Stretch"
                                           VerticalAlignment="Stretch"
@@ -74,7 +73,8 @@
                                           BorderThickness="0"
                                           Theme="{StaticResource CheckEditorCheckerTheme}"
                                           MinHeight="0"
-                                          Classes.secondary="{TemplateBinding SecondaryAppearance}"/>
+                                          Classes.secondary="{TemplateBinding SecondaryAppearance}"
+                                          IsEnabled="{Binding !ReadOnly, RelativeSource={RelativeSource TemplatedParent}}"/>
                             </Grid>
                             <Border Name="PART_RootBorder"
                                     BorderBrush="{TemplateBinding BorderBrush}"
