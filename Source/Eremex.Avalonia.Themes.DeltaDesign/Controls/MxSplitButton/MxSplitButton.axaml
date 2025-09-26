@@ -1,0 +1,147 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="using:System"
+                    xmlns:mxb="https://schemas.eremexcontrols.net/avalonia/bars"
+                    xmlns:icons="https://schemas.eremexcontrols.net/avalonia/icons"
+                    xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls">
+
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <StackPanel Spacing="20">
+                <mxc:MxSplitButton Content="Click Me!">
+                    <mxc:MxSplitButton.DropDownControl>
+                        <mxb:PopupMenu>
+                            <mxb:ToolbarButtonItem Header="Item1" Glyph="{x:Static icons:Basic.Doc}"/>
+                        </mxb:PopupMenu>
+                    </mxc:MxSplitButton.DropDownControl>
+                </mxc:MxSplitButton>
+                <mxc:MxSplitButton Content="Click Me!" IsEnabled="False" />
+                <mxc:MxSplitButton Classes="accent" Content="Click Me!" IsEnabled="True" >
+                    <mxc:MxSplitButton.DropDownControl>
+                        <mxb:PopupMenu>
+                            <mxb:ToolbarButtonItem Header="Item2 Save" Glyph="{x:Static icons:Basic.Save}"/>
+                        </mxb:PopupMenu>
+                    </mxc:MxSplitButton.DropDownControl>
+                </mxc:MxSplitButton>
+                <mxc:MxSplitButton Classes="warning" Content="Click Me!" />
+                <mxc:MxSplitButton Classes="warning accent" Content="Click Me!" IsEnabled="True" />
+                <Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
+                    <StackPanel Spacing="20">
+                        <mxc:MxSplitButton Content="Click Me!" Classes="secondary" >
+                            <mxc:MxSplitButton.DropDownControl>
+                                <mxb:PopupMenu>
+                                    <mxb:ToolbarButtonItem Header="Item3 Info" Glyph="{x:Static icons:Basic.Info}"/>
+                                </mxb:PopupMenu>
+                            </mxc:MxSplitButton.DropDownControl>
+                        </mxc:MxSplitButton>
+                        <mxc:MxSplitButton Content="Click Me!" Classes="secondary" IsEnabled="False" />
+                        <mxc:MxSplitButton Content="Click Me!" Classes="warning secondary" />
+                        <mxc:MxSplitButton Content="Click Me!" Classes="warning secondary" IsEnabled="False" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <Thickness x:Key="AccentButtonFocusedPadding">10,4,12,4</Thickness>
+    <sys:Double x:Key="MxSplitButtonToggleFocusedMinWidth">26</sys:Double>
+    <Thickness x:Key="MxSplitButtonToggleFocusedPadding">6,2,4,2</Thickness>   
+
+    <mxev:CornerRadiusConverter x:Key="cornerRadiusConverter"/>
+
+    <ControlTheme x:Key="{x:Type mxc:MxSplitButton}" TargetType="mxc:MxSplitButton">
+        <Setter Property="Background" Value="{DynamicResource ButtonBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
+        <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
+        <Setter Property="Padding" Value="{StaticResource ButtonPadding}" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="FocusAdorner" Value="{x:Null}" />
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="True" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Grid ColumnDefinitions="*, Auto" x:Name="PART_BackgroundContainer">
+                        <Button x:Name="PART_PrimaryButton"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                Command="{TemplateBinding Command}"
+                                CommandParameter="{TemplateBinding CommandParameter}"
+                                CornerRadius="{TemplateBinding CornerRadius, Converter={StaticResource cornerRadiusConverter}, ConverterParameter=Left}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Padding="{TemplateBinding Padding}"
+                                Theme="{StaticResource MxSplitButtonPrimaryTheme}"/>
+                        <ToggleButton Grid.Column="1" x:Name="PART_PopupOpenButton"
+                                      CornerRadius="{TemplateBinding CornerRadius, Converter={StaticResource cornerRadiusConverter}, ConverterParameter=Right}"
+                                      MinWidth="{StaticResource ButtonMinWidth}"
+                                      Theme="{StaticResource MxSplitButtonToggleTheme}"/>
+                    </Grid>
+                    <Border Name="PART_ButtonBorder"
+                            Grid.ColumnSpan="2"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Background="{x:Null}"/>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+
+        <!-- Disabled State -->
+        <Style Selector="^:disabled /template/ Border#PART_ButtonBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrushDisabled}" />
+        </Style>
+
+        <!-- Accent style -->
+        <Style Selector="^.accent">
+            <Style Selector="^ /template/ Border#PART_ButtonBorder">
+                <Setter Property="BorderBrush" Value="{DynamicResource ButtonAccentBorderBrush}" />
+            </Style>
+            <Style Selector="^:focus">
+                <Setter Property="Padding" Value="{StaticResource AccentButtonFocusedPadding}"/>
+            </Style>
+            <Style Selector="^:focus /template/ Grid#PART_BackgroundContainer">
+                <Setter Property="Margin" Value="{StaticResource AccentButtonBackgroundFocusedMargin}" />
+            </Style>
+            <Style Selector="^:focus /template/ ToggleButton#PART_PopupOpenButton">
+                <Setter Property="MinWidth" Value="{StaticResource MxSplitButtonToggleFocusedMinWidth}" />
+                <Setter Property="Padding" Value="{StaticResource MxSplitButtonToggleFocusedPadding}" />
+            </Style>
+
+            <!-- Accent DisabledState -->
+            <Style Selector="^:disabled /template/ Border#PART_ButtonBorder">
+                <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrushDisabled}" />
+            </Style>
+        </Style>
+
+        <!-- Warning style -->
+        <Style Selector="^.warning">
+            <Style Selector="^ /template/ Border#PART_ButtonBorder">
+                <Setter Property="BorderBrush" Value="{DynamicResource ButtonWarningBorderBrush}" />
+            </Style>
+            <!-- Warning DisabledState -->
+            <Style Selector="^:disabled /template/ Border#PART_ButtonBorder">
+                <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrushDisabled}" />
+            </Style>
+        </Style>
+
+        <!-- WarningAccent style -->
+        <Style Selector="^.warning.accent">
+            <Style Selector="^ /template/ Border#PART_ButtonBorder">
+                <Setter Property="BorderBrush" Value="{DynamicResource ButtonWarningAccentBorderBrush}" />
+            </Style>
+        </Style>
+
+        <!--Focus Parameters-->
+        <Style Selector="^:focus /template/ Border#PART_ButtonBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource ButtonFocusBorderBrush}" />
+            <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}"/>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

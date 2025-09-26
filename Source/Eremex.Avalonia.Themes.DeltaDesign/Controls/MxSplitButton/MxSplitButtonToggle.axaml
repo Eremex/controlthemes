@@ -1,0 +1,170 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Design.PreviewWith>
+        <Border Padding="40, 20, 40, 20">
+            <StackPanel Spacing="20">
+                <ToggleButton Theme="{StaticResource MxSplitButtonToggleTheme}" ToolTip.Tip="normal"/>
+                <ToggleButton Classes="accent" IsEnabled="True" Theme="{StaticResource MxSplitButtonToggleTheme}" ToolTip.Tip="accent"/>
+                <ToggleButton Classes="warning" Theme="{StaticResource MxSplitButtonToggleTheme}" ToolTip.Tip="warning"/>
+                <ToggleButton Classes="warning accent" Theme="{StaticResource MxSplitButtonToggleTheme}" ToolTip.Tip="warning accent"/>
+                <Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
+                    <StackPanel Spacing="20">
+                        <ToggleButton Classes="secondary" Theme="{StaticResource MxSplitButtonToggleTheme}" ToolTip.Tip="normal secondary"/>
+                        <ToggleButton Classes="secondary" IsEnabled="False" Theme="{StaticResource MxSplitButtonToggleTheme}"/>
+                        <ToggleButton Classes="warning secondary" Theme="{StaticResource MxSplitButtonToggleTheme}" ToolTip.Tip="warning secondary"/>
+                        <ToggleButton Classes="warning secondary" IsEnabled="False" Theme="{StaticResource MxSplitButtonToggleTheme}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <Border.Styles>
+                <Style Selector="ToggleButton">
+                    <Setter Property="Height" Value="28"/>
+                </Style>
+            </Border.Styles>
+        </Border>
+    </Design.PreviewWith>
+
+    <ControlTheme x:Key="MxSplitButtonToggleTheme" TargetType="ToggleButton">
+        <Setter Property="Background" Value="{DynamicResource ButtonBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource MxSplitButtonToggleForeground}" />
+        <Setter Property="Padding" Value="{StaticResource EditorIconButtonPadding}"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="ClickMode" Value="Press"/>
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border x:Name="PART_BackgroundBorder"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Padding="{TemplateBinding Padding}">
+                    <Path x:Name="PART_Content"
+                          Fill="{TemplateBinding Foreground}"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          Data="{StaticResource ChevronDownIcon}"/>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+
+        <!-- PointerOver -->
+        <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
+            <Setter Property="Background" Value="{DynamicResource ButtonBackgroundPointerOver}" />
+        </Style>
+
+        <!-- Pressed State -->
+        <Style Selector="^:pressed /template/ Border#PART_BackgroundBorder,
+               ^:checked /template/ Border#PART_BackgroundBorder">
+            <Setter Property="Background" Value="{DynamicResource ButtonBackgroundPressed}" />
+            <Style Selector="^ Path#PART_Content">
+                <Setter Property="Opacity" Value="0.8"/>
+            </Style>
+        </Style>
+
+        <!-- Disabled State -->
+        <Style Selector="^:disabled /template/ Border#PART_BackgroundBorder">
+            <Setter Property="Background" Value="{DynamicResource ButtonBackgroundDisabled}" />
+        </Style>
+        <!-- Accent style -->
+        <Style Selector="^.accent">
+            <Style Selector="^ /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonAccentBackground}" />
+            </Style>
+            <Style Selector="^ /template/ Path#PART_Content">
+                <Setter Property="Fill" Value="{DynamicResource MxSplitButtonToggleAccentForeground}" />
+            </Style>
+
+            <!-- Accent PointerOver -->
+            <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonAccentBackgroundPointerOver}" />
+            </Style>
+
+            <!-- Accent PressedState -->
+            <Style Selector="^:pressed /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonAccentBackgroundPressed}" />
+            </Style>
+
+            <!-- Accent DisabledState -->
+            <Style Selector="^:disabled /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonAccentBackgroundDisabled}" />
+            </Style>
+        </Style>
+
+        <!-- Warning style -->
+        <Style Selector="^.warning">
+            <Style Selector="^ /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonWarningBackground}" />
+            </Style>
+            <Style Selector="^ /template/ Path#PART_Content">
+                <Setter Property="Fill" Value="{DynamicResource MxSplitButtonToggleWarningForeground}" />
+            </Style>
+
+            <!-- Warning PointerOver -->
+            <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonWarningBackgroundPointerOver}" />
+            </Style>
+
+            <!-- Warning PressedState -->
+            <Style Selector="^:pressed /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonWarningBackgroundPressed}" />
+            </Style>
+
+            <!-- Warning DisabledState -->
+            <Style Selector="^:disabled /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonWarningBackgroundDisabled}" />
+            </Style>
+        </Style>
+
+        <!-- WarningAccent style -->
+        <Style Selector="^.warning.accent">
+            <Style Selector="^ /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonWarningAccentBackground}" />
+            </Style>
+            <Style Selector="^ /template/ Path#PART_Content">
+                <Setter Property="Fill" Value="{DynamicResource MxSplitButtonToggleAccentForeground}" />
+            </Style>
+
+            <!-- WarningAccent PointerOver -->
+            <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonWarningAccentBackgroundPointerOver}" />
+            </Style>
+
+            <!-- WarningAccent PressedState -->
+            <Style Selector="^:pressed /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonWarningAccentBackgroundPressed}" />
+            </Style>
+
+            <!-- WarningAccent DisabledState -->
+            <Style Selector="^:disabled /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonWarningAccentBackgroundDisabled}" />
+            </Style>
+        </Style>
+
+        <!--Secondary style-->
+        <Style Selector="^.secondary">
+            <Style Selector="^ /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonSecondaryBackground}" />
+            </Style>
+
+            <!--Secondary PointerOver -->
+            <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonSecondaryBackgroundPointerOver}" />
+            </Style>
+
+            <!--Secondary Pressed state-->
+            <Style Selector="^:pressed /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonSecondaryBackgroundPressed}" />
+            </Style>
+
+            <!--Secondary Disabled state-->
+            <Style Selector="^:disabled /template/ Border#PART_BackgroundBorder">
+                <Setter Property="Background" Value="{DynamicResource ButtonSecondaryBackgroundDisabled}" />
+            </Style>
+        </Style>
+
+        <!-- DisabledState -->
+        <Style Selector="^:disabled /template/ Path#PART_Content">
+            <Setter Property="Fill" Value="{DynamicResource MxSplitButtonToggleForegroundDisabled}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

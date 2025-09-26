@@ -1,0 +1,102 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:sys="using:System"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Design.PreviewWith>
+        <Border Padding="40, 20, 40, 20">
+            <StackPanel Spacing="20">
+                <Button Theme="{StaticResource MxSplitButtonPrimaryTheme}" ToolTip.Tip="normal"/>
+                <Button Classes="accent" IsEnabled="True" Theme="{StaticResource MxSplitButtonPrimaryTheme}" ToolTip.Tip="accent"/>
+                <Button Classes="warning" Theme="{StaticResource MxSplitButtonPrimaryTheme}" ToolTip.Tip="warning"/>
+                <Button Classes="warning accent" Theme="{StaticResource MxSplitButtonPrimaryTheme}" ToolTip.Tip="warning accent"/>
+                <Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
+                    <StackPanel Spacing="20">
+                        <Button Classes="secondary" Theme="{StaticResource MxSplitButtonPrimaryTheme}" ToolTip.Tip="normal secondary"/>
+                        <Button Classes="secondary" IsEnabled="False" Theme="{StaticResource MxSplitButtonPrimaryTheme}"/>
+                        <Button Classes="warning secondary" Theme="{StaticResource MxSplitButtonPrimaryTheme}" ToolTip.Tip="warning secondary"/>
+                        <Button Classes="warning secondary" IsEnabled="False" Theme="{StaticResource MxSplitButtonPrimaryTheme}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <Border.Styles>
+                <Style Selector="Button">
+                    <Setter Property="Height" Value="28"/>
+                    <Setter Property="Content" Value="Prim"/>
+                    <Setter Property="CornerRadius" Value="6,0,0,6"/>
+                </Style>
+            </Border.Styles>
+        </Border>
+    </Design.PreviewWith>
+
+    <Thickness x:Key="MxSplitButtonSplitterAccentMargin">0,2</Thickness>
+    <sys:Double x:Key="MxSplitButtonSplitterWidth">1</sys:Double>
+
+    <ControlTheme x:Key="MxSplitButtonPrimaryTheme" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Border x:Name="PART_BackgroundBorder"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter x:Name="PART_ContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          CornerRadius="{TemplateBinding CornerRadius}"
+                                          RecognizesAccessKey="True"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <Border x:Name="PART_Splitter"
+                            Width="{StaticResource MxSplitButtonSplitterWidth}"
+                            Background="{DynamicResource ButtonBorderBrush}"
+                            HorizontalAlignment="Right" />
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+
+        <!-- PointerOver -->
+        <Style Selector="^:pointerover /template/ Border#PART_Splitter">
+            <Setter Property="Background" Value="{DynamicResource ButtonBorderBrushPointerOver}" />
+        </Style>
+
+        <!-- Disabled State -->
+        <Style Selector="^:disabled /template/ Border#PART_Splitter">
+            <Setter Property="Background" Value="{DynamicResource ButtonBorderBrushDisabled}" />
+        </Style>
+
+        <!-- Accent style -->
+        <Style Selector="^.accent">
+            <Style Selector="^ /template/ Border#PART_Splitter">
+                <Setter Property="Margin" Value="{StaticResource MxSplitButtonSplitterAccentMargin}" />
+                <Setter Property="Background" Value="{DynamicResource MxSplitButtonToggleAccentForeground}"/>
+            </Style>
+            <!-- Accent PressedState -->
+            <Style Selector="^:pressed /template/ Border#PART_Splitter">
+                <Setter Property="Background" Value="{DynamicResource ButtonAccentForegroundPressed}"/>
+                <Setter Property="Opacity" Value="0.8"/>
+            </Style>
+            <!-- Accent DisabledState -->
+            <Style Selector="^:disabled /template/ Border#PART_Splitter">
+                <Setter Property="Background" Value="{DynamicResource MxSplitButtonToggleForegroundDisabled}"/>
+            </Style>
+        </Style>
+
+        <!-- WarningAccent style -->
+        <Style Selector="^.warning.accent">
+            <Style Selector="^ /template/ Border#PART_Splitter">
+                <Setter Property="Background" Value="{DynamicResource MxSplitButtonToggleAccentForeground}"/>
+            </Style>
+
+            <!-- WarningAccent DisabledState -->
+            <Style Selector="^:disabled /template/ Border#PART_Splitter">
+                <Setter Property="Background" Value="{DynamicResource MxSplitButtonToggleForegroundDisabled}"/>
+            </Style>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>
