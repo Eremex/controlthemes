@@ -111,7 +111,7 @@
                 </ScrollContentPresenter.GestureRecognizers>
             </ScrollContentPresenter>
 
-            <mxdcv:FocusedElementAdornerPanel x:Name="PART_FocusedElementAdornerPanel" Grid.Row="2" Grid.RowSpan="5" Grid.ColumnSpan="2" ClipToBounds="True"/>
+            <mxdcv:FocusedElementAdornerPanel x:Name="PART_FocusedElementAdornerPanel" Grid.Row="0" Grid.RowSpan="7" Grid.ColumnSpan="2" ClipToBounds="False"/>
             
             <ScrollBar Name="PART_HorizontalScrollBar"
                        Orientation="Horizontal"
@@ -152,7 +152,7 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Border Background="{TemplateBinding Background}" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}" BorderThickness="{TemplateBinding BorderThickness}">
-                    <ScrollViewer x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto" Template="{DynamicResource DataGridScrollViewerTemplate}">
+                    <ScrollViewer x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto" Template="{DynamicResource DataGridScrollViewerTemplate}" ClipToBounds="False">
                         <common:MxVirtualizingControl x:Name="PART_VirtualizingControl"/>
                     </ScrollViewer>
                     <Border.Styles>

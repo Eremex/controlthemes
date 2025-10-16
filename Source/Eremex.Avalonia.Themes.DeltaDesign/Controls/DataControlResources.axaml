@@ -241,7 +241,7 @@
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <ControlTemplate>
-                <mxdcv:CellEditor x:Name="PART_CellEditor" Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,1,0"/>
+                <mxdcv:CellEditor x:Name="PART_CellEditor" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,1,0"/>
             </ControlTemplate>
         </Setter>
 
