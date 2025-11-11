@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <EMXControlsVersion>1.2.92</EMXControlsVersion>
+    <EMXControlsVersion>1.2.95</EMXControlsVersion>
     <Company>Eremex</Company>
     <Copyright>©2010-2025 Eremex</Copyright>
     <Product>Eremex Controls</Product>
@@ -23,7 +23,7 @@
     <LangVersion>12.0</LangVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <AvaloniaVersion>11.3.3</AvaloniaVersion>
+    <AvaloniaVersion>11.3.8</AvaloniaVersion>
     <AvaloniaSvgSkiaVersion>11.3.0.3</AvaloniaSvgSkiaVersion>
     <SkiaSharpVersion>2.88.9</SkiaSharpVersion>
     <MicrosoftCodeAnalysisVersion>4.3.0</MicrosoftCodeAnalysisVersion>

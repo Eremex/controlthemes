@@ -21,7 +21,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="../../eula.txt" target="eula.txt" />
+    <file src="../eula.txt" target="eula.txt" />
     <file src="bin/$configuration$/Eremex.Avalonia.Themes.DeltaDesign.dll" target="lib\net6.0\Eremex.Avalonia.Themes.DeltaDesign.dll" />
   </files>
 </package>

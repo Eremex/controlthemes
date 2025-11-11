@@ -6,17 +6,6 @@
 		<RootNamespace>Eremex.AvaloniaUI.Themes.DeltaDesign</RootNamespace>
 		<AssemblyName>Eremex.Avalonia.Themes.DeltaDesign</AssemblyName>
 		<Description>A collection of themes for the Eremex Avalonia UI Controls.</Description>
-
-    <NuspecProperties>$(NuspecProperties);version=$(Version)</NuspecProperties>
-    <NuspecProperties>$(NuspecProperties);configuration=$(Configuration)</NuspecProperties>
-    <NuspecProperties>$(NuspecProperties);avaloniaversion=$(AvaloniaVersion)</NuspecProperties>
-    <NuspecProperties>$(NuspecProperties);avaloniasvgskiaversion=$(AvaloniaSvgSkiaVersion)</NuspecProperties>
-    <NuspecProperties>$(NuspecProperties);skiasharpversion=$(SkiaSharpVersion)</NuspecProperties>
-    <NuspecProperties>$(NuspecProperties);buildtasksname=$(BuildTasksAssemblyName)</NuspecProperties>
-    <NuspecProperties>$(NuspecProperties);nugetauthors=$(NugetAuthors)</NuspecProperties>
-    <NuspecProperties>$(NuspecProperties);nugetcopyright=$(NugetCopyright)</NuspecProperties>
-    <NuspecProperties>$(NuspecProperties);nugetprojecturl=$(NugetProjectUrl)</NuspecProperties>
-
                 <PackageLicenseFile>eula.txt</PackageLicenseFile>
 		<NuspecFile>Eremex.Avalonia.Themes.DeltaDesign.nuspec</NuspecFile>
                 <Nullable>enable</Nullable>
@@ -26,7 +15,7 @@
 
 	</PropertyGroup>
         <ItemGroup>
-			<None Include="..\..\eula.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
+           <None Include="..\eula.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
         </ItemGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
 		<DebugSymbols>true</DebugSymbols>
@@ -47,7 +36,8 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="Eremex.Avalonia.Controls"/>
+		<ProjectReference Include="..\Eremex.Avalonia.Charts\Eremex.Avalonia.Charts.csproj" />
+	  <ProjectReference Include="..\Eremex.Avalonia.Controls\Eremex.Avalonia.Controls.csproj" />
 	  <AvaloniaResource Include="**/*.axaml" />
     <EmbeddedResource Include="Palettes\*.css" />
 	</ItemGroup>

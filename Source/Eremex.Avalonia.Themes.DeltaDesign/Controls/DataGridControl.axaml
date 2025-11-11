@@ -166,7 +166,7 @@
     <ControlTheme x:Key="{x:Type mxdgv:DataGridRowControl}" TargetType="mxdgv:DataGridRowControl" BasedOn="{StaticResource {x:Type mxdcv:DataRowControlBase}}">
         <Setter Property="Template">
             <ControlTemplate>
-                <Border x:Name="RowBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,0,1">
+                <Border x:Name="RowBorder" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="0,0,0,1">
                     <mxdcv:CellsPanel x:Name="PART_CellsPanel">
                         <mxdcv:CellsPanel.Margin>
                             <MultiBinding Converter="{mxdgv:LevelAndIndentToThicknessConverter}">
