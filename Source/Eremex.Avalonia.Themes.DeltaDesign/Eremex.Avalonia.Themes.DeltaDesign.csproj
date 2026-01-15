@@ -15,7 +15,7 @@
 
 	</PropertyGroup>
         <ItemGroup>
-           <None Include="..\eula.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
+           <None Include="..\..\eula.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
         </ItemGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
 		<DebugSymbols>true</DebugSymbols>
@@ -36,10 +36,9 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<ProjectReference Include="..\Eremex.Avalonia.Charts\Eremex.Avalonia.Charts.csproj" />
-	  <ProjectReference Include="..\Eremex.Avalonia.Controls\Eremex.Avalonia.Controls.csproj" />
+	  <PackageReference Include="Eremex.Avalonia.Controls"/>
 	  <AvaloniaResource Include="**/*.axaml" />
-    <EmbeddedResource Include="Palettes\*.css" />
+	  <EmbeddedResource Include="Palettes\*.css" />
 	</ItemGroup>
 
 	<ItemGroup>

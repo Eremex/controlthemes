@@ -11,7 +11,7 @@ EREMEX JSC
 
 EREMEX EMX Controls
 
-Copyright (c) 2008-2025
+Copyright (c) 2008-2026
 
 IMPORTANT – PLEASE, CAREFULLY READ THE TERMS OF THE END-USER LICENSE AGREEMENT BEFORE DOWNLOADING AND USING THE SOFTWARE.
 
@@ -246,4 +246,4 @@ Email: info@eremex.ru, controls@eremex.com
 
 Website: https://www.eremex.ru/ 
 
-© JSC EREMEX, 2008-2025.
+© JSC EREMEX, 2008-2026.

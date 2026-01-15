@@ -1,8 +1,8 @@
 <Project>
   <PropertyGroup>
-    <EMXControlsVersion>1.2.95</EMXControlsVersion>
+    <EMXControlsVersion>1.2.102</EMXControlsVersion>
     <Company>Eremex</Company>
-    <Copyright>©2010-2025 Eremex</Copyright>
+    <Copyright>©2010-2026 Eremex</Copyright>
     <Product>Eremex Controls</Product>
   </PropertyGroup>
 
@@ -14,7 +14,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
 
     <NugetAuthors>Eremex.Avalonia.Controls</NugetAuthors>
-    <NugetCopyright>©2010-2025 Eremex</NugetCopyright>
+    <NugetCopyright>©2010-2026 Eremex</NugetCopyright>
     <NugetProjectUrl>https://eremexcontrols.net/</NugetProjectUrl>
   </PropertyGroup>
 

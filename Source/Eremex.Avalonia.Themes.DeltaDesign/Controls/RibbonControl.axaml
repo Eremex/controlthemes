@@ -735,7 +735,7 @@
 
         <Style
             Selector="^[IsArrowVisible=False]/template/ContentPresenter#PART_FirstLine,
-                ^[IsArrowVisible=False]/template/ContentPresenter#PART_FirstLine">
+                ^[IsArrowVisible=False]/template/StackPanel#PART_SecondLineArrowPanel">
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
 
