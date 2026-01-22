@@ -234,7 +234,6 @@
         <Style Selector="^ /template/ Panel#PART_ScrollBarsSeparator">
             <Setter Property="Opacity" Value="1"/>
             <Setter Property="Background" Value="{DynamicResource ScrollViewerBarsSeparatorBackground}"/>
-            <Setter Property="Margin" Value="1,0,0,0"/>
         </Style>
 
         <Style Selector="^ /template/ ScrollBar">

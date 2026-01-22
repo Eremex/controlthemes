@@ -32,6 +32,8 @@
     <system:Double x:Key="MxTabItemSeparatorSize">12</system:Double>
     <system:Double x:Key="MxTabItemFontSize">12</system:Double>
     <system:Double x:Key="MxTabItemMinHeight">28</system:Double>
+    <system:Double x:Key="MxTabItemSelectedMinHeight">29</system:Double>
+
 
     <Thickness x:Key="TabItem/Top/Margin">0 1 0 0</Thickness>
     <Thickness x:Key="TabItem/Bottom/Margin">0 0 0 1</Thickness>

@@ -90,11 +90,11 @@
 
     <ControlTheme x:Key="SetNullValuePopupButtonTheme" TargetType="Button" BasedOn="{StaticResource PopupFooterButtonTheme}">
         <Setter Property="Content" Value="{x:Static localization:ControlsResources.ButtonContent_Clear}"/>
-        <Setter Property="Command" Value="{Binding $parent[mxe:PopupEditor].ClearTextCommand}"/>
+        <Setter Property="Command" Value="{Binding $parent[mxe:PopupEditor].SetNullValueCommand}"/>
         <Setter Property="IsVisible">
             <Setter.Value>
                 <MultiBinding Converter="{x:Static BoolConverters.And}">
-                    <Binding Path="$parent[mxe:PopupEditor].IsClearTextButtonVisible"/>
+                    <Binding Path="$parent[mxe:PopupEditor].IsNullValueButtonVisible"/>
                     <Binding Path="$parent[mxe:PopupEditor].NullValueButtonPosition"
                              Converter="{mxev:NullValueButtonPlacementToVisibleConverter}"
                              ConverterParameter="Popup"/>
@@ -149,21 +149,23 @@
                                 </TextBox.InnerLeftContent>
                                 <TextBox.InnerRightContent>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Name="PART_ClearTextButton"
+                                        <Button Name="PART_NullValueButton"
                                                 Theme="{StaticResource EditorIconButtonBaseTheme}"
-                                                Command="{Binding $parent[mxe:PopupEditor].ClearTextCommand}">
+                                                Command="{Binding $parent[mxe:ButtonEditor].SetNullValueCommand}">
                                             <Path Data="{StaticResource ClearCrossIcon}"
-                                                  Fill="{Binding #PART_ClearTextButton.Foreground}"
+                                                  Fill="{Binding #PART_NullValueButton.Foreground}"
                                                   VerticalAlignment="Center"
                                                   HorizontalAlignment="Center" />
                                             <Button.IsVisible>
                                                 <MultiBinding Converter="{x:Static BoolConverters.And}">
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:PopupEditor}"
-                                                             Path="IsClearTextButtonVisible" />
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:PopupEditor}"
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
+                                                             Path="IsNullValueButtonVisible" />
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
                                                              Path="NullValueButtonPosition"
                                                              Converter="{mxev:NullValueButtonPlacementToVisibleConverter}"
                                                              ConverterParameter="EditorBox" />
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
+                                                             Path="ShowEditorButtons" />
                                                 </MultiBinding>
                                             </Button.IsVisible>
                                         </Button>
@@ -223,7 +225,7 @@
                                 <Binding ElementName="PART_CloseButton" Path="IsVisible"/>
                                 <Binding ElementName="PART_OkButton" Path="IsVisible"/>
                                 <Binding ElementName="PART_CancelButton" Path="IsVisible"/>
-                                <Binding ElementName="PART_SetNullValueButton" Path="IsVisible"/>
+                                <Binding ElementName="PART_NullValueButton" Path="IsVisible"/>
                                 <Binding ElementName="PART_SizeGrip" Path="IsVisible"/>
                             </MultiBinding>
                         </Grid.IsVisible>
@@ -255,7 +257,7 @@
                                     <mxe:PopupCloseMode>Cancel</mxe:PopupCloseMode>
                                 </Button.CommandParameter>
                             </Button>
-                            <Button x:Name="PART_SetNullValueButton" Grid.Column="3" Theme="{StaticResource SetNullValuePopupButtonTheme}" Width="90"/>
+                            <Button x:Name="PART_NullValueButton" Grid.Column="3" Theme="{StaticResource SetNullValuePopupButtonTheme}" Width="90"/>
                         </Grid>
                         <internal:PopupContainerSizeGrip x:Name="PART_SizeGrip" IsVisible="{Binding $parent[mxe:PopupEditor].ShowSizeGrip }"
                                                          Location="{Binding $parent[mxe:PopupEditor].ActualSizeGripLocation}"

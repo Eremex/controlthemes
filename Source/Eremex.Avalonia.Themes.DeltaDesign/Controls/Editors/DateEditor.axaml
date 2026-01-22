@@ -55,7 +55,7 @@
                         <Grid.IsVisible>
                             <MultiBinding Converter="{x:Static BoolConverters.Or}">
                                 <Binding ElementName="PART_SetTodayButton" Path="IsVisible"/>
-                                <Binding ElementName="PART_SetNullValueButton" Path="IsVisible"/>
+                                <Binding ElementName="PART_NullValueButton" Path="IsVisible"/>
                             </MultiBinding>
                         </Grid.IsVisible>
                         <Grid ColumnDefinitions="*, *" HorizontalAlignment="Center" Margin="0,5">
@@ -64,7 +64,7 @@
                                     Width="116" Theme="{StaticResource PopupFooterButtonTheme}"
                                     IsVisible="{Binding $parent[mxe:PopupEditor].ShowToday}"
                                     Command="{Binding $parent[mxe:PopupEditor].SetTodayCommand}"/>
-                            <Button x:Name="PART_SetNullValueButton" Theme="{StaticResource DateEditorClearButtonTheme}" Width="116" Grid.Column="1" Margin="0"/>
+                            <Button x:Name="PART_NullValueButton" Theme="{StaticResource DateEditorClearButtonTheme}" Width="116" Grid.Column="1" Margin="0"/>
                         </Grid>
                     </Grid>
                 </ControlTemplate>

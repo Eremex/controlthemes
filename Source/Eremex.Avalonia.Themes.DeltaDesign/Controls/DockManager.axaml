@@ -124,6 +124,8 @@
                 </doi:DockGroupItemsControl>
             </ControlTemplate>
         </Setter>
+        
+        <Setter Property="(doi:DockGroupItemsControl.SplitterSize)" Value="1"></Setter>
     </ControlTheme>
     
     <ControlTheme x:Key="{x:Type do:TabbedGroup}" TargetType="do:TabbedGroup">
@@ -320,7 +322,7 @@
                     <Border BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}">
                         <Grid RowDefinitions="Auto *" x:Name="PART_Grid">
-                            <Border Grid.Row="0" Classes="FloatWindowCaptionArea" x:Name="captionArea" BorderBrush="{TemplateBinding BorderBrush}">
+                            <Border Grid.Row="0" Classes="FloatWindowCaptionArea" x:Name="PART_CaptionArea" BorderBrush="{TemplateBinding BorderBrush}">
                                 <doi:DockItemDragControl>
                                     <Grid Background="Transparent" ColumnDefinitions="*,Auto">
                                         <doi:DockPaneHeaderControl Header="{TemplateBinding Header}"
@@ -612,8 +614,8 @@
     
     <ControlTheme x:Key="{x:Type doi:DockGroupLayoutSplitter}" TargetType="doi:DockGroupLayoutSplitter">
         <Setter Property="Cursor" Value="{Binding $self.Orientation, Converter={doi:OrientationToCursorConverter}}"></Setter>
-        <Setter Property="MinHeight" Value="{Binding $self.(doi:DockGroupItemsControl.SplitterSize)}"></Setter>
-        <Setter Property="MinWidth" Value="{Binding $self.(doi:DockGroupItemsControl.SplitterSize)}"></Setter>
+        <Setter Property="MinHeight" Value="{Binding $parent[do:DockGroup].(doi:DockGroupItemsControl.SplitterSize)}"></Setter>
+        <Setter Property="MinWidth" Value="{Binding $parent[do:DockGroup].(doi:DockGroupItemsControl.SplitterSize)}"></Setter>
         <Setter Property="Background" Value="{DynamicResource Outline/Neutral/Transparent/Medium}"></Setter>
         <Setter Property="ClipToBounds" Value="False"></Setter>
         <Setter Property="ZIndex" Value="1"></Setter>

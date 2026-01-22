@@ -154,23 +154,28 @@
 
     <Style Selector="internal|PopupContainerSizeGrip, internal|PopupContainerSizeGrip:bottom-right">
         <Setter Property="Template" Value="{DynamicResource MxPopupContainerSizeGripTemplate}" />
+        <Setter Property="Cursor" Value="BottomRightCorner"></Setter>
     </Style>
 
     <Style Selector="internal|PopupContainerSizeGrip:top-right">
         <Setter Property="Template" Value="{DynamicResource MxPopupContainerSizeGripTemplateTopRight}" />
+        <Setter Property="Cursor" Value="TopRightCorner"></Setter>
     </Style>
 
     <Style Selector="internal|PopupContainerSizeGrip:top-left">
         <Setter Property="Template" Value="{DynamicResource MxPopupContainerSizeGripTemplateTopLeft}" />
+        <Setter Property="Cursor" Value="TopLeftCorner"></Setter>
     </Style>
 
     <Style Selector="internal|PopupContainerSizeGrip:bottom-left">
         <Setter Property="Template" Value="{DynamicResource MxPopupContainerSizeGripTemplateBottomLeft}" />
+        <Setter Property="Cursor" Value="BottomLeftCorner"></Setter>
     </Style>
 
     <Style Selector="internal|PopupContainerSizeGrip:bottom-center">
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="Template" Value="{DynamicResource MxPopupContainerSizeGripTemplateBottomCenter}" />
+        <Setter Property="Cursor" Value="SizeNorthSouth"></Setter>
     </Style>
 
     <Style Selector="common|CircleProgressIndicator">

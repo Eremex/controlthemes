@@ -33,8 +33,8 @@
                 <Border x:DataType="charts:CrosshairSingleSeriesLabelControlData" 
                         CornerRadius="{StaticResource CrosshairSeriesLabelCornerRadius}"
                         BorderThickness="{StaticResource CrosshairSeriesLabelBorderThickness}"
-                        Background="{StaticResource Fill/CrosshairSeriesLabel}"
-                        BorderBrush="{StaticResource Border/CrosshairSeriesLabel}"
+                        Background="{DynamicResource Fill/CrosshairSeriesLabel}"
+                        BorderBrush="{DynamicResource Border/CrosshairSeriesLabel}"
                         Padding="6">
                     <Border.Styles>
                         <Style Selector="TextBlock">
@@ -125,8 +125,8 @@
                 <Border x:DataType="charts:CrosshairAllSeriesLabelControlData" 
                         CornerRadius="{StaticResource CrosshairSeriesLabelCornerRadius}"
                         BorderThickness="{StaticResource CrosshairSeriesLabelBorderThickness}"
-                        Background="{StaticResource Fill/CrosshairSeriesLabel}"
-                        BorderBrush="{StaticResource Border/CrosshairSeriesLabel}"
+                        Background="{DynamicResource Fill/CrosshairSeriesLabel}"
+                        BorderBrush="{DynamicResource Border/CrosshairSeriesLabel}"
                         Padding="6">
                     <ItemsControl ItemsSource="{Binding Groups}">
                         <ItemsControl.Styles>

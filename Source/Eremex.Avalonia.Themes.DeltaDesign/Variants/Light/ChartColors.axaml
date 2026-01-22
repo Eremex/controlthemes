@@ -9,4 +9,11 @@
 	<Color x:Key="Crosshair/BackColor">#ffa17ec8</Color>
 	<Color x:Key="Crosshair/TextColor">#ffffffff</Color>
     <Color x:Key="Selection/Color">#40808080</Color>
+    
+    <SolidColorBrush x:Key="Border/Chart" Color="{DynamicResource Stroke/Medium/Color}" />
+    <SolidColorBrush x:Key="Border/Chart/DrawingArea" Color="{DynamicResource Stroke/Light/Color}" />
+    <SolidColorBrush x:Key="Border/CrosshairSeriesLabel" Color="{DynamicResource Stroke/Medium/Color}" />
+    <SolidColorBrush x:Key="Fill/Chart" Color="{DynamicResource Background/Chart/Color}" />
+    <SolidColorBrush x:Key="Fill/Chart/DrawingArea" Color="{DynamicResource Background/DrawingArea/Color}" />
+    <SolidColorBrush x:Key="Fill/CrosshairSeriesLabel" Color="{DynamicResource Background/Chart/Color}" />
 </ResourceDictionary>

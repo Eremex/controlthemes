@@ -5,9 +5,10 @@
         xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls"
         xmlns:mxt="clr-namespace:Eremex.AvaloniaUI.Controls.Bars;assembly=Eremex.Avalonia.Controls"
         xmlns:mxdcv="clr-namespace:Eremex.AvaloniaUI.Controls.DataControl.Visuals;assembly=Eremex.Avalonia.Controls"
+        xmlns:mxdgv="clr-namespace:Eremex.AvaloniaUI.Controls.DataGrid.Visuals;assembly=Eremex.Avalonia.Controls"
         xmlns:mxdc="clr-namespace:Eremex.AvaloniaUI.Controls.DataControl;assembly=Eremex.Avalonia.Controls"
         xmlns:mxtlv="clr-namespace:Eremex.AvaloniaUI.Controls.TreeList.Visuals;assembly=Eremex.Avalonia.Controls"
-        xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+        xmlns:mxc="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
         xmlns:other="clr-namespace:Eremex.AvaloniaUI.Icons.Other;assembly=Eremex.Avalonia.Icons"
         xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls">
 
@@ -25,6 +26,15 @@
 
             <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_ShowSearchPanel}" Command="{Binding DataControl.Commands.ShowSearchPanel}" ShowSeparator="True" IsVisible="{Binding $self.IsEffectivelyEnabled}"  />
             <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_HideSearchPanel}" Command="{Binding DataControl.Commands.HideSearchPanel}" ShowSeparator="True" IsVisible="{Binding $self.IsEffectivelyEnabled}"/>
+
+            <mxt:ToolbarMenuItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_FixedMode}" ShowSeparator="True" IsVisible="{Binding DataControl.ShowColumnMenuFixedItem}">
+                <mxt:ToolbarCheckItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_FixedNone}" IsChecked="{Binding FixedMode, Converter={mxdgv:FixedModeToIsCheckedConverter FixedMode=None}, Mode=OneWay}"
+                                      Command="{Binding DataControl.Commands.SetFixedModeNone}" CommandParameter="{Binding}"/>
+                <mxt:ToolbarCheckItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_FixedLeft}" IsChecked="{Binding FixedMode, Converter={mxdgv:FixedModeToIsCheckedConverter FixedMode=Left}, Mode=OneWay}"
+                                      Command="{Binding DataControl.Commands.SetFixedModeLeft}" CommandParameter="{Binding}"/>
+                <mxt:ToolbarCheckItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_FixedRight}" IsChecked="{Binding FixedMode, Converter={mxdgv:FixedModeToIsCheckedConverter FixedMode=Right}, Mode=OneWay}"
+                                      Command="{Binding DataControl.Commands.SetFixedModeRight}" CommandParameter="{Binding}"/>
+            </mxt:ToolbarMenuItem>
         </mxt:PopupMenu>
     </Template>
 
@@ -34,6 +44,8 @@
                                 SearchText="{Binding $parent[mxtl:TreeListControl].SearchText, Mode=TwoWay}" />
 
             <mxdcv:BandHeadersControl x:Name="PART_BandHeadersControl" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+            <Border BorderThickness="0,0,0,1" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}" Grid.Row="2" Grid.Column="1" IsVisible="{Binding $parent[mxtl:TreeListControl].ShowColumnHeaders}"/>
 
             <mxdcv:ColumnHeadersControl x:Name="PART_HeadersControl" Grid.Row="2" Grid.ColumnSpan="2" IsVisible="{Binding $parent[mxtl:TreeListControl].ShowColumnHeaders}"/>
 
@@ -60,15 +72,6 @@
 
             <mxdcv:FocusedElementAdornerPanel x:Name="PART_FocusedElementAdornerPanel" Grid.Row="0" Grid.RowSpan="6" Grid.ColumnSpan="2" ClipToBounds="False"/>
 
-            <ScrollBar Name="PART_HorizontalScrollBar"
-                       Orientation="Horizontal"
-                       Grid.Row="5" />
-
-            <ScrollBar Name="PART_VerticalScrollBar"
-                       Orientation="Vertical"
-                       Grid.Column="1"
-                       Grid.Row="4"/>
-
             <Panel x:Name="PART_ScrollBarsSeparator"
                    Grid.Row="5"
                    Grid.Column="1"
@@ -79,7 +82,48 @@
                         <DoubleTransition Property="Opacity" Duration="0:0:0.1" />
                     </Transitions>
                 </Panel.Transitions>
+                <Panel.IsVisible>
+                    <MultiBinding Converter="{mxdgv:ScrollBarSeparatorVisibilityConverter}">
+                        <Binding Path="$parent[mxtl:TreeListControl].ExtendScrollbarToFixedColumns"/>
+                        <Binding Path="AllowAutoHide" RelativeSource="{RelativeSource TemplatedParent}"/>
+                        <Binding Path="$parent[mxtl:TreeListControl].FixedRightColumnWidth" />
+                    </MultiBinding>
+                </Panel.IsVisible>
             </Panel>
+
+            <DockPanel x:Name="PART_HorizontalScrollBarContainer" Grid.Row="5" IsVisible="{Binding #PART_HorizontalScrollBar.IsVisible}">
+                <Grid.ColumnSpan>
+                    <MultiBinding Converter="{mxdgv:FixedScrollbarColumnSpanConverter}">
+                        <Binding Path="$parent[mxtl:TreeListControl].ExtendScrollbarToFixedColumns"/>
+                        <Binding Path="AllowAutoHide" RelativeSource="{RelativeSource TemplatedParent}"/>
+                        <Binding Path="$parent[mxtl:TreeListControl].FixedRightColumnWidth" />
+                    </MultiBinding>
+                </Grid.ColumnSpan>
+                <Border BorderBrush="{DynamicResource ScrollBarRootBackground}" Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                        BorderThickness="{Binding $parent[mxtl:TreeListControl].FixedColumnSeparatorWidth, Converter={mxdgv:FixedColumnWidthToBorderThicknessConverter BaseThickness='0,1,0,0'}}"
+                        Width="{Binding $parent[mxtl:TreeListControl].FixedLeftColumnWidth}" IsVisible="{Binding !$parent[mxtl:TreeListControl].ExtendScrollbarToFixedColumns}"
+                        Opacity="{Binding (ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}, Converter={mxc:BoolToObjectConverter FalseValue=1, TrueValue=0}}"/>
+                <Border BorderBrush="{DynamicResource ScrollBarRootBackground}" Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                        BorderThickness="0,1,0,0" Margin="0,0,-1,0" Width="1" DockPanel.Dock="Right"
+                        Opacity="{Binding (ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}, Converter={mxc:BoolToObjectConverter FalseValue=1, TrueValue=0}}"/>
+                <Border BorderBrush="{DynamicResource ScrollBarRootBackground}" Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                        BorderThickness="{Binding $parent[mxtl:TreeListControl].FixedColumnSeparatorWidth, Converter={mxdgv:FixedColumnWidthToBorderThicknessConverter BaseThickness='0,1,0,0', IsRight='True'}}"
+                        Width="{Binding $parent[mxtl:TreeListControl].FixedRightColumnWidth}" DockPanel.Dock="Right" IsVisible="{Binding !$parent[mxtl:TreeListControl].ExtendScrollbarToFixedColumns}"
+                        Opacity="{Binding (ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}, Converter={mxc:BoolToObjectConverter FalseValue=1, TrueValue=0}}"/>
+
+                <ScrollBar Name="PART_HorizontalScrollBar" Orientation="Horizontal" Margin="0">
+                    <ScrollBar.Styles>
+                        <Style Selector="ScrollBar[AllowAutoHide=False]">
+                            <Setter Property="Margin" Value="0"/>
+                        </Style>
+                    </ScrollBar.Styles>
+                </ScrollBar>
+            </DockPanel>
+
+            <ScrollBar Name="PART_VerticalScrollBar"
+                       Orientation="Vertical"
+                       Grid.Column="1"
+                       Grid.Row="4"/>
 
             <mxdcv:FilterPanel x:Name="PART_FilterPanel" Grid.Row="6" Grid.ColumnSpan="2" IsFilterEnabled="{Binding $parent[mxtl:TreeListControl].IsFilterEnabled}"
                                FilterString="{Binding $parent[mxtl:TreeListControl].FilterPanelText}"
@@ -100,6 +144,22 @@
             <ControlTemplate>
                 <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                     <ScrollViewer x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto" Template="{DynamicResource TreeListScrollViewerTemplate}" ClipToBounds="False">
+                        <ScrollViewer.Styles>
+                            <Style Selector="ScrollViewer[AllowAutoHide=False]">
+                                <Style Selector="^ /template/ mxdcv|ColumnHeadersControl#PART_HeadersControl">
+                                    <Setter Property="Grid.ColumnSpan" Value="1"/>
+                                </Style>
+
+                                <Style Selector="^ /template/ mxdcv|AutoFilterRowControl#PART_AutoFilterRow">
+                                    <Setter Property="Grid.ColumnSpan" Value="1"/>
+                                </Style>
+
+                                <Style Selector="^ /template/ mxdcv|BandHeadersControl#PART_BandHeadersControl">
+                                    <Setter Property="Grid.ColumnSpan" Value="1"/>
+                                </Style>
+                            </Style>
+                        </ScrollViewer.Styles>
+                        
                         <common:MxVirtualizingControl x:Name="PART_VirtualizingControl"/>
                     </ScrollViewer>
                     <Border.Styles>

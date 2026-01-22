@@ -99,13 +99,19 @@
         <Style Selector="^:horizontal">
             <Setter Property="MinHeight" Value="{DynamicResource MxTabItemMinHeight}"></Setter>
             <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Style Selector="^:selected">
+                <Setter Property="MinHeight" Value="{DynamicResource MxTabItemSelectedMinHeight}"></Setter>
+            </Style>
         </Style>
         
         <Style Selector="^:vertical">
-	        <Setter Property="MinWidth" Value="{DynamicResource MxTabItemMinHeight}"></Setter>
+            <Setter Property="MinWidth" Value="{DynamicResource MxTabItemMinHeight}"></Setter>
 	        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Style Selector="^:selected">
+                <Setter Property="MinHeight" Value="{DynamicResource MxTabItemSelectedMinHeight}"></Setter>
+            </Style>
         </Style>
-        
+
         <!-- top -->
         <Style Selector="^:top:selected">
 	        <Setter Property="BorderThickness" Value="{DynamicResource TabItem/Selected/Top/BorderThickness}"></Setter>

@@ -13,15 +13,15 @@
 	<!-- DrawingAreaContainer -->
 	<Style Selector="native|SmithDrawingAreaContainer">
 		<Setter Property="Focusable" Value="True" />
-		<Setter Property="Background" Value="{StaticResource Fill/Chart/DrawingArea}" />
-		<Setter Property="BorderBrush" Value="{StaticResource Border/Chart/DrawingArea}" />
+		<Setter Property="Background" Value="{DynamicResource Fill/Chart/DrawingArea}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource Border/Chart/DrawingArea}" />
 		<Setter Property="BorderThickness" Value="{StaticResource DrawingAreaBorderThickness}" />
 	</Style>
 
 	<!-- SmithChart -->
 	<Style Selector="charts|SmithChart">
-	  <Setter Property="Background" Value="{StaticResource Fill/Chart}" />
-	  <Setter Property="BorderBrush" Value="{StaticResource Border/Chart}" />
+	  <Setter Property="Background" Value="{DynamicResource Fill/Chart}" />
+	  <Setter Property="BorderBrush" Value="{DynamicResource Border/Chart}" />
 	  <Setter Property="BorderThickness" Value="{StaticResource ChartBorderThickness}" />
 	  <Setter Property="CornerRadius" Value="{StaticResource ChartCornerRadius}" />
 	  <Setter Property="HorizontalAlignment" Value="Stretch"/>

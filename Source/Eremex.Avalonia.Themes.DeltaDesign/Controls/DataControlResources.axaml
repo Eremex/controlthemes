@@ -32,6 +32,36 @@
         </Setter>
     </ControlTheme>
 
+    <ControlTheme x:Key="{x:Type mxdcv:BandHeadersPanel}" TargetType="mxdcv:BandHeadersPanel">
+        <Setter Property="FixedSeparatorTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Border Background="{DynamicResource Outline/Neutral/Transparent/Medium}" Margin="0,0,0,-1"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:ColumnHeaderPanel}" TargetType="mxdcv:ColumnHeaderPanel">
+        <Setter Property="FixedSeparatorTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Border Background="{DynamicResource Outline/Neutral/Transparent/Medium}" Margin="0,0,0,-1"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:CellsPanel}" TargetType="mxdcv:CellsPanel">
+        <Setter Property="FixedSeparatorTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Border Background="{DynamicResource Outline/Neutral/Transparent/Medium}" Margin="0,0,0,-1"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </ControlTheme>
+
     <ControlTheme x:Key="{x:Type mxdcv:ColumnHeaderControl}" TargetType="mxdcv:ColumnHeaderControl">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Padding" Value="6" />
@@ -138,6 +168,10 @@
         <Style Selector="^[(mxdcv|ColumnHeaderControl.ColumnHeaderPlacement)=GroupPanel] /template/ Border#HeaderBorder">
             <Setter Property="Margin" Value="6,0,0,0" />
         </Style>
+
+        <Style Selector="^[FixedMode=Right] /template/ Thumb#PART_ColumnResizeGrip">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type mxdcv:BandHeadersControl}" TargetType="mxdcv:BandHeadersControl">
@@ -203,6 +237,10 @@
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" />
                 </ControlTemplate>
             </Setter>
+        </Style>
+
+        <Style Selector="^[FixedMode=Right] /template/ Thumb#PART_ColumnResizeGrip">
+            <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
     </ControlTheme>
 
@@ -323,7 +361,7 @@
                                 <DataTemplate>
                                     <Grid ColumnDefinitions="Auto, *" Margin="8,0">
                                         <CheckBox x:Name="PART_VisibilityCheckBox" IsChecked="{Binding Column.IsVisible}" IsEnabled="{Binding IsEnabled}" />
-                                        <mxdcv:ColumnHeaderControl Grid.Column="1" Column="{Binding Column}" MinHeight="30" Margin="8,0,0,0"/>
+                                        <mxdcv:ColumnHeaderControl Grid.Column="1" DataContext="{Binding Column}" Column="{Binding}" MinHeight="30" Margin="8,0,0,0"/>
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -503,6 +541,81 @@
                         </Binding>
                     </Border.Margin>
                 </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+    
+    <!-- Auto Filter Row -->
+
+    <ControlTheme x:Key="{x:Type mxdcv:AutoFilterConditionComboBoxEditor}" TargetType="mxdcv:AutoFilterConditionComboBoxEditor" BasedOn="{StaticResource {x:Type mxe:ComboBoxEditor}}">
+        <Setter Property="PopupMinWidth" Value="50" />
+        <Setter Property="PopupMinHeight" Value="50" />
+        <Setter Property="MinWidth" Value="20" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="ItemTemplate">
+            <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding Image}" Margin="0,0,5,0"/>
+                    <TextBlock Text="{Binding Name}" />
+                </StackPanel>
+            </DataTemplate>
+        </Setter>
+        <Style Selector="^:activeMode">
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid Background="{TemplateBinding Background}">
+                        <ToggleButton x:Name="PART_PopupOpenButton" Background="{TemplateBinding Background}" Focusable="False">
+                            <ToggleButton.Styles>
+                                <Style Selector="ToggleButton">
+                                    <Setter Property="VerticalAlignment" Value="Stretch" />
+                                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                                    <Setter Property="Padding" Value="6,4" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="CornerRadius" Value="0" />
+                                    <Setter Property="Background" Value="{TemplateBinding Background}"/>
+
+                                    <Style Selector="^:pointerover, ^:pressed, ^:checked">
+                                        <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                                            <Setter Property="Background" Value="{TemplateBinding Background}"/>
+                                        </Style>
+                                    </Style>    
+                                </Style>
+                            </ToggleButton.Styles>
+                            <Image Width="16" Height="16" Source="{Binding $parent[mxe:ComboBoxEditor].AutoFilterImage}"/>
+                        </ToggleButton>
+                        <common:ResizeablePopup Name="PART_EditorPopup"
+                                                       WindowManagerAddShadowHint="False"
+                                                       IsOpen="{TemplateBinding IsPopupOpen, Mode=TwoWay}"
+                                                       MinHeight="{TemplateBinding PopupMinHeight}"
+                                                       MaxHeight="{TemplateBinding PopupMaxHeight}"
+                                                       PlacementTarget="PART_PopupOpenButton"
+                                                       Placement="BottomEdgeAlignedLeft"
+                                                       IsLightDismissEnabled="{Binding !StaysPopupOpen, RelativeSource={RelativeSource TemplatedParent}}">
+                            <Border x:Name="PopupBorder"
+                                      BorderThickness="{StaticResource EditorBorderThickness}"
+                                      BorderBrush="{DynamicResource PopupBorderBrush}"
+                                      Background="{DynamicResource PopupEditorPopupBackground}"
+                                      HorizontalAlignment="Stretch"
+                                      CornerRadius="{StaticResource PopupCornerRadius}"
+                                      BoxShadow="{DynamicResource PopupBoxShadow}"
+                                      Margin="{DynamicResource PopupBoxShadowMargin}"
+                                      TextElement.FontFamily="{TemplateBinding FontFamily}">
+                                <mxev:PopupContentContainer Name="PART_PopupContentContainer"/>
+                            </Border>
+                        </common:ResizeablePopup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:AutoFilterCellControl}" TargetType="mxdcv:AutoFilterCellControl" BasedOn="{StaticResource {x:Type mxdcv:CellControl}}">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid x:Name="PART_LayoutPanel">
+                    <mxdcv:CellEditor x:Name="PART_CellEditor" Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,1,0" DockPanel.Dock="Right"/>
+                </Grid>
             </ControlTemplate>
         </Setter>
     </ControlTheme>

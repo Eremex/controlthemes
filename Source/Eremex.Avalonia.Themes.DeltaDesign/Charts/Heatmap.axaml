@@ -21,8 +21,8 @@
 	<!-- Heatmap -->
 	<Style Selector="charts|Heatmap">
         <Setter Property="DiagramMargin" Value="8" />
-        <Setter Property="Background" Value="{StaticResource Fill/Chart}" />
-        <Setter Property="BorderBrush" Value="{StaticResource Border/Chart}" />
+        <Setter Property="Background" Value="{DynamicResource Fill/Chart}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Border/Chart}" />
         <Setter Property="BorderThickness" Value="{StaticResource ChartBorderThickness}" />
 	    <Setter Property="CornerRadius" Value="{StaticResource ChartCornerRadius}" />
 	    <Setter Property="HorizontalAlignment" Value="Stretch"/>

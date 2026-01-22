@@ -62,6 +62,28 @@
                                 </TextBox.InnerLeftContent>
                                 <TextBox.InnerRightContent>
                                     <StackPanel Orientation="Horizontal">
+                                        <Button Name="PART_NullValueButton"
+                                                Theme="{StaticResource EditorIconButtonBaseTheme}"
+                                                Command="{Binding $parent[mxe:ButtonEditor].SetNullValueCommand}" >
+                                            <Path Width="8"
+                                                  Height="8"
+                                                  Data="{StaticResource ClearCrossIcon}"
+                                                  Fill="{Binding #PART_NullValueButton.Foreground}"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                                            <Button.IsVisible>
+                                                <MultiBinding Converter="{x:Static BoolConverters.And}">
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
+                                                             Path="IsNullValueButtonVisible"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
+                                                             Path="NullValueButtonPosition"
+                                                             Converter="{mxev:NullValueButtonPlacementToVisibleConverter}"
+                                                             ConverterParameter="EditorBox"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
+                                                             Path="ShowEditorButtons" />
+                                                </MultiBinding>
+                                            </Button.IsVisible>
+                                        </Button>
                                         <Grid Name="PART_SpinnerPanel" RowDefinitions="*, *" IsVisible="{Binding $parent[mxe:BaseEditor].ShowEditorButtons}">
                                             <RepeatButton Name="PART_IncreaseButton"
                                                           VerticalContentAlignment="Bottom"

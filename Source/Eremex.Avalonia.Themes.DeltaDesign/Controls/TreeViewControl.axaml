@@ -64,8 +64,7 @@
 		<Setter Property="Template">
 			<ControlTemplate>
                 <Border Background="{TemplateBinding Background}" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Medium}" BorderThickness="{TemplateBinding BorderThickness}">
-					<ScrollViewer x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto" Template="{DynamicResource TreeViewScrollViewerTemplate}"
-                                  Background="{TemplateBinding Background}">
+					<ScrollViewer x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto" Template="{DynamicResource TreeViewScrollViewerTemplate}">
                         <common:MxVirtualizingControl x:Name="PART_VirtualizingControl"/>
 					</ScrollViewer>
                     <Border.Styles>

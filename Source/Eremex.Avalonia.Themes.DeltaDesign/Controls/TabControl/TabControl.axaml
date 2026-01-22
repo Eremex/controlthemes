@@ -138,20 +138,29 @@
         </Style>
         
         <Style Selector="^[TabStripPlacement=Top] /template/ internal|TabControlScrollViewer">
-            <Setter Property="Margin" Value="{DynamicResource MxTabItemSelectedMargin}" />
             <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
         </Style>
         <Style Selector="^[TabStripPlacement=Bottom] /template/ internal|TabControlScrollViewer">
-            <Setter Property="Margin" Value="{DynamicResource MxTabItemSelectedMarginBottom}" />
             <Setter Property="VerticalAlignment" Value="Top"></Setter>
         </Style>
         <Style Selector="^[TabStripPlacement=Left] /template/ internal|TabControlScrollViewer">
-            <Setter Property="Margin" Value="{DynamicResource MxTabItemSelectedMarginLeft}" />
             <Setter Property="HorizontalAlignment" Value="Right"></Setter>
         </Style>
         <Style Selector="^[TabStripPlacement=Right] /template/ internal|TabControlScrollViewer">
-            <Setter Property="Margin" Value="{DynamicResource MxTabItemSelectedMarginRight}" />
             <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        </Style>
+        
+        <Style Selector="^[TabStripPlacement=Top] /template/ internal|TabStretchPanel">
+            <Setter Property="Margin" Value="{DynamicResource MxTabItemSelectedMargin}" />
+        </Style>
+        <Style Selector="^[TabStripPlacement=Bottom] /template/ internal|TabStretchPanel">
+            <Setter Property="Margin" Value="{DynamicResource MxTabItemSelectedMarginBottom}" />
+        </Style>
+        <Style Selector="^[TabStripPlacement=Left] /template/ internal|TabStretchPanel">
+            <Setter Property="Margin" Value="{DynamicResource MxTabItemSelectedMarginLeft}" />
+        </Style>
+        <Style Selector="^[TabStripPlacement=Right] /template/ internal|TabStretchPanel">
+            <Setter Property="Margin" Value="{DynamicResource MxTabItemSelectedMarginRight}" />
         </Style>
 
         <!-- No header -->
