@@ -198,7 +198,6 @@
                                                     MinHeight="{TemplateBinding PopupMinHeight}"
                                                     MaxHeight="{TemplateBinding PopupMaxHeight}"
                                                     PlacementTarget="PART_RootBorder"
-                                                    Placement="BottomEdgeAlignedLeft"
                                                     IsLightDismissEnabled="{Binding !StaysPopupOpen, RelativeSource={RelativeSource TemplatedParent}}">
                                 <Border x:Name="PopupBorder"
                                       BorderThickness="{StaticResource EditorBorderThickness}"
@@ -266,6 +265,10 @@
                     </Grid>
                 </ControlTemplate>
             </Setter>
+
+            <Style Selector="^ /template/ common|ResizeablePopup#PART_EditorPopup">
+                <Setter Property="Placement" Value="BottomEdgeAlignedLeft"/>
+            </Style>
         </Style>
     </ControlTheme>
 

@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <EMXControlsVersion>1.3.49</EMXControlsVersion>
+    <EMXControlsVersion>1.3.62</EMXControlsVersion>
     <Company>Eremex</Company>
     <Copyright>©2010-2026 Eremex</Copyright>
     <Product>Eremex Controls</Product>
@@ -9,7 +9,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
 

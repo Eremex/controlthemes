@@ -968,12 +968,12 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="doi:DocumentSwitcherControl">
                 <DockPanel>
-                    <ContentControl Content="{TemplateBinding SelectedItem}"
+                    <ContentPresenter Content="{TemplateBinding SelectedItem}"
                                     DockPanel.Dock="Top"
                                     Classes="Description"/>
-                    <ContentControl Content="{TemplateBinding SelectedItem}"
-                                    DockPanel.Dock="Bottom"
-                                    Classes="Footer"/>
+                    <ContentPresenter Content="{TemplateBinding SelectedItem}"
+                                      DockPanel.Dock="Bottom"
+                                      Classes="Footer"/>
                     <Grid ColumnDefinitions="* *">
                         <ListBox x:Name="PART_Panes"
                                  ItemsSource="{TemplateBinding PanesSource}"
@@ -991,7 +991,7 @@
             </ControlTemplate>
         </Setter>
         
-        <Style Selector="^ /template/ ContentControl.Description">
+        <Style Selector="^ /template/ ContentPresenter.Description">
             <Setter Property="BorderThickness" Value="0 0 0 1"/>
             <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}"/>
             <Setter Property="MinHeight" Value="32"/>
@@ -999,7 +999,7 @@
             <Setter Property="ContentTemplate" Value="{StaticResource DescriptionTemplate}"/>
         </Style>
         
-        <Style Selector="^ /template/ ContentControl.Footer">
+        <Style Selector="^ /template/ ContentPresenter.Footer">
             <Setter Property="BorderThickness" Value="0 1 0 0"/>
             <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}"/>
             <Setter Property="MinHeight" Value="32"/>
