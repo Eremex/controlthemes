@@ -7,9 +7,9 @@
 	
 	<CornerRadius x:Key="ChartCornerRadius">6</CornerRadius>
     <CornerRadius x:Key="CrosshairSeriesLabelCornerRadius">6</CornerRadius>
-    <CornerRadius x:Key="SeriesColorMarker">6</CornerRadius>
+    <CornerRadius x:Key="SeriesColorMarker">4</CornerRadius>
     
-    <sys:Double x:Key="SeriesMarkerSize">21</sys:Double>
+    <sys:Double x:Key="SeriesMarkerSize">17</sys:Double>
 	
 	<Thickness x:Key="Padding/Chart">8</Thickness>
 </ResourceDictionary>

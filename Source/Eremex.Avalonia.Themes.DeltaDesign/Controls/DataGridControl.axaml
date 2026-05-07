@@ -72,7 +72,7 @@
         <Setter Property="ItemTemplate">
             <DataTemplate>
                 <mxdcv:ColumnHeaderControl DataContext="{Binding Column}" Column="{Binding}" BorderThickness="1"
-                                       Margin="{Binding DataContext.Level, RelativeSource={RelativeSource AncestorLevel=1},  Converter={mxdgv:GroupLevelToThicknessConverter TopLevelIndent=10}}"
+                                       Margin="{Binding $parent[ContentPresenter].DataContext.Level, Converter={mxdgv:GroupLevelToThicknessConverter TopLevelIndent=10}}"
                                        MinHeight="{Binding DataControl.HeaderPanelMinHeight, Converter={mxdgv:PanelToGroupHeaderMinHeightConverter BorderHeight=2}}"
                                        VerticalAlignment="Top"/>
             </DataTemplate>
@@ -128,8 +128,6 @@
                                                  IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_ContentPresenter}"/>
                     </ScrollContentPresenter.GestureRecognizers>
                 </ScrollContentPresenter>
-
-                <mxdcv:FooterControl x:Name="PART_FooterControl" Grid.Row="1" IsVisible="{Binding $parent[mxdg:DataGridControl].ShowTotalSummaries}"/>
             </Grid>
 
             <mxdcv:FocusedElementAdornerPanel x:Name="PART_FocusedElementAdornerPanel" Grid.Row="0" Grid.RowSpan="7" Grid.ColumnSpan="2" ClipToBounds="False"/>

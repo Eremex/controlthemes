@@ -90,7 +90,7 @@
                                      CornerRadius="{TemplateBinding CornerRadius}"
                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                     Watermark="{TemplateBinding Watermark}"
+                                     PlaceholderText="{TemplateBinding Watermark}"
                                      MinHeight="0"
                                      Classes.secondary="{TemplateBinding SecondaryAppearance}">
                                 <TextBox.Styles>

@@ -141,7 +141,7 @@
                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                      HorizontalAlignment="Stretch"
                                      MinHeight="0"
-                                     Watermark="{TemplateBinding Watermark}"
+                                     PlaceholderText="{TemplateBinding Watermark}"
                                      IsReadOnly="{TemplateBinding ReadOnly}"
                                      Classes.secondary="{TemplateBinding SecondaryAppearance}">
                                 <TextBox.InnerLeftContent>
@@ -158,14 +158,11 @@
                                                   HorizontalAlignment="Center" />
                                             <Button.IsVisible>
                                                 <MultiBinding Converter="{x:Static BoolConverters.And}">
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
-                                                             Path="IsNullValueButtonVisible" />
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
-                                                             Path="NullValueButtonPosition"
+                                                    <Binding Path="$parent[mxe:ButtonEditor].IsNullValueButtonVisible" />
+                                                    <Binding Path="$parent[mxe:ButtonEditor].NullValueButtonPosition"
                                                              Converter="{mxev:NullValueButtonPlacementToVisibleConverter}"
                                                              ConverterParameter="EditorBox" />
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
-                                                             Path="ShowEditorButtons" />
+                                                    <Binding Path="$parent[mxe:ButtonEditor].ShowEditorButtons" />
                                                 </MultiBinding>
                                             </Button.IsVisible>
                                         </Button>

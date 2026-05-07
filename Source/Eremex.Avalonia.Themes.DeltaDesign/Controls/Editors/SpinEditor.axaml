@@ -53,7 +53,7 @@
                                      CornerRadius="{TemplateBinding CornerRadius}"
                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                     Watermark="{TemplateBinding Watermark}"
+                                     PlaceholderText="{TemplateBinding Watermark}"
                                      SelectionStart="{Binding $parent[mxe:SpinEditor].SelectionStart, Mode=TwoWay}"
                                      SelectionEnd="{Binding $parent[mxe:SpinEditor].SelectionEnd, Mode=TwoWay}"
                                      Classes.secondary="{TemplateBinding SecondaryAppearance}">
@@ -73,14 +73,11 @@
                                                   HorizontalAlignment="Center"/>
                                             <Button.IsVisible>
                                                 <MultiBinding Converter="{x:Static BoolConverters.And}">
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
-                                                             Path="IsNullValueButtonVisible"/>
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
-                                                             Path="NullValueButtonPosition"
+                                                    <Binding Path="$parent[mxe:ButtonEditor].IsNullValueButtonVisible"/>
+                                                    <Binding Path="$parent[mxe:ButtonEditor].NullValueButtonPosition"
                                                              Converter="{mxev:NullValueButtonPlacementToVisibleConverter}"
                                                              ConverterParameter="EditorBox"/>
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=mxe:ButtonEditor}"
-                                                             Path="ShowEditorButtons" />
+                                                    <Binding Path="$parent[mxe:ButtonEditor].ShowEditorButtons" />
                                                 </MultiBinding>
                                             </Button.IsVisible>
                                         </Button>

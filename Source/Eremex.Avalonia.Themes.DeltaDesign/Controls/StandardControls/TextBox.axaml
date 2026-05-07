@@ -10,12 +10,12 @@
             <StackPanel Spacing="20">
                 <TextBox Text="Sample" FontSize="12" IsEnabled="true" Width="100" Classes="clearButton" TextAlignment="Left"/>
                 <TextBox Text="Disabled" IsEnabled="false" Width="100"/>
-                <TextBox Text="asdf" Watermark="Watermark" IsEnabled="true" Width="100"/>
+                <TextBox Text="asdf" PlaceholderText="Watermark" IsEnabled="true" Width="100"/>
                 <Border Background="{DynamicResource Fill/Neutral/Secondary/Enabled}" Padding="10">
                     <StackPanel Spacing="20">
                         <TextBox Text="Sample" FontSize="12" IsEnabled="true" Width="100" Classes="clearButton secondary" TextAlignment="Left"/>
                         <TextBox Text="Disabled" IsEnabled="false" Classes="secondary" Width="100"/>
-                        <TextBox Watermark="Watermark" Classes="secondary" IsEnabled="true" Width="100"/>
+                        <TextBox PlaceholderText="Watermark" Classes="secondary" IsEnabled="true" Width="100"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
