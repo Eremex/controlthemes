@@ -27,6 +27,10 @@
             <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_ShowSearchPanel}" Command="{Binding DataControl.Commands.ShowSearchPanel}" ShowSeparator="True" IsVisible="{Binding $self.IsEffectivelyEnabled}"  />
             <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_HideSearchPanel}" Command="{Binding DataControl.Commands.HideSearchPanel}" ShowSeparator="True" IsVisible="{Binding $self.IsEffectivelyEnabled}"/>
 
+            <mxt:ToolbarButtonItem x:Name="bestFitItem" Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_BestFitColumn}" Command="{Binding DataControl.Commands.BestFitColumn}" ShowSeparator="True" CommandParameter="{Binding}" IsVisible="{Binding $self.IsEffectivelyEnabled}"/>
+            <mxt:ToolbarButtonItem x:Name="bestFitAllItem" Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_BestFitAllColumns}" ShowSeparator="{Binding !#bestFitItem.IsVisible}" Command="{Binding DataControl.Commands.BestFitAllColumns}" IsVisible="{Binding $self.IsEffectivelyEnabled}"/>
+            <mxt:ToolbarButtonItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_ResetColumnWidth}" ShowSeparator="{Binding !#bestFitAllItem.IsVisible}" Command="{Binding DataControl.Commands.ResetColumnWidth}" IsVisible="{Binding $self.IsEffectivelyEnabled}"/>
+
             <mxt:ToolbarMenuItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_FixedMode}" ShowSeparator="True" IsVisible="{Binding DataControl.ShowColumnMenuFixedItem}">
                 <mxt:ToolbarCheckItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_FixedNone}" IsChecked="{Binding FixedMode, Converter={mxdgv:FixedModeToIsCheckedConverter FixedMode=None}, Mode=OneWay}"
                                       Command="{Binding DataControl.Commands.SetFixedModeNone}" CommandParameter="{Binding}"/>
@@ -51,24 +55,29 @@
 
             <mxdcv:AutoFilterRowControl x:Name="PART_AutoFilterRow" Grid.Row="3" Grid.ColumnSpan="2" IsVisible="{Binding $parent[mxtl:TreeListControl].ShowAutoFilterRow}" />
 
-            <ScrollContentPresenter Name="PART_ContentPresenter"
-                                    Grid.Row="4"
-                                    Grid.Column="0"
-                                    Grid.RowSpan="2"
-                                    Grid.ColumnSpan="2"
-                                    Background="{TemplateBinding Background}"
-                                    HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
-                                    VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}"
-                                    HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
-                                    VerticalSnapPointsAlignment="{TemplateBinding VerticalSnapPointsAlignment}"
-                                    Padding="{TemplateBinding Padding}"
-                                    ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}">
-                <ScrollContentPresenter.GestureRecognizers>
-                    <ScrollGestureRecognizer CanHorizontallyScroll="{Binding CanHorizontallyScroll, ElementName=PART_ContentPresenter}"
-                                             CanVerticallyScroll="{Binding CanVerticallyScroll, ElementName=PART_ContentPresenter}"
-                                             IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_ContentPresenter}"/>
-                </ScrollContentPresenter.GestureRecognizers>
-            </ScrollContentPresenter>
+            <Grid Name="ContentGrid"
+                  RowDefinitions="*, Auto"
+                  Grid.Row="4"
+                  Grid.Column="0"
+                  Grid.RowSpan="2"
+                  Grid.ColumnSpan="2">
+                <ScrollContentPresenter Name="PART_ContentPresenter"
+                                        Background="{TemplateBinding Background}"
+                                        HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
+                                        VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}"
+                                        HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
+                                        VerticalSnapPointsAlignment="{TemplateBinding VerticalSnapPointsAlignment}"
+                                        Padding="{TemplateBinding Padding}"
+                                        ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}">
+                    <ScrollContentPresenter.GestureRecognizers>
+                        <ScrollGestureRecognizer CanHorizontallyScroll="{Binding CanHorizontallyScroll, ElementName=PART_ContentPresenter}"
+                                                 CanVerticallyScroll="{Binding CanVerticallyScroll, ElementName=PART_ContentPresenter}"
+                                                 IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_ContentPresenter}"/>
+                    </ScrollContentPresenter.GestureRecognizers>
+                </ScrollContentPresenter>
+
+                <mxdcv:FooterControl x:Name="PART_FooterControl" Grid.Row="1" IsVisible="{Binding $parent[mxtl:TreeListControl].ShowTotalSummaries}"/>
+            </Grid>
 
             <mxdcv:FocusedElementAdornerPanel x:Name="PART_FocusedElementAdornerPanel" Grid.Row="0" Grid.RowSpan="6" Grid.ColumnSpan="2" ClipToBounds="False"/>
 
@@ -101,8 +110,16 @@
                 </Grid.ColumnSpan>
                 <Border BorderBrush="{DynamicResource ScrollBarRootBackground}" Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
                         BorderThickness="{Binding $parent[mxtl:TreeListControl].FixedColumnSeparatorWidth, Converter={mxdgv:FixedColumnWidthToBorderThicknessConverter BaseThickness='0,1,0,0'}}"
-                        Width="{Binding $parent[mxtl:TreeListControl].FixedLeftColumnWidth}" IsVisible="{Binding !$parent[mxtl:TreeListControl].ExtendScrollbarToFixedColumns}"
-                        Opacity="{Binding (ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}, Converter={mxc:BoolToObjectConverter FalseValue=1, TrueValue=0}}"/>
+                        IsVisible="{Binding !$parent[mxtl:TreeListControl].ExtendScrollbarToFixedColumns}"
+                        Opacity="{Binding (ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}, Converter={mxc:BoolToObjectConverter FalseValue=1, TrueValue=0}}">
+                    <Border.Width>
+                        <MultiBinding Converter="{mxdgv:FixedColumnsAndIndicatorWidthConverter}">
+                            <Binding Path="$parent[mxtl:TreeListControl].FixedLeftColumnWidth"/>
+                            <Binding Path="$parent[mxtl:TreeListControl].ShowRowIndicator"/>
+                            <Binding Path="$parent[mxtl:TreeListControl].RowIndicatorWidth"/>
+                        </MultiBinding>
+                    </Border.Width>
+                </Border>
                 <Border BorderBrush="{DynamicResource ScrollBarRootBackground}" Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
                         BorderThickness="0,1,0,0" Margin="0,0,-1,0" Width="1" DockPanel.Dock="Right"
                         Opacity="{Binding (ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}, Converter={mxc:BoolToObjectConverter FalseValue=1, TrueValue=0}}"/>
@@ -146,6 +163,11 @@
                     <ScrollViewer x:Name="PART_ScrollViewer" HorizontalScrollBarVisibility="Auto" Template="{DynamicResource TreeListScrollViewerTemplate}" ClipToBounds="False">
                         <ScrollViewer.Styles>
                             <Style Selector="ScrollViewer[AllowAutoHide=False]">
+                                <Style Selector="^ /template/ Grid#ContentGrid">
+                                    <Setter Property="Grid.ColumnSpan" Value="1"/>
+                                    <Setter Property="Grid.RowSpan" Value="1"/>
+                                </Style>
+
                                 <Style Selector="^ /template/ mxdcv|ColumnHeadersControl#PART_HeadersControl">
                                     <Setter Property="Grid.ColumnSpan" Value="1"/>
                                 </Style>
@@ -218,7 +240,38 @@
 
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type mxtlv:TreeListRowControl}" TargetType="mxtlv:TreeListRowControl" BasedOn="{StaticResource {x:Type mxdcv:DataRowControlBase}}" />
+    <ControlTheme x:Key="{x:Type mxtlv:TreeListRowControl}" TargetType="mxtlv:TreeListRowControl" BasedOn="{StaticResource {x:Type mxdcv:DataRowControlBase}}">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <DockPanel>
+                    <mxdcv:RowIndicatorControl x:Name="PART_RowIndicator" IsVisible="{Binding $parent[mxtl:TreeListControl].ShowRowIndicator}"
+                                               Width="{Binding $parent[mxtl:TreeListControl].RowIndicatorWidth}" BorderThickness="0,0,1,0"/>
+                    
+                    <Border x:Name="RowBorder" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="0,0,0,1" ClipToBounds="True">
+                        <mxdcv:CellsPanel x:Name="PART_CellsPanel"/>
+                    </Border>
+                </DockPanel>
+            </ControlTemplate>
+        </Setter>
+        
+        <Style Selector="^:pointerover /template/ mxdcv|RowIndicatorControl#PART_RowIndicator">
+            <Setter Property="ShowDragHandle" Value="True"/>
+        </Style>
+
+        <Style Selector="^:dragElementState /template/ mxdcv|RowIndicatorControl#PART_RowIndicator">
+            <Setter Property="ShowDragHandle" Value="True"/>
+        </Style>
+
+        <Style Selector="^:focusedAndSelectedState /template/ mxdcv|RowIndicatorControl#PART_RowIndicator">
+            <Setter Property="ShowDragHandle" Value="True"/>
+        </Style>
+        <Style Selector="^:focusedState /template/ mxdcv|RowIndicatorControl#PART_RowIndicator">
+            <Setter Property="ShowDragHandle" Value="True"/>
+        </Style>
+        <Style Selector="^:selectedState /template/ mxdcv|RowIndicatorControl#PART_RowIndicator">
+            <Setter Property="ShowDragHandle" Value="True"/>
+        </Style>
+    </ControlTheme>
 
     <ControlTheme x:Key="{x:Type mxtlv:TreeListCellControl}" TargetType="mxtlv:TreeListCellControl">
         <Setter Property="Background" Value="Transparent" />

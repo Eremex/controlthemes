@@ -25,9 +25,15 @@
         <Setter Property="BorderThickness" Value="0,0,0,1" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
-                    <mxdcv:ColumnHeaderPanel x:Name="PART_HeadersPanel" />
-                </Border>
+                <DockPanel>
+                    <mxdcv:RowIndicatorControl IsVisible="{Binding $parent[mxdc:DataControlBase].ShowRowIndicator}"
+                                               Width="{Binding $parent[mxdc:DataControlBase].RowIndicatorWidth}"
+                                               BorderThickness="0,0,1,1"/>
+
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" ClipToBounds="True">
+                        <mxdcv:ColumnHeaderPanel x:Name="PART_HeadersPanel" />
+                    </Border>
+                </DockPanel>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
@@ -179,9 +185,15 @@
         <Setter Property="BorderThickness" Value="0,0,0,1" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
-                    <mxdcv:BandHeadersPanel x:Name="PART_BandHeadersPanel" Margin="0,-1,0,0"/>
-                </Border>
+                <DockPanel>
+                    <mxdcv:RowIndicatorControl IsVisible="{Binding $parent[mxdc:DataControlBase].ShowRowIndicator}"
+                                               Width="{Binding $parent[mxdc:DataControlBase].RowIndicatorWidth}"
+                                               BorderThickness="0,0,1,1"/>
+                    
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" ClipToBounds="True">
+                        <mxdcv:BandHeadersPanel x:Name="PART_BandHeadersPanel" Margin="0,-1,0,0"/>
+                    </Border>
+                </DockPanel>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
@@ -248,13 +260,6 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
         <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
-        <Setter Property="Template">
-            <ControlTemplate>
-                <Border x:Name="RowBorder" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="0,0,0,1">
-                    <mxdcv:CellsPanel x:Name="PART_CellsPanel"/>
-                </Border>
-            </ControlTemplate>
-        </Setter>
 
         <Style Selector="^:focusedAndSelectedState /template/ Border#RowBorder">
             <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Row/Hover}" />
@@ -335,9 +340,15 @@
         <Setter Property="BorderThickness" Value="0,0,0,1" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                    <mxdcv:CellsPanel x:Name="PART_CellsPanel"/>
-                </Border>
+                <DockPanel>
+                    <mxdcv:RowIndicatorControl IsVisible="{Binding $parent[mxdc:DataControlBase].ShowRowIndicator}"
+                                               Width="{Binding $parent[mxdc:DataControlBase].RowIndicatorWidth}"
+                                               BorderThickness="0,0,1,1"/>
+
+                    <Border Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ClipToBounds="True">
+                        <mxdcv:CellsPanel x:Name="PART_CellsPanel"/>
+                    </Border>
+                </DockPanel>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
@@ -395,6 +406,7 @@
         <Style Selector="^[DropPosition=Before]">
             <Setter Property="VerticalContentAlignment" Value="Top" />
             <Setter Property="BorderThickness" Value="0,2,0,0" />
+            <Setter Property="Margin" Value="0,-2,0,0" />
         </Style>
 
         <Style Selector="^[DropPosition=After]">
@@ -405,6 +417,7 @@
         <Style Selector="^[DropPosition=Inside]">
             <Setter Property="VerticalContentAlignment" Value="Stretch" />
             <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Margin" Value="0,-2,0,0" />
         </Style>
 
     </ControlTheme>
@@ -516,7 +529,22 @@
         <Setter Property="ClipToBounds" Value="False"/>
         <Setter Property="Template">
             <ControlTemplate>
-                <Border BorderBrush="{DynamicResource Outline/Accent/Focus}" BorderThickness="1" IsHitTestVisible="False" Margin="0,-1,0,0"/>
+                <Border BorderBrush="{DynamicResource Outline/Accent/Focus}" BorderThickness="1" IsHitTestVisible="False">
+                    <Border.Margin>
+                        <Binding Path="$parent[mxdc:DataControlBase].ShowRowIndicator">
+                            <Binding.Converter>
+                                <mx:BoolToObjectConverter>
+                                    <mx:BoolToObjectConverter.TrueValue>
+                                        <Thickness>-1,-1,0,0</Thickness>
+                                    </mx:BoolToObjectConverter.TrueValue>
+                                    <mx:BoolToObjectConverter.FalseValue>
+                                        <Thickness>0,-1,0,0</Thickness>
+                                    </mx:BoolToObjectConverter.FalseValue>
+                                </mx:BoolToObjectConverter>
+                            </Binding.Converter>
+                        </Binding>
+                    </Border.Margin>
+                </Border>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
@@ -617,6 +645,112 @@
                     <mxdcv:CellEditor x:Name="PART_CellEditor" Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0,1,0" DockPanel.Dock="Right"/>
                 </Grid>
             </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:FooterControl}" TargetType="mxdcv:FooterControl">
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+        <Setter Property="BorderThickness" Value="0,1,0,0" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                    <mxdcv:FooterPanel x:Name="PART_FooterPanel" />
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:FooterCellControl}" TargetType="mxdcv:FooterCellControl">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="6" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+        <Setter Property="Foreground" Value="{DynamicResource	Text/Neutral/Secondary}" />
+        <Setter Property="FontSize" Value="{StaticResource ColumnHeaderFontSize}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid Background="Transparent">
+                    <Border x:Name="FooterBorder" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}">                    
+                        <TextBlock Margin="{TemplateBinding Padding}" 
+                                   TextTrimming="CharacterEllipsis"
+                                   mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"
+                                   Text="{Binding DisplayValue}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   VerticalAlignment="Center"/>
+                    </Border>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+       
+        <Style Selector="^[IsVerticalLineVisible=true] /template/ Border#FooterBorder">
+            <Setter Property="BorderThickness" Value="0,0,1,0" />
+        </Style>
+
+        <!-- Style Selector="^[HasBandSeparator=true] /template/ Border#FooterBorder">
+            <Setter Property="BorderThickness" Value="0,0,3,0" />
+        </Style -->
+        
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:RowIndicatorControl}" TargetType="mxdcv:RowIndicatorControl">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Image Source="{x:Static other:_12.Drag_Handle}" Stretch="None" IsVisible="{TemplateBinding ShowDragHandle}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:RowDragElementControl}" TargetType="mxdcv:RowDragElementControl">
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/>
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Opacity" Value="0.9"/>
+        <Setter Property="BoxShadowMargin" Value="{DynamicResource PopupBoxShadowMargin}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border x:Name="PART_Border" CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                            BoxShadow="{DynamicResource PopupBoxShadow}" Margin="{TemplateBinding BoxShadowMargin}">
+                        <ContentPresenter Content="{TemplateBinding Content}" Margin="0,0,0,-1"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style Selector="^:no-shadow">
+            <Setter Property="BoxShadowMargin" Value="0"/>
+
+            <Style Selector="^ /template/ Border#PART_Border">
+                <Setter Property="BoxShadow">
+                    <BoxShadows>none</BoxShadows>
+                </Setter>
+            </Style>
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type mxdcv:RowDragElementMultipleControl}" TargetType="mxdcv:RowDragElementMultipleControl">
+        <Setter Property="MinHeight" Value="29"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <DockPanel>
+                        <mxdcv:RowIndicatorControl Width="{TemplateBinding IndicatorWidth}" ShowDragHandle="True" BorderThickness="0,0,1,0"/>
+                        
+                        <TextBlock Text="{Binding ItemCount, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{x:Static localization:ControlsResources.DataControl_DraggingMultiple_Caption}'}"
+                                   VerticalAlignment="Center" Margin="8,4"/>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
         </Setter>
     </ControlTheme>
 
