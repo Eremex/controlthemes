@@ -9,7 +9,7 @@
                     xmlns:mxdcv="clr-namespace:Eremex.AvaloniaUI.Controls.DataControl.Visuals;assembly=Eremex.Avalonia.Controls"
                     xmlns:mxe="clr-namespace:Eremex.AvaloniaUI.Controls.Editors;assembly=Eremex.Avalonia.Controls"
                     xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
-                    xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
+                    
                     xmlns:internal="clr-namespace:Eremex.AvaloniaUI.Controls.Internal;assembly=Eremex.Avalonia.Controls"
                     xmlns:mxdgv="clr-namespace:Eremex.AvaloniaUI.Controls.DataGrid.Visuals;assembly=Eremex.Avalonia.Controls">
 
@@ -307,6 +307,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
         <Setter Property="BorderThickness" Value="0,0,0,1" />
         <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="Watermark" Value="{x:Static localization:ControlsResources.DataControl_SearchPanel_PromptText}" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
@@ -316,7 +317,7 @@
 															 EditorValue="{Binding SearchText, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
 															 EditorValuePostDelay="{TemplateBinding SearchDelay}"
 															 EditorValuePostMode="Delayed"
-															 Watermark="{x:Static localization:ControlsResources.DataControl_SearchPanel_PromptText}"
+															 Watermark="{TemplateBinding Watermark}"
 															 NullValueButtonPosition="EditorBox">
                                 <ed:ButtonEditor.Buttons>
                                     <ed:ButtonSettings IsEnabled="False" IsLeft="True" Glyph="{x:Static other:_12.Search}" GlyphSize="14,14" />
@@ -432,7 +433,7 @@
                 <ControlTemplate>
                     <Grid>
                         <ToggleButton x:Name="PART_PopupOpenButton" Focusable="False"/>
-                        <common:ResizeablePopup Name="PART_EditorPopup"
+                        <mxc:ResizeablePopup Name="PART_EditorPopup"
                                                        WindowManagerAddShadowHint="False"
                                                        IsOpen="{TemplateBinding IsPopupOpen, Mode=TwoWay}"
                                                        MinHeight="{TemplateBinding PopupMinHeight}"
@@ -451,7 +452,7 @@
                                       TextElement.FontFamily="{TemplateBinding FontFamily}">
                                 <mxev:PopupContentContainer Name="PART_PopupContentContainer"/>
                             </Border>
-                        </common:ResizeablePopup>
+                        </mxc:ResizeablePopup>
                     </Grid>
                 </ControlTemplate>
             </Setter>
@@ -611,7 +612,7 @@
                             </ToggleButton.Styles>
                             <Image Width="16" Height="16" Source="{Binding $parent[mxe:ComboBoxEditor].AutoFilterImage}"/>
                         </ToggleButton>
-                        <common:ResizeablePopup Name="PART_EditorPopup"
+                        <mxc:ResizeablePopup Name="PART_EditorPopup"
                                                        WindowManagerAddShadowHint="False"
                                                        IsOpen="{TemplateBinding IsPopupOpen, Mode=TwoWay}"
                                                        MinHeight="{TemplateBinding PopupMinHeight}"
@@ -630,7 +631,7 @@
                                       TextElement.FontFamily="{TemplateBinding FontFamily}">
                                 <mxev:PopupContentContainer Name="PART_PopupContentContainer"/>
                             </Border>
-                        </common:ResizeablePopup>
+                        </mxc:ResizeablePopup>
                     </Grid>
                 </ControlTemplate>
             </Setter>
@@ -709,20 +710,31 @@
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type mxdcv:RowDragElementControl}" TargetType="mxdcv:RowDragElementControl">
+    <ControlTheme x:Key="{x:Type mxdcv:DragElementControl}" TargetType="mxdcv:DragElementControl">
         <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/>
         <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="CornerRadius" Value="4"/>
-        <Setter Property="Opacity" Value="0.9"/>
+        <Setter Property="ContentOpacity" Value="0.9"/>
         <Setter Property="BoxShadowMargin" Value="{DynamicResource PopupBoxShadowMargin}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <Border x:Name="PART_Border" CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                            BoxShadow="{DynamicResource PopupBoxShadow}" Margin="{TemplateBinding BoxShadowMargin}">
-                        <ContentPresenter Content="{TemplateBinding Content}" Margin="0,0,0,-1"/>
-                    </Border>
+                    <Grid RowDefinitions="Auto, Auto">
+                        <Border x:Name="PART_TipContainer" CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" BoxShadow="{DynamicResource PopupBoxShadow}"
+                                HorizontalAlignment="Center"
+                                Opacity="{Binding IsTipVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={mx:BoolToObjectConverter FalseValue=0, TrueValue=1}}"
+                                IsVisible="{Binding Tip, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                            <TextBlock Text="{TemplateBinding Tip}" Margin="6, 2"/>
+                        </Border>
+                        
+                        <Border x:Name="PART_ContentContainer" Grid.Row="1" CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" BoxShadow="{DynamicResource PopupBoxShadow}" Margin="{TemplateBinding BoxShadowMargin}"
+                                HorizontalAlignment="Center" Opacity="{TemplateBinding ContentOpacity}">
+                            <ContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}" Margin="0,0,0,-1"/>
+                        </Border>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -730,10 +742,24 @@
         <Style Selector="^:no-shadow">
             <Setter Property="BoxShadowMargin" Value="0"/>
 
-            <Style Selector="^ /template/ Border#PART_Border">
+            <Style Selector="^ /template/ Border#PART_ContentContainer">
                 <Setter Property="BoxShadow">
                     <BoxShadows>none</BoxShadows>
                 </Setter>
+            </Style>
+
+            <Style Selector="^ /template/ Border#PART_TipContainer">
+                <Setter Property="BoxShadow">
+                    <BoxShadows>none</BoxShadows>
+                </Setter>
+            </Style>
+        </Style>
+
+        <Style Selector="^:columnHeader">
+            <Setter Property="ContentOpacity" Value="0.7"/>
+
+            <Style Selector="^ /template/ ContentPresenter#PART_Content">
+                <Setter Property="Margin" Value="0"/>
             </Style>
         </Style>
     </ControlTheme>

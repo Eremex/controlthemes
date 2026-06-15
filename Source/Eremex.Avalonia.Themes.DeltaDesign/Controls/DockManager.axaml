@@ -361,6 +361,10 @@
             <Setter Property="Padding" Value="4"/>
             <Setter Property="BorderThickness" Value="0 0 0 1"></Setter>
         </Style>
+        
+        <Style Selector="^:no-border">
+            <Setter Property="BorderThickness" Value="0"></Setter>
+        </Style>
 
     </ControlTheme>
     

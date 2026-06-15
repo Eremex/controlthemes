@@ -377,5 +377,9 @@
         <Style Selector="^:no-shadow:not(:no-caption)">
             <Setter Property="BorderThickness" Value="1"></Setter>
         </Style>
+        
+        <Style Selector="^:no-border">
+            <Setter Property="BorderThickness" Value="0"></Setter>
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

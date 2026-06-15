@@ -157,9 +157,12 @@
                 <Setter Property="Theme" Value="{StaticResource ButtonEditorTextBoxTheme}"/>
             </Style>
 
-            <Style Selector="^:showWatermark">
+            <Style Selector="^[IsTextEditable=False]:showWatermark">
                 <Style Selector="^ /template/ TextBox#PART_RealEditor">
-                    <Setter Property="Theme" Value="{StaticResource ButtonEditorTextBoxWatermarkTheme}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrush}"/>
+                </Style>
+                <Style Selector="^ /template/ TextBox#PART_RealEditor[IsEffectivelyEnabled=false]">
+                    <Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrushDisabled}"/>
                 </Style>
             </Style>
 
@@ -184,15 +187,6 @@
                     </Template>
                 </Setter.Value>
             </Setter>
-        </Style>
-    </ControlTheme>
-
-    <ControlTheme x:Key="ButtonEditorTextBoxWatermarkTheme" TargetType="TextBox" BasedOn="{StaticResource ButtonEditorTextBoxTheme}">
-        <Style Selector="^ /template/ ContentPresenter#PART_ReadOnlyContentContainer">
-            <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBoxWatermarkBrush}"/>
-        </Style>
-        <Style Selector="^ /template/ ContentPresenter#PART_ReadOnlyContentContainer[IsEffectivelyEnabled=false]">
-            <Setter Property="TextElement.Foreground" Value="{DynamicResource TextBoxWatermarkBrushDisabled}"/>
         </Style>
     </ControlTheme>
 

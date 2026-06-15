@@ -218,8 +218,8 @@
                         <mxev:ComboBoxPopupControl x:Name="PART_ComboBoxPopupControl"
                                                    ReadOnly="{Binding $parent[mxe:ComboBoxEditor].ReadOnly}"
                                                    SelectionMode="{Binding $parent[mxe:ComboBoxEditor].SelectionMode}"
-                                                   SelectAllItemText="{Binding $parent[mxe:ComboBoxEditor].SelectAllItemText}"
-                                                   ClearValueItemText="{Binding $parent[mxe:ComboBoxEditor].ClearValueItemText}"
+                                                   SelectAllItemText="{Binding $parent[mxe:ComboBoxEditor].SelectAllItemText, Converter={mxev:NullValueConverter}, ConverterParameter={x:Static localization:ControlsResources.SelectAllChecker_Content}}"
+                                                   ClearValueItemText="{Binding $parent[mxe:ComboBoxEditor].ClearValueItemText, Converter={mxev:NullValueConverter}, ConverterParameter={x:Static localization:ControlsResources.SelectEmptyValueButton_Content}}"
                                                    ShowPredefinedSelectItem="{Binding $parent[mxe:ComboBoxEditor].ShowPredefinedSelectItem}"/>
                     </Template>
                 </Setter.Value>

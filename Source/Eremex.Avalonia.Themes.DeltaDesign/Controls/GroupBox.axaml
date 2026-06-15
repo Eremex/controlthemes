@@ -41,7 +41,7 @@
                                               BorderThickness="0"
                                               CornerRadius="{TemplateBinding CornerRadius}"
                                               ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                              Content="{Binding Header, RelativeSource={RelativeSource TemplatedParent}, Converter={mxe:StringUpperCaseConverter}}"
+                                              Content="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}"
                                               Margin="{DynamicResource GroupBoxHeaderMargin}"
                                               RecognizesAccessKey="True"
                                               IsVisible="{TemplateBinding ShowHeader}"
