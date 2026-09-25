@@ -6,7 +6,7 @@
         <Setter Property="DefaultFocusAdorner">
             <FocusAdornerTemplate>
                 <Border BorderThickness="{StaticResource FocusAdornerBorderThickness}"
-                        BorderBrush="{DynamicResource FocusAdornerBorderBrush}"
+                        BorderBrush="{DynamicResource Outline/Accent/Focus}"
                         CornerRadius="{StaticResource EditorCornerRadius}">
                 </Border>
             </FocusAdornerTemplate>

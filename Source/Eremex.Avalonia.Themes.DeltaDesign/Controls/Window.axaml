@@ -26,9 +26,11 @@
     </ResourceDictionary.MergedDictionaries>
 
     <ControlTheme x:Key="MxWindowButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-        <Setter Property="Margin" Value="4,0,4,0" />
-        <Setter Property="CornerRadius" Value="6" />
-        <Setter Property="Padding" Value="8" />
+        <Setter Property="Margin" Value="{DynamicResource MxWindowCaptionButtonMargin}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource MxWindowCaptionButtonCornerRadius}" />
+        <Setter Property="Padding" Value="{DynamicResource MxWindowCaptionButtonPadding}" />
+        <Setter Property="MinWidth" Value="{DynamicResource MxWindowCaptionButtonMinWidth}" />
+        <Setter Property="MinHeight" Value="{DynamicResource MxWindowCaptionButtonMinHeight}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Graphics Old/Neutral/Primary}" />
@@ -50,7 +52,7 @@
 
     <ControlTheme x:Key="{x:Type common:MxWindow}" TargetType="common:MxWindow">
         <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
-        <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
+        <Setter Property="FontSize" Value="{DynamicResource MxWindowFontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
         <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
         <Setter Property="Template">
@@ -60,7 +62,7 @@
                         <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
                         <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
                         <Panel Background="Transparent" Margin="{TemplateBinding WindowDecorationMargin}" />
-                        <VisualLayerManager>
+                        <VisualLayerManager Name="PART_VisualLayerManager">
                             <Grid Background="Transparent">
                                 <Border x:Name="PART_Shadow1" />
                                 <Border x:Name="PART_Shadow2" />
@@ -91,7 +93,8 @@
                                                                     Theme="{StaticResource MxWindowButton}">
                                                                 <Image Source="{TemplateBinding MinimizeButtonGlyph}" />
                                                             </Button>
-                                                            <Button x:Name="PART_MaximizeButton" Grid.Column="3"
+                                                            <Button x:Name="PART_MaximizeButton" Grid.Column="3" 
+                                                                    WindowDecorationProperties.ElementRole="MaximizeButton"
                                                                     IsVisible="{TemplateBinding ShowMaximizeButton}"
                                                                     Theme="{StaticResource MxWindowButton}">
                                                                 <Panel>
@@ -171,27 +174,26 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}"></Setter>
 
         <Style Selector="^/template/Image#PART_Icon">
-            <Setter Property="Margin" Value="8,8,0,8" />
+            <Setter Property="Margin" Value="{DynamicResource MxWindowIconMargin}" />
             <Setter Property="Width" Value="16" />
             <Setter Property="Height" Value="16" />
         </Style>
 
         <Style Selector="^:maximized/template/Image#PART_Icon">
-            <Setter Property="Margin" Value="4,4,0,4" />
+            <Setter Property="Margin" Value="{DynamicResource MxWindowIconMarginMaximized}" />
         </Style>
 
         <Style Selector="^/template/ContentControl#PART_Header">
             <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
-            <Setter Property="TextBlock.LineHeight" Value="16" />
+            <Setter Property="TextBlock.LineHeight" Value="{DynamicResource MxWindowHeaderLineHeight}" />
             <Setter Property="FontWeight" Value="400" />
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="Margin" Value="8" />
-            <Setter Property="MinHeight" Value="16" />
+            <Setter Property="Margin" Value="{DynamicResource MxWindowHeaderMargin}" />
+            <Setter Property="MinHeight" Value="{DynamicResource MxWindowHeaderMinHeight}" />
             <Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis" />
         </Style>
 
         <Style Selector="^:maximized/template/ContentControl#PART_Header">
-            <Setter Property="Margin" Value="4" />
+            <Setter Property="Margin" Value="{DynamicResource MxWindowHeaderMarginMaximized}" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
 
@@ -286,7 +288,7 @@
         </Style>
 
         <Style Selector="^/template/Button#PART_MinimizeButton">
-            <Setter Property="Margin" Value="4,0,0,0" />
+            <Setter Property="Margin" Value="{DynamicResource MxWindowCaptionButtonLeftMargin}" />
             <Setter Property="ToolTip.Tip" Value="{x:Static localization:ControlsResources.Window_MinimizeButton}"></Setter>
         </Style>
 
@@ -297,7 +299,7 @@
         </Style>
 
         <Style Selector="^/template/Button#PART_MaximizeButton">
-            <Setter Property="Margin" Value="4,0,0,0" />
+            <Setter Property="Margin" Value="{DynamicResource MxWindowCaptionButtonLeftMargin}" />
             <Setter Property="ToolTip.Tip" Value="{x:Static localization:ControlsResources.Window_MaximizeButton}"></Setter>
         </Style>
 
@@ -309,7 +311,7 @@
         </Style>
 
         <Style Selector="^/template/Button#PART_CloseButton">
-            <Setter Property="Margin" Value="4,0,4,0" />
+            <Setter Property="Margin" Value="{DynamicResource MxWindowCaptionButtonMargin}" />
             <Setter Property="ToolTip.Tip" Value="{x:Static localization:ControlsResources.Window_CloseButton}"></Setter>
         </Style>
 

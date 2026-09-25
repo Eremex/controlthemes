@@ -1,13 +1,13 @@
 <Project>
   <PropertyGroup>
-    <EMXControlsVersion>1.4.28-preview1</EMXControlsVersion>
+    <EMXControlsVersion>1.5.52-preview2</EMXControlsVersion>
     <Company>Eremex</Company>
     <Copyright>©2010-2026 Eremex</Copyright>
     <Product>Eremex Controls</Product>
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -22,13 +22,20 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <LangVersion>12.0</LangVersion>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <AvaloniaVersion>12.0.2</AvaloniaVersion>
-    <AvaloniaSvgSkiaVersion>12.0.0.5</AvaloniaSvgSkiaVersion>
-    <SkiaSharpVersion>3.119.4-preview.1.1</SkiaSharpVersion>
+    <AvaloniaVersion>12.1.0</AvaloniaVersion>
+    <AvaloniaSvgSkiaVersion>12.0.0.11</AvaloniaSvgSkiaVersion>
+    <SkiaSharpVersion>3.119.4</SkiaSharpVersion>
     <MicrosoftCodeAnalysisVersion>4.3.0</MicrosoftCodeAnalysisVersion>
     <Version>$(EMXControlsVersion)</Version>
+    <NuspecProperties>$(NuspecProperties);version=$(Version)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);configuration=$(Configuration)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);avaloniaversion=$(AvaloniaVersion)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);avaloniasvgskiaversion=$(AvaloniaSvgSkiaVersion)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);skiasharpversion=$(SkiaSharpVersion)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);nugetauthors=$(NugetAuthors)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);nugetcopyright=$(NugetCopyright)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);nugetprojecturl=$(NugetProjectUrl)</NuspecProperties>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -13,31 +13,30 @@
         </Border>
     </Design.PreviewWith>
 
-    <x:Double x:Key="DayButtonMinHeight">26</x:Double>
-    <x:Double x:Key="DayButtonMinWidth">32</x:Double>
-    <Thickness x:Key="CalendarButtonsMargin">1</Thickness>
+    <x:Double x:Key="DayButtonMinWidth">35</x:Double>
+    <Thickness x:Key="CalendarButtonsMargin">3, 3, 0, 0</Thickness>
 
     <!--CalendarButton-->
     <ControlTheme x:Key="{x:Type CalendarButton}" TargetType="CalendarButton">
         <Setter Property="ClickMode" Value="Release"/>
         <Setter Property="MinWidth" Value="{StaticResource EditorMinHeight}"/>
         <Setter Property="MinHeight" Value="{StaticResource EditorMinHeight}"/>
-        <Setter Property="Foreground" Value="{DynamicResource CalendarButtonForeground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}"/>
         <Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Margin" Value="{StaticResource CalendarButtonsMargin}" />
+        <Setter Property="Padding" Value="{StaticResource CalendarButtonsMargin}" />
         <Setter Property="ClipToBounds" Value="False"/>
         <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <ControlTemplate>
-                <Panel>
+                <Panel Background="Transparent">
                     <Border x:Name="PART_BackgroundBorder"
                             Background="{TemplateBinding Background}"
                             CornerRadius="{TemplateBinding CornerRadius}"
-                            Padding="{TemplateBinding Padding}">
+                            Margin="{TemplateBinding Padding}">
                         <ContentPresenter x:Name="PART_ContentPresenter"
                                           Content="{TemplateBinding Content}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -50,6 +49,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"
+                            Margin="{TemplateBinding Padding}"
                             Background="{x:Null}"/>
                 </Panel>
             </ControlTemplate>
@@ -60,36 +60,36 @@
             <Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
         </Style>
         <Style Selector="^:inactive /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarButtonInactiveForeground}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Disabled}"/>
         </Style>
         <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarButtonForeground}" />
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
         </Style>
         <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource CalendarButtonBackgroundPointerOver}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
         </Style>
         <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarButtonForegroundPointerOver}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}"/>
         </Style>
         <Style Selector="^:pressed /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource CalendarButtonBackgroundPressed}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
         </Style>
         <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarButtonForegroundPressed}" />
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
             <Setter Property="Opacity" Value="0.8"/>
         </Style>
         <Style Selector="^:selected /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource CalendarButtonSelectedBackground}"/>
+            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Enabled}"/>
         </Style>
         <Style Selector="^:selected /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarButtonSelectedForeground}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}"/>
         </Style>
         <Style Selector="^:selected:pointerover /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource CalendarButtonSelectedBackgroundPointerOver}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Hover}" />
         </Style>
         <Style Selector="^:selected:pressed /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource CalendarButtonSelectedBackgroundPressed}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Pressed}" />
         </Style>
         <Style Selector="^:selected:pressed  /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
@@ -98,10 +98,10 @@
 
         <!-- Disabled -->
         <Style Selector="^:blackout /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarButtonForegroundBlackout}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Disabled}"/>
         </Style>
         <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarButtonForegroundDisabled}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Disabled}"/>
         </Style>
     </ControlTheme>
 
@@ -109,23 +109,23 @@
     <ControlTheme x:Key="{x:Type CalendarDayButton}" TargetType="CalendarDayButton">
         <Setter Property="ClickMode" Value="Release"/>
         <Setter Property="MinWidth" Value="{StaticResource DayButtonMinWidth}"/>
-        <Setter Property="MinHeight" Value="{StaticResource DayButtonMinHeight}"/>
+        <Setter Property="MinHeight" Value="{DynamicResource DayButtonMinHeight}"/>
         <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}"/>
         <Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Margin" Value="{StaticResource CalendarButtonsMargin}" />
+        <Setter Property="Padding" Value="{StaticResource CalendarButtonsMargin}" />
         <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
         <Setter Property="ClipToBounds" Value="False"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <ControlTemplate>
-                <Panel>
+                <Panel  Background="Transparent">
                     <Border x:Name="PART_BackgroundBorder"
                             Background="{TemplateBinding Background}"
                             CornerRadius="{TemplateBinding CornerRadius}"
-                            Padding="{TemplateBinding Padding}">
+                            Margin="{TemplateBinding Padding}">
                         <ContentPresenter x:Name="PART_ContentPresenter"
                                           Content="{TemplateBinding Content}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -138,6 +138,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"
+                            Margin="{TemplateBinding Padding}"
                             Background="{x:Null}"/>
                 </Panel>
             </ControlTemplate>
@@ -148,7 +149,7 @@
             <Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
         </Style>
         <Style Selector="^:inactive /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarButtonInactiveForeground}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Disabled}"/>
         </Style>
         <!--Default-->
         <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
@@ -156,8 +157,8 @@
                 <Setter.Value>
                     <MultiBinding Converter="{mxev:CalendarHolidayColorConverter}">
                         <Binding Path="DataContext" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <DynamicResourceExtension ResourceKey="CalendarButtonForeground" />
-                        <DynamicResourceExtension ResourceKey="CalendarDayButtonHolidayForeground" />
+                        <DynamicResourceExtension ResourceKey="Text/Neutral/Primary" />
+                        <DynamicResourceExtension ResourceKey="Text/Accent/Error" />
                     </MultiBinding>
                 </Setter.Value>
             </Setter>
@@ -171,8 +172,8 @@
                 <Setter.Value>
                     <MultiBinding Converter="{mxev:CalendarHolidayColorConverter}">
                         <Binding Path="DataContext" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <DynamicResourceExtension ResourceKey="CalendarDayButtonTodayForeground" />
-                        <DynamicResourceExtension ResourceKey="CalendarDayButtonTodayHolidayForeground" />
+                        <DynamicResourceExtension ResourceKey="Text/Neutral/Primary" />
+                        <DynamicResourceExtension ResourceKey="Text/Accent/Error" />
                     </MultiBinding>
                 </Setter.Value>
             </Setter>
@@ -180,39 +181,39 @@
         </Style>
         <!-- End of today states -->
         <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource CalendarButtonBackgroundPointerOver}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
         </Style>
         <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarButtonForegroundPointerOver}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}"/>
         </Style>
         <Style Selector="^:pressed /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource CalendarButtonBackgroundPressed}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
         </Style>
         <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarButtonForegroundPressed}" />
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
             <Setter Property="Opacity" Value="0.8"/>
         </Style>
 
         <Style Selector="^:selected /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource CalendarButtonSelectedBackground}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Enabled}" />
         </Style>
         <Style Selector="^:selected /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarButtonSelectedForeground}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Primary}"/>
         </Style>
         <Style Selector="^:selected:pointerover /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource CalendarButtonSelectedBackgroundPointerOver}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Hover}" />
         </Style>
         <Style Selector="^:selected:pressed /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource CalendarButtonSelectedBackgroundPressed}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Pressed}" />
         </Style>
 
         <!-- Disabled -->
         <Style Selector="^:blackout /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarButtonForegroundBlackout}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Disabled}"/>
         </Style>
         <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource CalendarButtonForegroundDisabled}"/>
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource Text/Neutral/Disabled}"/>
         </Style>
     </ControlTheme>
 

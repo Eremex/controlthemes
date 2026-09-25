@@ -20,8 +20,8 @@
     <!--  Added missing resource  -->
 
     <ControlTheme x:Key="{x:Type ContextMenu}" TargetType="ContextMenu">
-        <Setter Property="Background" Value="{DynamicResource MenuFlyoutPresenterBackground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource MenuFlyoutPresenterBorderBrush}" />
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Strong}" />
         <Setter Property="BorderThickness" Value="{DynamicResource MenuFlyoutPresenterBorderThemeThickness}" />
         <Setter Property="CornerRadius" Value="{StaticResource PopupCornerRadius}" />
         <Setter Property="MaxWidth" Value="{StaticResource FlyoutThemeMaxWidth}" />

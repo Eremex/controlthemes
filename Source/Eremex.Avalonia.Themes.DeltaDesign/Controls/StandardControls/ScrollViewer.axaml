@@ -50,7 +50,7 @@
                     <Panel x:Name="PART_ScrollBarsSeparator"
                            Grid.Row="1"
                            Grid.Column="1"
-                           Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                           Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
                            Opacity="0">
                         <Panel.Transitions>
                             <Transitions>

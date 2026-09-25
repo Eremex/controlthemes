@@ -68,13 +68,8 @@
             <Setter Property="Focusable" Value="True" />
             <Setter Property="MinWidth" Value="12" />
             <Setter Property="MinHeight" Value="12" />
-            <Setter Property="Background" Value="{DynamicResource SplitContainerControlSplitterBackground}" />
-            <Setter Property="Foreground" Value="{DynamicResource SplitContainerControlSplitterForeground}"/>
-            <!-- <Setter Property="PreviewContent"> -->
-            <!--     <Template> -->
-            <!--         <Rectangle Fill="{DynamicResource SplitContainerControlSplitterBackground}" /> -->
-            <!--     </Template> -->
-            <!-- </Setter> -->
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+            <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}"/>
             <Setter Property="Template">
                 <ControlTemplate>
                     <Border Name="PART_SplitterBorder"
@@ -92,12 +87,12 @@
             </Setter>
 
             <Style Selector="^:pointerover">
-                <Setter Property="Background" Value="{DynamicResource SplitContainerControlSplitterBackgroundPointerOver}" />
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
             </Style>
 
             <Style Selector="^:pressed">
-                <Setter Property="Background" Value="{DynamicResource SplitContainerControlSplitterBackgroundPressed}" />
-                <Setter Property="Foreground" Value="{DynamicResource SplitContainerControlSplitterForegroundPressed}"/>
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Pressed}" />
+                <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}"/>
             </Style>
         </ControlTheme>
 

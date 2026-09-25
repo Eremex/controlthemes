@@ -31,10 +31,10 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="MinWidth" Value="{StaticResource ButtonMinWidth}"/>
-        <Setter Property="Foreground" Value="{DynamicResource IconButtonForeground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrush}" />
-        <Setter Property="Background" Value="{DynamicResource IconButtonBackground}"/>
+        <Setter Property="MinWidth" Value="{DynamicResource ButtonMinWidth}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Gray}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
+        <Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
 
         <Setter Property="Template">
             <ControlTemplate>
@@ -61,61 +61,61 @@
         </Setter>
 
         <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource IconButtonForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Gray}" />
         </Style>
 
         <!-- PointerOver, KeyboardFocused State -->
         <Style Selector="^:pointerover, ^:focus-visible">
-            <Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundPointerOver}" />
+            <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Gray}" />
 
             <Style Selector="^ /template/ Border#PART_BackgroundBorder">
-                <Setter Property="Background" Value="{DynamicResource IconButtonBackgroundPointerOver}" />
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundPointerOver}" />
+                <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Gray}" />
             </Style>
         </Style>
 
         <!-- Pressed State -->
         <Style Selector="^:pressed">
-            <Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundPressed}" />
+            <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Gray}" />
 
             <Style Selector="^ /template/ Border#PART_BackgroundBorder">
-                <Setter Property="Background" Value="{DynamicResource IconButtonBackgroundPressed}" />
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Pressed}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundPressed}" />
+                <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Gray}" />
                 <Setter Property="Opacity" Value="0.8"/>
             </Style>
         </Style>
 
         <!-- Disabled State -->
         <Style Selector="^:disabled">
-            <Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundDisabled}" />
+            <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Disabled}" />
 
             <Style Selector="^ /template/ Border#PART_BackgroundBorder">
-                <Setter Property="Background" Value="{DynamicResource IconButtonBackgroundDisabled}" />
+                <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Background" Value="{DynamicResource IconButtonBackgroundDisabled}" />
-                <Setter Property="Foreground" Value="{DynamicResource IconButtonForegroundDisabled}" />
+                <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Disabled}" />
             </Style>
         </Style>
 
         <!--Secondary style-->
         <Style Selector="^.secondary">
             <Style Selector="^ /template/ Border#PART_ButtonBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource IconButtonBorderBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
             </Style>
 
             <!-- PointerOver, KeyboardFocused State -->
             <Style Selector="^:pointerover /template/ Border#PART_ButtonBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource IconButtonSecondaryBorderBrushPointerOver}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
                 <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}"/>
             </Style>
             <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder,
 					 ^:focus-visible /template/ Border#PART_BackgroundBorder">
-                <Setter Property="Background" Value="{DynamicResource IconButtonSecondaryBackgroundPointerOver}" />
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Hover}" />
             </Style>
             <Style Selector="^:focus-visible /template/ Border#PART_ButtonBorder">
                 <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
@@ -124,11 +124,11 @@
 
             <!-- Pressed State -->
             <Style Selector="^:pressed /template/ Border#PART_ButtonBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource IconButtonSecondaryBorderBrushPressed}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
                 <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}"/>
             </Style>
             <Style Selector="^:pressed /template/ Border#PART_BackgroundBorder">
-                <Setter Property="Background" Value="{DynamicResource IconButtonSecondaryBackgroundPressed}" />
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Pressed}" />
             </Style>
         </Style>
     </ControlTheme>
@@ -137,52 +137,52 @@
 
     <ControlTheme x:Key="{x:Type mxev:EditorIconToggleButton}" TargetType="mxev:EditorIconToggleButton" BasedOn="{StaticResource EditorIconButtonBaseTheme}">
         <Style Selector="^:checked">
-            <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Selected}" />
 
             <Style Selector="^ /template/ Border#PART_BackgroundBorder">
-                <Setter Property="Background" Value="{DynamicResource IconButtonCheckedBackground}" />
+                <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Enabled}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                 <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-                <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForeground}" />
+                <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Selected}" />
             </Style>
 
             <!-- CheckedPointerOver, KeyboardFocused State -->
             <Style Selector="^:pointerover, ^:focus-visible">
-                <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundPointerOver}" />
+                <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Selected}" />
 
                 <Style Selector="^ /template/ Border#PART_BackgroundBorder">
-                    <Setter Property="Background" Value="{DynamicResource IconButtonCheckedBackgroundPointerOver}" />
+                    <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Hover}" />
                 </Style>
                 <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                     <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-                    <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundPointerOver}" />
+                    <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Selected}" />
                 </Style>
             </Style>
 
             <!-- CheckedPressed State -->
             <Style Selector="^:pressed">
-                <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundPressed}" />
+                <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Selected}" />
 
                 <Style Selector="^ /template/ Border#PART_BackgroundBorder">
-                    <Setter Property="Background" Value="{DynamicResource IconButtonCheckedBackgroundPressed}" />
+                    <Setter Property="Background" Value="{DynamicResource Fill/Accent/Highlighting/Item/Pressed}" />
                 </Style>
                 <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                     <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-                    <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundPressed}" />
+                    <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Selected}" />
                 </Style>
             </Style>
 
             <!-- CheckedDisabled State -->
             <Style Selector="^:disabled">
-                <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundDisabled}" />
+                <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Disabled}" />
 
                 <Style Selector="^/template/ Border#PART_BackgroundBorder">
-                    <Setter Property="Background" Value="{DynamicResource IconButtonCheckedBackgroundDisabled}" />
+                    <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Disabled}" />
                 </Style>
                 <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
                     <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
-                    <Setter Property="Foreground" Value="{DynamicResource IconButtonCheckedForegroundDisabled}" />
+                    <Setter Property="Foreground" Value="{DynamicResource Icons/Outline/Disabled}" />
                 </Style>
             </Style>
         </Style>
@@ -197,10 +197,10 @@
 
                 <!-- CheckedDisabled State -->
                 <Style Selector="^:disabled /template/ Border#PART_BackgroundBorder">
-                    <Setter Property="Background" Value="{DynamicResource IconButtonSecondaryCheckedBackgroundDisabled}" />
+                    <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Disabled}" />
                 </Style>
                 <Style Selector="^:disabled /template/ Border#PART_ButtonBorder">
-                    <Setter Property="BorderBrush" Value="{DynamicResource IconButtonSecondaryCheckedBorderBrushDisabled}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
                     <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}"/>
                 </Style>
             </Style>

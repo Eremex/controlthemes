@@ -3,6 +3,6 @@
                     x:ClassModifier="internal">
     <ControlTheme x:Key="{x:Type ThemeVariantScope}"
                   TargetType="ThemeVariantScope">
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource Text/Neutral/Primary}"/>
     </ControlTheme>
 </ResourceDictionary>

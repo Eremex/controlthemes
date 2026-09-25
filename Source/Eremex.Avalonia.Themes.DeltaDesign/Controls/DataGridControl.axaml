@@ -3,6 +3,7 @@
         xmlns:sys="using:System.ComponentModel"
         xmlns:mxdg="clr-namespace:Eremex.AvaloniaUI.Controls.DataGrid;assembly=Eremex.Avalonia.Controls"
         xmlns:mxdgv="clr-namespace:Eremex.AvaloniaUI.Controls.DataGrid.Visuals;assembly=Eremex.Avalonia.Controls"
+        xmlns:mxdc="clr-namespace:Eremex.AvaloniaUI.Controls.DataControl;assembly=Eremex.Avalonia.Controls"
         xmlns:mxdcv="clr-namespace:Eremex.AvaloniaUI.Controls.DataControl.Visuals;assembly=Eremex.Avalonia.Controls"
         xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls"
         xmlns:mxt="clr-namespace:Eremex.AvaloniaUI.Controls.Bars;assembly=Eremex.Avalonia.Controls"
@@ -39,9 +40,9 @@
                 <mxt:ToolbarCheckItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_FixedNone}" IsChecked="{Binding FixedMode, Converter={mxdgv:FixedModeToIsCheckedConverter FixedMode=None}, Mode=OneWay}"
                                       Command="{Binding DataControl.Commands.SetFixedModeNone}" CommandParameter="{Binding}"/>
                 <mxt:ToolbarCheckItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_FixedLeft}" IsChecked="{Binding FixedMode, Converter={mxdgv:FixedModeToIsCheckedConverter FixedMode=Left}, Mode=OneWay}"
-                                       Command="{Binding DataControl.Commands.SetFixedModeLeft}" CommandParameter="{Binding}"/>
+                                      Command="{Binding DataControl.Commands.SetFixedModeLeft}" CommandParameter="{Binding}"/>
                 <mxt:ToolbarCheckItem Header="{x:Static localization:ControlsResources.DataControl_ColumnMenu_FixedRight}" IsChecked="{Binding FixedMode, Converter={mxdgv:FixedModeToIsCheckedConverter FixedMode=Right}, Mode=OneWay}"
-                                       Command="{Binding DataControl.Commands.SetFixedModeRight}" CommandParameter="{Binding}"/>
+                                      Command="{Binding DataControl.Commands.SetFixedModeRight}" CommandParameter="{Binding}"/>
             </mxt:ToolbarMenuItem>
         </mxt:PopupMenu>
     </Template>
@@ -57,9 +58,10 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
-                    <Grid>
-                        <TextBlock Text="{x:Static localization:ControlsResources.DataControl_GroupPanelText}" Theme="{DynamicResource GroupPanelTextTheme}" VerticalAlignment="Center" Margin="6,10" IsVisible="{Binding !#PART_GroupPanelItemsControl.ItemsSource.Count}"/>
-                        <mxdgv:DataGridGroupPanelItemsControl x:Name="PART_GroupPanelItemsControl" Padding="0, 10" HeaderDropIndicatorWidth="{TemplateBinding HeaderDropIndicatorWidth}" />
+                    <Grid Margin="{DynamicResource DataGridGroupPanelPadding}">
+                        <TextBlock Text="{x:Static localization:ControlsResources.DataControl_GroupPanelText}" Theme="{DynamicResource GroupPanelTextTheme}" 
+                                   VerticalAlignment="Center" Margin="6,0" IsVisible="{Binding !#PART_GroupPanelItemsControl.ItemsSource.Count}"/>
+                        <mxdgv:DataGridGroupPanelItemsControl x:Name="PART_GroupPanelItemsControl" HeaderDropIndicatorWidth="{TemplateBinding HeaderDropIndicatorWidth}" />
                     </Grid>
                 </Border>
             </ControlTemplate>
@@ -128,6 +130,8 @@
                                                  IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_ContentPresenter}"/>
                     </ScrollContentPresenter.GestureRecognizers>
                 </ScrollContentPresenter>
+
+                <mxdcv:FooterControl x:Name="PART_FooterControl" Grid.Row="1" IsVisible="{Binding $parent[mxdg:DataGridControl].ShowTotalSummaries}"/>
             </Grid>
 
             <mxdcv:FocusedElementAdornerPanel x:Name="PART_FocusedElementAdornerPanel" Grid.Row="0" Grid.RowSpan="7" Grid.ColumnSpan="2" ClipToBounds="False"/>
@@ -135,7 +139,7 @@
             <Panel x:Name="PART_ScrollBarsSeparator"
                    Grid.Row="6"
                    Grid.Column="1"
-                   Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                   Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
                    Opacity="0">
                 <Panel.Transitions>
                     <Transitions>
@@ -159,7 +163,7 @@
                         <Binding Path="$parent[mxdg:DataGridControl].FixedRightColumnWidth" />
                     </MultiBinding>
                 </Grid.ColumnSpan>
-                <Border BorderBrush="{DynamicResource ScrollBarRootBackground}" Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                <Border BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}" Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
                         BorderThickness="{Binding $parent[mxdg:DataGridControl].FixedColumnSeparatorWidth, Converter={mxdgv:FixedColumnWidthToBorderThicknessConverter BaseThickness='0,1,0,0'}}"
                         IsVisible="{Binding !$parent[mxdg:DataGridControl].ExtendScrollbarToFixedColumns}"
                         Opacity="{Binding (ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}, Converter={mxc:BoolToObjectConverter FalseValue=1, TrueValue=0}}">
@@ -171,10 +175,10 @@
                         </MultiBinding>
                     </Border.Width>
                 </Border>
-                <Border BorderBrush="{DynamicResource ScrollBarRootBackground}" Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                <Border BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}" Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
                         BorderThickness="0,1,0,0" Margin="0,0,-1,0" Width="1" DockPanel.Dock="Right"
                         Opacity="{Binding (ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}, Converter={mxc:BoolToObjectConverter FalseValue=1, TrueValue=0}}"/>
-                <Border BorderBrush="{DynamicResource ScrollBarRootBackground}" Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                <Border BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}" Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
                         BorderThickness="{Binding $parent[mxdg:DataGridControl].FixedColumnSeparatorWidth, Converter={mxdgv:FixedColumnWidthToBorderThicknessConverter BaseThickness='0,1,0,0', IsRight='True'}}"
                         Width="{Binding $parent[mxdg:DataGridControl].FixedRightColumnWidth}" DockPanel.Dock="Right" IsVisible="{Binding !$parent[mxdg:DataGridControl].ExtendScrollbarToFixedColumns}"
                         Opacity="{Binding (ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}, Converter={mxc:BoolToObjectConverter FalseValue=1, TrueValue=0}}"/>
@@ -203,6 +207,8 @@
     </ControlTemplate>
     
     <ControlTheme x:Key="{x:Type mxdg:DataGridControl}" TargetType="mxdg:DataGridControl">
+        <Setter Property="HeaderPanelMinHeight" Value="{DynamicResource DataControlHeaderPanelMinHeight}" />
+        <Setter Property="RowMinHeight" Value="{DynamicResource DataControlRowMinHeight}" />
         <Setter Property="RowLevelIndent" Value="22" />
         <Setter Property="Focusable" Value="True" />
         <Setter Property="FocusAdorner" Value="{x:Null}" />
@@ -250,7 +256,7 @@
                     <mxdcv:RowIndicatorControl x:Name="PART_RowIndicator" IsVisible="{Binding $parent[mxdg:DataGridControl].ShowRowIndicator}"
                                                Width="{Binding $parent[mxdg:DataGridControl].RowIndicatorWidth}" BorderThickness="0,0,1,0"/>
 
-                    <Border x:Name="RowBorder" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="0,0,0,1" ClipToBounds="True">
+                    <Border x:Name="RowBorder" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="0,0,0,1">
                         <Border.Padding>
                             <MultiBinding Converter="{mxdgv:LevelAndIndentToThicknessConverter}">
                                 <Binding Path="Level" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -279,6 +285,10 @@
         </Style>
         <Style Selector="^:selectedState /template/ mxdcv|RowIndicatorControl#PART_RowIndicator">
             <Setter Property="ShowDragHandle" Value="True"/>
+        </Style>
+
+        <Style Selector="^ /template/ Border#RowBorder">
+            <Setter Property="ClipToBounds" Value="True"/>
         </Style>
     </ControlTheme>
 

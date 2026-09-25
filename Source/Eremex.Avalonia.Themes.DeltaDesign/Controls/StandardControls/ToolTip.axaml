@@ -5,9 +5,9 @@
                     xmlns:controls="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls">
 
     <ControlTheme x:Key="{x:Type ToolTip}" TargetType="ToolTip">
-        <Setter Property="Foreground" Value="{DynamicResource TooltipForeground}" />
-        <Setter Property="Background" Value="{DynamicResource ToolTipBackground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource ToolTipBorderBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}" />
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Strong}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource MxToolTipBorderThemeThickness}"/>
         <Setter Property="FontSize" Value="{DynamicResource ToolTipContentThemeFontSize}" />
         <Setter Property="Padding" Value="{StaticResource ToolTipPadding}" />

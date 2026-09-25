@@ -43,7 +43,7 @@
                         <Path VerticalAlignment="Center"
                               HorizontalAlignment="Center"
                               Data="{StaticResource ChevronUpIcon}"
-                              Fill="{DynamicResource ScrollBarIconButtonForeground}"/>
+                              Fill="{DynamicResource Icons/Outline/Gray}"/>
                     </RepeatButton>
                     <RepeatButton DockPanel.Dock="Bottom"
                                   BorderThickness="0"
@@ -64,7 +64,7 @@
                         <Path VerticalAlignment="Center"
                               HorizontalAlignment="Center"
                               Data="{StaticResource ChevronDownIcon}"
-                              Fill="{DynamicResource ScrollBarIconButtonForeground}"/>
+                              Fill="{DynamicResource Icons/Outline/Gray}"/>
                     </RepeatButton>
                     <ScrollContentPresenter Name="PART_ContentPresenter">
                         <ScrollContentPresenter.GestureRecognizers>

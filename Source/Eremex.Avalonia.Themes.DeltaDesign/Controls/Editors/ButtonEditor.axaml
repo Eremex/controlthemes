@@ -63,7 +63,7 @@
     <!--Button Editor-->
 
     <ControlTheme x:Key="{x:Type mxev:ButtonEditorInactiveButtonsContainer}" TargetType="mxev:ButtonEditorInactiveButtonsContainer">
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource ButtonEditorInactiveButtonForeground}"/>
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource Icons/Outline/Gray}"/>
         <Setter Property="ButtonMinWidth" Value="{DynamicResource ButtonMinWidth}"/>
         <Setter Property="ButtonPadding" Value="{DynamicResource EditorIconButtonPadding}"/>
     </ControlTheme>
@@ -87,7 +87,7 @@
                                    DockPanel.Dock="Bottom"
                                    Text="{TemplateBinding ErrorText}"
                                    FontSize="{DynamicResource EditorErrorFontSize}"
-                                   Foreground="{DynamicResource TextEditorErrorTextForeground}"
+                                   Foreground="{DynamicResource Text/Accent/Error}"
                                    Margin="{StaticResource ErrorTextPresenterMargin}"
                                    TextWrapping="Wrap"/>
                         <Panel x:Name="PART_RealEditorPanel">
@@ -159,10 +159,10 @@
 
             <Style Selector="^[IsTextEditable=False]:showWatermark">
                 <Style Selector="^ /template/ TextBox#PART_RealEditor">
-                    <Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrush}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}"/>
                 </Style>
                 <Style Selector="^ /template/ TextBox#PART_RealEditor[IsEffectivelyEnabled=false]">
-                    <Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrushDisabled}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Disabled}"/>
                 </Style>
             </Style>
 

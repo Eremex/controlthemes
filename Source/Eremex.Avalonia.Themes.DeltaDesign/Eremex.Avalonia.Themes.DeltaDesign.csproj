@@ -1,16 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
 		<OutputType>Library</OutputType>
 		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
 		<RootNamespace>Eremex.AvaloniaUI.Themes.DeltaDesign</RootNamespace>
 		<AssemblyName>Eremex.Avalonia.Themes.DeltaDesign</AssemblyName>
-		<Description>A collection of themes for the Eremex Avalonia UI Controls.</Description>
+		<Description>DeltaDesign paint themes for the Eremex Avalonia UI Controls, with light and dark variants. Styles both Eremex controls and standard Avalonia controls (Button, CheckBox, TextBox, ListBox, Slider, ProgressBar, and more) for a consistent, modern look. Fully customizable — override styles, resources and control templates to match your application's design.</Description>
                 <PackageLicenseFile>eula.txt</PackageLicenseFile>
 		<NuspecFile>Eremex.Avalonia.Themes.DeltaDesign.nuspec</NuspecFile>
                 <Nullable>enable</Nullable>
 		<TrimMode>copyused</TrimMode>
 		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+		<AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
 		<Configurations>Debug;Release</Configurations>
 
 	</PropertyGroup>
@@ -26,17 +26,20 @@
 
 	<ItemGroup>
 		<PackageReference Include="Avalonia" />
+		<PackageReference Include="Avalonia.Controls.ColorPicker" />
+		<PackageReference Include="Avalonia.Controls.DataGrid" />
+		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Microsoft.CodeAnalysis.CSharp.Scripting" />
 		<PackageReference Include="Avalonia.Fonts.Inter" />
 		<PackageReference Include="DynamicData" />
 		<PackageReference Include="Svg.Controls.Skia.Avalonia" />
 		<PackageReference Include="SkiaSharp" />
 		<PackageReference Include="System.Resources.Extensions" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 	  <PackageReference Include="Eremex.Avalonia.Controls"/>
 	  <AvaloniaResource Include="**/*.axaml" />
-	  <EmbeddedResource Include="Palettes\*.css" />
+	  <EmbeddedResource Include="PaletteResources\*.css" />
 	</ItemGroup>
 
 	<ItemGroup>

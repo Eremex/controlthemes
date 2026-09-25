@@ -67,7 +67,7 @@
     </controls:EnumToObjectConverter>
 
     <ControlTheme x:Key="PopupFooterButtonTheme" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-        <Setter Property="Background" Value="{DynamicResource ButtonSecondaryBackground}" />
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="MinWidth" Value="80"/>
@@ -75,16 +75,16 @@
 
         <Style Selector="^:pointerover /template/ Border#PART_BackgroundBorder,
                ^:focus /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource ButtonSecondaryBackgroundPointerOver}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Hover}" />
         </Style>
         <Style Selector="^:pressed /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource ButtonSecondaryBackgroundPressed}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Pressed}" />
         </Style>
         <Style Selector="^:focus /template/ Border#PART_ButtonBorder">
-            <Setter Property="BorderBrush" Value="{DynamicResource ButtonFocusBorderBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}" />
         </Style>
         <Style Selector="^:disabled /template/ Border#PART_BackgroundBorder">
-            <Setter Property="Background" Value="{DynamicResource ButtonSecondaryBackgroundDisabled}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Disabled}" />
         </Style>
     </ControlTheme>
 
@@ -122,7 +122,7 @@
                                    DockPanel.Dock="Bottom"
                                    Text="{TemplateBinding ErrorText}"
                                    FontSize="{DynamicResource EditorErrorFontSize}"
-                                   Foreground="{DynamicResource TextEditorErrorTextForeground}"
+                                   Foreground="{DynamicResource Text/Accent/Error}"
                                    Margin="{StaticResource ErrorTextPresenterMargin}"
                                    TextWrapping="Wrap" />
                         <Panel x:Name="PART_RealEditorPanel">
@@ -199,7 +199,7 @@
                                 <Border x:Name="PopupBorder"
                                       BorderThickness="{StaticResource EditorBorderThickness}"
                                       BorderBrush="{DynamicResource PopupBorderBrush}"
-                                      Background="{DynamicResource PopupEditorPopupBackground}"
+                                      Background="{DynamicResource Fill/Neutral/Primary/Enabled}"
                                       HorizontalAlignment="Stretch"
                                       CornerRadius="{StaticResource PopupCornerRadius}"
                                       BoxShadow="{DynamicResource PopupBoxShadow}"
@@ -276,7 +276,7 @@
                     <Border x:Name="PART_PopupHeaderContainer"
                             Grid.Row="0"
                             CornerRadius="{StaticResource PopupHeaderCornerRadius}"
-                            Background="{DynamicResource PopupEditorPopupHeaderBackground}">
+                            Background="{DynamicResource Fill/Neutral/Primary/Pressed}">
 
                     </Border>
                     <ContentControl x:Name="PART_PopupHeader"
@@ -287,7 +287,7 @@
                     <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
                     <Border x:Name="PART_PopupFooterContainer" CornerRadius="{StaticResource PopupFooterCornerRadius}"
                             Grid.Row="2"
-                            Background="{DynamicResource PopupEditorPopupFooterBackground}">
+                            Background="{DynamicResource Fill/Neutral/Primary/Pressed}">
                     </Border>
                     <ContentControl x:Name="PART_PopupFooter"
                                     Grid.Row="{Binding $parent[mxe:PopupEditor].ActualSizeGripLocation, Converter={StaticResource SizeGripLocationToFooterRowConverter}}"

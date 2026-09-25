@@ -6,6 +6,8 @@
                     xmlns:mxev="clr-namespace:Eremex.AvaloniaUI.Controls.Editors.Visuals;assembly=Eremex.Avalonia.Controls"
                     xmlns:common="clr-namespace:Eremex.AvaloniaUI.Controls.Common;assembly=Eremex.Avalonia.Controls"
                     xmlns:localization="clr-namespace:Eremex.AvaloniaUI.Controls.Localization;assembly=Eremex.Avalonia.Controls"
+                    xmlns:mx="clr-namespace:Eremex.AvaloniaUI.Controls;assembly=Eremex.Avalonia.Controls"
+                    xmlns:avaControls="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
                     xmlns:utils="clr-namespace:Eremex.AvaloniaUI.Controls.Utils;assembly=Eremex.Avalonia.Controls">
 
     <Design.PreviewWith>
@@ -16,12 +18,10 @@
         </Border>
     </Design.PreviewWith>
 
-    <sys:Double x:Key="ColorPickerControlWidth">312</sys:Double>
-    <Thickness x:Key="ColorPickerControlPadding">8</Thickness>
     <sys:Double x:Key="ColorPickerCanvasOffset">-5</sys:Double>
     <sys:Double x:Key="ColorComponentCaptionMinWidth">40</sys:Double>
 
-    <avaConv:EnumToBoolConverter x:Key="HexColorModeToBoolConverter"/>
+    <avaConv:EnumToBoolConverter x:Key="PickerParameterToBoolConverter"/>
 
     <DrawingBrush x:Key="ColorSliderTransparencyBrush"  TileMode="Tile" DestinationRect="0,0,6,6" Opacity="0.1">
         <DrawingBrush.Drawing>
@@ -65,9 +65,27 @@
                                 </Grid.Styles>
                                 <Grid x:Name="HorizontalTemplate" ColumnDefinitions="Auto,Auto,*" MinHeight="{DynamicResource SliderHorizontalHeight}">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="{DynamicResource SliderPreContentMargin}" />
+                                        <RowDefinition>
+                                            <RowDefinition.Height>
+                                                <MultiBinding Converter="{mx:BoolToObjectSelectionConverter}">
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="TickPlacement" Converter="{StaticResource PickerParameterToBoolConverter}"
+                                                             ConverterParameter="{x:Static avaControls:TickPlacement.None}" />
+                                                    <DynamicResourceExtension ResourceKey="SliderPreContentMargin" />
+                                                    <DynamicResourceExtension ResourceKey="SliderPreContentNoTickMargin" />
+                                                </MultiBinding>
+                                            </RowDefinition.Height>
+                                        </RowDefinition>
                                         <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="{DynamicResource SliderPostContentMargin}" />
+                                        <RowDefinition>
+                                            <RowDefinition.Height>
+                                                <MultiBinding Converter="{mx:BoolToObjectSelectionConverter}">
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="TickPlacement" Converter="{StaticResource PickerParameterToBoolConverter}"
+                                                             ConverterParameter="{x:Static avaControls:TickPlacement.None}" />
+                                                    <DynamicResourceExtension ResourceKey="SliderPostContentMargin" />
+                                                    <DynamicResourceExtension ResourceKey="SliderPostContentNoTickMargin" />
+                                                </MultiBinding>
+                                            </RowDefinition.Height>
+                                        </RowDefinition>
                                     </Grid.RowDefinitions>
                                     <TickBar Name="TopTickBar"
                                                      Grid.ColumnSpan="3"
@@ -81,7 +99,7 @@
                                                      VerticalAlignment="Bottom"
                                                      Placement="Top"
                                                      IsVisible="False"
-                                                     Fill="{DynamicResource SliderTickStroke}"/>
+                                                     Fill="{DynamicResource Outline/Neutral/Transparent/Strong}"/>
                                     <TickBar Name="BottomTickBar"
                                                      Grid.Row="2"
                                                      Grid.ColumnSpan="3"
@@ -95,11 +113,11 @@
                                                      VerticalAlignment="Top"
                                                      Placement="Bottom"
                                                      IsVisible="False"
-                                                     Fill="{DynamicResource SliderTickStroke}"/>
+                                                     Fill="{DynamicResource Outline/Neutral/Transparent/Strong}"/>
                                     <Border Name="PART_RailBackground"
                                             Grid.Row="1"
                                             Grid.ColumnSpan="3"
-                                            Background="{DynamicResource SliderRailBackground}"
+                                            Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
                                             CornerRadius="{StaticResource SliderRailCornerRadius}"
                                             VerticalAlignment="Center"/>
                                     <Border Name="PART_RailTransparentElement" Grid.Row="1"
@@ -111,7 +129,7 @@
                                     <Border Name="PART_RailBorder"
                                             Grid.Row="1"
                                             Grid.ColumnSpan="3"
-                                            BorderBrush="{DynamicResource SliderRailBorderBrush}"
+                                            BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}"
                                             BorderThickness="{StaticResource EditorBorderThickness}"
                                             CornerRadius="{StaticResource SliderRailCornerRadius}"
                                             VerticalAlignment="Center"/>                          
@@ -175,7 +193,7 @@
                 <Setter Property="Background" Value="{Binding $parent[mxev:ColorPickerControl].ColorHueValue, Converter={mxev:TransparencySliderBackrgoundConverter}}"/>
             </Style>
             <Style Selector="^:disabled /template/ Border#PART_RailBackground">
-                <Setter Property="Background" Value="{DynamicResource TransparencySliderRailBackgroundDisabled}"/>
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Disabled}"/>
             </Style>
         </Style>
 
@@ -189,20 +207,20 @@
                 </Setter.Value>
             </Setter>
             <Setter Property="BorderThickness" Value="{StaticResource ColorSliderIndicatorStrokeThickness}"/>
-            <Setter Property="Background" Value="{DynamicResource TransparencySliderThumbStroke}" />
+            <Setter Property="Background" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
         </Style>
 
         <Style Selector="^:disabled /template/ Thumb">
-            <Setter Property="Foreground" Value="{DynamicResource TransparencySliderThumbInnerFillDisabled}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TransparentBrush}"/>
         </Style>
     </ControlTheme>
     <ControlTheme x:Key="{x:Type mxev:ColorPickerControl}" TargetType="mxev:ColorPickerControl">
-        <Setter Property="Background" Value="{DynamicResource ColorPickerControlBackgrund}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource ColorPickerControlBorderBrush}" />
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
         <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
-        <Setter Property="Width" Value="{StaticResource ColorPickerControlWidth}"/>
+        <Setter Property="Width" Value="{DynamicResource ColorPickerControlWidth}"/>
         <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}"/>
-        <Setter Property="Padding" Value="{StaticResource ColorPickerControlPadding}"/>
+        <Setter Property="Padding" Value="{DynamicResource ColorPickerControlPadding}"/>
         <Setter Property="CanvasOffset" Value="{StaticResource ColorPickerCanvasOffset}"/>
         <Setter Property="Template">
             <ControlTemplate>
@@ -212,7 +230,19 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}"
                         Padding="{TemplateBinding Padding}">
-                    <Grid ColumnDefinitions="69, 8, *, 8, *, 8, *, Auto, Auto" RowDefinitions="252, 10, Auto, 10, Auto, 10, Auto, Auto, Auto">
+                    <Grid ColumnDefinitions="69, 8, *, 8, *, 8, *, Auto, Auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="252" />
+                            <RowDefinition Height="{DynamicResource ColorPickerColorComponentTopMargin}" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="{DynamicResource ColorPickerSliderTopMargin}" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="{DynamicResource ColorPickerSliderBottomMargin}" />
+                        </Grid.RowDefinitions>
                         <Grid.Styles>
                             <Style Selector="mxe|SpinEditor:activeMode">
                                 <Setter Property="Minimum" Value="0"/>
@@ -222,7 +252,7 @@
                                 <Setter Property="VerticalAlignment" Value="Center"/>
                                 <Setter Property="HorizontalAlignment" Value="Center"/>
                                 <Setter Property="TextAlignment" Value="Center"/>
-                                <Setter Property="Foreground" Value="{DynamicResource ColorPickerControlPropertyNameForeground}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}"/>
                                 <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
                                 <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="MinWidth" Value="{StaticResource ColorComponentCaptionMinWidth}"/>
@@ -261,7 +291,7 @@
                                    ToolTip.Tip="{x:Static localization:ControlsResources.ColorPicker_AlphaChannelDescription}"
                                    IsVisible="{TemplateBinding ShowAlphaChannel}"/>
                         <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5" Classes="caption"
-                                   IsVisible="{TemplateBinding ColorMode, Converter={StaticResource HexColorModeToBoolConverter}, ConverterParameter={x:Static mxev:ColorPickerColorMode.Hex}}"
+                                   IsVisible="{TemplateBinding ColorMode, Converter={StaticResource PickerParameterToBoolConverter}, ConverterParameter={x:Static mxev:ColorPickerColorMode.Hex}}"
                                    Text="{x:Static localization:ControlsResources.ColorPicker_HexCodeText}"/>
 
                         <mxe:ComboBoxEditor Grid.Column="0"
@@ -295,7 +325,7 @@
                                         Maximum="100"
                                         IsVisible="{TemplateBinding ShowAlphaChannel}"/>
                         <mxe:TextEditor Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="4" x:Name="PART_ColorHexValueEditor"
-                                        IsVisible="{TemplateBinding ColorMode, Converter={StaticResource HexColorModeToBoolConverter}, ConverterParameter={x:Static mxev:ColorPickerColorMode.Hex}}"
+                                        IsVisible="{TemplateBinding ColorMode, Converter={StaticResource PickerParameterToBoolConverter}, ConverterParameter={x:Static mxev:ColorPickerColorMode.Hex}}"
                                         EditorValue="{Binding $parent[mxev:ColorPickerControl].ColorHexValue, Mode=TwoWay}"
                                         ValidationInfo="{Binding $parent[mxev:ColorPickerControl].HexEditorValidationInfo}"/>
                         <Slider Grid.Row="6" Grid.ColumnSpan="9"
@@ -303,17 +333,13 @@
                                 Value="{Binding $parent[mxev:ColorPickerControl].ColorHueValue, Mode=TwoWay}"
                                 Theme="{StaticResource ColorSliderTheme}"/>
                         <Border Grid.Row="7" Grid.ColumnSpan="9"
-                                Height="8"
+                                Height="{DynamicResource ColorPickerTransparencySliderTopMargin}"
                                 IsVisible="{TemplateBinding ShowAlphaChannel}"/>
                         <Slider Grid.Row="8" Grid.ColumnSpan="9"
                                 x:Name="PART_ColorAlphaValueSlider"
                                 Value="{Binding $parent[mxev:ColorPickerControl].ColorAlphaValue, Mode=TwoWay}"
                                 IsVisible="{TemplateBinding ShowAlphaChannel}"
                                 Theme="{StaticResource TransparencySliderTheme}"/>
-                        <Grid.Resources>
-                            <GridLength x:Key="SliderPreContentMargin">1</GridLength>
-                            <GridLength x:Key="SliderPostContentMargin">1</GridLength>
-                        </Grid.Resources>
                     </Grid>
                 </Border>
             </ControlTemplate>
@@ -322,12 +348,12 @@
 
     <ControlTheme x:Key="ColorPickerThumbTheme" TargetType="Thumb" BasedOn="{StaticResource FluentSliderThumbTheme}">
         <Setter Property="BorderThickness" Value="{StaticResource ColorSliderIndicatorStrokeThickness}"/>
-        <Setter Property="Background" Value="{DynamicResource ColorPickerControlThumbInnerStroke}" />
+        <Setter Property="Background" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
         <Setter Property="Foreground" Value="{Binding $parent[mxev:ColorPickerControl].Color, Converter={mxev:SolidColorBrushConverter}}" />
 
         <Style Selector="^ /template/ Ellipse#PART_OuterEllipse">
-            <Setter Property="Fill" Value="{DynamicResource ColorPickerControlThumbFill}" />
-            <Setter Property="Stroke" Value="{DynamicResource ColorPickerControlThumbStroke}" />
+            <Setter Property="Fill" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+            <Setter Property="Stroke" Value="{DynamicResource Outline/Neutral/Transparent/Strong}" />
         </Style>
 
         <!-- PointerOver state-->
@@ -344,8 +370,8 @@
 
         <!--Disabled state-->
         <Style Selector="^:disabled">
-            <Setter Property="Foreground" Value="{DynamicResource ColorPickerControlThumbInnerFillDisabled}" />
-            <Setter Property="Background" Value="{DynamicResource ColorPickerControlThumbInnerStrokeDisabled}" />
+            <Setter Property="Foreground" Value="{DynamicResource Fill/Accent/Primary/Disabled}" />
+            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

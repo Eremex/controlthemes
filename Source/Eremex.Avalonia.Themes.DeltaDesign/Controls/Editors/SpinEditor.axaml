@@ -40,7 +40,7 @@
                                    DockPanel.Dock="Bottom"
                                    Text="{TemplateBinding ErrorText}"
                                    FontSize="{DynamicResource EditorErrorFontSize}"
-                                   Foreground="{DynamicResource TextEditorErrorTextForeground}"
+                                   Foreground="{DynamicResource Text/Accent/Error}"
                                    Margin="{StaticResource ErrorTextPresenterMargin}"
                                    TextWrapping="Wrap"/>
                         <Panel x:Name="PART_RealEditorPanel">
@@ -124,7 +124,7 @@
     
     <ControlTheme x:Key="SpinEditorButtonTheme" TargetType="RepeatButton" BasedOn="{StaticResource EditorIconButtonBaseTheme}">
         <Setter Property="MinWidth" Value="0"/>
-        <Setter Property="Width" Value="28"/>
+        <Setter Property="Width" Value="{DynamicResource ButtonMinWidth}"/>
         <Setter Property="VerticalAlignment" Value="Stretch" />
     </ControlTheme>
 
@@ -152,7 +152,7 @@
                                     <Grid ColumnDefinitions="Auto, Auto, *, Auto" Name="PART_ContentPanel"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                         <TextBlock Name="PART_PrefixPresenter"
-                                                   Foreground="{DynamicResource SpinEditorPrefixForeground}"
+                                                   Foreground="{DynamicResource Text/Neutral/Tertiary}"
                                                    HorizontalAlignment="Right"
                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                                    Margin="{TemplateBinding Padding, Converter={StaticResource EditorSplitterConverter}, ConverterParameter=Right}"
@@ -192,7 +192,7 @@
                                                           CornerRadius="{TemplateBinding CornerRadius}"
                                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                         <TextBlock Name="PART_SuffixPresenter"
-                                                   Foreground="{DynamicResource SpinEditorSuffixForeground}"
+                                                   Foreground="{DynamicResource Text/Neutral/Tertiary}"
                                                    Grid.Column="3"
                                                    HorizontalAlignment="Left"
                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"

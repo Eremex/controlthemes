@@ -27,11 +27,11 @@
     <avaConv:StringFormatConverter x:Key="StringFormatConverter"/>
 
     <ControlTheme x:Key="{x:Type ProgressBar}" TargetType="ProgressBar">
-        <Setter Property="Foreground" Value="{DynamicResource ProgressBarForeground}" />
-        <Setter Property="Background" Value="{DynamicResource ProgressBarBackground}" />
+        <Setter Property="Foreground" Value="{DynamicResource Fill/Accent/Primary/Pressed}" />
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource ProgressBarBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
         <Setter Property="MinHeight" Value="{DynamicResource ProgressBarThemeMinHeight}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Template">
@@ -46,7 +46,7 @@
                             <Border x:Name="IndeterminateProgressBarIndicator2_" CornerRadius="{TemplateBinding CornerRadius}" Margin="{TemplateBinding Padding}" Background="{TemplateBinding Foreground}" Opacity="0.8" />
                         </Panel>
                         <LayoutTransformControl x:Name="PART_LayoutTransformControl" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="{TemplateBinding ShowProgressText}">
-                            <TextBlock Foreground="{DynamicResource ProgressBarContentForeground}">
+                            <TextBlock Foreground="{DynamicResource Text/Neutral/Primary}">
                                 <TextBlock.Text>
                                     <MultiBinding Converter="{StaticResource StringFormatConverter}">
                                         <TemplateBinding Property="ProgressTextFormat"/>
@@ -96,7 +96,7 @@
         </Style>
 
         <Style Selector="^.secondary">
-            <Setter Property="Background" Value="{DynamicResource ProgressBarSecondaryBackground}"/>
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}"/>
         </Style>
 
         <Style Selector="^:horizontal:indeterminate /template/ Border#IndeterminateProgressBarIndicator_">

@@ -76,6 +76,7 @@
                     </ScrollContentPresenter.GestureRecognizers>
                 </ScrollContentPresenter>
 
+                <mxdcv:FooterControl x:Name="PART_FooterControl" Grid.Row="1" IsVisible="{Binding $parent[mxtl:TreeListControl].ShowTotalSummaries}"/>
             </Grid>
 
             <mxdcv:FocusedElementAdornerPanel x:Name="PART_FocusedElementAdornerPanel" Grid.Row="0" Grid.RowSpan="6" Grid.ColumnSpan="2" ClipToBounds="False"/>
@@ -83,7 +84,7 @@
             <Panel x:Name="PART_ScrollBarsSeparator"
                    Grid.Row="5"
                    Grid.Column="1"
-                   Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                   Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
                    Opacity="0">
                 <Panel.Transitions>
                     <Transitions>
@@ -107,7 +108,7 @@
                         <Binding Path="$parent[mxtl:TreeListControl].FixedRightColumnWidth" />
                     </MultiBinding>
                 </Grid.ColumnSpan>
-                <Border BorderBrush="{DynamicResource ScrollBarRootBackground}" Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                <Border BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}" Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
                         BorderThickness="{Binding $parent[mxtl:TreeListControl].FixedColumnSeparatorWidth, Converter={mxdgv:FixedColumnWidthToBorderThicknessConverter BaseThickness='0,1,0,0'}}"
                         IsVisible="{Binding !$parent[mxtl:TreeListControl].ExtendScrollbarToFixedColumns}"
                         Opacity="{Binding (ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}, Converter={mxc:BoolToObjectConverter FalseValue=1, TrueValue=0}}">
@@ -119,10 +120,10 @@
                         </MultiBinding>
                     </Border.Width>
                 </Border>
-                <Border BorderBrush="{DynamicResource ScrollBarRootBackground}" Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                <Border BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}" Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
                         BorderThickness="0,1,0,0" Margin="0,0,-1,0" Width="1" DockPanel.Dock="Right"
                         Opacity="{Binding (ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}, Converter={mxc:BoolToObjectConverter FalseValue=1, TrueValue=0}}"/>
-                <Border BorderBrush="{DynamicResource ScrollBarRootBackground}" Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                <Border BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}" Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
                         BorderThickness="{Binding $parent[mxtl:TreeListControl].FixedColumnSeparatorWidth, Converter={mxdgv:FixedColumnWidthToBorderThicknessConverter BaseThickness='0,1,0,0', IsRight='True'}}"
                         Width="{Binding $parent[mxtl:TreeListControl].FixedRightColumnWidth}" DockPanel.Dock="Right" IsVisible="{Binding !$parent[mxtl:TreeListControl].ExtendScrollbarToFixedColumns}"
                         Opacity="{Binding (ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}, Converter={mxc:BoolToObjectConverter FalseValue=1, TrueValue=0}}"/>
@@ -151,6 +152,8 @@
     </ControlTemplate>
 
     <ControlTheme x:Key="{x:Type mxtl:TreeListControl}" TargetType="mxtl:TreeListControl">
+        <Setter Property="HeaderPanelMinHeight" Value="{DynamicResource DataControlHeaderPanelMinHeight}" />
+        <Setter Property="RowMinHeight" Value="{DynamicResource DataControlRowMinHeight}" />
         <Setter Property="RowLevelIndent" Value="22" />
         <Setter Property="Focusable" Value="True" />
         <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
@@ -246,7 +249,7 @@
                     <mxdcv:RowIndicatorControl x:Name="PART_RowIndicator" IsVisible="{Binding $parent[mxtl:TreeListControl].ShowRowIndicator}"
                                                Width="{Binding $parent[mxtl:TreeListControl].RowIndicatorWidth}" BorderThickness="0,0,1,0"/>
                     
-                    <Border x:Name="RowBorder" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="0,0,0,1" ClipToBounds="True">
+                    <Border x:Name="RowBorder" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="0,0,0,1">
                         <mxdcv:CellsPanel x:Name="PART_CellsPanel"/>
                     </Border>
                 </DockPanel>
@@ -269,6 +272,10 @@
         </Style>
         <Style Selector="^:selectedState /template/ mxdcv|RowIndicatorControl#PART_RowIndicator">
             <Setter Property="ShowDragHandle" Value="True"/>
+        </Style>
+
+        <Style Selector="^ /template/ Border#RowBorder">
+            <Setter Property="ClipToBounds" Value="True"/>
         </Style>
     </ControlTheme>
 

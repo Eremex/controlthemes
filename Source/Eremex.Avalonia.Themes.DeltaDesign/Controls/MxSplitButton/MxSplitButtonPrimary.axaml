@@ -54,7 +54,7 @@
                     </Border>
                     <Border x:Name="PART_Splitter"
                             Width="{StaticResource MxSplitButtonSplitterWidth}"
-                            Background="{DynamicResource ButtonBorderBrush}"
+                            Background="{DynamicResource Outline/Neutral/Transparent/Light}"
                             HorizontalAlignment="Right" />
                 </Panel>
             </ControlTemplate>
@@ -62,40 +62,40 @@
 
         <!-- PointerOver -->
         <Style Selector="^:pointerover /template/ Border#PART_Splitter">
-            <Setter Property="Background" Value="{DynamicResource ButtonBorderBrushPointerOver}" />
+            <Setter Property="Background" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
         </Style>
 
         <!-- Disabled State -->
         <Style Selector="^:disabled /template/ Border#PART_Splitter">
-            <Setter Property="Background" Value="{DynamicResource ButtonBorderBrushDisabled}" />
+            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
         </Style>
 
         <!-- Accent style -->
         <Style Selector="^.accent">
             <Style Selector="^ /template/ Border#PART_Splitter">
                 <Setter Property="Margin" Value="{StaticResource MxSplitButtonSplitterAccentMargin}" />
-                <Setter Property="Background" Value="{DynamicResource MxSplitButtonToggleAccentForeground}"/>
+                <Setter Property="Background" Value="{DynamicResource Icons/Outline/On Accent}"/>
             </Style>
             <!-- Accent PressedState -->
             <Style Selector="^:pressed /template/ Border#PART_Splitter">
-                <Setter Property="Background" Value="{DynamicResource ButtonAccentForegroundPressed}"/>
+                <Setter Property="Background" Value="{DynamicResource Text/On Accent/Primary}"/>
                 <Setter Property="Opacity" Value="0.8"/>
             </Style>
             <!-- Accent DisabledState -->
             <Style Selector="^:disabled /template/ Border#PART_Splitter">
-                <Setter Property="Background" Value="{DynamicResource MxSplitButtonToggleForegroundDisabled}"/>
+                <Setter Property="Background" Value="{DynamicResource Icons/Outline/Disabled}"/>
             </Style>
         </Style>
 
         <!-- WarningAccent style -->
         <Style Selector="^.warning.accent">
             <Style Selector="^ /template/ Border#PART_Splitter">
-                <Setter Property="Background" Value="{DynamicResource MxSplitButtonToggleAccentForeground}"/>
+                <Setter Property="Background" Value="{DynamicResource Icons/Outline/On Accent}"/>
             </Style>
 
             <!-- WarningAccent DisabledState -->
             <Style Selector="^:disabled /template/ Border#PART_Splitter">
-                <Setter Property="Background" Value="{DynamicResource MxSplitButtonToggleForegroundDisabled}"/>
+                <Setter Property="Background" Value="{DynamicResource Icons/Outline/Disabled}"/>
             </Style>
         </Style>
     </ControlTheme>

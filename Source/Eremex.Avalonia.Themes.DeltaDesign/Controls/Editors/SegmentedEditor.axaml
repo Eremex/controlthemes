@@ -65,27 +65,27 @@
         </Setter>       
 
         <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource SegmentedEditorItemForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Secondary}" />
             <Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis"/>
         </Style>
 
         <!--  PointerOver, KeyboardFocused  State  -->
         <Style Selector="^:pointerover, ^:focus-visible">
             <Style Selector="^ /template/ Border#PART_BackgroundBorder">
-                <Setter Property="Background" Value="{DynamicResource SegmentedEditorItemBackgroundPointerOver}" />
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource SegmentedEditorItemForegroundPointerOver}" />
+                <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
             </Style>
         </Style>
 
         <!--  Pressed State  -->
         <Style Selector="^:pressed">
             <Style Selector="^ /template/ Border#PART_BackgroundBorder">
-                <Setter Property="Background" Value="{DynamicResource SegmentedEditorItemBackgroundPressed}" />
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Pressed}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource SegmentedEditorItemForegroundPressed}" />
+                <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
                 <Setter Property="Opacity" Value="0.8"/>
             </Style>
         </Style>
@@ -93,50 +93,50 @@
         <!--  Selected State  -->
         <Style Selector="^:selected">
             <Style Selector="^ /template/ Border#PART_BackgroundBorder">
-                <Setter Property="Background" Value="{DynamicResource SegmentedEditorItemSelectedBackground}" />
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
             </Style>
             <Style Selector="^ /template/ Border#PART_ButtonBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource SegmentedEditorItemSelectedBorderBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
             </Style>
         </Style>
 
         <!--  Selected Unfocused State  -->
         <Style Selector="^:selected:not(:focus)">
             <Style Selector="^ /template/ Border#PART_BackgroundBorder">
-                <Setter Property="Background" Value="{DynamicResource SegmentedEditorItemSelectedBackground}" />
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
             </Style>
             <Style Selector="^ /template/ Border#PART_ButtonBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource SegmentedEditorItemSelectedBorderBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
             </Style>
         </Style>
 
         <!--  Selected State (secondary) -->
         <Style Selector="^:selected">
             <Style Selector="^.secondary /template/ Border#PART_BackgroundBorder">
-                <Setter Property="Background" Value="{DynamicResource SegmentedEditorItemSecondarySelectedBackground}" />
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
             </Style>
             <Style Selector="^.secondary /template/ Border#PART_ButtonBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource SegmentedEditorItemSecondarySelectedBorderBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
             </Style>
         </Style>
 
         <!--  Selected PointerOver, KeyboardFocused  State  -->
         <Style Selector="^:selected:pointerover, ^:selected:focus-visible">
             <Style Selector="^ /template/ Border#PART_ButtonBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource SegmentedEditorItemSelectedBorderBrushPointerOver}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource SegmentedEditorItemSelectedForegroundPointerOver}" />
+                <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
             </Style>
         </Style>
 
         <!--  Selected Pressed State  -->
         <Style Selector="^:selected:pressed">
             <Style Selector="^ /template/ Border#PART_ButtonBorder">
-                <Setter Property="BorderBrush" Value="{DynamicResource SegmentedEditorItemSelectedBorderBrushPressed}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}" />
             </Style>
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource SegmentedEditorItemSelectedForegroundPressed}" />
+                <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
                 <Setter Property="Opacity" Value="0.8"/>
             </Style>
         </Style>
@@ -144,14 +144,14 @@
         <!--  Disabled State  -->
         <Style Selector="^:disabled">
             <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource SegmentedEditorItemForegroundDisabled}" />
+                <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
             </Style>
             <Style Selector="^:selected">
                 <Style Selector="^ /template/ Border#PART_BackgroundBorder">
-                    <Setter Property="Background" Value="{DynamicResource SegmentedEditorItemSelectedBackgroundDisabled}" />
+                    <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
                 </Style>
                 <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                    <Setter Property="Foreground" Value="{DynamicResource SegmentedEditorItemSelectedForegroundDisabled}" />
+                    <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
                 </Style>
             </Style>
         </Style>
@@ -162,7 +162,7 @@
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type mxe:SegmentedEditor}" TargetType="mxe:SegmentedEditor" BasedOn="{StaticResource {x:Type mxe:BaseEditor}}">
-        <Setter Property="Background" Value="{DynamicResource SegmentedEditorBackground}" />
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
         <Setter Property="Padding" Value="{StaticResource SegmentedEditorPadding}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Template">
@@ -197,11 +197,11 @@
             </ControlTemplate>
         </Setter>
         <Style Selector="^[EditorMode=Standalone]">
-            <Setter Property="BorderBrush" Value="{DynamicResource TextEditorBorderBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/>
         </Style>
 
         <Style Selector="^.secondary">
-            <Setter Property="Background" Value="{DynamicResource SegmentedEditorSecondaryBackground}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
             <Setter Property="Padding" Value="{StaticResource SegmentedEditorSecondaryPadding}"/>
         </Style>
         <Style Selector="^:enumSelector">

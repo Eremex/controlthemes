@@ -51,16 +51,16 @@
     </Template>
 
     <ControlTheme x:Key="{x:Type TextBox}" TargetType="TextBox">
-        <Setter Property="Foreground" Value="{DynamicResource TextBoxForeground}" />
-        <Setter Property="Background" Value="{DynamicResource TextBoxBackground}" />
-        <Setter Property="CaretBrush" Value="{DynamicResource TextBoxCaretBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource TextBoxBorderBrush}" />
-        <Setter Property="SelectionBrush" Value="{DynamicResource TextBoxSelectionBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource Text/Neutral/Primary}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource Fill/Accent/Highlighting/Text}" />
         <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
         <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
         <Setter Property="MinHeight" Value="{StaticResource EditorMinHeight}" />
         <Setter Property="MinWidth" Value="{StaticResource EditorMinWidth}" />
-        <Setter Property="Padding" Value="{StaticResource TextEditorPadding}" />
+        <Setter Property="Padding" Value="{DynamicResource TextEditorPadding}" />
         <Setter Property="FocusAdorner" Value="{x:Null}" />
         <Setter Property="ContextFlyout" Value="{x:Null}" />
         <Setter Property="mxb:ToolbarManager.ContextPopup" Value="{StaticResource DefaultTextBoxPopupMenu}"/>
@@ -173,7 +173,7 @@
 
         <Style Selector="^ /template/ TextBlock#PART_Watermark,
                ^ /template/ TextBlock#PART_FloatingWatermark">
-            <Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}" />
         </Style>
 
         <Style Selector="^ /template/ ContentPresenter#PART_ReadOnlyContentContainer">
@@ -183,68 +183,68 @@
         </Style>
 
         <Style Selector="^.secondary">
-            <Setter Property="Background" Value="{DynamicResource TextBoxSecondaryBackground}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxSecondaryBorderBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/>
         </Style>
 
         <!-- Disabled State -->
         <Style Selector="^:disabled">
-            <Setter Property="Foreground" Value="{DynamicResource TextBoxForegroundDisabled}" />
+            <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
 
             <Style Selector="^ /template/ Border#PART_BorderElement">
-                <Setter Property="Background" Value="{DynamicResource TextBoxBackgroundDisabled}" />
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Disabled}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
             </Style>
             <Style Selector="^ /template/ TextBlock#PART_Watermark,
                    ^ /template/ TextBlock#PART_FloatingWatermark">
-                <Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrushDisabled}" />
+                <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
             </Style>
             <Style Selector="^.secondary /template/ Border#PART_BorderElement">
-                <Setter Property="Background" Value="{DynamicResource TextBoxSecondaryBackgroundDisabled}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource TextBoxSecondaryBorderBrushDisabled}"/>
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Disabled}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/>
             </Style>
         </Style>
 
         <!-- PointerOver State-->
         <Style Selector="^:pointerover[IsReadOnly=False]">
-            <Setter Property="Foreground" Value="{DynamicResource TextBoxForegroundPointerOver}" />
+            <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
 
             <Style Selector="^ /template/ Border#PART_BorderElement">
                 <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
-                <Setter Property="Background" Value="{DynamicResource TextBoxBackgroundPointerOver}" />
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
             </Style>
             <Style Selector="^ /template/ TextBlock#PART_Watermark, 
                    ^ /template/ TextBlock#PART_FloatingWatermark">
-                <Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}" />
             </Style>
             <Style Selector="^.secondary /template/ Border#PART_BorderElement">
-                <Setter Property="Background" Value="{DynamicResource TextBoxSecondaryBackgroundPointerOver}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource TextBoxSecondaryBorderBrushPointerOver}"/>
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Hover}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/>
             </Style>
         </Style>
 
         <!-- Focused State -->
         <Style Selector="^:focus[IsReadOnly=False]">
-            <Setter Property="Foreground" Value="{DynamicResource TextBoxFocusForeground}" />
+            <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
 
             <Style Selector="^ /template/ TextBlock#PART_Watermark,
                    ^ /template/ TextBlock#PART_FloatingWatermark">
-                <Setter Property="Foreground" Value="{DynamicResource TextBoxWatermarkBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Tertiary}" />
             </Style>
             <Style Selector="^ /template/ Border#PART_BorderElement">
-                <Setter Property="Background" Value="{DynamicResource TextBoxFocusBackground}"/>
-                <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}"/>
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}"/>
                 <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
             </Style>
             <Style Selector="^.secondary /template/ Border#PART_BorderElement">
-                <Setter Property="Background" Value="{DynamicResource TextBoxSecondaryFocusBackground}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource TextBoxFocusBorderBrush}"/>
+                <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Focus}"/>
                 <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
             </Style>
         </Style>
 
         <Style Selector="^:error /template/ Border#PART_BorderElement">
-            <Setter Property="BorderBrush" Value="{DynamicResource TextBoxErrorBorderBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource Outline/Accent/Error}"/>
         </Style>
 
         <Style Selector="^ /template/ DockPanel#PART_InnerDockPanel[IsVisible=True]">
@@ -317,15 +317,15 @@
         </Setter>
 
         <Style Selector="^ /template/ Path#PART_GlyphElement">
-            <Setter Property="Fill" Value="{DynamicResource TextBoxTextAreaButtonForeground}" />
+            <Setter Property="Fill" Value="{DynamicResource Text/Neutral/Secondary}" />
         </Style>
 
         <Style Selector="^:pointerover /template/ Path#PART_GlyphElement">
-            <Setter Property="Fill" Value="{DynamicResource TextBoxTextAreaButtonForegroundPointerOver}" />
+            <Setter Property="Fill" Value="{DynamicResource Text/Neutral/Primary}" />
         </Style>
 
         <Style Selector="^:pressed /template/ Path#PART_GlyphElement">
-            <Setter Property="Fill" Value="{DynamicResource TextBoxTextAreaButtonForegroundPressed}" />
+            <Setter Property="Fill" Value="{DynamicResource Text/Neutral/Primary}" />
         </Style>
     </ControlTheme>
 
@@ -358,16 +358,16 @@
 
         <Style Selector="^ /template/ Path#PART_GlyphElement_Reveal,
                    ^ /template/ Path#PART_GlyphElement_Hide">
-            <Setter Property="Fill" Value="{DynamicResource TextBoxTextAreaButtonForeground}" />
+            <Setter Property="Fill" Value="{DynamicResource Text/Neutral/Secondary}" />
         </Style>
         <Style Selector="^:pointerover /template/ Path#PART_GlyphElement_Reveal,
                    ^:pointerover /template/ Path#PART_GlyphElement_Hide">
-            <Setter Property="Fill" Value="{DynamicResource TextBoxTextAreaButtonForegroundPointerOver}" />
+            <Setter Property="Fill" Value="{DynamicResource Text/Neutral/Primary}" />
         </Style>
         <Style Selector="^:pressed /template/ Path#PART_GlyphElement_Reveal,
                    ^:checked /template/ Path#PART_GlyphElement_Hide,
                    ^:indeterminate /template/ Path#PART_GlyphElement_Reveal">
-            <Setter Property="Fill" Value="{DynamicResource TextBoxTextAreaButtonForegroundPressed}" />
+            <Setter Property="Fill" Value="{DynamicResource Text/Neutral/Primary}" />
         </Style>
         <Style Selector="^:not(:checked) /template/ Path#PART_GlyphElement_Hide">
             <Setter Property="IsVisible" Value="False" />

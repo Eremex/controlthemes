@@ -3,8 +3,8 @@
                     x:ClassModifier="internal">
 
     <ControlTheme x:Key="{x:Type MenuFlyoutPresenter}" TargetType="MenuFlyoutPresenter">
-        <Setter Property="Background" Value="{DynamicResource MenuFlyoutPresenterBackground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource MenuFlyoutPresenterBorderBrush}" />
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Enabled}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Strong}" />
         <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="MaxWidth" Value="{DynamicResource FlyoutThemeMaxWidth}" />

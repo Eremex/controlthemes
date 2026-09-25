@@ -43,10 +43,10 @@
     </Design.PreviewWith>
 
     <ControlTheme x:Key="ExpanderToggleButtonTheme" TargetType="ToggleButton">
-        <Setter Property="Background" Value="{DynamicResource ExpanderHeaderBackground}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource ExpanderHeaderBorderBrush}" />
+        <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
         <Setter Property="BorderThickness" Value="{StaticResource ExpanderHeaderBorderThickness}" />
-        <Setter Property="Foreground" Value="{DynamicResource ExpanderHeaderForeground}" />
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
         <Setter Property="Padding" Value="{StaticResource ExpanderHeaderPadding}" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -73,13 +73,13 @@
                                 Height="{StaticResource ExpanderChevronButtonSize}"
                                 Margin="{StaticResource ExpanderChevronButtonMargin}"
                                 CornerRadius="{StaticResource EditorCornerRadius}"
-                                Background="{DynamicResource ExpanderChevronButtonBackground}">
+                                Background="{DynamicResource TransparentBrush}">
                             <Path x:Name="ExpandCollapseChevron"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   RenderTransformOrigin="50%,50%"
                                   Stretch="None"
-                                  Stroke="{DynamicResource ExpanderChevronButtonForeground}"
+                                  Stroke="{DynamicResource Icons/Outline/Gray}"
                                   StrokeThickness="1">
                                 <Path.RenderTransform>
                                     <RotateTransform />
@@ -116,50 +116,50 @@
 
         <!-- PointerOver -->
         <Style Selector="^:pointerover /template/ Border#ToggleButtonBackground">
-            <Setter Property="Background" Value="{DynamicResource ExpanderHeaderBackgroundPointerOver}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource ExpanderHeaderBorderBrushPointerOver}" />
+            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
         </Style>
         <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource ExpanderHeaderForegroundPointerOver}" />
+            <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
         </Style>
         <Style Selector="^:pointerover /template/ Border#ExpandCollapseChevronBorder">
-            <Setter Property="Background" Value="{DynamicResource ExpanderChevronButtonBackgroundPointerOver}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Enabled}" />
 
         </Style>
         <Style Selector="^:pointerover /template/ Path#ExpandCollapseChevron">
-            <Setter Property="Stroke" Value="{DynamicResource ExpanderChevronButtonForegroundPointerOver}" />
+            <Setter Property="Stroke" Value="{DynamicResource Icons/Outline/Gray}" />
         </Style>
 
         <!-- Pressed -->
         <Style Selector="^:pressed /template/ Border#ToggleButtonBackground">
-            <Setter Property="Background" Value="{DynamicResource ExpanderHeaderBackgroundPressed}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource ExpanderHeaderBorderBrushPressed}" />
+            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
         </Style>
         <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource ExpanderHeaderForegroundPressed}" />
+            <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
         </Style>
         <Style Selector="^:pressed /template/ Border#ExpandCollapseChevronBorder">
-            <Setter Property="Background" Value="{DynamicResource ExpanderChevronButtonBackgroundPressed}" />
+            <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
 
         </Style>
         <Style Selector="^:pressed /template/ Path#ExpandCollapseChevron">
-            <Setter Property="Stroke" Value="{DynamicResource ExpanderChevronButtonForegroundPressed}" />
+            <Setter Property="Stroke" Value="{DynamicResource Icons/Outline/Gray}" />
             <Setter Property="Opacity" Value="0.8"/>
         </Style>
 
         <!-- Disabled -->
         <Style Selector="^:disabled /template/ Border#ToggleButtonBackground">
-            <Setter Property="Background" Value="{DynamicResource ExpanderHeaderBackgroundDisabled}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource ExpanderHeaderBorderBrushDisabled}" />
+            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}" />
         </Style>
         <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource ExpanderHeaderForegroundDisabled}" />
+            <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Disabled}" />
         </Style>
         <Style Selector="^:disabled /template/ Border#ExpandCollapseChevronBorder">
-            <Setter Property="Background" Value="{DynamicResource ExpanderChevronButtonBackgroundDisabled}" />
+            <Setter Property="Background" Value="{DynamicResource TransparentBrush}" />
         </Style>
         <Style Selector="^:disabled /template/ Path#ExpandCollapseChevron">
-            <Setter Property="Stroke" Value="{DynamicResource ExpanderChevronButtonForegroundDisabled}" />
+            <Setter Property="Stroke" Value="{DynamicResource Text/Neutral/Disabled}" />
         </Style>
 
     </ControlTheme>

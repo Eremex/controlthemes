@@ -8,15 +8,15 @@
 
         <ControlTheme x:Key="{x:Type mxe:BaseEditor}" TargetType="mxe:BaseEditor">
             <Setter Property="Background" Value="Transparent" />
-            <Setter Property="MinHeight" Value="{StaticResource EditorMinHeight}" />
+            <Setter Property="MinHeight" Value="{DynamicResource EditorMinHeight}" />
             <Setter Property="MinWidth" Value="{StaticResource EditorMinWidth}" />
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="Padding" Value="{StaticResource TextEditorPadding}" />
+            <Setter Property="Padding" Value="{DynamicResource TextEditorPadding}" />
 
             <Style Selector="^:activeMode">
                 <Setter Property="BorderBrush" Value="Transparent" />
-                <Setter Property="Foreground" Value="{DynamicResource EditorForeground}" />
+                <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
                 <Setter Property="CornerRadius" Value="{StaticResource EditorCornerRadius}" />
                 <Setter Property="BorderThickness" Value="{StaticResource EditorBorderThickness}" />
             </Style>
@@ -24,11 +24,11 @@
     </Styles.Resources>
 
     <Style Selector=":is(mxe|TextEditor)[ActualErrorShowMode=Inplace][IsEnabled=true]:activeMode /template/ TextBox#PART_RealEditor /template/ TextPresenter#PART_TextPresenter">
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource EditorForegroundOnError}"/>
-        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource EditorSelectionBrushOnError}"/>
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource Text/Accent/Error}"/>
+        <Setter Property="SelectionForegroundBrush" Value="{DynamicResource Text/Neutral/Primary}"/>
     </Style>
     <Style Selector=":is(mxe|TextEditor)[ActualErrorShowMode=Inplace][IsEnabled=true]:activeMode /template/ TextBox#PART_RealEditor /template/ ContentPresenter#PART_ReadOnlyContentContainer">
-        <Setter Property="Foreground" Value="{DynamicResource EditorForegroundOnError}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Text/Accent/Error}"/>
     </Style>
     <Style Selector="mxe|CheckEditor[EditorMode=InplaceActive] CheckBox /template/ Grid#RootGrid,
            mxe|CheckEditor[EditorMode=InplaceInactive] CheckBox /template/ Grid#RootGrid">
@@ -65,10 +65,10 @@
     </Style>
     <Style Selector="mxe|ComboBoxEditor:focus-visible /template/ TextBox#PART_RealEditor /template/ Border#PART_BorderElement">
         <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
-        <Setter Property="Background" Value="{DynamicResource ComboBoxEditorFocusedBackground}" />
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
     </Style>
     <Style Selector="mxe|ComboBoxEditor[SecondaryAppearance=true]:focus-visible /template/ TextBox#PART_RealEditor /template/ Border#PART_BorderElement">
-        <Setter Property="Background" Value="{DynamicResource ComboBoxEditorSecondaryFocusedBackground}" />
+        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Hover}" />
         <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
     </Style>
 

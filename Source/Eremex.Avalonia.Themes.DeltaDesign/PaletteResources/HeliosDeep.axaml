@@ -1,0 +1,226 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <SolidColorBrush x:Key="Fill/Accent/Primary/Enabled" Color="#ff993500"/>
+            <SolidColorBrush x:Key="Fill/Accent/Primary/Hover" Color="#ff9f3d04"/>
+            <SolidColorBrush x:Key="Fill/Accent/Primary/Pressed" Color="#ffa8470b"/>
+            <SolidColorBrush x:Key="Fill/Accent/Primary/Disabled" Color="#ffe9ddd8"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Text" Color="#ffffc099"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Error" Color="#ffffc8bd"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Row/Enabled" Color="#fffde9dd"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Row/Hover" Color="#fffbe3d5"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Row/Pressed" Color="#fff7daca"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Item/Enabled" Color="#fff1d1c0"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Item/Hover" Color="#ffebcab7"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Item/Pressed" Color="#ffe4c2af"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Item/Disabled" Color="#ffe9ddd8"/>
+            <SolidColorBrush x:Key="Fill/Accent/Error/Enabled" Color="#ff990f00"/>
+            <SolidColorBrush x:Key="Fill/Accent/Error/Hover" Color="#ffa31a05"/>
+            <SolidColorBrush x:Key="Fill/Accent/Error/Pressed" Color="#ffaf290e"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Tertiary" Color="#ffefe5e1"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Primary/Enabled" Color="#ffffffff"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Primary/Hover" Color="#fff7f1ee"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Primary/Pressed" Color="#fff3ebe7"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Primary/Disabled" Color="#fffaf6f4"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Secondary/Enabled" Color="#fff3ebe7"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Secondary/Hover" Color="#ffe2d5cf"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Secondary/Pressed" Color="#ffdccec7"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Secondary/Disabled" Color="#fff7f1ee"/>
+            <SolidColorBrush x:Key="Outline/Neutral/Transparent/Light" Color="#ffded4ce"/>
+            <SolidColorBrush x:Key="Outline/Neutral/Transparent/Medium" Color="#ffdacec8"/>
+            <SolidColorBrush x:Key="Outline/Neutral/Transparent/Strong" Color="#ffd3c6c0"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Tertiary/Light" Color="#ffd3c6c0"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Tertiary/Medium" Color="#ffc9bcb6"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Tertiary/Strong" Color="#ffc4b7b1"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Primary/Light" Color="#ffded4ce"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Primary/Medium" Color="#ffdacec8"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Primary/Strong" Color="#ffd3c6c0"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Secondary/Light" Color="#ffdacec8"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Secondary/Medium" Color="#ffd3c6c0"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Secondary/Strong" Color="#ffc9bcb6"/>
+            <SolidColorBrush x:Key="Outline/Accent/Secondary" Color="#ff44719c"/>
+            <SolidColorBrush x:Key="Outline/Accent/Error" Color="#ff990f00"/>
+            <SolidColorBrush x:Key="Outline/Accent/Focus" Color="#ffd45f21"/>
+            <SolidColorBrush x:Key="Text/Neutral/Primary" Color="#ff2a1e18"/>
+            <SolidColorBrush x:Key="Text/Neutral/Secondary" Color="#ff544740"/>
+            <SolidColorBrush x:Key="Text/Neutral/Tertiary" Color="#ff72665f"/>
+            <SolidColorBrush x:Key="Text/Neutral/Disabled" Color="#ffb9ada6"/>
+            <SolidColorBrush x:Key="Text/On Accent/Primary" Color="#fffaf7f5"/>
+            <SolidColorBrush x:Key="Text/Accent/Primary" Color="#ff993500"/>
+            <SolidColorBrush x:Key="Text/Accent/Error" Color="#ff990f00"/>
+            <SolidColorBrush x:Key="Icons/Outline/Red" Color="#ffb93118"/>
+            <SolidColorBrush x:Key="Icons/Outline/Yellow" Color="#ff995100"/>
+            <SolidColorBrush x:Key="Icons/Outline/Green" Color="#ff007a00"/>
+            <SolidColorBrush x:Key="Icons/Outline/Turquoise" Color="#ff00756a"/>
+            <SolidColorBrush x:Key="Icons/Outline/Blue" Color="#ff585ad0"/>
+            <SolidColorBrush x:Key="Icons/Outline/Violet" Color="#ffb413a3"/>
+            <SolidColorBrush x:Key="Icons/Outline/Gray" Color="#ff5f5149"/>
+            <SolidColorBrush x:Key="Icons/Outline/Selected" Color="#ff993500"/>
+            <SolidColorBrush x:Key="Icons/Outline/Disabled" Color="#ffc4b7b1"/>
+            <SolidColorBrush x:Key="Icons/Outline/On Accent" Color="#ffffffff"/>
+            <SolidColorBrush x:Key="Icons/Fill/Red" Color="#ffffb3a8"/>
+            <SolidColorBrush x:Key="Icons/Fill/Yellow" Color="#fffdbc7c"/>
+            <SolidColorBrush x:Key="Icons/Fill/Green" Color="#ff66e166"/>
+            <SolidColorBrush x:Key="Icons/Fill/Turquoise" Color="#ff62dacf"/>
+            <SolidColorBrush x:Key="Icons/Fill/Blue" Color="#ffbdc1ff"/>
+            <SolidColorBrush x:Key="Icons/Fill/Violet" Color="#ffffa8f6"/>
+            <SolidColorBrush x:Key="Icons/Fill/Gray" Color="#ffd3c6c0"/>
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="Fill/Accent/Primary/Enabled" Color="#ffffb58a"/>
+            <SolidColorBrush x:Key="Fill/Accent/Primary/Hover" Color="#ffffaa75"/>
+            <SolidColorBrush x:Key="Fill/Accent/Primary/Pressed" Color="#ffff9e66"/>
+            <SolidColorBrush x:Key="Fill/Accent/Primary/Disabled" Color="#ff463730"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Text" Color="#ff8a2b00"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Error" Color="#ff850d00"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Row/Enabled" Color="#ff3f200e"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Row/Hover" Color="#ff4b2a16"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Row/Pressed" Color="#ff53321d"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Item/Enabled" Color="#ff583722"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Item/Hover" Color="#ff61422e"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Item/Pressed" Color="#ff6a4c39"/>
+            <SolidColorBrush x:Key="Fill/Accent/Highlighting/Item/Disabled" Color="#ff463730"/>
+            <SolidColorBrush x:Key="Fill/Accent/Error/Enabled" Color="#ffffbeb3"/>
+            <SolidColorBrush x:Key="Fill/Accent/Error/Hover" Color="#ffffb3a3"/>
+            <SolidColorBrush x:Key="Fill/Accent/Error/Pressed" Color="#ffffa799"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Tertiary" Color="#ff3e3028"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Primary/Enabled" Color="#ff150e0a"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Primary/Hover" Color="#ff2a1e18"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Primary/Pressed" Color="#ff33261f"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Primary/Disabled" Color="#ff211712"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Secondary/Enabled" Color="#ff33261f"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Secondary/Hover" Color="#ff4e3e37"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Secondary/Pressed" Color="#ff55473f"/>
+            <SolidColorBrush x:Key="Fill/Neutral/Secondary/Disabled" Color="#ff2a1e18"/>
+            <SolidColorBrush x:Key="Outline/Neutral/Transparent/Light" Color="#ff493d36"/>
+            <SolidColorBrush x:Key="Outline/Neutral/Transparent/Medium" Color="#ff544740"/>
+            <SolidColorBrush x:Key="Outline/Neutral/Transparent/Strong" Color="#ff60534d"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Tertiary/Light" Color="#ff60534d"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Tertiary/Medium" Color="#ff685c55"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Tertiary/Strong" Color="#ff72665f"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Primary/Light" Color="#ff493d36"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Primary/Medium" Color="#ff544740"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Primary/Strong" Color="#ff60534d"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Secondary/Light" Color="#ff544740"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Secondary/Medium" Color="#ff60534d"/>
+            <SolidColorBrush x:Key="Outline/Neutral/On Secondary/Strong" Color="#ff685c55"/>
+            <SolidColorBrush x:Key="Outline/Accent/Secondary" Color="#ff86b4ee"/>
+            <SolidColorBrush x:Key="Outline/Accent/Error" Color="#ffffbeb3"/>
+            <SolidColorBrush x:Key="Outline/Accent/Focus" Color="#fff28654"/>
+            <SolidColorBrush x:Key="Text/Neutral/Primary" Color="#fff7f1ee"/>
+            <SolidColorBrush x:Key="Text/Neutral/Secondary" Color="#ffdacec8"/>
+            <SolidColorBrush x:Key="Text/Neutral/Tertiary" Color="#ffc4b7b1"/>
+            <SolidColorBrush x:Key="Text/Neutral/Disabled" Color="#ff7c706a"/>
+            <SolidColorBrush x:Key="Text/On Accent/Primary" Color="#ff201813"/>
+            <SolidColorBrush x:Key="Text/Accent/Primary" Color="#ffffb58a"/>
+            <SolidColorBrush x:Key="Text/Accent/Error" Color="#ffffbeb3"/>
+            <SolidColorBrush x:Key="Icons/Outline/Red" Color="#ffff9c8a"/>
+            <SolidColorBrush x:Key="Icons/Outline/Yellow" Color="#fff8a859"/>
+            <SolidColorBrush x:Key="Icons/Outline/Green" Color="#ff1ad51a"/>
+            <SolidColorBrush x:Key="Icons/Outline/Turquoise" Color="#ff1ccebe"/>
+            <SolidColorBrush x:Key="Icons/Outline/Blue" Color="#ffadb1ff"/>
+            <SolidColorBrush x:Key="Icons/Outline/Violet" Color="#ffff8ff3"/>
+            <SolidColorBrush x:Key="Icons/Outline/Gray" Color="#ffd4c6bf"/>
+            <SolidColorBrush x:Key="Icons/Outline/Selected" Color="#ffffb58a"/>
+            <SolidColorBrush x:Key="Icons/Outline/Disabled" Color="#ff72665f"/>
+            <SolidColorBrush x:Key="Icons/Outline/On Accent" Color="#ff150e0a"/>
+            <SolidColorBrush x:Key="Icons/Fill/Red" Color="#ff982c1b"/>
+            <SolidColorBrush x:Key="Icons/Fill/Yellow" Color="#ff804400"/>
+            <SolidColorBrush x:Key="Icons/Fill/Green" Color="#ff006100"/>
+            <SolidColorBrush x:Key="Icons/Fill/Turquoise" Color="#ff006158"/>
+            <SolidColorBrush x:Key="Icons/Fill/Blue" Color="#ff3d46b3"/>
+            <SolidColorBrush x:Key="Icons/Fill/Violet" Color="#ff931586"/>
+            <SolidColorBrush x:Key="Icons/Fill/Gray" Color="#ff60534d"/>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <SolidColorBrush x:Key="Icons/Fill/Selected" Color="#00000000"/>
+    <SolidColorBrush x:Key="Icons/Fill/Disabled" Color="#00000000"/>
+    <SolidColorBrush x:Key="Graphics/Red Lowest" Color="#ffdf967c"/>
+    <SolidColorBrush x:Key="Graphics/Red Low" Color="#ffe06e47"/>
+    <SolidColorBrush x:Key="Graphics/Red" Color="#ffe04712"/>
+    <SolidColorBrush x:Key="Graphics/Red High" Color="#ffb4421a"/>
+    <SolidColorBrush x:Key="Graphics/Red Highest" Color="#ff883d23"/>
+    <SolidColorBrush x:Key="Graphics/Orange Lowest" Color="#ffdfa873"/>
+    <SolidColorBrush x:Key="Graphics/Orange Low" Color="#ffe08a3a"/>
+    <SolidColorBrush x:Key="Graphics/Orange" Color="#ffe06b00"/>
+    <SolidColorBrush x:Key="Graphics/Orange High" Color="#ffb45d0d"/>
+    <SolidColorBrush x:Key="Graphics/Orange Highest" Color="#ff884f1a"/>
+    <SolidColorBrush x:Key="Graphics/Yellow Lowest" Color="#ffdac473"/>
+    <SolidColorBrush x:Key="Graphics/Yellow Low" Color="#ffd8b23a"/>
+    <SolidColorBrush x:Key="Graphics/Yellow" Color="#ffd6a100"/>
+    <SolidColorBrush x:Key="Graphics/Yellow High" Color="#ffac860d"/>
+    <SolidColorBrush x:Key="Graphics/Yellow Highest" Color="#ff836b1a"/>
+    <SolidColorBrush x:Key="Graphics/Yellow Green Lowest" Color="#ff9dcf73"/>
+    <SolidColorBrush x:Key="Graphics/Yellow Green Low" Color="#ff7dc33a"/>
+    <SolidColorBrush x:Key="Graphics/Yellow Green" Color="#ff5db800"/>
+    <SolidColorBrush x:Key="Graphics/Yellow Green High" Color="#ff51970d"/>
+    <SolidColorBrush x:Key="Graphics/Yellow Green Highest" Color="#ff46761a"/>
+    <SolidColorBrush x:Key="Graphics/Green Lowest" Color="#ff6fcfa1"/>
+    <SolidColorBrush x:Key="Graphics/Green Low" Color="#ff37c47f"/>
+    <SolidColorBrush x:Key="Graphics/Green" Color="#ff00b85c"/>
+    <SolidColorBrush x:Key="Graphics/Green High" Color="#ff0c9752"/>
+    <SolidColorBrush x:Key="Graphics/Green Highest" Color="#ff187648"/>
+    <SolidColorBrush x:Key="Graphics/Blue Green Lowest" Color="#ff6fcecf"/>
+    <SolidColorBrush x:Key="Graphics/Blue Green Low" Color="#ff37c2c3"/>
+    <SolidColorBrush x:Key="Graphics/Blue Green" Color="#ff00b7b8"/>
+    <SolidColorBrush x:Key="Graphics/Blue Green High" Color="#ff0c9697"/>
+    <SolidColorBrush x:Key="Graphics/Blue Green Highest" Color="#ff187576"/>
+    <SolidColorBrush x:Key="Graphics/Light Blue Lowest" Color="#ff6fbeed"/>
+    <SolidColorBrush x:Key="Graphics/Light Blue Low" Color="#ff37abf1"/>
+    <SolidColorBrush x:Key="Graphics/Light Blue" Color="#ff0097f5"/>
+    <SolidColorBrush x:Key="Graphics/Light Blue High" Color="#ff0c7ec5"/>
+    <SolidColorBrush x:Key="Graphics/Light Blue Highest" Color="#ff186594"/>
+    <SolidColorBrush x:Key="Graphics/Blue Lowest" Color="#ff80afed"/>
+    <SolidColorBrush x:Key="Graphics/Blue Low" Color="#ff5193f1"/>
+    <SolidColorBrush x:Key="Graphics/Blue" Color="#ff2277f5"/>
+    <SolidColorBrush x:Key="Graphics/Blue High" Color="#ff2567c5"/>
+    <SolidColorBrush x:Key="Graphics/Blue Highest" Color="#ff295694"/>
+    <SolidColorBrush x:Key="Graphics/Purple Lowest" Color="#ffcb91d8"/>
+    <SolidColorBrush x:Key="Graphics/Purple Low" Color="#ffc267d1"/>
+    <SolidColorBrush x:Key="Graphics/Purple" Color="#ffb93cc9"/>
+    <SolidColorBrush x:Key="Graphics/Purple High" Color="#ff973aa4"/>
+    <SolidColorBrush x:Key="Graphics/Purple Highest" Color="#ff74387f"/>
+    <SolidColorBrush x:Key="Graphics/Purple Red Lowest" Color="#ffd5969f"/>
+    <SolidColorBrush x:Key="Graphics/Purple Red Low" Color="#ffd06e7b"/>
+    <SolidColorBrush x:Key="Graphics/Purple Red" Color="#ffcc4558"/>
+    <SolidColorBrush x:Key="Graphics/Purple Red High" Color="#ffa5414f"/>
+    <SolidColorBrush x:Key="Graphics/Purple Red Highest" Color="#ff7e3d46"/>
+    <SolidColorBrush x:Key="Graphics/Light Gray Lowest" Color="#ffc4cfcf"/>
+    <SolidColorBrush x:Key="Graphics/Light Gray Low" Color="#ffb7c4c4"/>
+    <SolidColorBrush x:Key="Graphics/Light Gray" Color="#ffabb8b8"/>
+    <SolidColorBrush x:Key="Graphics/Light Gray High" Color="#ff8c9797"/>
+    <SolidColorBrush x:Key="Graphics/Light Gray Highest" Color="#ff6d7676"/>
+    <SolidColorBrush x:Key="Graphics/Gray Lowest" Color="#ffa7b0b0"/>
+    <SolidColorBrush x:Key="Graphics/Gray Low" Color="#ff8c9595"/>
+    <SolidColorBrush x:Key="Graphics/Gray" Color="#ff717a7a"/>
+    <SolidColorBrush x:Key="Graphics/Gray High" Color="#ff616969"/>
+    <SolidColorBrush x:Key="Graphics/Gray Highest" Color="#ff505757"/>
+    <SolidColorBrush x:Key="Graphics Old/Neutral/Primary" Color="#1d3838b8"/>
+    <SolidColorBrush x:Key="Graphics Old/Neutral/Secondary" Color="#1a57571f"/>
+    <SolidColorBrush x:Key="Graphics Old/Neutral/Disabled" Color="#1c404052"/>
+    <SolidColorBrush x:Key="Graphics Old/Neutral/Invert Primary" Color="#ffffffff"/>
+    <SolidColorBrush x:Key="Graphics Old/Neutral/Window Border" Color="#75757566"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Coral Red" Color="#ffff3a3a"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/English Vermillion" Color="#ffd44948"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Orange" Color="#ffff733b"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Yellow Orange" Color="#ffffaf3b"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Sunglow" Color="#ffffd43b"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Cadmium Yellow" Color="#fffdf40d"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Green Lizard" Color="#ffb9f037"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Lime Green" Color="#ff2fcd2f"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Maximum Blue Green" Color="#ff2bb6b7"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Han Blue" Color="#ff3f61c4"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Iris" Color="#ff693ec6"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Dark Orchid" Color="#ffa831c1"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Razzmatazz" Color="#ffe72268"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/White" Color="#ffffffff"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Black" Color="#ff000000"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Green" Color="#ff3cf33c"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Aqua Blue" Color="#ff3beff0"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Cyan Blue" Color="#ff00a0ff"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Blue" Color="#ff5580fd"/>
+    <SolidColorBrush x:Key="Graphics Old/Accent/Violet" Color="#ffda42fa"/>
+</ResourceDictionary>

@@ -34,11 +34,8 @@
         </Border>
     </Design.PreviewWith>
 
-
-    <sys:Double x:Key="PopupColorEditorPopupWidth">316</sys:Double>
-
     <ControlTheme x:Key="{x:Type mxe:PopupColorEditor}" TargetType="mxe:PopupColorEditor" BasedOn="{StaticResource {x:Type mxe:PopupEditor}}">
-        <Setter Property="PopupWidth" Value="{StaticResource PopupColorEditorPopupWidth}"/>
+        <Setter Property="PopupWidth" Value="{DynamicResource PopupColorEditorPopupWidth}"/>
         <Setter Property="PopupHorizontalOffset" Value="{DynamicResource PopupHorizontalOffset}"/>
         <Setter Property="PopupBottomOffset" Value="{DynamicResource PopupBottomOffset}"/>
         <Setter Property="Template">
@@ -78,17 +75,17 @@
                 </Style>
 
                 <Style Selector="^:pointerover">
-                    <Setter Property="Background" Value="{DynamicResource PopupColorEditorBackgroundPointerOver}"/>
+                    <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}"/>
                     <Style Selector="^.secondary">
-                        <Setter Property="BorderBrush" Value="{DynamicResource PopupColorEditorSecondaryBorderBrushPointerOver}"/>
-                        <Setter Property="Background" Value="{DynamicResource PopupColorEditorSecondaryBackgroundPointerOver}" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Light}"/>
+                        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Hover}" />
                     </Style>
                 </Style>
                 <Style Selector="^:focus-visible">
                     <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
-                    <Setter Property="Background" Value="{DynamicResource PopupColorEditorBackgroundPointerOver}" />
+                    <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Secondary/Hover}" />
                     <Style Selector="^.secondary">
-                        <Setter Property="Background" Value="{DynamicResource PopupColorEditorSecondaryBackgroundPointerOver}" />
+                        <Setter Property="Background" Value="{DynamicResource Fill/Neutral/Primary/Hover}" />
                         <Setter Property="BorderBrush" Value="{DynamicResource TransparentBrush}"/>
                     </Style>
                 </Style>

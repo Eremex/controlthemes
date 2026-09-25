@@ -438,26 +438,23 @@
             </ControlTemplate>
         </Setter>
     </ControlTheme>
-    
+
     <ControlTheme x:Key="{x:Type doi:SideDockWidget}" TargetType="doi:SideDockWidget">
         <Setter Property="Template">
             <ControlTemplate>
-                <Border CornerRadius="2"
+                <Border CornerRadius="9"
                         BorderThickness="1"
-                        BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Strong}"
-                        Background="{DynamicResource Fill/Neutral/Secondary/Pressed}"
+                        BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}"
+                        Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
                         Padding="4">
                     <doi:DockWidgetButton x:Name="PART_Button"
-                                          BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Strong}"
-                                          BorderThickness="1"
-                                          CornerRadius="2"
                                           Width="28"
                                           Height="28">
                     </doi:DockWidgetButton>
                 </Border>
             </ControlTemplate>
         </Setter>
-        <Setter Property="Opacity" Value="0.8"></Setter>
+        <Setter Property="Opacity" Value="0.85"></Setter>
     </ControlTheme>
 
     <ControlTheme x:Key="{x:Type doi:CenterDockWidget}" TargetType="doi:CenterDockWidget">
@@ -471,8 +468,9 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Border x:Name="Top"
-                                BorderThickness="1 1 1 0" BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Strong}"
-                                Background="{DynamicResource Fill/Neutral/Secondary/Hover}"
+                                BorderThickness="1 1 1 0" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}"
+                                CornerRadius="9,9,0,0"
+                                Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
                                 Grid.Column="1"
                                 Grid.Row="0"
                                 HorizontalAlignment="Center"
@@ -486,8 +484,9 @@
                             </StackPanel>
                         </Border>
                         <Border x:Name="Left"
-                                Background="{DynamicResource Fill/Neutral/Secondary/Hover}"
-                                BorderThickness="1 1 0 1" BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Strong}"
+                                Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
+                                BorderThickness="1 1 0 1" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}"
+                                CornerRadius="9,0,0,9"
                                 Grid.Column="0"
                                 Grid.Row="1"
                                 HorizontalAlignment="Right"
@@ -500,7 +499,7 @@
                                                       doi:DockWidgetLayer.HitTest="TabLeft" />
                             </StackPanel>
                         </Border>
-                        <Border x:Name="Center" Background="{DynamicResource Fill/Neutral/Secondary/Hover}"
+                        <Border x:Name="Center" Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
                                 Grid.Column="1"
                                 Grid.Row="1">
                             <doi:DockWidgetButton x:Name="PART_Center"
@@ -509,8 +508,9 @@
                                                   HorizontalAlignment="Center" />
                         </Border>
                         <Border x:Name="Right"
-                                Background="{DynamicResource Fill/Neutral/Secondary/Hover}"
-                                BorderThickness="0 1 1 1" BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Strong}"
+                                Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
+                                BorderThickness="0 1 1 1" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}"
+                                CornerRadius="0,9,9,0"
                                 Grid.Column="2"
                                 Grid.Row="1"
                                 HorizontalAlignment="Left"
@@ -526,8 +526,9 @@
                             </StackPanel>
                         </Border>
                         <Border x:Name="Bottom"
-                                Background="{DynamicResource Fill/Neutral/Secondary/Hover}"
-                                BorderThickness="1 0 1 1" BorderBrush="{DynamicResource Outline/Neutral/On Secondary/Strong}"
+                                Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
+                                BorderThickness="1 0 1 1" BorderBrush="{DynamicResource Outline/Neutral/Transparent/Light}"
+                                CornerRadius="0,0,9,9"
                                 Grid.Column="1"
                                 Grid.Row="2"
                                 HorizontalAlignment="Center"
@@ -546,19 +547,89 @@
                 </Grid>
             </ControlTemplate>
         </Setter>
-        <Setter Property="Opacity" Value="0.8"></Setter>
+        <Setter Property="Opacity" Value="0.85"></Setter>
     </ControlTheme>
-    
+
     <ControlTheme x:Key="{x:Type doi:DockWidgetButton}" TargetType="doi:DockWidgetButton" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/On Secondary/Strong}"></Setter>
-        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
         <Setter Property="CornerRadius" Value="4"></Setter>
         <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Padding" Value="0"></Setter>
         <Setter Property="Width" Value="28"></Setter>
         <Setter Property="Height" Value="28"></Setter>
-        
-        <Style Selector="^:disabled">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Border x:Name="PART_BackgroundBorder"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
+                        <Image x:Name="PART_Icon"
+                               Width="17"
+                               Height="17"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"></Image>
+                    </Border>
+                    <Border x:Name="PART_ButtonBorder"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Background="{x:Null}"></Border>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+
+        <!-- Dock direction icons from the shared icon library (Other/20/Dock*). -->
+        <Style Selector="^[(doi|DockWidgetLayer.HitTest)=SideTop] /template/ Image#PART_Icon">
+            <Setter Property="Source" Value="{x:Static other:_20.Dock_Top}"></Setter>
+        </Style>
+        <Style Selector="^[(doi|DockWidgetLayer.HitTest)=SideLeft] /template/ Image#PART_Icon">
+            <Setter Property="Source" Value="{x:Static other:_20.Dock_Left}"></Setter>
+        </Style>
+        <Style Selector="^[(doi|DockWidgetLayer.HitTest)=SideRight] /template/ Image#PART_Icon">
+            <Setter Property="Source" Value="{x:Static other:_20.Dock_Right}"></Setter>
+        </Style>
+        <Style Selector="^[(doi|DockWidgetLayer.HitTest)=SideBottom] /template/ Image#PART_Icon">
+            <Setter Property="Source" Value="{x:Static other:_20.Dock_Bottom}"></Setter>
+        </Style>
+
+        <!-- Fill hint: the whole window is filled. -->
+        <Style Selector="^[(doi|DockWidgetLayer.HitTest)=Center] /template/ Image#PART_Icon">
+            <Setter Property="Source" Value="{x:Static other:_20.Dock_Fill}"></Setter>
+        </Style>
+
+        <!-- Split hints. -->
+        <Style Selector="^[(doi|DockWidgetLayer.HitTest)=CenterTop] /template/ Image#PART_Icon">
+            <Setter Property="Source" Value="{x:Static other:_20.Dock_Top}"></Setter>
+        </Style>
+        <Style Selector="^[(doi|DockWidgetLayer.HitTest)=CenterBottom] /template/ Image#PART_Icon">
+            <Setter Property="Source" Value="{x:Static other:_20.Dock_Bottom}"></Setter>
+        </Style>
+        <Style Selector="^[(doi|DockWidgetLayer.HitTest)=CenterLeft] /template/ Image#PART_Icon">
+            <Setter Property="Source" Value="{x:Static other:_20.Dock_Left}"></Setter>
+        </Style>
+        <Style Selector="^[(doi|DockWidgetLayer.HitTest)=CenterRight] /template/ Image#PART_Icon">
+            <Setter Property="Source" Value="{x:Static other:_20.Dock_Right}"></Setter>
+        </Style>
+
+        <!-- Tab hints: a window with a dashed divider. -->
+        <Style Selector="^[(doi|DockWidgetLayer.HitTest)=TabTop] /template/ Image#PART_Icon">
+            <Setter Property="Source" Value="{x:Static other:_20.Dock_Vertical}"></Setter>
+        </Style>
+        <Style Selector="^[(doi|DockWidgetLayer.HitTest)=TabBottom] /template/ Image#PART_Icon">
+            <Setter Property="Source" Value="{x:Static other:_20.Dock_Vertical}"></Setter>
+        </Style>
+        <Style Selector="^[(doi|DockWidgetLayer.HitTest)=TabLeft] /template/ Image#PART_Icon">
+            <Setter Property="Source" Value="{x:Static other:_20.Dock_Horizontal}"></Setter>
+        </Style>
+        <Style Selector="^[(doi|DockWidgetLayer.HitTest)=TabRight] /template/ Image#PART_Icon">
+            <Setter Property="Source" Value="{x:Static other:_20.Dock_Horizontal}"></Setter>
+        </Style>
+
+        <Style Selector="^:dock-hidden">
             <Setter Property="Opacity" Value="0"></Setter>
+            <Setter Property="IsHitTestVisible" Value="False"></Setter>
         </Style>
     </ControlTheme>
     
@@ -893,11 +964,13 @@
                         <Image Source="{x:Static other:_12.Minimize_Window}" />
                     </doi:ControlBoxButton>
                     <doi:ControlBoxButton CommandType="Maximize"
-                                          ToolTip.Tip="{x:Static localization:ControlsResources.DockPane_MaximizeButton}">
+                                          ToolTip.Tip="{x:Static localization:ControlsResources.DockPane_MaximizeButton}"
+                                          WindowDecorationProperties.ElementRole="MaximizeButton">
                         <Image Source="{x:Static other:_12.Maximize_Full_Screen}"/>
                     </doi:ControlBoxButton>
                     <doi:ControlBoxButton CommandType="Restore"
-                                          ToolTip.Tip="{x:Static localization:ControlsResources.DockPane_RestoreButton}">
+                                          ToolTip.Tip="{x:Static localization:ControlsResources.DockPane_RestoreButton}"
+                                          WindowDecorationProperties.ElementRole="MaximizeButton">
                         <Image Source="{x:Static other:_12.Maximize_Window}"/>
                     </doi:ControlBoxButton>
                     <doi:ControlBoxButton CommandType="Unpin"

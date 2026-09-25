@@ -4,7 +4,7 @@
     <ControlTheme x:Key="{x:Type PopupRoot}" TargetType="PopupRoot">
         <Setter Property="Background" Value="{x:Null}" />
         <Setter Property="TransparencyLevelHint" Value="Transparent" />
-        <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource Text/Neutral/Primary}" />
         <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -14,7 +14,7 @@
                 <LayoutTransformControl LayoutTransform="{TemplateBinding Transform}">
                     <Panel>
                         <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
-                        <VisualLayerManager>
+                        <VisualLayerManager Name="PART_VisualLayerManager">
                             <ContentPresenter Name="PART_ContentPresenter"
                                               Background="{TemplateBinding Background}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"

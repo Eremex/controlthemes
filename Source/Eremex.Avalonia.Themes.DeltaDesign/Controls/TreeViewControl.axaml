@@ -46,7 +46,7 @@
             <Panel x:Name="PART_ScrollBarsSeparator"
                    Grid.Row="2"
                    Grid.Column="1"
-                   Background="{DynamicResource ScrollViewerBarsSeparatorBackground}"
+                   Background="{DynamicResource Fill/Neutral/Secondary/Enabled}"
                    Opacity="0">
                 <Panel.Transitions>
                     <Transitions>
@@ -58,6 +58,7 @@
     </ControlTemplate>
     
 	<ControlTheme x:Key="{x:Type mxtl:TreeViewControl}" TargetType="mxtl:TreeViewControl">
+        <Setter Property="RowMinHeight" Value="{DynamicResource DataControlRowMinHeight}" />
 		<Setter Property="RowLevelIndent" Value="22" />
 		<Setter Property="Focusable" Value="True" />
 		<Setter Property="FocusAdorner" Value="{x:Null}" />

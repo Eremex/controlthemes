@@ -23,7 +23,7 @@
     <ControlTheme x:Key="{x:Type mxe:GroupBox}" TargetType="mxe:GroupBox">
         <Setter Property="Background" Value="{DynamicResource TransparentBrush}"/>
         <Setter Property="Padding" Value="{DynamicResource GroupBoxPadding}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource GroupBoxSplitterBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Outline/Neutral/Transparent/Medium}" />
         <Setter Property="BorderThickness" Value="{StaticResource GroupBoxDecoratorThickness}" />
         <Setter Property="CornerRadius" Value="{StaticResource GroupBoxCornerRadius}"/>
         <Setter Property="Template">
@@ -45,7 +45,7 @@
                                               Margin="{DynamicResource GroupBoxHeaderMargin}"
                                               RecognizesAccessKey="True"
                                               IsVisible="{TemplateBinding ShowHeader}"
-                                              TextBlock.Foreground="{DynamicResource GroupBoxHeaderForeground}"
+                                              TextBlock.Foreground="{DynamicResource Text/Neutral/Secondary}"
                                               HorizontalAlignment="{TemplateBinding HeaderHorizontalAlignment}"
                                               VerticalAlignment="{TemplateBinding HeaderVerticalAlignment}"
                                               VerticalContentAlignment="{TemplateBinding HeaderVerticalContentAlignment}"

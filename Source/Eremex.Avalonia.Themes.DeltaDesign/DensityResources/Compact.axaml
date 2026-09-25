@@ -1,0 +1,81 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    
+    <Thickness x:Key="ButtonPadding">12,3,12,4</Thickness>
+    <Thickness x:Key="AccentButtonFocusedPadding">10,1,10,2</Thickness>
+
+    <x:Double x:Key="SliderHorizontalHeight">22</x:Double>
+    <x:Double x:Key="SliderVerticalWidth">22</x:Double>
+    <GridLength x:Key="SliderPreContentNoTickMargin">0</GridLength>
+    <GridLength x:Key="SliderPostContentNoTickMargin">0</GridLength>
+
+    <x:Double x:Key="ListBoxItemMinHeight">22</x:Double>
+    <CornerRadius x:Key="ListBoxItemCornerRadius">4</CornerRadius>
+
+    <x:Double x:Key="MxSplitButtonToggleFocusedMinWidth">20</x:Double>
+    <Thickness x:Key="MxSplitButtonAccentButtonFocusedPadding">10,1,12,2</Thickness>
+       
+    <x:Double x:Key="DayButtonMinHeight">25</x:Double>
+    
+    <x:Double x:Key="EditorMinHeight">22</x:Double>
+    <x:Double x:Key="ControlMinHeight">22</x:Double>
+    <x:Double x:Key="ButtonMinWidth">22</x:Double>
+    <Thickness x:Key="EditorIconButtonPadding">2</Thickness>
+
+    <x:Double x:Key="ColorPickerControlWidth">312</x:Double>
+    <GridLength x:Key="ColorPickerSliderTopMargin">10</GridLength>
+    <x:Double x:Key="ColorPickerTransparencySliderTopMargin">2</x:Double>
+    <GridLength x:Key="ColorPickerSliderBottomMargin">2</GridLength>
+    <GridLength x:Key="ColorPickerColorComponentTopMargin">10</GridLength>
+    <Thickness x:Key="ColorPickerControlPadding">8,8,8,4</Thickness>
+
+    <x:Double x:Key="ColorEditorWidth">312</x:Double>
+    <x:Double x:Key="ColorButtonDefaultSize">21</x:Double>
+    <Thickness x:Key="ColorEditorSelectorsMargin">6,0,0,6</Thickness>
+    <Thickness x:Key="ColorEditorThemeSelectorMargin">0,6,0,0</Thickness>
+    <Thickness x:Key="ColorEditorDescriptionMargin">8,0,18,6</Thickness>
+    <Thickness x:Key="ColorEditorPlatformSelectorMargin">8,0,8,0</Thickness>
+
+    <x:Double x:Key="PopupColorEditorPopupWidth">314</x:Double>
+
+    <x:Double x:Key="DataControlHeaderPanelMinHeight">22</x:Double>
+    <x:Double x:Key="DataControlRowMinHeight">23</x:Double>
+    <Thickness x:Key="DataControlColumnHeaderPadding">6,3</Thickness>
+    <Thickness x:Key="DataControlColumnHeaderFilterButtonPadding">6,3</Thickness>
+    <Thickness x:Key="DataControlFooterPadding">0,3,6,3</Thickness>
+    <Thickness x:Key="DataControlFooterButtonPadding">3</Thickness>
+    <Thickness x:Key="DataControlFooterEditorTitlePadding">0,6</Thickness>
+    <Thickness x:Key="DataControlFooterEditorPadding">0,6,0,0</Thickness>
+    <Thickness x:Key="DataControlFooterEditorButtonPadding">16,6</Thickness>
+
+    <Thickness x:Key="DataGridGroupPanelPadding">0,7,0,8</Thickness>
+
+    <Thickness x:Key="GroupPadding">8</Thickness>
+    <Thickness x:Key="GroupPaddingTop">0,8,0,0</Thickness>
+
+    <Thickness x:Key="ControlMargin">2</Thickness>
+    <Thickness x:Key="ControlMarginTopBottom">0,2</Thickness>
+
+    <x:Double x:Key="MxTabItemMinHeight">22</x:Double>
+    <x:Double x:Key="MxTabItemSelectedMinHeight">23</x:Double>
+
+    <Thickness x:Key="DialogWindowContentPadding">12</Thickness>
+    <Thickness x:Key="DialogWindowButtonsPadding">12,0,12,12</Thickness>
+    <Thickness x:Key="DialogWindowFooterPadding">12,6</Thickness>
+
+    <Thickness x:Key="MxWindowCaptionButtonPadding">4</Thickness>
+    <Thickness x:Key="MxWindowCaptionButtonMargin">2,0,2,0</Thickness>
+    <Thickness x:Key="MxWindowCaptionButtonLeftMargin">2,0,0,0</Thickness>
+    <CornerRadius x:Key="MxWindowCaptionButtonCornerRadius">4</CornerRadius>
+    <x:Double x:Key="MxWindowCaptionButtonMinWidth">20</x:Double>
+    <x:Double x:Key="MxWindowCaptionButtonMinHeight">20</x:Double>
+    <Thickness x:Key="MxWindowIconMargin">6,6,0,6</Thickness>
+    <Thickness x:Key="MxWindowIconMarginMaximized">2,2,0,2</Thickness>
+    <Thickness x:Key="MxWindowHeaderMargin">6</Thickness>
+    <Thickness x:Key="MxWindowHeaderMarginMaximized">2</Thickness>
+    <x:Double x:Key="MxWindowHeaderMinHeight">16</x:Double>
+    <x:Double x:Key="MxWindowFontSize">12</x:Double>
+    <x:Double x:Key="MxWindowHeaderLineHeight">16</x:Double>
+
+</ResourceDictionary>

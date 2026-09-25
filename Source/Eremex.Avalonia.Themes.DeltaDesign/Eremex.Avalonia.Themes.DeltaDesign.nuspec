@@ -3,15 +3,31 @@
   <metadata>
     <id>Eremex.Avalonia.Themes.DeltaDesign</id>
     <version>$version$</version>
+    <title>DeltaDesign Themes for Eremex Avalonia Controls</title>
     <license type="file">eula.txt</license>
-    <description>A collection of themes for the Eremex Avalonia UI Controls.</description>
+    <readme>README.md</readme>
+    <description>DeltaDesign paint themes for the Eremex Avalonia UI Controls, with light and dark variants. Styles both Eremex controls and standard Avalonia controls (Button, CheckBox, TextBox, ListBox, Slider, ProgressBar, and more) for a consistent, modern look. Fully customizable — override styles, resources and control templates to match your application's design.</description>
+    <tags>avalonia avaloniaui theme dark-theme light-theme styles eremex ui dotnet</tags>
     <authors>$nugetauthors$</authors>
     <copyright>$nugetcopyright$</copyright>
     <projectUrl>$nugetprojecturl$</projectUrl>
     <dependencies>
-      <group targetFramework="net6.0">
+      <group targetFramework="net8.0">
 		<dependency id="Eremex.Avalonia.Controls" version="$version$" exclude="Build,Analyzers" />
 	    <dependency id="Avalonia" version="$avaloniaversion$" exclude="Build,Analyzers" />
+        <dependency id="Avalonia.Controls.ColorPicker" version="$avaloniaversion$" exclude="Build,Analyzers" />
+        <dependency id="Avalonia.Controls.DataGrid" version="$avaloniaversion$" exclude="Build,Analyzers" />
+        <dependency id="Avalonia.Fonts.Inter" version="$avaloniaversion$" exclude="Build,Analyzers" />
+        <dependency id="Svg.Controls.Skia.Avalonia" version="$avaloniasvgskiaversion$" exclude="Build,Analyzers" />
+        <dependency id="DynamicData" version="8.1.1" exclude="Build,Analyzers" />
+        <dependency id="SkiaSharp" version="$skiasharpversion$" exclude="Build,Analyzers" />
+        <dependency id="System.Resources.Extensions" version="6.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net10.0">
+		<dependency id="Eremex.Avalonia.Controls" version="$version$" exclude="Build,Analyzers" />
+	    <dependency id="Avalonia" version="$avaloniaversion$" exclude="Build,Analyzers" />
+        <dependency id="Avalonia.Controls.ColorPicker" version="$avaloniaversion$" exclude="Build,Analyzers" />
+        <dependency id="Avalonia.Controls.DataGrid" version="$avaloniaversion$" exclude="Build,Analyzers" />
         <dependency id="Avalonia.Fonts.Inter" version="$avaloniaversion$" exclude="Build,Analyzers" />
         <dependency id="Svg.Controls.Skia.Avalonia" version="$avaloniasvgskiaversion$" exclude="Build,Analyzers" />
         <dependency id="DynamicData" version="8.1.1" exclude="Build,Analyzers" />
@@ -21,7 +37,11 @@
     </dependencies>
   </metadata>
   <files>
+    <file src="README.md" target="README.md" />
     <file src="../eula.txt" target="eula.txt" />
-    <file src="bin/$configuration$/Eremex.Avalonia.Themes.DeltaDesign.dll" target="lib\net6.0\Eremex.Avalonia.Themes.DeltaDesign.dll" />
+
+    <file src="bin/$configuration$/net8.0/Eremex.Avalonia.Themes.DeltaDesign.dll" target="lib\net8.0\Eremex.Avalonia.Themes.DeltaDesign.dll" />
+
+    <file src="bin/$configuration$/net10.0/Eremex.Avalonia.Themes.DeltaDesign.dll" target="lib\net10.0\Eremex.Avalonia.Themes.DeltaDesign.dll" />
   </files>
-</package>
+</package>

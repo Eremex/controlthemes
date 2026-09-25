@@ -186,7 +186,7 @@
                 <DockPanel>
                     <RepeatButton x:Name="ScrollLeftButton"
                                   Classes="TabControlButton Prev"
-                                  Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
+                                  Foreground="{DynamicResource Text/Neutral/Primary}"
                                   Theme="{StaticResource TabControlScrollButtonTheme}"
                                   ToolTip.Tip="{x:Static localization:ControlsResources.TabControl_ScrollPrevButton}"
                                   Classes.Horizontal="{Binding HorizontalScrollBarVisibility, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ScrollBarVisibilityToBoolConverter}, ConverterParameter={x:Static ScrollBarVisibility.Auto}}"
@@ -202,7 +202,7 @@
 
                     <RepeatButton x:Name="ScrollRightButton"
                                   Classes="TabControlButton Next"
-                                  Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
+                                  Foreground="{DynamicResource Text/Neutral/Primary}"
                                   Theme="{StaticResource TabControlScrollButtonTheme}"
                                   ToolTip.Tip="{x:Static localization:ControlsResources.TabControl_ScrollNextButton}"
                                   Classes.Horizontal="{Binding HorizontalScrollBarVisibility, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ScrollBarVisibilityToBoolConverter}, ConverterParameter={x:Static ScrollBarVisibility.Auto}}"
