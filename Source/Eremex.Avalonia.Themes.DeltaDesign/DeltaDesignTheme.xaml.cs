@@ -3,8 +3,6 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
 
-using System.Diagnostics.CodeAnalysis;
-
 #nullable disable
 namespace Eremex.AvaloniaUI.Themes.DeltaDesign
 {
@@ -50,8 +48,6 @@ namespace Eremex.AvaloniaUI.Themes.DeltaDesign
 		Palette palette;
 		ResourceDictionary densityResources, paletteResources, iconsColors;
 
-		[DynamicDependency(DynamicallyAccessedMemberTypes.PublicConstructors, typeof(global::Avalonia.Controls.ColorPicker))]
-		[DynamicDependency(DynamicallyAccessedMemberTypes.PublicConstructors, typeof(global::Avalonia.Controls.DataGrid))]
 		public DeltaDesignTheme(IServiceProvider sp = null)
 		{
 			AvaloniaXamlLoader.Load(sp, this);

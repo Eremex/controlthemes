@@ -695,13 +695,15 @@
     <Setter Property="Template">
         <ControlTemplate TargetType="mxdcv:FooterCellItemControl">
             <DockPanel Margin="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
-                <TextBlock Text="{Binding Label}"
+                <TextBlock x:Name="Label"
+                           Text="{Binding Label}"
                            DockPanel.Dock="Left"
                            TextTrimming="CharacterEllipsis"
                            HorizontalAlignment="Left"
                            mxc:TextBlockHelper.ShowTooltipWhenTrimming="True" />
                 <TextBlock Text=" "/>
-                <TextBlock Text="{Binding DisplayValue}"
+                <TextBlock x:Name="DisplayValue"
+                           Text="{Binding DisplayValue}"
                            DockPanel.Dock="Right"
                            FontWeight="SemiBold"
                            TextTrimming="CharacterEllipsis"
@@ -735,7 +737,7 @@
                                    mxc:TextBlockHelper.ShowTooltipWhenTrimming="True"
                                    Text="{x:Static localization:ControlsResources.DataControl_Summary_ButtonHint}"                                 
                         />
-                        <ItemsControl Grid.Column="1" ItemsSource="{Binding Items}" >
+                        <ItemsControl Grid.Column="1" x:Name="Items" ItemsSource="{Binding Items}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <mxdcv:FooterCellItemControl />
@@ -752,10 +754,10 @@
             <Setter Property="BorderThickness" Value="0,0,1,0" />
         </Style>
 
-        <!-- Style Selector="^[HasBandSeparator=true] /template/ Border#FooterBorder">
-            <Setter Property="BorderThickness" Value="0,0,3,0" />
-        </Style -->
-        
+        <Style Selector="^[IsButtonVisible=false] /template/ ItemsControl#Items">
+            <Setter Property="Margin" Value="6,0,0,0" />
+        </Style>
+
     </ControlTheme>
 
 
@@ -804,7 +806,7 @@
                                               </Style>
                                             </mxev:PopupContentContainer.Styles>
                                         </mxev:PopupContentContainer>
-                                        <Border Grid.Row="1" Margin="4,1" BorderBrush="{DynamicResource Fill/Neutral/Primary/Pressed}" BorderThickness="0,1,0,0" />
+                                        <Border Grid.Row="1" Margin="4,1" BorderBrush="{DynamicResource Fill/Neutral/Primary/Pressed}" IsVisible="{Binding #PART_CustomizeItem.IsVisible}" BorderThickness="0,1,0,0" />
                                         <ListBoxItem x:Name="PART_CustomizeItem" Grid.Row="2">
                                             <ListBoxItem.Content>
                                                 <DockPanel>
